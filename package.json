@@ -1,20 +1,25 @@
 {
-  "name": "@crabel/config",
+  "name": "@crabel/shared",
   "version": "1.0.0",
-  "description": "Library for handling configuration of node applications.",
+  "description": "Set of shared libraries to help build consistent Node applications, includes support for configs, logging and more.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@git2.hq.crabel.com:node-common/config.git"
+    "url": "git@git2.hq.crabel.com:node-common/shared.git"
   },
   "keywords": [
-    "node",
+    "crabel",
+    "tools",
     "config",
-    "crabel"
+    "log",
+    "utils"
   ],
   "author": "Carlos Galavis <cgalavis@crabel.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
 }
