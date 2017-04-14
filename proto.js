@@ -447,6 +447,7 @@ let dateExt = {};
 // == Static Members ==
 
 /**
+ * <pre>
  * Formats the given date "dt" using the formatting specifications in fstr. The following
  * formatting tokens apply:
  *      1) Year:    yyyy    = four digit year, yy = two digit year
@@ -469,6 +470,8 @@ let dateExt = {};
  * AM/PM:       t, tt
 
  * Use the "{" and "}" brackets to enclose text where date substitution should be avoided.
+ * </pre>
+ *
  * @memberof! Date
  * @param {Date} dt
  * @param {String} fstr

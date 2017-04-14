@@ -440,6 +440,7 @@ interpreted as a close range, passing 'inclusive = false' will make it an open r
 
 #### DateExt.format(dt, fstr[, replacer]) 
 
+<pre>
 Formats the given date "dt" using the formatting specifications in fstr. The following
 formatting tokens apply:
      1) Year:    yyyy    = four digit year, yy = two digit year
@@ -462,6 +463,7 @@ Timezone:    K
 AM/PM:       t, tt
 
 Use the "{" and "}" brackets to enclose text where date substitution should be avoided.
+</pre>
 
 
 
