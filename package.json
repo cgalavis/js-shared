@@ -1,7 +1,7 @@
 {
   "name": "@crabel/shared",
   "version": "1.0.0",
-  "description": "Set of shared libraries to help build consistent Node applications, includes support for configs, logging and more.",
+  "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
