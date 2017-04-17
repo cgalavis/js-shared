@@ -3,6 +3,6 @@ Set of shared libraries to help build consistent Node applications. Includes sup
 configs, logging and more.
 
 ###Documentation
-####[proto.js](docs/dist/index.html)
+####[proto.js](https://git2.hq.crabel.com/pages/node-common/shared/module-@crabel_proto.html)
 Collection of extensions for common JavaScript types such as <tt>Object</tt>, 
 <tt>Numbers</tt> and <tt>Date</tt>.
