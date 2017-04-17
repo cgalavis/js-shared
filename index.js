@@ -7,11 +7,11 @@
  * that can perform these tasks, such as Morgan (logging) and Moment (date/time), the
  * utilities contained in this package are not intended to replace these libraries and
  * their use is encourage whenever crabel-shared lacks needed functionality.
- *
+ * @module index.js
  * @author: Carlos Galavis <cgalavis@crabel.com>
  */
 
-require("./proto");
+require("./proto").init();
 
 exports.module = {
     util: require("./util"),

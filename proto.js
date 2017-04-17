@@ -1,16 +1,38 @@
-"use strict";
-
 /**
- * This file contains a list of enhancements to common JavaScript objects. This is
- * typically bad practice as some of these functions may be introduced in future versions
- * of JavaScript, but wrapping the way libraries like "moment" do compromises performance
- * since a wrapper object has to be created with a reference to the underlying object
- * instance, so here we buy the bullet and pray!!
+ * @file
+ * This module contains extensions to common JavaScript objects in the form of
+ * <b>static</b> and <b>prototype</b> functions. Extensions need to be registered using
+ * the <tt>init</tt> function. This function take a single optional parameter that
+ * indicates the object to extend, if the parameter is omitted all extensions are
+ * registered, for instance:
+ *
+ * <ul>
+ *     <li>Registers all extensions.<br>
+ *         <tt>require("@crabel/proto").init()</tt>
+ *     <li>Registers <tt>Object</tt>extensions only.<br>
+ *         <tt>require("@crabel/proto").init(Object)</tt>
+ *     <li>Registers <tt>Date</tt> and <tt>Array</tt> extensions.<br>
+ *         <tt>require("@crabel/proto").init(Date, Array)</tt>
+ * </ul>
+ *
+ * <hr>
+ * <h4>Important</h4>
+ * This is typically bad practice as some
+ * of these functions may be introduced in future versions of JavaScript, but wrapping
+ * them the way libraries like <b>moment</b> do compromises performance since a wrapper
+ * object has to be created with a reference to the underlying object instance, so
+ * here we buy the bullet and pray!!
  *
  * For the most part instance members are the ones at most risk, most of the functions
  * defined here are very unlikely to be introduced in future version of JS except perhaps
- * for single word functions such as "clone", "copy", "contains", etc. as well as some
- * of the most commonly named functions like "className", "isType", isPrimitive" etc.
+ * for single word functions such as <tt>clone</tt>, <tt>copy</tt> and
+ * <tt>contains</tt>, etc. as well as some of the most commonly named functions like
+ * <tt>className</tt>, <tt>isType</tt>, <tt>isPrimitive</tt> etc.
+ */
+
+/**
+ * @module @crabel/proto
+ * @exports init
  */
 
 
@@ -19,17 +41,19 @@
 // =======================
 
 
-let ObjExt = {};
-let objExt = {};
-
-// == Static Members ==
+/**
+ * @alias Object
+ * @constructor
+ */
+function ObjExt() {}
 
 /**
  * Returns true of the object matches the given type. objType should be a function
- * constructor such as 'Number', 'Date', 'String', etc.
- * @memberof! Object
- * @param obj
+ * constructor such as <tt>Number</tt>, <tt>Date</tt>, <tt>String</tt>, etc.
+ * @param {Object} obj
+ * Object instance to test.
  * @param {Function} type
+ * Constructor function defining the type to test against.
  * @returns {Boolean}
  */
 ObjExt.isType = function (obj, type) {
@@ -44,9 +68,10 @@ ObjExt.isType = function (obj, type) {
 };
 
 /**
- * Returns true if the given value 'val' is one of the primitive types.
- * @memberof Object
- * @param val
+ * Returns true if the given value 'val' is one of the primitive types
+ * <tt>Number</tt>, <tt>String</tt> or <tt>Boolean</tt>.
+ * @param {*} val
+ * Variable to inspect.
  * @returns {Boolean}
  */
 ObjExt.isPrimitive = function (val) {
@@ -69,9 +94,12 @@ ObjExt.isPrimitive = function (val) {
 
 
 /** Get name of the constructor function. This is used during registration to determine
- * which object is being registered.
- * @memberof! Object
+ * which object is being registered. This function does not rely on <b>arguments</b> so
+ * it is compatible with ES6 and <tt>strict</tt> mode.
  * @param {Object} obj
+ * Object to inspect.
+ * @returns {String}
+ * Name of the function used to construct the object.
  */
 ObjExt.className = function (obj) {
     let funcNameRegex = /function ([^(]*)/;
@@ -80,11 +108,18 @@ ObjExt.className = function (obj) {
 };
 
 /**
- * Clone is replaceable, copy is not since is a static method.
- * @memberof! Object
+ * Creates a copy of the given object. By default the <tt>clone</tt> function
+ * performs a deep copy of the object, passing <tt>deep = false</tt> will only clone
+ * the properties directly owned by the object are transfer to the object includinig
+ * <tt>Date</tt> objects.
+ *
+ * NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static method.
  * @param {Object} src
- * @param {Boolean} [deep]
+ * Reference to the object to be copied.
+ * @param {Boolean} [deep=true]
+ * Determines if child objects are copied too.
  * @returns {Object}
+ * Copy of the object given by <tt>src</tt>
  */
 ObjExt.copy = function (src, deep) {
     if (!src)
@@ -127,7 +162,6 @@ ObjExt.copy = function (src, deep) {
  * Returns true of 'src' fully contains 'tgt'. The comparison is recursive so all
  * properties and children's properties of 'tgt' must also exist in 'src' and have the
  * same values.
- * @memberof! Object
  * @param {Object} src
  * @param {Object} tgt
  * @returns {Boolean}
@@ -158,24 +192,22 @@ ObjExt.contains = function (src, tgt) {
 };
 
 
-// == Instance Members ==
-
 /**
  * Returns true of the object matches the given type. objType should be a function
  * constructor such as 'Number', 'Date', 'String', etc.
- * @memberof! Object#
  * @param {Function} objType
  * @returns {Boolean}
  */
-objExt.is = function (objType) {
+ObjExt.prototype.is = function (objType) {
     return ObjExt.isType(this, objType);
 };
 
 /**
- * @memberof Object#
- * @returns {boolean}
+ * Returns true if this object is one of the primitive types <tt>Number</tt>,
+ * <tt>String</tt> or <tt>Boolean</tt>.
+ * @returns {Boolean}
  */
-objExt.isPrimitive = function () {
+ObjExt.prototype.isPrimitive = function () {
     return ObjExt.isPrimitive(this);
 };
 
@@ -184,11 +216,10 @@ objExt.isPrimitive = function () {
  * strings. The returned object has no common references with the original object. If the
  * optional parameter "deep" is set to true, the object is recursively cloned, all
  * aggregated objects and arrays are also cloned.
- * @memberof! Object#
  * @param deep
  * @returns {Object}
  */
-objExt.clone = function (deep)
+ObjExt.prototype.clone = function (deep)
 {
     return Object.copy(this, deep);
 };
@@ -200,7 +231,7 @@ objExt.clone = function (deep)
  * @param {Object} tgt
  * @returns {Boolean}
  */
-objExt.contains = function (tgt) {
+ObjExt.prototype.contains = function (tgt) {
     return ObjExt.contains(this, tgt);
 };
 
@@ -209,13 +240,12 @@ objExt.contains = function (tgt) {
  * true, all overlapping attributes are replaced.
  * NOTE: Recursion when cloning the Date object fails on return, who knows why... try it
  * if you don't believe me :)
- * @memberof! Object#
- * @param src
- * @param replace
- * @param deep
+ * @param {Object} src
+ * @param {Boolean} replace
+ * @param {Boolean} deep
  * @returns {Object}
  */
-objExt.merge = function (src, replace, deep)
+ObjExt.prototype.merge = function (src, replace, deep)
 {
     if (undefined === src || null === src)
         return this;
@@ -248,54 +278,51 @@ objExt.merge = function (src, replace, deep)
 
 /**
  * Returns the name of the constructor function that was used to create the instance.
- * @memberof! Object#
- * @returns {string}
+ * @returns {String}
  */
-objExt.className = function () {
+ObjExt.prototype.className = function () {
     return ObjExt.className((this).constructor);
 };
+
 
 
 // =======================
 // == Number Extensions ==
 // =======================
 
-let NumExt = {};
-let numExt = {};
 
-// == Static Members ==
+/**
+ * @alias Number
+ * @constructor
+ */
+function NumExt() {}
 
-
-// == Instance Members ==
 
 /**
  * Rounds the number <b>this</b> to the given integer amount.
- * @memberof! Number#
  * @param {Number} amount
  * @returns {Number}
  */
-numExt.roundToInt = function (amount) {
+NumExt.prototype.roundToInt = function (amount) {
     return Math.round(this / amount) * amount;
 };
 
 /**
  * Truncates the number <b>this</b> to the given integer amount.
- * @memberof! Number#
  * @param {Number} amount
  * @returns {number}
  */
-numExt.truncToInt = function (amount) {
+NumExt.prototype.truncToInt = function (amount) {
     return Math.floor(this / amount) * amount;
 };
 
 /**
  * Calculates the next closest power of 2 number.
- * @memberof! Number#
  * @returns {Number}
  */
-numExt.nextPow2 = function () {
+NumExt.prototype.nextPow2 = function () {
     let x = Math.ceil(this);
-   
+
     x -= 1;
     x |= (x >> 1);
     x |= (x >> 2);
@@ -308,20 +335,18 @@ numExt.nextPow2 = function () {
 
 /**
  * Calculates the previous closest power of 2 number.
- * @memberof! Number#
  * @returns {Number}
  */
-numExt.prevPow2 = function () {
+NumExt.prototype.prevPow2 = function () {
     return Number(Math.floor(this) + 1).nextPow2() >> 1;
 };
 
 /**
  * Returns a string pre-appending any necessary 0s to reach the given width
- * @memberof! Number#
  * @param {Number} width
  * @returns {String}
  */
-numExt.zeroPadd = function (width) {
+NumExt.prototype.zeroPadd = function (width) {
     let num_str = this.toString();
     let len = width - num_str.length;
     for (let i = 0; i < len; ++i)
@@ -332,19 +357,20 @@ numExt.zeroPadd = function (width) {
 /**
  * Assumes the input is in milliseconds (straight from dateExt.getTime)
  * Format Specs:
- *      h[h]    = hours
- *      m[m]    = minutes
- *      s[s]    = seconds
- *      f       = hundreds of a second
- *      ff      = tens of a seconds
- *      fff     = milliseconds
+ * <ul>
+ *      <li>h[h]    = hours
+ *      <li>m[m]    = minutes
+ *      <li>s[s]    = seconds
+ *      <li>f       = hundreds of a second
+ *      <li>ff      = tens of a seconds
+ *      <li>fff     = milliseconds
+ * </ul>
  * Text enclosed within {} brackets is excluded from substitution however the brackets
  * are removed. To preserve the braces use double braces: {{test}} = {test}
- * @memberof! Number#
  * @param {String} [format]
  * @returns {String}
  */
-numExt.toTime = function (format) {
+NumExt.prototype.toTime = function (format) {
     if (undefined === format)
         format = "hh:mm:ss";
 
@@ -397,10 +423,9 @@ numExt.toTime = function (format) {
 
 /**
  * Returns a string with the number as an enumeration (1st, 2nd, 3rd, 4th, etc)
- * @memberof! Number#
- * @returns {string}
+ * @returns {String}
  */
-numExt.toEnum = function () {
+NumExt.prototype.toEnum = function () {
     let val = Math.abs(Number(this));
     if (1 == val) return this + "st";
     if (2 == val) return this + "nd";
@@ -412,13 +437,12 @@ numExt.toEnum = function () {
 /**
  * Returns true if the number is within the given range. By default the range is
  * interpreted as a close range, passing 'inclusive = false' will make it an open range.
- * @memberof! Number#
- * @param first
- * @param second
- * @param inclusive
- * @returns {boolean}
+ * @param {Number} first
+ * @param {Number} second
+ * @param {Boolean} inclusive
+ * @returns {Boolean}
  */
-numExt.between = function (first, second, inclusive)
+NumExt.prototype.between = function (first, second, inclusive)
 {
     if (isNaN(first) || isNaN(second))
         throw new Error("Invalid cal to \"between\", the input parameters must " +
@@ -437,46 +461,60 @@ numExt.between = function (first, second, inclusive)
 };
 
 
+
 // ===================
 // ==Date Extensions==
 // ===================
 
-let DateExt = {};
-let dateExt = {};
+/**
+ * @alias Date
+ * @constructor
+ */
+function DateExt() {}
 
-// == Static Members ==
 
 /**
- * <pre>
  * Formats the given date "dt" using the formatting specifications in fstr. The following
  * formatting tokens apply:
- *      1) Year:    yyyy    = four digit year, yy = two digit year
- *      2) Month:   MM      = two digit month, M = single digit month (when less than 10)
- *      3) Day:     dd      = two digit day, d = single digit day (when less than 10
- *      4) Hours:   hh      = two digit hour, h = single digit hour
- *      5) Minutes: mm      = two digit minutes, m = single digit minute
- *      6) Second:  ss      = two digit seconds, s = single digit seconds
- *      7) Millis:  z       = milliseconds, always 3 digit number
+ *  <table style="width: 100%">
+ *      <tr></td><td><b>yyyy</b></td><td style="width: 6px"></td><td>Four digit year</td></tr>
+ *      <tr><td><b>yy</b></td><td></td><td>Two digit year</td></tr>
+ *      <tr><td><b>MM</b></td><td></td><td>Two digit month</td></tr>
+ *      <tr><td><b>M</b></td><td></td><td>Single digit month (when less than 10)</td></tr>
+ *      <tr><td><b>MMMM</b></td><td></td><td>Month of the year, full name</td></tr>
+ *      <tr><td><b>MMM</b></td><td></td><td>Month of the year, short name</td></tr>
+ *      <tr><td><b>dd</b></td><td></td><td>Two digit day</td></tr>
+ *      <tr><td><b>d</b></td><td></td><td>Single digit day (when less than 10)</td></tr>
+ *      <tr><td><b>dddd</b></td><td></td><td>Day of the week, full name</td></tr>
+ *      <tr><td><b>ddd</b></td><td></td><td>Day of the week, short name</td></tr>
+ *      <tr><td><b>HH</b></td><td></td><td>Two digit hour, 24 hour clock</td></tr>
+ *      <tr><td><b>H</b></td><td></td><td>Single digit hour (when less than 10), 24 hour clock</td></tr>
+ *      <tr><td><b>hh</b></td><td></td><td>Two digit hour, 12 hour clock</td></tr>
+ *      <tr><td><b>h</b></td><td></td><td>Single digit hour (when less than 10), 12 hour clock</td></tr>
+ *      <tr><td><b>TT</b></td><td></td><td>Time of day (AM/PM)</td></tr>
+ *      <tr><td><b>T</b></td><td></td><td>Time of day (A/P)</td></tr>
+ *      <tr><td><b>tt</b></td><td></td><td>Time of day in lowercase (am/pm)</td></tr>
+ *      <tr><td><b>t</b></td><td></td><td>Time of day in lowercase (a/b)</td></tr>
+ *      <tr><td><b>mm</b></td><td></td><td>Two digit minute</td></tr>
+ *      <tr><td><b>m</b></td><td></td><td>Single digit minute (when less than 10)</td></tr>
+ *      <tr><td><b>ss</b></td><td></td><td>Two digit second</td></tr>
+ *      <tr><td><b>s</b></td><td></td><td>Single digit second (when less than 10)</td></tr>
+ *      <tr><td><b>fff</b></td><td></td><td>Milliseconds, zero padded 3 digit number</td></tr>
+ *      <tr><td><b>ff</b></td><td></td><td>Tens of milliseconds, zero padded 2 digit number</td></tr>
+ *      <tr><td><b>f</b></td><td></td><td>Hundreds of milliseconds</td></tr>
+ *      <tr><td><b>FFF</b></td><td></td><td>Milliseconds with no padding</td></tr>
+ *      <tr><td><b>FF</b></td><td></td><td>Tens of milliseconds, with no padding</td></tr>
+ *      <tr><td><b>F</b></td><td></td><td>Hundreds of milliseconds, with no padding</td></tr>
+ *      <tr><td><b>KKK</b></td><td></td><td>Timezone long description > GMT-0700 (PDT)</td></tr>
+ *      <tr><td><b>KK</b></td><td></td><td>Timezone short description > PDT</td></tr>
+ *      <tr><td><b>K</b></td><td></td><td>Timezone offset from GMT > -0700</td></tr>
+ *  </table>
  *
- * Day:         d, dd, ddd, dddd
- * Month:       M, MM, MMM, MMMM
- * Year:        y, yy, yyy, yyyy
- *
- * Hour:        h, hh, H, HH
- * Minute:      m, mm
- * Second:      s, ss
- * Seq. Fraq:   f, ff, fff
- * Timezone:    K
- * AM/PM:       t, tt
-
  * Use the "{" and "}" brackets to enclose text where date substitution should be avoided.
- * </pre>
- *
- * @memberof! Date
- * @param {Date} dt
- * @param {String} fstr
+ * @param {Date} dt Instance of <tt>date</tt> to format.
+ * @param {String} fstr Format string, e.g. "yyyy/MM/dd"
  * @param {Function} [replacer] Optional function to replace the date/time tokens. If
- * 'null' not value is returned the default substitution is used.
+ * omitted, the default substitution is used.
  * @returns {String}
  */
 DateExt.format = function (dt, fstr, replacer)
@@ -595,10 +633,14 @@ DateExt.format = function (dt, fstr, replacer)
         {
             let openSplit = closeSplit[i].split("{");
 
-            openSplit[0] = openSplit[0].replace("tt", "{" + (replacer(dt, "tt") ||
+            openSplit[0] = openSplit[0].replace("TT", "{" + (replacer(dt, "tt") ||
                 (pm ? "PM" : "AM")) + "}");
-            openSplit[0] = openSplit[0].replace("t", "{" + (replacer(dt, "t") ||
+            openSplit[0] = openSplit[0].replace("T", "{" + (replacer(dt, "t") ||
                 (pm ? "P" : "A")) + "}");
+            openSplit[0] = openSplit[0].replace("tt", "{" + (replacer(dt, "tt") ||
+                (pm ? "pm" : "am")) + "}");
+            openSplit[0] = openSplit[0].replace("t", "{" + (replacer(dt, "t") ||
+                (pm ? "p" : "a")) + "}");
 
             openSplit[0] = openSplit[0].replace("MMMM", "{" + (replacer(dt, "MMMM") ||
                 month[dt.getMonth()]) + "}");
@@ -610,6 +652,7 @@ DateExt.format = function (dt, fstr, replacer)
             openSplit[0] = openSplit[0].replace("ddd", "{" + (replacer(dt, "ddd") ||
                 dow_short[dt.getDay()]) + "}");
 
+            // TODO : Timezone replacement has not yet been implemented.
             openSplit[0] = openSplit[0].replace("KKK", "{" + (replacer(dt, "KKK") ||
                 "KKK") + "}");
             openSplit[0] = openSplit[0].replace("KK", "{" + (replacer(dt, "KK") ||
@@ -625,11 +668,10 @@ DateExt.format = function (dt, fstr, replacer)
 };
 
 /**
- * Returns true if the two dates point to the same day
- * @memberof! Date
- * @param date1
- * @param date2
- * @returns {boolean}
+ * Compares the two dates and returns true if they point to the same day.
+ * @param {Date} date1 First date to compare.
+ * @param {Date} date2 Second date to compare.
+ * @returns {Boolean}
  */
 DateExt.sameDay = function (date1, date2)
 {
@@ -642,9 +684,10 @@ DateExt.sameDay = function (date1, date2)
  * Returns the maximum length that the given format string can yield after a date is
  * formatted.
  * Usage:
- *      let len = DateExt.formatLength("yyyy/mm/dd");  // len = 10
- *      let len = DateExt.formatLength("yyy/m/d");     // len = 10
- * @memberof! Date
+ * <ul>
+ *      <li><tt>let len = DateExt.formatLength("yyyy/mm/dd");  // len = 10</tt>
+ *      <li><tt>let len = DateExt.formatLength("yyy/m/d");     // len = 10</tt>
+ * </ul>
  * @param {String} format_str
  * @param {Function} [replacer] Function to replace date/time tokens.
  * @returns {Number}
@@ -662,12 +705,12 @@ DateExt.formatLength = function (format_str, replacer)
 // == Instance Members ==
 
 /**
- * Returns copy of <b>this</b> and adds <b>y</b> number of years to it.
- * @memberof! Date#
- * @param y
- * @returns {Date}
+ * Returns copy of <tt>this</tt> and adds <tt>y</tt> number of years to it. The number of
+ * years to add can be negative.
+ * @param {Number} [y=1] Number of years to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addYears = function (y)
+DateExt.prototype.addYears = function (y)
 {
     if (isNaN(y)) y = 1;
     return new Date(
@@ -677,12 +720,11 @@ dateExt.addYears = function (y)
 };
 
 /**
- * Adds <b>y</b> number of years to <b>this</b> and returns it to allow method chaining.
- * @memberof! Date#
- * @param y
- * @returns {Date}
+ * Adds <tt>y</tt> number of years to <tt>this</tt> and returns it to allow chaining.
+ * @param {Number} [y=1] Number of years to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incYear = function (y)
+DateExt.prototype.incYear = function (y)
 {
     if (isNaN(y)) y = 1;
     this.setFullYear(this.getFullYear() + y);
@@ -690,12 +732,12 @@ dateExt.incYear = function (y)
 };
 
 /**
- * Returns copy of <b>this</b> and adds <b>m</b> number of months to it.
- * @memberof! Date#
- * @param m
- * @returns {Date}
+ * Returns copy of <tt>this</tt> and adds <tt>m</tt> number of months to it. The number of
+ * months can be negative.
+ * @param {Number} [m=1] Number of months to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addMonths = function (m)
+DateExt.prototype.addMonths = function (m)
 {
     if (isNaN(m)) m = 1;
     let res = new Date(this.getTime());
@@ -704,34 +746,32 @@ dateExt.addMonths = function (m)
 };
 
 /**
- * Adds <b>m</b> number of months to <b>this</b> and returns it to allow method chaining.
- * @memberof! Date#
- * @param m
- * @returns {Date}
+ * Adds <b>m</b> number of months to <b>this</b> and returns it to allow chaining.
+ * @param {Number} [m=1] Number of months to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incMonth = function (m)
+DateExt.prototype.incMonth = function (m)
 {
     if (isNaN(m)) m = 1;
     this.setMonth(this.getMonth() + m);
 };
 
 /**
- * Returns copy of <b>this</b> and adds <b>d</b> number of days to it.
- * @memberof! Date#
- * @param d
- * @returns {Date}
+ * Returns copy of <b>this</b> and adds <b>d</b> number of days to it. The number of days
+ * can be negative.
+ * @param {Number} [d=1] Number of days to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addDays = function (d)
+DateExt.prototype.addDays = function (d)
 {
     if (isNaN(d)) d = 1;
     return new Date(this.getTime() + (d * 36e5 * 24));
 };
 
 /**
- * Adds <b>d</b> number of days to <b>this</b> and returns it to allow method chaining.
- * @memberof! Date#
- * @param d
- * @returns {Date}
+ * Adds <tt>d</tt> number of days to <tt>this</tt> and returns it to allow chaining.
+ * @param {Number} [d=1] Number of days to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
 dateExt.incDay = function (d)
 {
@@ -740,10 +780,9 @@ dateExt.incDay = function (d)
 };
 
 /**
- * Returns copy of <b>this</b> and adds <b>h</b> number of hours to it.
- * @memberof! Date#
- * @param h
- * @returns {Date}
+ * Returns copy of <tt>this</tt> and adds <tt>h</tt> number of hours to it.
+ * @param {Number} [h=1] Number of hours to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
 dateExt.addHours = function (h)
 {
@@ -752,121 +791,119 @@ dateExt.addHours = function (h)
 };
 
 /**
- * Adds <b>h</b> number of hours to <b>this</b> and returns it to allow method chaining.
- * @memberof! Date#
- * @param h
- * @returns {Date}
+ * Adds <tt>h</tt> number of hours to <tt>this</tt> and returns it to allow chaining.
+ * @param {Number} [h=1] Number of hours to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incHour = function (h)
+DateExt.prototype.incHour = function (h)
 {
     if (isNaN(h)) h = 1;
     this.setTime(this.getTime() + (h * 36e5));
 };
 
 /**
- * Returns copy of <b>this</b> and adds <b>m</b> number of minutes to it.
- * @memberof! Date#
- * @param m
- * @returns {Date}
+ * Returns copy of <tt>this</tt> and adds <tt>m</tt> number of minutes to it. The number
+ * of minutes can be negative.
+ * @param {Number} [m=1] Number of minutes to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addMinutes = function (m)
+DateExt.prototype.addMinutes = function (m)
 {
     if (isNaN(m)) m = 1;
     return new Date(this.getTime() + (m * 6e4));
 };
 
 /**
- * Adds <b>m</b> number of minutes to <b>this</b> and returns it to allow method chaining.
- * @memberof! Date#
- * @param m
- * @returns {Date}
+ * Adds <tt>h</tt> number of minutes to <tt>this</tt> and returns it to allow chaining.
+ * @param {Number} [m=1] Number of minutes to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incMinute = function (m)
+DateExt.prototype.incMinute = function (m)
 {
     if (isNaN(m)) m = 1;
     this.setTime(this.getTime() + (m * 6e4));
 };
 
 /**
- * Returns copy of <b>this</b> and adds <b>s</b> number of seconds to it.
- * @memberof! Date#
- * @param s
- * @returns {Date}
+ * Returns copy of <tt>this</tt> and adds <tt>d</tt> number of seconds to it. The number of
+ * seconds can be negative.
+ * @param {Number} [s=1] Number of seconds to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addSeconds = function (s)
+DateExt.prototype.addSeconds = function (s)
 {
     if (isNaN(s)) s = 1;
     return new Date(this.getTime() + (s * 1000));
 };
 
 /**
- * Adds <b>s</b> number of seconds to <b>this</b> and returns it to allow method chaining.
- * @memberof! Date#
- * @param s
- * @returns {Date}
+ * Adds <tt>h</tt> number of seconds to <tt>this</tt> and returns it to allow chaining.
+ * @param {Number} [s=1] Number of seconds to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incSecond = function (s)
+DateExt.prototype.incSecond = function (s)
 {
     if (isNaN(s)) s = 1;
     return this.setTime(this.getTime() + (s * 1000));
 };
 
 /**
- * Returns copy of <b>this</b> and adds <b>ms</b> number of milliseconds to it.
- * @memberof! Date#
- * @param ms
- * @returns {Date}
+ * Returns copy of <tt>this</tt> and adds <tt>d</tt> number of milliseconds to it. The number
+ * of milliseconds can be negative.
+ * @param {Number} [ms=1] Number of milliseconds to add.
+ * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addMillis = function (ms)
+DateExt.prototype.addMillis = function (ms)
 {
     if (isNaN(ms)) ms = 1;
     return new Date(this.getTime() + ms);
 };
 
 /**
- * Adds <b>ms</b> number of milliseconds to <b>this</b> and returns it to allow method
+ * Adds <tt>h</tt> number of milliseconds to <tt>this</tt> and returns it to allow
  * chaining.
- * @memberof! Date#
- * @param ms
- * @returns {Date}
+ * @param {Number} [ms=1] Number of milliseconds to add.
+ * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incMilli = function (ms)
+DateExt.prototype.incMilli = function (ms)
 {
     if (isNaN(ms)) ms = 1;
     return this.setTime(this.getTime() + ms);
 };
 
 /**
- * Returns the difference between <b>this</b> and <b>date</b> in the given units
+ * Returns the difference between <tt>this</tt> and <tt>date</tt> in the given units
  * (milliseconds by default). Supported units are: "day/d", "hour/h", "minute/m",
- * "second/s", "millisecond/fff"
- * @memberof! Date#
- * @param date
- * @param units
- * @returns {number}
+ * "second/s", "millisecond/msec/f"
+ * @param {Date} date The date to compare against
+ * @param {String} units Units to compare (day, hour, minute, second, msec).
+ * @returns {Number} Returns the difference between the two dates.
+ * @throws Throws an error if <tt>units</tt> are not supported.
  */
-dateExt.diff = function (date, units)
+DateExt.prototype.diff = function (date, units)
 {
     if (!ObjExt.isType(date, Date))
         throw new Error("Invalid call to 'Date.diff', the input is not " +
             "a data.");
     if (!units)
-        units = "fff";
+        units = "f";
 
-    if (units == "fff" || units == "millisecond")
+    if (units === "f" || units === "millisecond" || units === "msec")
         return Math.floor(Math.abs(date.getTime() - this.getTime()));
 
-    if (units == "s" || units == "second")
+    if (units === "s" || units === "second")
         return Math.floor(Math.abs(date.getTime() - this.getTime()) / 1000);
 
-    if (units == "m" || units == "minute")
+    if (units === "m" || units === "minute")
         return Math.floor(Math.abs(date.getTime() - this.getTime()) / 6e4);
 
-    if (units == "h" || units == "hour")
+    if (units === "h" || units === "hour")
         return Math.floor(Math.abs(date.getTime() - this.getTime()) / 36e6);
 
-    if (units == "d" || units == "day")
+    if (units === "d" || units === "day")
         return Math.floor(Math.abs(date.getTime() - this.getTime()) / (36e6 * 24));
+
+    throw new Error("The '" + units + "' units are not supported.");
 };
 
 /**
@@ -874,45 +911,42 @@ dateExt.diff = function (date, units)
  * hack since the returned date still shows the local timezone (no way to change this as
  * far as I know), however it is very convenient to be able to operate on a Date that's
  * already adjusted.
- * @memberof! Date#
  * @returns {Date}
  */
-dateExt.toUtc = function ()
+DateExt.prototype.toUtc = function ()
 {
     return new Date(this.getTime() + this.getTimezoneOffset() * 60000);
 };
 
 
 /**
- // Formats the date with the given specification. See <b>Date.format</b> for more detail.
- * @memberof! Date#
- * @param {String} fstr
+ // Formats the date with the given specification. See <tt>Date.format</tt> for more
+ detail.
+ * @param {String} fstr Format string in the form <code>yyyy/MM/dd</code>
  * @param {Function} [replacer] Optional function to replace the date/time tokens.
- * @returns {string}
+ * @returns {string} Returns a string with the formatted date/time
  */
-dateExt.format = function (fstr, replacer)
+DateExt.prototype.format = function (fstr, replacer)
 {
     return DateExt.format(this, fstr, replacer);
 };
 
 /**
- * Returns true if <b>this</b> and <b>date</b> point to the same day.
- * @memberof! Date#
- * @param date
- * @returns {boolean}
+ * Returns true if <tt>this</tt> and <tt>date</tt> point to the same day.
+ * @param {Date} date
+ * @returns {Boolean}
  */
-dateExt.sameDay = function (date)
+DateExt.prototype.sameDay = function (date)
 {
     return DateExt.sameDay(this, date);
 };
 
 /**
- * Returns true if <b>this</b> day is earlier than <b>date</b> ignoring the time.
- * @memberof! Date#
- * @param date
- * @returns {boolean}
+ * Returns true if <tt>this</tt> day is earlier than <tt>date</tt> ignoring the time.
+ * @param {Date} date
+ * @returns {Boolean}
  */
-dateExt.earlierDayThan = function (date)
+DateExt.prototype.earlierDayThan = function (date)
 {
     if (this.getFullYear() < date.getFullYear())
         return true;
@@ -929,37 +963,45 @@ dateExt.earlierDayThan = function (date)
 
 /**
  * Returns true if <b>this</b> day is later than <b>date</b> ignoring the time.
- * @memberof! Date#
- * @param date
- * @returns {boolean}
+ * @param {Date} date
+ * @returns {Boolean}
  */
-dateExt.laterDayThan = function (date)
+DateExt.prototype.laterDayThan = function (date)
 {
     return date.earlierDayThan(this);
 };
 
-dateExt.truncTime = function () {
+/**
+ * Zeros out the time component of <tt>this</tt>.
+ * @returns {DateExt} Returns <tt>this</tt> after truncating time.
+ */
+DateExt.prototype.truncTime = function () {
     this.setHours(0, 0, 0, 0);
     return this;
 };
+
 
 
 // ======================
 // == Array Extensions ==
 // ======================
 
-let arrayExt = {};
+/**
+ * @alias Array
+ * @constructor
+ */
+function ArrayExt() {}
 
 // == Instance Members ==
 
 /**
  * Returns the first element in the array. The optional offset parameter can be used to
  * iterate through the array from first to last.
- * @memberof! Array#
- * @param offset
+ * @param {Number} [offset=0]
+ * Optionally returns the element <tt>offset</tt> from the first.
  * @returns {*}
  */
-arrayExt.first = function (offset)
+ArrayExt.prototype.first = function (offset)
 {
     if (!offset)
         offset = 0;
@@ -973,11 +1015,11 @@ arrayExt.first = function (offset)
 /**
  * Returns the last element in the array. The optional offset parameter can be used to
  * iterate through the array from last to first.
- * @memberof! Array#
- * @param offset
+ * @param {Number} [offset=0]
+ * Optionally returns the element <tt>offset</tt> from the last.
  * @returns {*}
  */
-arrayExt.last = function (offset)
+ArrayExt.prototype.last = function (offset)
 {
     if (!offset)
         offset = 0;
@@ -989,32 +1031,71 @@ arrayExt.last = function (offset)
 };
 
 /**
- * Returns 'true' if the array has no elements
- * @memberof! Array#
- * @returns {boolean}
+ * Returns <tt>true</tt> if the given index points to the last element in the
+ * <tt>Array</tt>.
+ * @param {Number} index
+ * @returns {Boolean}
  */
-arrayExt.empty = function ()
+ArrayExt.prototype.isLast = function (index) {
+    return ((index + 1) === this.length);
+};
+
+/**
+ * Returns <tt>true</tt> if the array has no elements.
+ * @returns {Boolean}
+ */
+ArrayExt.prototype.empty = function ()
 {
     return this.length == 0;
 };
 
 
-function registerExtension(orig, ext)
-{
+
+
+
+// ===============
+
+function registerExtension(orig, ext) {
     for (let k in ext)
-        if (ext.hasOwnProperty(k))
-        {
+        if (ext.hasOwnProperty(k)) {
             if (orig.hasOwnProperty(k))
                 continue;
 
-            Object.defineProperty(orig, k, { value: ext[k], writable: true });
+            Object.defineProperty(orig, k, {value: ext[k], writable: true});
         }
+
+    if (ext.prototype && orig.prototype)
+        registerExtension(orig.prototype, ext.prototype)
 }
 
-registerExtension(Object.prototype, objExt);
-registerExtension(Object, ObjExt);
-registerExtension(Number.prototype, numExt);
-registerExtension(Number, NumExt);
-registerExtension(Date.prototype, dateExt);
-registerExtension(Date, DateExt);
-registerExtension(Array.prototype, arrayExt);
+module.exports = {
+    /**
+     * Register the extensions for the given object type, or all extensions if no
+     * specific type is provided. Currently only <tt>Object</tt>, <tt>Number</tt>,
+     * <tt>Date</tt> and <tt>Array</tt> are supported.
+     * @param {Function} [targets...]
+     * The constructor function of the object to extend.
+     */
+    init: function (targets) {
+        let args = Array.prototype.slice.call(arguments);
+
+        if (hasType(Object))    registerExtension(Object, ObjExt);
+        if (hasType(Number))    registerExtension(Number, NumExt);
+        if (hasType(Date))      registerExtension(Date, DateExt);
+        if (hasType(Array))     registerExtension(Array, ArrayExt);
+
+
+        function hasType(type) {
+            "use strict";
+            if (0 === args.length)
+                return true;
+
+            for (let i = 0; i < args.length; i++)
+                if (args[i] === type)
+                    return true;
+
+            return false;
+        }
+    }
+};
+
