@@ -16,7 +16,7 @@
     "opts": {
         "template": "node_modules/namis",
         "encoding": "utf8",
-        "destination": "./docs/dist",
+        "destination": "./docs",
         "recurse": false,
         "tutorials": "./docs/tutorials"
     }
