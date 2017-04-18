@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha tests"
   },
+  "publishConfig": {
+    "registry": "https://artifactory.hq.crabel.com/artifactory/api/npm/npm-crabel"
+  },
   "repository": {
     "type": "git",
     "url": "git@git2.hq.crabel.com:node-common/shared.git"
@@ -20,6 +23,7 @@
   "author": "Carlos Galavis <cgalavis@crabel.com>",
   "license": "ISC",
   "dependencies": {
+    "columnify": "^1.5.4",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {

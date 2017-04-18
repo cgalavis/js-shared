@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Object - Documentation</title>
+    <title>@crabel/str_util - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-        <h1 class="page-title">Object</h1>
+        <h1 class="page-title">@crabel/str_util</h1>
     
 
     
@@ -41,9 +41,8 @@
 
 <header>
     
-        <h2>
-        Object
-        </h2>
+        
+            
         
     
 </header>
@@ -52,12 +51,15 @@
     <div class="container-overview">
     
         
+            <div class="description">This module is part of the Crabel core library, it contains utility functions that
+extend the standard <b>String</b> interface adding support for string transformation
+and formatting including token replacement, text layout construction and more.
+Formatting function (format and expand) provide token substitution services using the
+familiar handlebars notation i.e. {{ token }}.</div>
+        
 
-    
-
-    <h4 class="name" id="Object"><span class="type-signature"></span>new Object<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
+        
+            
 
 
 
@@ -104,7 +106,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line49">line 49</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -131,6 +133,7 @@
     
 
 
+        
     
     </div>
 
@@ -143,27 +146,35 @@
      
 
     
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="module-@crabel_str_util-str_util.html">str_util</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
 
     
 
     
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Type Definitions</h3>
 
         
-            
+                
 
     
 
-    <h4 class="name" id=".className"><span class="type-signature">(static) </span>className<span class="signature">(obj)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    <h4 class="name" id="~FormatterCallback"><span class="type-signature"></span>FormatterCallback<span class="signature">(obj, prop_name)</span><span class="type-signature"> &rarr; {String}</span></h4>
 
     
 
 
 
 <div class="description">
-    Get name of the constructor function. This is used during registration to determine
-which object is being registered. This function does not rely on <b>arguments</b> so
-it is compatible with ES6 and <tt>strict</tt> mode.
+    Callback function given to the 'str_util.subst.prop' function to format a given
+property value.
 </div>
 
 
@@ -217,7 +228,32 @@ it is compatible with ES6 and <tt>strict</tt> mode.
 
             
 
-            <td class="description last">Object to inspect.</td>
+            <td class="description last">Object container object from which a value is used for
+substitution.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prop_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the property of 'obj' whose value is being fetch for
+substitution.</td>
         </tr>
 
     
@@ -258,7 +294,7 @@ it is compatible with ES6 and <tt>strict</tt> mode.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line106">line 106</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line43">line 43</a>
     </li></ul></dd>
     
 
@@ -287,7 +323,7 @@ it is compatible with ES6 and <tt>strict</tt> mode.
     
             
 <div class="param-desc">
-    Name of the function used to construct the object.
+    Formatted value of obj[prop_name].
 </div>
 
 
@@ -307,21 +343,20 @@ it is compatible with ES6 and <tt>strict</tt> mode.
         
 
 
-        
             
+                
 
     
 
-    <h4 class="name" id=".contains"><span class="type-signature">(static) </span>contains<span class="signature">(src, child)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    <h4 class="name" id="~ReviverCallback"><span class="type-signature"></span>ReviverCallback<span class="signature">(key, value)</span><span class="type-signature"> &rarr; {*}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns true if <tt>src</tt> fully contains <tt>child</tt>. The comparison is
-recursive so all properties and children's properties of 'tgt' must also exist in
-<tt>src</tt> and have the same values.
+    Callback function given to the 'toObject' function to customize the conversion of JSON
+values to object property values.
 </div>
 
 
@@ -359,13 +394,13 @@ recursive so all properties and children's properties of 'tgt' must also exist i
 
         <tr>
             
-                <td class="name"><code>src</code></td>
+                <td class="name"><code>key</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">String</span>
 
 
             
@@ -375,20 +410,20 @@ recursive so all properties and children's properties of 'tgt' must also exist i
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Key being assigned to the resulting object instance.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>child</code></td>
+                <td class="name"><code>value</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">String</span>
 
 
             
@@ -398,7 +433,7 @@ recursive so all properties and children's properties of 'tgt' must also exist i
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Value being assigned to the 'key' property.</td>
         </tr>
 
     
@@ -439,7 +474,7 @@ recursive so all properties and children's properties of 'tgt' must also exist i
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line171">line 171</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -467,6 +502,12 @@ recursive so all properties and children's properties of 'tgt' must also exist i
     <h5>Returns:</h5>
     
             
+<div class="param-desc">
+    Value processed by the ReviverCallback function. This value is assigned
+to the 'key' property in place
+of the 'value' string that was in the JSON document.
+</div>
+
 
 
 <dl class="param-type">
@@ -475,7 +516,7 @@ recursive so all properties and children's properties of 'tgt' must also exist i
     </dt>
     <dd>
         
-<span class="param-type">Boolean</span>
+<span class="param-type">*</span>
 
 
     </dd>
@@ -484,24 +525,20 @@ recursive so all properties and children's properties of 'tgt' must also exist i
         
 
 
-        
             
+                
 
     
 
-    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(src, deep<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="Object.html">Object</a>}</span></h4>
+    <h4 class="name" id="~SubstCallback"><span class="type-signature"></span>SubstCallback<span class="signature">(token, &hellip;arg<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String|null}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a copy of the given object. By default the <tt>clone</tt> function
-performs a deep copy of the object, passing <tt>deep = false</tt> will only clone
-the properties directly owned by the object are transfer to the object includinig
-<tt>Date</tt> objects.
-
-NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static method.
+    Callback function given to the 'expand' function to evaluate and determine value to be
+used for substitution.
 </div>
 
 
@@ -531,8 +568,6 @@ NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static meth
         
 
         
-        <th>Default</th>
-        
 
         <th class="last">Description</th>
     </tr>
@@ -543,13 +578,13 @@ NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static meth
 
         <tr>
             
-                <td class="name"><code>src</code></td>
+                <td class="name"><code>token</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Object.html">Object</a></span>
+<span class="param-type">Token</span>
 
 
             
@@ -566,25 +601,22 @@ NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static meth
             
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last">Reference to the object to be copied.</td>
+            <td class="description last">Object representing the token. The object has a 'name' and 'args'
+properties.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>deep</code></td>
+                <td class="name"><code>arg</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type">any</span>
 
 
             
@@ -599,18 +631,14 @@ NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static meth
                 
 
                 
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    true
+                    &lt;repeatable><br>
                 
                 </td>
             
 
-            <td class="description last">Determines if child objects are copied too.</td>
+            
+
+            <td class="description last">Additional arguments passed to the expand function.</td>
         </tr>
 
     
@@ -651,7 +679,7 @@ NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static meth
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line126">line 126</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -680,442 +708,11 @@ NOTE: <tt>clone</tt> is replaceable, <tt>copy</tt> is not since is a static meth
     
             
 <div class="param-desc">
-    Copy of the object given by <tt>src</tt>
+    Value returned by the substitution callback function or null if
+no substitution was
+possible.
 </div>
 
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Object.html">Object</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".isPrimitive"><span class="type-signature">(static) </span>isPrimitive<span class="signature">(val)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Returns true if the given value <tt>val</tt> is one of the primitive types
-<tt>Number</tt>, <tt>String</tt>, <tt>Boolean</tt>, <tt>null</tt> or
-<tt>undefined</tt>.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>val</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">*</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Variable to inspect.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line79">line 79</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-        
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".isType"><span class="type-signature">(static) </span>isType<span class="signature">(obj, type)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Returns true of the object matches the given type. objType should be a function
-constructor such as <tt>Number</tt>, <tt>Date</tt>, <tt>String</tt>, etc.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>obj</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Object.html">Object</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Object instance to test.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Constructor function defining the type to test against.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line60">line 60</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-        
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="className"><span class="type-signature"></span>className<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Returns the name of the constructor function that was used to create the instance.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line313">line 313</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
 
 
 <dl class="param-type">
@@ -1125,6 +722,9 @@ constructor such as <tt>Number</tt>, <tt>Date</tt>, <tt>String</tt>, etc.
     <dd>
         
 <span class="param-type">String</span>
+|
+
+<span class="param-type">null</span>
 
 
     </dd>
@@ -1133,38 +733,34 @@ constructor such as <tt>Number</tt>, <tt>Date</tt>, <tt>String</tt>, etc.
         
 
 
-        
             
+                
+<h4 class="name" id="~TableColumn">TableColumn</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
 
     
 
-    <h4 class="name" id="clone"><span class="type-signature"></span>clone<span class="signature">(deep)</span><span class="type-signature"> &rarr; {<a href="Object.html">Object</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Makes a copy of the current object. All attributes are copied including dates and
-strings. The returned object has no common references with the original object. If the
-optional parameter "deep" is set to true, the object is recursively cloned, all
-aggregated objects and arrays are also cloned.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -1186,10 +782,41 @@ aggregated objects and arrays are also cloned.
 
         <tr>
             
-                <td class="name"><code>deep</code></td>
+                <td class="name"><code>width</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+|
+
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>align</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
             
             </td>
 
@@ -1204,9 +831,7 @@ aggregated objects and arrays are also cloned.
     </tbody>
 </table>
 
-    
 
-    
 
 
 <dl class="details">
@@ -1238,7 +863,7 @@ aggregated objects and arrays are also cloned.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line254">line 254</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line67">line 67</a>
     </li></ul></dd>
     
 
@@ -1250,70 +875,38 @@ aggregated objects and arrays are also cloned.
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
             
+                
+<h4 class="name" id="~TableSpecs">TableSpecs</h4>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
 <span class="param-type"><a href="Object.html">Object</a></span>
 
 
-    </dd>
-</dl>
-
-        
+        </li>
+    </ul>
 
 
-        
-            
 
-    
 
-    <h4 class="name" id="contains"><span class="type-signature"></span>contains<span class="signature">(tgt)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+
+    <h5 class="subsection-title">Properties:</h5>
 
     
 
-
-
-<div class="description">
-    Returns true of 'this' fully contains 'tgt'. The comparison is recursive so all
-properties and children's properties of 'tgt' must also exist in this' and have the
-same values.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -1335,13 +928,36 @@ same values.
 
         <tr>
             
-                <td class="name"><code>tgt</code></td>
+                <td class="name"><code>columns</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Object.html">Object</a></span>
+<span class="param-type"><a href="Array.html">Array</a>.&lt;TableColumn></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rows</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;<a href="Array.html">Array</a>.&lt;String>></span>
 
 
             
@@ -1358,9 +974,7 @@ same values.
     </tbody>
 </table>
 
-    
 
-    
 
 
 <dl class="details">
@@ -1392,7 +1006,7 @@ same values.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line265">line 265</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line74">line 74</a>
     </li></ul></dd>
     
 
@@ -1404,69 +1018,38 @@ same values.
 </dl>
 
 
-    
 
-    
 
-    
 
-    
 
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
             
+                
+<h4 class="name" id="~Token">Token</h4>
 
 
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
 
 
-    </dd>
-</dl>
-
-        
 
 
-        
+    <h5>Type:</h5>
+    <ul>
+        <li>
             
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
 
     
 
-    <h4 class="name" id="is"><span class="type-signature"></span>is<span class="signature">(objType)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Returns true of the object matches the given type. objType should be a function
-constructor such as 'Number', 'Date', 'String', etc.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -1488,13 +1071,36 @@ constructor such as 'Number', 'Date', 'String', etc.
 
         <tr>
             
-                <td class="name"><code>objType</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">function</span>
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;String></span>
 
 
             
@@ -1511,9 +1117,7 @@ constructor such as 'Number', 'Date', 'String', etc.
     </tbody>
 </table>
 
-    
 
-    
 
 
 <dl class="details">
@@ -1545,7 +1149,7 @@ constructor such as 'Number', 'Date', 'String', etc.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line233">line 233</a>
+        <a href="str_util.js.html">str_util.js</a>, <a href="str_util.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -1557,347 +1161,11 @@ constructor such as 'Number', 'Date', 'String', etc.
 </dl>
 
 
-    
 
-    
 
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-        
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="isPrimitive"><span class="type-signature"></span>isPrimitive<span class="signature">()</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Returns true if this object is one of the primitive types <tt>Number</tt>,
-<tt>String</tt> or <tt>Boolean</tt>.
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line242">line 242</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Boolean</span>
-
-
-    </dd>
-</dl>
-
-        
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="merge"><span class="type-signature"></span>merge<span class="signature">(src, replace, deep)</span><span class="type-signature"> &rarr; {<a href="Object.html">Object</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Merges the attributes from <b>src</b> into '<b>this</b> object. If <b>replace</b> is
-true, all overlapping attributes are replaced.
-NOTE: Recursion when cloning the Date object fails on return, who knows why... try it
-if you don't believe me :)
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>src</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Object.html">Object</a></span>
 
 
             
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>replace</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>deep</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="proto.js.html">proto.js</a>, <a href="proto.js.html#line279">line 279</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <h5>Returns:</h5>
-    
-            
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Object.html">Object</a></span>
-
-
-    </dd>
-</dl>
-
-        
-
-
-        
-    
-
     
 
     
