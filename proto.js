@@ -1,19 +1,12 @@
+"use strict";
+
 /**
  * @file
- * This module contains extensions to common JavaScript objects in the form of
- * <b>static</b> and <b>prototype</b> functions. Extensions need to be registered using
- * the <tt>init</tt> function. This function take a single optional parameter that
- * indicates the object to extend, if the parameter is omitted all extensions are
- * registered, for instance:
  *
- * <ul>
- *     <li>Registers all extensions.<br>
- *         <tt>require("@crabel/proto").init()</tt>
- *     <li>Registers <tt>Object</tt>extensions only.<br>
- *         <tt>require("@crabel/proto").init(Object)</tt>
- *     <li>Registers <tt>Date</tt> and <tt>Array</tt> extensions.<br>
- *         <tt>require("@crabel/proto").init(Date, Array)</tt>
- * </ul>
+ * This module contains extensions to common JavaScript objects such as <tt>Object</tt>,
+ * <tt>Number</tt> and <tt>Date</tt>. Extensions need to be registered using the
+ * <tt>init</tt> function. This function take a single optional parameter that indicates the
+ * object to extend, if the parameter is omitted all extensions are registered.
  *
  * <hr>
  * <h4>Important</h4>
@@ -28,12 +21,20 @@
  * for single word functions such as <tt>clone</tt>, <tt>copy</tt> and
  * <tt>contains</tt>, etc. as well as some of the most commonly named functions like
  * <tt>className</tt>, <tt>isType</tt>, <tt>isPrimitive</tt> etc.
- */
-
-/**
+ *
+ * @example
+ * // Register all extensions
+ * require("@crabel/proto").init();
+ *
+ * // Registers "Object" extensions only
+ * require("@crabel/proto").init(Object);
+ *
+ * //Registers "Date" and "Array" extensions
+ * require("@crabel/proto").init(Date, Array);
  * @module @crabel/proto
  * @exports init
  */
+
 
 
 // =======================
@@ -68,15 +69,16 @@ ObjExt.isType = function (obj, type) {
 };
 
 /**
- * Returns true if the given value 'val' is one of the primitive types
- * <tt>Number</tt>, <tt>String</tt> or <tt>Boolean</tt>.
+ * Returns true if the given value <tt>val</tt> is one of the primitive types
+ * <tt>Number</tt>, <tt>String</tt>, <tt>Boolean</tt>, <tt>null</tt> or
+ * <tt>undefined</tt>.
  * @param {*} val
  * Variable to inspect.
  * @returns {Boolean}
  */
 ObjExt.isPrimitive = function (val) {
     if (undefined === val || null === val)
-        return false;
+        return true;
 
     if ("object" === typeof val)
         return (
@@ -159,38 +161,68 @@ ObjExt.copy = function (src, deep) {
 };
 
 /**
- * Returns true of 'src' fully contains 'tgt'. The comparison is recursive so all
- * properties and children's properties of 'tgt' must also exist in 'src' and have the
- * same values.
- * @param {Object} src
- * @param {Object} tgt
+ * Returns true if <tt>src</tt> fully contains <tt>child</tt>. The comparison is
+ * recursive so all properties and children's properties of 'tgt' must also exist in
+ * <tt>src</tt> and have the same values.
+ * @param {*} src
+ * @param {*} child
  * @returns {Boolean}
  */
-ObjExt.contains = function (src, tgt) {
-    for (let k in tgt)
-        if (tgt.hasOwnProperty(k)) {
+ObjExt.contains = function (src, child) {
+    if (ObjExt.isPrimitive(src)) {
+        if (ObjExt.isPrimitive(child))
+            return (child === src);
 
-            // If property is tgt missing in src, tgt is not contained
+        return false;
+    }
+
+    if (ObjExt.isPrimitive(child)) {
+        for (let k in src)
+            if (src.hasOwnProperty(k))
+                if (ObjExt.contains(src[k], child))
+                    return true;
+
+        return false;
+    }
+
+    for (let k in child)
+        if (child.hasOwnProperty(k)) {
             if (!src.hasOwnProperty(k))
-                return false;
+                return containedByChild();
 
-            // Compare primitive, 'undefined' or 'null' tgt[k]
-            if (ObjExt.isPrimitive(tgt[k]) || !tgt[k]) {
-                if (tgt[k] !== src[k])
-                    return false;
+            // Compare primitive, 'undefined' or 'null' child[k]
+            if (src[k] instanceof Date) {
+                if (child[k] instanceof Date)
+                    return src[k].getTime() === child[k].getTime();
+                return false;
             }
-            // Compare object tgt[k] recursively
-            // If source property is not an object tgt is not contained
-            else if (ObjExt.isPrimitive(src[k]) || !src[k])
+            if (ObjExt.isPrimitive(src[k])) {
+                if (ObjExt.isPrimitive(child[k])) {
+                    if (child[k] === src[k])
+                        continue;
+                    else
+                        return containedByChild();
+                }
                 return false;
-            else if (!ObjExt.contains(src[k], tgt[k]))
-                return false;
+            }
 
+            // If source branch doesn't contain child branch, try other children of source
+            if (!ObjExt.contains(src[k], child[k]))
+                return containedByChild();
         }
 
     return true;
-};
 
+
+    function containedByChild() {
+        for (let s in src)
+            if (src.hasOwnProperty(s))
+                if (ObjExt.contains(src[s], child))
+                    return true;
+        return false;
+
+    }
+};
 
 /**
  * Returns true of the object matches the given type. objType should be a function
@@ -219,8 +251,7 @@ ObjExt.prototype.isPrimitive = function () {
  * @param deep
  * @returns {Object}
  */
-ObjExt.prototype.clone = function (deep)
-{
+ObjExt.prototype.clone = function (deep) {
     return Object.copy(this, deep);
 };
 
@@ -245,8 +276,7 @@ ObjExt.prototype.contains = function (tgt) {
  * @param {Boolean} deep
  * @returns {Object}
  */
-ObjExt.prototype.merge = function (src, replace, deep)
-{
+ObjExt.prototype.merge = function (src, replace, deep) {
     if (undefined === src || null === src)
         return this;
 
@@ -773,7 +803,7 @@ DateExt.prototype.addDays = function (d)
  * @param {Number} [d=1] Number of days to add.
  * @returns {Date} Returns <tt>this</tt> after incrementing it's value.
  */
-dateExt.incDay = function (d)
+DateExt.prototype.incDay = function (d)
 {
     if (isNaN(d)) d = 1;
     this.setTime(this.getTime() + (d * 36e5 * 24));
@@ -784,7 +814,7 @@ dateExt.incDay = function (d)
  * @param {Number} [h=1] Number of hours to add.
  * @returns {Date} Returns a new instance of <tt>Date</tt>.
  */
-dateExt.addHours = function (h)
+DateExt.prototype.addHours = function (h)
 {
     if (isNaN(h)) h = 1;
     return new Date(this.getTime() + (h * 36e5));

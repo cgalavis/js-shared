@@ -1,14 +1,14 @@
 "use strict";
 
-require("../proto");
-var expect = require("chai").expect;
+require("../proto").init();
+let expect = require("chai").expect;
 
 // ===========================
 // Object Prototype Test Suite
 // ===========================
 describe("Object Prototype Test Suite", function() {
     function TestObj() {}
-    var obj = new TestObj;
+    let obj = new TestObj;
     describe("Object.className", function ()
     {
         it("[TestObj].className()", function () { expect(obj.className()).to.equal("TestObj"); });
@@ -19,14 +19,14 @@ describe("Object Prototype Test Suite", function() {
 
     describe("Object.copy", function () {
         it("Copy object with children", function () {
-            var obj = {
+            let obj = {
                 Name: "John", Last: "Doe",
                 Children: [
                     { Name: "Foo", Last: "Bar" },
                     { Name: "Hello", Last: "World"}
                 ]
             };
-            var obj2 = Object.copy(obj);
+            let obj2 = Object.copy(obj);
 
             // Equality
             expect(obj2).to.deep.equal(obj);
@@ -37,7 +37,7 @@ describe("Object Prototype Test Suite", function() {
         });
 
         it("Copy primitive types", function () {
-            var val = Object.copy(23);
+            let val = Object.copy(23);
             expect(23).to.equal(Object.copy(23));
             expect("text").to.equal(Object.copy("text"));
             expect(undefined).to.equal(Object.copy(undefined));
@@ -46,6 +46,71 @@ describe("Object Prototype Test Suite", function() {
         it("Copy null value", function () {
             expect(null).to.equal(Object.copy(null));
         });
+    });
+
+    it("Object.contains", function () {
+        let obj = {
+            str_prop: "str_prop",
+            num_prop: 1,
+            sub_obj: {
+                str_prop: "sub_obj.str_prop",
+                num_prop: 2,
+                array_prop: [ 1, 2, 3 ],
+                date_prop: new Date()
+            },
+            deep_child: {
+                deep_child: {
+                    deep_child: {
+                        deep_child: {
+                            name: "dc",
+                            levels: 4
+                        }
+                    }
+                }
+            }
+        };
+
+        expect(Object.contains(obj, {str_prop: "str_prop"})).to
+            .equal(true, "'str_prop' was not found");
+        expect(Object.contains(obj, {sub_obj: { str_prop: "sub_obj.str_prop" }})).to
+            .equal(true, "'sub_obj.str_prop' was not found");
+        expect(Object.contains(obj, {sub_obj: { str_prop: "str_prop" }})).to
+            .equal(false, "'sub_obj.str_prop' with incorrect value was found");
+        expect(Object.contains(obj, {sub_obj: { array_prop: [ 1 ] }})).to
+            .equal(true, "'sub_obj.array_prop -> [ 1 ]' was not found");
+        expect(Object.contains(obj, {sub_obj: { array_prop: [ 1, 2, 3 ] }})).to
+            .equal(true, "'sub_obj.array_prop -> [ 1, 2, 3 ]' was not found");
+        expect(Object.contains(obj, {sub_obj: { array_prop: [ 1, 2, 3, 4 ] }})).to
+            .equal(false, "'sub_obj.array_prop -> [ 1, 2, 3, 4 ]' was incorrectly found");
+        expect(Object.contains(obj, { array_prop: [ 1, 2, 3 ] })).to
+            .equal(true, "'array_prop -> [ 1, 2, 3 ]' was not found");
+        expect(Object.contains(obj, { array_prop: [ 1, 2, 3, 4 ] })).to
+            .equal(false, "'array_prop -> [ 1, 2, 3, 4 ]' was found");
+        expect(Object.contains(obj, [ 1, 2, 3 ])).to
+            .equal(true, "[ 1, 2, 3 ] was not found");
+        expect(Object.contains(obj, [ 1, 2, 3, 4 ])).to
+            .equal(false, "[ 1, 2, 3, 4 ] was found");
+
+        let copy = obj.sub_obj.clone();
+        expect(Object.contains(obj, copy)).to
+            .equal(true, "cloned 'sub_obj' was not found");
+        copy.date_prop = new Date();
+        expect(Object.contains(obj, copy)).to
+            .equal(false, "modified cloned 'sub_obj' was found");
+
+        // Test deep child
+        expect(Object.contains(obj, { name: "dc", levels: 4 })).to
+            .equal(true, "'/' not was found");
+        expect(Object.contains(obj, { deep_child: { name: "dc", levels: 4 } })).to
+            .equal(true, "'deep_level/' not was found");
+        expect(Object.contains(obj, { deep_child: { deep_child: { name: "dc", levels: 4 } } })).to
+            .equal(true, "'deep_level/deep_level/' not was found");
+        expect(Object.contains(obj, { deep_child: { deep_child: { deep_child: { name: "dc", levels: 4 } } } })).to
+            .equal(true, "'deep_level/deep_level/deep_level/' not was found");
+        expect(Object.contains(obj, { deep_child: { deep_child: { deep_child: { deep_child: { name: "dc", levels: 4 } } } } })).to
+            .equal(true, "'deep_level/deep_level/deep_level/deep_level/' not was found");
+        expect(Object.contains(obj, { deep_child: { deep_child: { deep_child: { deep_child: { deep_child: { name: "dc", levels: 4 } } } } } })).to
+            .equal(false, "'deep_level/deep_level/deep_level/deep_level/deep_level/' was found");
     });
 
     it("Object.prototype.is", function () {
@@ -82,26 +147,26 @@ describe("Object Prototype Test Suite", function() {
 
     describe("Object.prototype.clone", function () {
         it("Clone object with children", function () {
-            var obj = {
+            let obj = {
                 Name: "John", Last: "Doe",
                 Children: [
                     { Name: "Foo", Last: "Bar" },
                     { Name: "Hello", Last: "World"}
                 ]
             };
-            var obj2 = obj.clone();
+            let obj2 = obj.clone();
             expect(obj).to.deep.equal(obj2);
         });
 
         it("Shallow clone object", function () {
-            var obj = { Name: "John", Last: "Doe" };
-            var children = [
+            let obj = { Name: "John", Last: "Doe" };
+            let children = [
                 { Name: "Foo", Last: "Bar" },
                 { Name: "Hello", Last: "World"}
             ];
-            var obj_with_children = obj.clone();
+            let obj_with_children = obj.clone();
             obj_with_children.children = children;
-            var obj2 = obj_with_children.clone(false);
+            let obj2 = obj_with_children.clone(false);
             expect(obj).to.not.deep.equal(obj_with_children);
             expect(obj).to.deep.equal(obj2);
         });
@@ -109,14 +174,14 @@ describe("Object Prototype Test Suite", function() {
         it("Clone primitives and dates", function () {
             expect((23).clone()).to.equal(23);
             expect("test".clone()).to.equal("test");
-            var now = new Date();
+            let now = new Date();
             expect(now.clone()).to.not.equal(now);
             expect(now.clone().getTime()).to.equal(now.getTime());
         });
     });
 
     describe("Object.prototype.merge", function () {
-        var obj1 = {
+        let obj1 = {
             Name: "John", Last: "Doe", HomeState: "California",
             Children: [
                 { Name: "Jonh", Last: "Doe Jr" },
@@ -124,13 +189,13 @@ describe("Object Prototype Test Suite", function() {
             ]
         };
 
-        var obj2 = { Name: "Jane", Last: "Smith" };
+        let obj2 = { Name: "Jane", Last: "Smith" };
 
-        var obj3 = { Name: "Carlos", Last: "Galavis", Age: 43, Children:  [
+        let obj3 = { Name: "Carlos", Last: "Galavis", Age: 43, Children:  [
             {Name: "Same", Age: 18},
             {Name: "Agatha", Age: 27}
         ]};
-        var merged_obj;
+        let merged_obj;
 
         it("Deep merge with no overwrite", function () {
             merged_obj = Object.copy(obj2).merge(obj1);
@@ -175,10 +240,10 @@ describe("Object Prototype Test Suite", function() {
 // ===========================
 // Number Prototype Test Suite
 // ===========================
-var epsilon = 0.000001;
+let epsilon = 0.000001;
 describe("Number Prototype Test Suite", function() {
     it("Number.prototype.roundToInt", function () {
-        var num = 23;
+        let num = 23;
         expect(num.roundToInt(2)).to.equal(24);
         expect(num.roundToInt(5)).to.equal(25);
         expect(num.roundToInt(6)).to.equal(24);
@@ -186,7 +251,7 @@ describe("Number Prototype Test Suite", function() {
     });
 
     it("Number.prototype.truncToInt", function () {
-        var num = 23;
+        let num = 23;
         expect(num.truncToInt(2)).to.equal(22);
         expect(num.truncToInt(5)).to.equal(20);
         expect(num.truncToInt(6)).to.equal(18);
@@ -204,7 +269,7 @@ describe("Number Prototype Test Suite", function() {
 describe("Date Prototype Test Suite", function () {
     describe("Date Formatting", function () {
         it("Date.format", function () {
-            var dt = new Date(2016, 6, 1, 18, 32, 5, 123);
+            let dt = new Date(2016, 6, 1, 18, 32, 5, 123);
             expect(Date.format(dt, "yyyy/MM/dd")).to.equal("2016/07/01");
             expect(Date.format(dt, "hh:mm:ss")).to.equal("06:32:05");
             expect(Date.format(dt, "HH:mm:ss")).to.equal("18:32:05");
