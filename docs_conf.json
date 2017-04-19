@@ -1,0 +1,30 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "source": {
+        "exclude": [ "gulpfile.js", "index.js" ],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [],
+    "opts": {
+        "_template": "node_modules/namis",
+        "__template": "node_modules/ink-docstrap/template",
+        "template": "node_modules/tui-jsdoc-template",
+        "encoding": "utf8",
+        "destination": "./docs",
+        "recurse": false
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "logo": {
+            "url": "",
+            "width": "0px",
+            "height": "0px"
+        },
+        "footerText": "Crabel Shared Library for JavaScript"
+    }
+}

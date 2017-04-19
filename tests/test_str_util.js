@@ -98,7 +98,7 @@ describe("'str_util' Class Test Suite", function () {
         expect(str_util.alignL("Hello", 10)).to.equal("Hello     ");
 
         // Error conditions
-        expect(str_util.alignL).to.throw("the \'str\' argument is not optional");
+        expect(str_util.alignL).to.throw(Error);
     });
 
     it ("str_util.subst", function () {

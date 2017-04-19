@@ -1,28 +1,13 @@
 /*global document */
 (function() {
-    function _class(className){
-        if(document.getElementsByClassName){
-            return document.getElementsByClassName(className);
-        }
-        else{
-            var collection = [];
-            var elements = document.getElementsByTagName('*');
-            for(var i = 0, l = elements.length; i < l; i++){
-                if(elements[i].className === 'className')
-                    collection.push(elements[i]);
-            }
-
-            return collection;
-        }
-    }
-
-    var source = _class('prettyprint source linenums');
+    var source = document.getElementsByClassName('prettyprint source linenums');
     var i = 0;
     var lineNumber = 0;
     var lineId;
     var lines;
     var totalLines;
     var anchorHash;
+    var lineNumberHTML = '';
 
     if (source && source[0]) {
         anchorHash = document.location.hash.substring(1);
@@ -33,6 +18,10 @@
             lineNumber++;
             lineId = 'line' + lineNumber;
             lines[i].id = lineId;
+
+            lineNumberHTML = '<span class="number">' + (i + 1) + ' : </span>';
+
+            lines[i].insertAdjacentHTML('afterBegin', lineNumberHTML);
             if (lineId === anchorHash) {
                 lines[i].className += ' selected';
             }

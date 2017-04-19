@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: @crabel/proto | Module: @crabel/proto</title>
+    <title>Source: file.js | Source: file.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -22,7 +24,7 @@
         <img src="img/toast-ui.png" width="100%" height="100%">
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">Module: @crabel/proto</a></h1>
+        <h1><a href="index.html" class="link">Source: file.js</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -39,309 +41,248 @@
 
 
 
-
-<section>
-
-<header>
-    
-        
-            
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description">This module contains extensions to common JavaScript objects such as <tt>Object</tt>,
-<tt>Number</tt> and <tt>Date</tt>. Extensions need to be registered using the
-<tt>init</tt> function. This function take a single optional parameter that indicates the
-object to extend, if the parameter is omitted all extensions are registered.
-
-<hr>
-<h4>Important</h4>
-This is typically bad practice as some
-of these functions may be introduced in future versions of JavaScript, but wrapping
-them the way libraries like <b>moment</b> do compromises performance since a wrapper
-object has to be created with a reference to the underlying object instance, so
-here we buy the bullet and pray!!
-
-For the most part instance members are the ones at most risk, most of the functions
-defined here are very unlikely to be introduced in future version of JS except perhaps
-for single word functions such as <tt>clone</tt>, <tt>copy</tt> and
-<tt>contains</tt>, etc. as well as some of the most commonly named functions like
-<tt>className</tt>, <tt>isType</tt>, <tt>isPrimitive</tt> etc.</div>
-        
-
-        
-            
-
-<dt>
-
-    
-
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// Register all extensions
-require("@crabel/proto").init();
-
-// Registers "Object" extensions only
-require("@crabel/proto").init(Object);
-
-//Registers "Date" and "Array" extensions
-require("@crabel/proto").init(Date, Array);</code></pre>
-
-    
-
-</dd>
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
     
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-                
-
-<dt>
-
-    
-        
-
-        <h4 class="name" id=".init">
-            <span class="type-signature"><span class="icon green">static</span> </span>init<span class="signature">()</span><span class="type-signature"></span>
-            
-            <div class="container-source members">
-                <code><a href="proto.js.html">proto.js</a></code>,
-                <code><a href="proto.js.html#line1109">line 1109</a></code>
-            </div>
-            
-        </h4>
-
-        
-    
-
-</dt>
-<dd>
-
-    
-    <div class="description">
-        Register the extensions for the given object type, or all extensions if no
-specific type is provided. Currently only <tt>Object</tt>, <tt>Number</tt>,
-<tt>Date</tt> and <tt>Array</tt> are supported.
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-    <div class="container-params">
-        <h5>Parameters:</h5>
-        
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>targets...</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">The constructor function of the object to extend.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            </dl>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/**
+ * This module is part of the Crabel core library, it contains utility functions that
+ * facilitate file name processing and file management providing minimal extensions for
+ * the native &lt;b>path&lt;/b> and &lt;b>fs&lt;/b> modules.
+ * @module @crabel/file
+ * @author Carlos Galavis &lt;cgalavis@crabel.com>
+ */
+
+require("./proto").init();
+
+let path = require("path");
+let fs = require("fs");
+let glob = require("glob");
+let mkdirp = require("mkdirp");
+
+
+module.exports = {
+    /**
+     * Ensure the given path (or path to the given file) exists.
+     * @param {String} dir
+     * Path to the folder or file.
+     * @returns {Boolean}
+     */
+    ensurePath: function (dir) {
+        // If an extension is present, we assume the path is to a file
+        dir = dir.trim();
+        if ("" !== path.extname(dir) &amp;&amp; dir.charAt(dir.length - 1) != path.sep)
+            dir = path.dirname(dir);
+
+        if (fs.existsSync(dir))
+            return true;
+
+        let parent_dir = path.dirname(dir);
+        if ("" == parent_dir)
+            return false;
+
+        if (this.ensurePath(parent_dir + path.sep)) {
+            fs.mkdirSync(dir);
+            return true;
+        }
+
+        return false;
+    },
+
+
+    /**
+     * Returns a string with the name of the given file combined with the given
+     * extension. If the file already has an extension, the original file name is
+     * returned.
+     * @param {String} file_name
+     * Name of the file.
+     * @param {String} ext
+     * Extension to be added to the file.
+     * @returns {String}
+     * A string with file name plus the extension.
+     */
+    addExt: function (file_name, ext) {
+        if ("" === path.extname(file_name)) {
+            if ("." !== ext.charAt(0))
+                ext = "." + ext;
+            return file_name + ext;
+        }
+
+        return file_name;
+    },
+
+
+    /**
+     * Returns a string with the file name minus the extension.
+     * @param {String} file_path
+     * Name of the file.
+     * @returns {String}
+     * A string with file name minus the extension.
+     */
+    removeExt: function (file_path) {
+        if (!file_path)
+            return file_path;
+
+        let dot_index = file_path.lastIndexOf(".");
+        if (0 > dot_index)
+            return name;
+
+        return name.substring(0, dot_index);
+    },
+
+
+    /**
+     * Returns a string with the given &lt;tt>file_name&lt;/tt> after replacing it's extension.
+     * @param {String} file_name
+     * Name of the file.
+     * @param {String} new_ext
+     * Extension to give to the resulting file name.
+     * @returns {String}
+     * New file name with the extension replaced.
+     */
+    swapExt: function (file_name, new_ext) {
+        if ("." !== new_ext.charAt(0))
+            new_ext = "." + new_ext;
+
+        return this.addExt(path.join(path.dirname(file_name),
+            this.removeExt(path.basename(file_name))), new_ext);
+    },
+
+
+    /**
+     * Given &lt;tt>file_name&lt;/tt> return a unique file name by appending an index at the
+     * end. The file path (or relative path) is searched for collisions.
+     * @param {String} file_name
+     * Name to use as the basis for unique name construction.
+     * @param {Boolean} [back_index=false]
+     * If true the index is prepended.
+     * @returns {String}
+     * Unique name.
+     */
+    makeUnique: function (file_name, back_index) {
+        // explicit default value
+        if (back_index === undefined)
+            back_index = false;
+
+        let index = 0;
+        let new_name = getNewName(file_name, index, back_index);
+        while (fs.existsSync(new_name))
+            new_name = getNewName(file_name, ++index, back_index);
+
+        return new_name;
+
+        function getNewName(file_path, index, back_index) {
+            if (!back_index)
+                return path.join(path.dirname(file_path),
+                    this.removeExt(path.basename(file_path)) + "-" + index.zeroPadd(2) +
+                    path.extname(file_path));
+            else
+                return path.join(path.dirname(file_path),
+                    index.zeroPadd(2) + "-" + path.basename(file_path));
+        }
+    },
+
+
+    /**
+     * Saves the give text into the given file. If the file exists it is overwritten.
+     * @param {String} file_name
+     * Name of the file.
+     * @param {String} data
+     * The
+     * @param {Boolean} safe
+     */
+   saveText: function (file_name, data, safe) {
+        // Safe not supported since copy doesn't use Win32 API anyway
+        let options = "utf8";
+
+        // Create path, if necessary.
+        mkdirp.sync(path.dirname(file_name));
+        fs.writeFileSync(file_name, data, options);
+    },
+
+
+    /**
+     * Loads the given file and returns it's content as a string.
+     * @param {String} file_name
+     * Name of the file to load.
+     * @returns {String}
+     * Content of the file.
+     */
+    loadText: function (file_name) {
+        let options = {encoding: "utf8", flag: "r" };
+        return fs.readFileSync(file_name, options);
+    },
+
+
+    /**
+     * Copies the file &lt;tt>src&lt;/td> into &lt;tt>dest&lt;/tt>. If &lt;tt>dest&lt;/tt> exists an
+     * exception is thrown unless &lt;tt>true&lt;/tt> is passed on the &lt;tt>overwrite&lt;/tt>
+     * parameter.
+     * @param {String} src
+     * Name of the file to copy.
+     * @param {String} dest
+     * Name of the file to copy onto.
+     * @param {Boolean} [overwrite=false]
+     * If &lt;tt>true&lt;/tt> overwrites the destination file if it exists.
+     */
+    copy: function (src, dest, overwrite) {
+        if (!overwrite &amp;&amp; fs.existsSync(dest))
+            throw new Error("Failed to copy file, the destination already exists.");
+
+        let stats = fs.lstatSync(src);
+        if (!stats.isFile())
+            throw new Error("Failed to copy file, the source is not a file.");
+
+        path.ensurePath(path.dirname(dest));
+        let data = fs.readFileSync(src);
+        fs.writeFileSync(dest, data);
+    },
+
+
+    /**
+     * Moves the file &lt;tt>src&lt;/td> into &lt;tt>dest&lt;/tt>. If &lt;tt>dest&lt;/tt> exists an
+     * exception is thrown unless &lt;tt>true&lt;/tt> is passed on the &lt;tt>overwrite&lt;/tt>
+     * parameter.
+     * @param {String} src
+     * Name of the file to move.
+     * @param {String} dest
+     * Name of the file to move onto.
+     * @param {Boolean} overwrite
+     * If &lt;tt>true&lt;/tt> overwrites the destination file if it exists.
+     */
+    move: function (src, dest, overwrite) {
+        if (!overwrite &amp;&amp; fs.existsSync(dest))
+            throw new Error("Failed to copy file, the destination already exists.");
+
+        let stats = fs.lstatSync(src);
+        if (!stats.isFile())
+            throw new Error("Failed to copy file, the source is not a file.");
+
+        copy(src, dest, overwrite);
+        if (fs.existsSync(dest))
+            fs.unlinkSync(src);
+    },
+
+
+    /**
+     * Deletes the given file or files matching the given pattern.
+     * @param {String} file_name
+     * Name of the file to delete.
+     */
+    erase: function (file_name) {
+        let files = glob.sync(file_name);
+        for (let i = 0; i &lt; files.length; ++i) {
+            fs.unlinkSync(files[i]);
+        }
+    }
+
+};
+
+
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -358,7 +299,7 @@ specific type is provided. Currently only <tt>Object</tt>, <tt>Number</tt>,
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:@crabel/proto_sub'.replace(/"/g, '_');
+        var id = '_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 
