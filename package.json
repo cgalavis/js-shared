@@ -1,42 +1,45 @@
 {
-    "name": "@crabel/shared",
-    "version": "1.0.0",
-    "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
-    "main": "index.js",
-    "scripts": {
-        "test": "mocha tests"
-    },
-    "publishConfig": {
-        "registry": "https://artifactory.hq.crabel.com/artifactory/api/npm/npm-crabel"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git@git2.hq.crabel.com:node-common/shared.git"
-    },
-    "keywords": [
-        "crabel",
-        "tools",
-        "config",
-        "log",
-        "utils"
-    ],
-    "author": "Carlos Galavis <cgalavis@crabel.com>",
-    "license": "ISC",
-    "dependencies": {
-        "columnify": "^1.5.4",
-        "glob": "^7.1.1",
-        "mkdirp": "^0.5.1"
-    },
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "gulp": "^3.9.1",
-        "gulp-foreach": "^0.1.0",
-        "gulp-jsdoc3": "^1.0.1",
-        "gulp-shell": "^0.6.3",
-        "ink-docstrap": "^1.3.0",
-        "minami": "^1.1.1",
-        "mocha": "^3.2.0",
-        "namis": "^1.0.3",
-        "tui-jsdoc-template": "^1.1.0"
-    }
+  "name": "@crabel/shared",
+  "version": "1.0.0",
+  "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "publishConfig": {
+    "registry": "https://artifactory.hq.crabel.com/artifactory/api/npm/npm-crabel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git2.hq.crabel.com:node-common/shared.git"
+  },
+  "keywords": [
+    "crabel",
+    "tools",
+    "config",
+    "log",
+    "utils"
+  ],
+  "author": "Carlos Galavis <cgalavis@crabel.com>",
+  "license": "ISC",
+  "dependencies": {
+    "columnify": "^1.5.4",
+    "glob": "^7.1.1",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "docdash": "^0.4.0",
+    "gulp": "^3.9.1",
+    "gulp-foreach": "^0.1.0",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-shell": "^0.6.3",
+    "ink-docstrap": "^1.3.0",
+    "jsdoc-rtd": "^1.0.3",
+    "minami": "^1.1.1",
+    "mocha": "^3.2.0",
+    "namis": "^1.0.3",
+    "tui-jsdoc-template": "^1.1.0",
+    "visallo-jsdoc-template": "^1.1.3"
+  }
 }
