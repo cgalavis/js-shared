@@ -1,0 +1,4494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Module: @crabel/shared/str_util | Module: @crabel/shared/str_util</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/tui-doc.css">
+
+    
+</head>
+<body>
+<nav class="lnb" id="lnb">
+    <div class="logo" style="width: 0px; height: 0px">
+        <img src="img/toast-ui.png" width="100%" height="100%">
+    </div>
+    <div class="title">
+        <h1><a href="index.html" class="link">Module: @crabel/shared/str_util</a></h1>
+        
+    </div>
+    <div class="search-container" id="search-container">
+        <input type="text" placeholder="Search">
+        <ul></ul>
+    </div>
+    
+    <div class="lnb-api hidden"><h3>Modules</h3><ul><li><a href="module-@crabel_shared_csv.html">@crabel/shared/csv</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/csv_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-@crabel_shared_csv.html#~csvToArray">csvToArray</a></li></ul></div></li><li><a href="module-@crabel_shared_file.html">@crabel/shared/file</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/file_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-@crabel_shared_file.html#.addExt">addExt</a></li><li><a href="module-@crabel_shared_file.html#.copy">copy</a></li><li><a href="module-@crabel_shared_file.html#.ensurePath">ensurePath</a></li><li><a href="module-@crabel_shared_file.html#.erase">erase</a></li><li><a href="module-@crabel_shared_file.html#.loadText">loadText</a></li><li><a href="module-@crabel_shared_file.html#.makeUnique">makeUnique</a></li><li><a href="module-@crabel_shared_file.html#.move">move</a></li><li><a href="module-@crabel_shared_file.html#.removeExt">removeExt</a></li><li><a href="module-@crabel_shared_file.html#.saveText">saveText</a></li><li><a href="module-@crabel_shared_file.html#.swapExt">swapExt</a></li></ul></div></li><li><a href="module-@crabel_shared_proto.html">@crabel/shared/proto</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/proto_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-@crabel_shared_proto.html#.init">init</a></li></ul></div></li><li><a href="module-@crabel_shared_range.html">@crabel/shared/range</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/range_sub"></div></li><li><a href="module-@crabel_shared_str_util.html">@crabel/shared/str_util</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/str_util_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-@crabel_shared_str_util.html#.align">align</a></li><li><a href="module-@crabel_shared_str_util.html#.alignC">alignC</a></li><li><a href="module-@crabel_shared_str_util.html#.alignL">alignL</a></li><li><a href="module-@crabel_shared_str_util.html#.alignR">alignR</a></li><li><a href="module-@crabel_shared_str_util.html#.buildTable">buildTable</a></li><li><a href="module-@crabel_shared_str_util.html#.capitalize">capitalize</a></li><li><a href="module-@crabel_shared_str_util.html#.crc32">crc32</a></li><li><a href="module-@crabel_shared_str_util.html#.expand">expand</a></li><li><a href="module-@crabel_shared_str_util.html#.fill">fill</a></li><li><a href="module-@crabel_shared_str_util.html#.format">format</a></li><li><a href="module-@crabel_shared_str_util.html#.formatError">formatError</a></li><li><a href="module-@crabel_shared_str_util.html#.substDate">substDate</a></li><li><a href="module-@crabel_shared_str_util.html#.substEnv">substEnv</a></li><li><a href="module-@crabel_shared_str_util.html#.substProp">substProp</a></li><li><a href="module-@crabel_shared_str_util.html#.toObject">toObject</a></li></ul><div class="member-type">Typedef</div><ul class="inner"><li><a href="module-@crabel_shared_str_util.html#~FormatterCallback">FormatterCallback</a></li><li><a href="module-@crabel_shared_str_util.html#~ReviverCallback">ReviverCallback</a></li><li><a href="module-@crabel_shared_str_util.html#~SubstCallback">SubstCallback</a></li><li><a href="module-@crabel_shared_str_util.html#~TableColumn">TableColumn</a></li><li><a href="module-@crabel_shared_str_util.html#~TableSpecs">TableSpecs</a></li><li><a href="module-@crabel_shared_str_util.html#~Token">Token</a></li></ul></div></li></ul></div><div class="lnb-api hidden"><h3>Classes</h3><ul><li><a href="Array.html">Array</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Array_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Array.html#empty">empty</a></li><li><a href="Array.html#first">first</a></li><li><a href="Array.html#isLast">isLast</a></li><li><a href="Array.html#last">last</a></li></ul></div></li><li><a href="Date.html">Date</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Date_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Date.html#.format">format</a></li><li><a href="Date.html#.formatLength">formatLength</a></li><li><a href="Date.html#.sameDay">sameDay</a></li><li><a href="Date.html#addDays">addDays</a></li><li><a href="Date.html#addHours">addHours</a></li><li><a href="Date.html#addMillis">addMillis</a></li><li><a href="Date.html#addMinutes">addMinutes</a></li><li><a href="Date.html#addMonths">addMonths</a></li><li><a href="Date.html#addSeconds">addSeconds</a></li><li><a href="Date.html#addYears">addYears</a></li><li><a href="Date.html#diff">diff</a></li><li><a href="Date.html#earlierDayThan">earlierDayThan</a></li><li><a href="Date.html#format">format</a></li><li><a href="Date.html#incDay">incDay</a></li><li><a href="Date.html#incHour">incHour</a></li><li><a href="Date.html#incMilli">incMilli</a></li><li><a href="Date.html#incMinute">incMinute</a></li><li><a href="Date.html#incMonth">incMonth</a></li><li><a href="Date.html#incSecond">incSecond</a></li><li><a href="Date.html#incYear">incYear</a></li><li><a href="Date.html#laterDayThan">laterDayThan</a></li><li><a href="Date.html#sameDay">sameDay</a></li><li><a href="Date.html#toUtc">toUtc</a></li><li><a href="Date.html#truncTime">truncTime</a></li></ul></div></li><li><a href="module-@crabel_shared_csv-CsvReader.html">CsvReader</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/csv~CsvReader_sub"><div class="member-type">Members</div><ul class="inner"><li><a href="module-@crabel_shared_csv-CsvReader.html#doc">doc</a></li><li><a href="module-@crabel_shared_csv-CsvReader.html#headers">headers</a></li></ul><div class="member-type">Methods</div><ul class="inner"><li><a href="module-@crabel_shared_csv-CsvReader.html#toString">toString</a></li></ul></div></li><li><a href="module-@crabel_shared_range-ArrayRange.html">ArrayRange</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/range~ArrayRange_sub"></div></li><li><a href="module-@crabel_shared_range-Range.html">Range</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="module:@crabel/shared/range~Range_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="module-@crabel_shared_range-Range.html#add">add</a></li><li><a href="module-@crabel_shared_range-Range.html#clear">clear</a></li><li><a href="module-@crabel_shared_range-Range.html#combine">combine</a></li><li><a href="module-@crabel_shared_range-Range.html#empty">empty</a></li><li><a href="module-@crabel_shared_range-Range.html#exclude">exclude</a></li><li><a href="module-@crabel_shared_range-Range.html#forEach">forEach</a></li><li><a href="module-@crabel_shared_range-Range.html#from">from</a></li><li><a href="module-@crabel_shared_range-Range.html#inRange">inRange</a></li><li><a href="module-@crabel_shared_range-Range.html#intervalFromArray">intervalFromArray</a></li><li><a href="module-@crabel_shared_range-Range.html#same">same</a></li><li><a href="module-@crabel_shared_range-Range.html#subtract">subtract</a></li><li><a href="module-@crabel_shared_range-Range.html#to">to</a></li><li><a href="module-@crabel_shared_range-Range.html#toString">toString</a></li><li><a href="module-@crabel_shared_range-Range.html#validInterval">validInterval</a></li></ul></div></li><li><a href="Number.html">Number</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Number_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Number.html#between">between</a></li><li><a href="Number.html#nextPow2">nextPow2</a></li><li><a href="Number.html#prevPow2">prevPow2</a></li><li><a href="Number.html#roundToInt">roundToInt</a></li><li><a href="Number.html#toEnum">toEnum</a></li><li><a href="Number.html#toTime">toTime</a></li><li><a href="Number.html#truncToInt">truncToInt</a></li><li><a href="Number.html#zeroPadd">zeroPadd</a></li></ul></div></li><li><a href="Object.html">Object</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="Object_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="Object.html#.className">className</a></li><li><a href="Object.html#.contains">contains</a></li><li><a href="Object.html#.copy">copy</a></li><li><a href="Object.html#.isPrimitive">isPrimitive</a></li><li><a href="Object.html#.isType">isType</a></li><li><a href="Object.html#className">className</a></li><li><a href="Object.html#clone">clone</a></li><li><a href="Object.html#contains">contains</a></li><li><a href="Object.html#is">is</a></li><li><a href="Object.html#isPrimitive">isPrimitive</a></li><li><a href="Object.html#merge">merge</a></li></ul></div></li><li><a href="StringList.html">StringList</a><button type="button" class="hidden toggle-subnav btn btn-link">  <span class="glyphicon glyphicon-plus"></span></button><div class="hidden" id="StringList_sub"><div class="member-type">Methods</div><ul class="inner"><li><a href="StringList.html#clear">clear</a></li><li><a href="StringList.html#count">count</a></li><li><a href="StringList.html#empty">empty</a></li><li><a href="StringList.html#forEach">forEach</a></li><li><a href="StringList.html#line">line</a></li><li><a href="StringList.html#load">load</a></li><li><a href="StringList.html#merge">merge</a></li><li><a href="StringList.html#newLine">newLine</a></li><li><a href="StringList.html#remove">remove</a></li><li><a href="StringList.html#save">save</a></li><li><a href="StringList.html#toString">toString</a></li><li><a href="StringList.html#write">write</a></li><li><a href="StringList.html#writeLine">writeLine</a></li></ul></div></li></ul></div>
+</nav>
+<div id="resizer"></div>
+
+<div class="main" id="main">
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">This module is part of the Crabel core library, it contains utility functions that
+extend the standard <b>String</b> interface adding support for string transformation
+and formatting including token replacement, text layout construction and more.
+Formatting function (format and expand) provide token substitution services using the
+familiar handlebars notation i.e. {{ token }}.</div>
+        
+
+        
+            
+
+<dt>
+
+    
+
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".align">
+            <span class="type-signature"><span class="icon green">static</span> </span>align<span class="signature">(str, width, alignment<span class="signature-attributes">opt</span>, fill_char<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line282">line 282</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        For internal use only, use one of the specialized methods 'alignL', alignR' and
+'alignC'.<br> Pads the given string (str) to fit in the given 'width'. Padding is
+added to the beginning, the end or both depending on the value of the 'alignment'
+attribute, possible values are: <b>"left"</b>, <b>"right"</b> and <b>"center"</b>.
+The padding character can be defined through the 'fill_char' argument, if the
+argument is omitted, an space character (" ") is used. If the given string is
+longer than the given width, no padding is added and the original string is
+returned back to the caller.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The string (or string serializable object) to be aligned.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">The number of characters the resulting string should have.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>alignment</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    "left"
+                
+                </td>
+            
+
+            <td class="description last">Indicates whether the string should be aligned to the right, left or center.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fill_char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Character to be appended or prepended to the given string.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns the padded string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".alignC">
+            <span class="type-signature"><span class="icon green">static</span> </span>alignC<span class="signature">(str, width, fill_char<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line339">line 339</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Pads the given string (str) to fit in the given 'width'. Padding is added to the
+beginning and end of the string such that 'str' is centered within the given
+number of characters. The padding character can be defined through the
+<b>fill_char</b> argument, if the argument is omitted, the space character (" ")
+is used. If the given string is longer than the given width, no padding is added
+and the original * string is returned back to the caller.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The string (or string serializable object) to be aligned.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The number of characters the resulting string should have.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fill_char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Character to be appended or prepended to the given string.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns the padded string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".alignL">
+            <span class="type-signature"><span class="icon green">static</span> </span>alignL<span class="signature">(str, width, fill_char<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line359">line 359</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Pads the given string (str) to fit in the given 'width'. Padding is added to the
+end of the string. The padding character can be defined through the
+<b>fill_char</b> argument, if the argument is omitted, the space character (" ")
+is used. If the given string is longer than the given width, no padding is added
+and the original string is returned back to the caller.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The string (or string serializable object) to be aligned.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The number of characters the resulting string should have.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fill_char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Character to be appended or prepended to the given string.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns the padded string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".alignR">
+            <span class="type-signature"><span class="icon green">static</span> </span>alignR<span class="signature">(str, width, fill_char<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line379">line 379</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Pads the given string (str) to fit in the given 'width'. Padding is added to the
+beginning of the string. The padding character can be defined through the
+<b>fill_char</b> argument, if the argument is omitted, the space character (" ")
+is used. If the given string is longer than the given width, no padding is added
+and the original string is returned back to the caller.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The string (or string serializable object) to be aligned.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">The number of characters the resulting string should have.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fill_char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Character to be appended or prepended to the given string.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns the padded string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".buildTable">
+            <span class="type-signature"><span class="icon green">static</span> </span>buildTable<span class="signature">(table_data, width)</span><span class="type-signature"> &rarr; {string}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line560">line 560</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Creates a table with the given data, specifications and width. The <b>table_data</b>
+contains columns specifications through the <b>columns</b> property, and data through
+the <b>rows</b> property and rows of data
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>table_data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">string</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".capitalize">
+            <span class="type-signature"><span class="icon green">static</span> </span>capitalize<span class="signature">(str)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line102">line 102</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Capitalizes the first letter of every word in the given <tt>str</tt>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String to be capitalized.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns a string with the first letter of every word capitalized.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".crc32">
+            <span class="type-signature"><span class="icon green">static</span> </span>crc32<span class="signature">(str)</span><span class="type-signature"></span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line408">line 408</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Generates a CRC32 checksum for the given string.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The string (or string serializable object) to use for crc32 checksum generation.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".expand">
+            <span class="type-signature"><span class="icon green">static</span> </span>expand<span class="signature">(str, subst_fn<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line214">line 214</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Expands substitutable tokens (text surrounded by handlebars) by invoking the
+callback function. Parameters can be given along within the substitution token to
+customize the behaviour of the substitution function, these parameters are
+separated by a comma and can be enclosed within double quotes, for instance the
+token {{ date, "yyyy/MM/dd" }} could be used to tell the substitution function to
+format that date using the given date formatting string. If the callback function
+returns 'null', the token is left alone.<br><br>
+
+Additional parameters can be passed after 'subst_fn', these parameters are passed
+through to the callback function every time it is invoked.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">String to be expanded. Tokens found in this string are given to the callback
+function for substitution.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>subst_fn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">SubstCallback</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Substitution callback function.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>arg...</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Arguments to be passed on to the callback function.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns the expanded string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Converts text="date: yyyy/MM/dd" into expanded_text =
+ "date: 2016/02/07"</p>
+    
+    <pre class="prettyprint"><code>  require(twt/proto);
+  let date_util = require("twt/date_util");
+  let text = "Current date: {{date, yyyy/MM/dd}}";
+  let expanded_text = str_util.expand(text, function (token, date) {
+     if ("date" === token.Name) {
+         if (undefined !== token.Args[0] &amp;&amp; Object.isType(String))
+             return date_util.format(date, token.Args[0]);
+         return date.toString(); // no formatting string was given, use default
+     }
+
+     return null; // token not supported
+ }, new Date());</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".fill">
+            <span class="type-signature"><span class="icon green">static</span> </span>fill<span class="signature">(width, fill_char<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {string}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line85">line 85</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns a string of given width filled with the given character.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">number of characters to add to the strin returned.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fill_char</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">the character to use when generaring the string.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">string</span>
+
+
+
+
+
+- String containing the repeated sequence
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".format">
+            <span class="type-signature"><span class="icon green">static</span> </span>format<span class="signature">(str)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line131">line 131</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Replaces tokens of the form {N} where N indicates the index of the value to use
+for replacement. Replacement values are passed as parameters to the function.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">String to be formatted. All the known tokens present in 'str' are replaced with
+the values given by the rest of the function arguments.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>subs...</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Values to be used during substitution.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Returns the formatted string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Converts text="Name: {{0}}, Last: {{1}}, Age: {{2}}" into
+ formatted_text="Name: John, Last: Doe, Age: 43"</p>
+    
+    <pre class="prettyprint"><code>     let date_util = require("twt/date_util");
+     let person = { Name: "John", Last: "Doe", Age: 43 };
+     let text = "Name: {{0}}, Last: {{1}}, Age: {{2}}";
+     let formatted_text = str_util.format(text, person.Name, person.Last person.Age);</code></pre>
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".formatError">
+            <span class="type-signature"><span class="icon green">static</span> </span>formatError<span class="signature">(str)</span><span class="type-signature"> &rarr; {Error}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line172">line 172</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns an <b>Error</b> object with the text <b>str</b> expanded via the
+<b>format</b> function.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">String to be formatted. All the known tokens present in 'str' are replaced with
+the values given by the rest of the function arguments.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>subs...</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Values to be used during substitution.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Error</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".substDate">
+            <span class="type-signature"><span class="icon green">static</span> </span>substDate<span class="signature">(str, date<span class="signature-attributes">opt</span>, width<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line452">line 452</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Substitutes date/time tokens with the given date/time with optional formatting,
+e.g. {{date[, frmStr: String}}.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">String where token substitution is to be applied.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Date.html">Date</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Optional date to be used for substitution, if not provided, the current
+date/time is used.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Width used for alignment</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".substEnv">
+            <span class="type-signature"><span class="icon green">static</span> </span>substEnv<span class="signature">(str)</span><span class="type-signature"> &rarr; {string}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line543">line 543</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Expands environment variables in the given string. substitution tokens are of the form
+$(ENV_NAME)
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">String to be expanded.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">string</span>
+
+
+
+
+
+- Expanded string.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".substProp">
+            <span class="type-signature"><span class="icon green">static</span> </span>substProp<span class="signature">(str, obj, width<span class="signature-attributes">opt</span>, cb<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line481">line 481</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Substitutes the a token with an object property. Properties of child objects
+can be specified as tokens using dot notation, e.g. "{{process.path}}".
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>str</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">String where token substitution is to be applied.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Object where properties are to be used for substitution.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Width used for alignment</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">FormatterCallback</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".toObject">
+            <span class="type-signature"><span class="icon green">static</span> </span>toObject<span class="signature">(doc, reviver)</span><span class="type-signature"> &rarr; {<a href="Object.html">Object</a>}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line395">line 395</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Creates and object by de-serializing the string. The string must contain a valid
+JSON document or an error will be thrown by the "eval" function. To use the JSON
+safe parser, pass a parameter of "null" in "reviver", or  valid reviver function.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>doc</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">JSON document to be parsed and converted to an object.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>reviver</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">ReviverCallback</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Callback function use to customize value conversion when parsing the json document.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+
+
+
+- Returns an 'Object' that contains all the properties of the JSON document.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            </dl>
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id="~FormatterCallback">
+            <span class="type-signature"></span>FormatterCallback<span class="signature">(obj, prop_name)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line38">line 38</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Callback function given to the 'str_util.substProp' function to format a given
+property value.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Object container object from which a value is used for
+substitution.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>prop_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the property of 'obj' whose value is being fetch for
+substitution.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Formatted value of obj[prop_name].
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id="~ReviverCallback">
+            <span class="type-signature"></span>ReviverCallback<span class="signature">(key, value)</span><span class="type-signature"> &rarr; {*}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line50">line 50</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Callback function given to the 'toObject' function to customize the conversion of JSON
+values to object property values.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>key</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Key being assigned to the resulting object instance.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Value being assigned to the 'key' property.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">*</span>
+
+
+
+
+
+- Value processed by the ReviverCallback function. This value is assigned
+to the 'key' property in place
+of the 'value' string that was in the JSON document.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id="~SubstCallback">
+            <span class="type-signature"></span>SubstCallback<span class="signature">(token, &hellip;arg<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String|null}</span>
+            
+            <div class="container-source members">
+                <code><a href="str_util.js.html">str_util.js</a></code>,
+                <code><a href="str_util.js.html#line25">line 25</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Callback function given to the 'expand' function to evaluate and determine value to be
+used for substitution.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>token</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Token</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Object representing the token. The object has a 'name' and 'args'
+properties.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">any</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;repeatable><br>
+                
+                </td>
+            
+
+            
+
+            <td class="description last">Additional arguments passed to the expand function.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+|
+
+<span class="param-type">null</span>
+
+
+
+
+
+- Value returned by the substitution callback function or null if
+no substitution was
+possible.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+<h4 class="name" id="~TableColumn">
+    TableColumn
+    
+    <div class="container-source members">
+        <code><a href="str_util.js.html">str_util.js</a></code>,
+        <code><a href="str_util.js.html#line62">line 62</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>width</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Number.html">Number</a></span>
+|
+
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>align</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+            
+                
+
+<dt>
+<h4 class="name" id="~TableSpecs">
+    TableSpecs
+    
+    <div class="container-source members">
+        <code><a href="str_util.js.html">str_util.js</a></code>,
+        <code><a href="str_util.js.html#line69">line 69</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>columns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;TableColumn></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rows</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;<a href="Array.html">Array</a>.&lt;String>></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+            
+                
+
+<dt>
+<h4 class="name" id="~Token">
+    Token
+    
+    <div class="container-source members">
+        <code><a href="str_util.js.html">str_util.js</a></code>,
+        <code><a href="str_util.js.html#line18">line 18</a></code>
+    </div>
+    
+</h4>
+
+
+</dt>
+<dd>
+    
+
+    <!--
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="Object.html">Object</a></span>
+
+
+            </li>
+        </ul>
+    
+    -->
+
+    
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>args</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Array.html">Array</a>.&lt;String></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+    
+</dd>
+
+            </dl>
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    <img class="logo" src="img/toast-ui.png" style="width: 0px; height: 0px">
+    <div class="footer-text">Crabel Shared Library for JavaScript</div>
+</footer>
+<script>prettyPrint();</script>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/tui-doc.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+    <script>
+        var id = 'module:@crabel/shared/str_util_sub'.replace(/"/g, '_');
+        var selectedApi = document.getElementById(id); // do not use jquery selector
+        var $selectedApi = $(selectedApi);
+
+        $selectedApi.removeClass('hidden');
+        $selectedApi.parent().find('.glyphicon').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+        showLnbApi();
+    </script>
+
+</body>
+</html>
