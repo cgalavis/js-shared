@@ -14,7 +14,9 @@
 require("./proto").init();
 
 exports.module = {
-    util: require("./util"),
-    config: require("./config"),
-    log: require("./log")
+    csv: require("./csv"),
+    file: require("./file"),
+    range: require("./range"),
+    str_util: require("./str_util"),
+    StringList: require("./StringList"),
 };
