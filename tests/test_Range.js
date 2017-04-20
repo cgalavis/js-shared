@@ -1,13 +1,14 @@
 "use strict";
 
-var Range = require("../range").Range;
-var ArrayRange = require("../range").ArrayRange;
-var expect = require("chai").expect;
+require("../proto").init();
+let Range = require("../range").Range;
+let ArrayRange = require("../range").ArrayRange;
+let expect = require("chai").expect;
 
 describe("Test ArrayRange object", function () {
 
     it("Test range construction", function () {
-        var ar = new ArrayRange();
+        let ar = new ArrayRange();
         expect(ar.intervals.length).to.equal(0, "Initial intervals in range is not 0");
         expect(ar.empty()).to.equal(true, "Empty property did not match state of the " +
             "range");
@@ -74,15 +75,15 @@ describe("Test ArrayRange object", function () {
         ar.clear();
         ar.add([10, 20], [40, 60], [80, 100]);
         ar.subtract([12, 18], [30, 45], [90, 110]);
-        expect(ar.inRange(10)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(20)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(15)).to.be.equal(false, ar.intervals.toJSONEx());
-        expect(ar.inRange(45)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(60)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(42)).to.be.equal(false, ar.intervals.toJSONEx());
-        expect(ar.inRange(80)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(90)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(95)).to.be.equal(false, ar.intervals.toJSONEx());
+        expect(ar.inRange(10)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(20)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(15)).to.be.equal(false, JSON.stringify(ar.intervals));
+        expect(ar.inRange(45)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(60)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(42)).to.be.equal(false, JSON.stringify(ar.intervals));
+        expect(ar.inRange(80)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(90)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(95)).to.be.equal(false, JSON.stringify(ar.intervals));
 
         ar.clear();
         expect(ar.length).to.equal(0, "Intervals were not remove after call to clear");
@@ -92,17 +93,17 @@ describe("Test ArrayRange object", function () {
         let ar2 = new ArrayRange();
         ar2.add ([15, 30], [60, 70]);
         ar.combine(ar2);
-        expect(ar.inRange(10)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(30)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(40)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(60)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(70)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(29)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(31)).to.be.equal(true, ar.intervals.toJSONEx());
-        expect(ar.inRange(9)).to.be.equal(false, ar.intervals.toJSONEx());
-        expect(ar.inRange(41)).to.be.equal(false, ar.intervals.toJSONEx());
-        expect(ar.inRange(59)).to.be.equal(false, ar.intervals.toJSONEx());
-        expect(ar.inRange(71)).to.be.equal(false, ar.intervals.toJSONEx());
+        expect(ar.inRange(10)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(30)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(40)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(60)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(70)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(29)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(31)).to.be.equal(true, JSON.stringify(ar.intervals));
+        expect(ar.inRange(9)).to.be.equal(false, JSON.stringify(ar.intervals));
+        expect(ar.inRange(41)).to.be.equal(false, JSON.stringify(ar.intervals));
+        expect(ar.inRange(59)).to.be.equal(false, JSON.stringify(ar.intervals));
+        expect(ar.inRange(71)).to.be.equal(false, JSON.stringify(ar.intervals));
 
         // Test exclude
         ar.clear();
@@ -129,13 +130,13 @@ describe("Test ArrayRange object", function () {
         ar2.clear();
         ar2.add(10, 100);
         ar2.subtract([20, 40], [60, 80]);
-        expect(ar.same(ar2)).to.equal(true, "Range '" + ar.intervals.toJSONEx() +
+        expect(ar.same(ar2)).to.equal(true, "Range '" + JSON.stringify(ar.intervals) +
             "' is not equal to '" +
-            ar2.intervals.toJSONEx() + "'");
+            JSON.stringify(ar.intervals) + "'");
         ar2.subtract(80, 85);
-        expect(ar.same(ar2)).to.equal(false, "Range '" + ar.intervals.toJSONEx() +
+        expect(ar.same(ar2)).to.equal(false, "Range '" + JSON.stringify(ar.intervals) +
             "' is equal to '" +
-            ar2.intervals.toJSONEx() + "'");
+            JSON.stringify(ar.intervals) + "'");
 
         // Test exceptions
         expect(function() { ar.add(10) }).to.throw();

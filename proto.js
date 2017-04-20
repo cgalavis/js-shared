@@ -31,7 +31,7 @@
  *
  * //Registers "Date" and "Array" extensions
  * require("@crabel/proto").init(Date, Array);
- * @module @crabel/proto
+ * @module @crabel/shared/proto
  * @exports init
  */
 

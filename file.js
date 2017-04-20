@@ -4,7 +4,7 @@
  * This module is part of the Crabel core library, it contains utility functions that
  * facilitate file name processing and file management providing minimal extensions for
  * the native <b>path</b> and <b>fs</b> modules.
- * @module @crabel/file
+ * @module @crabel/shared/file
  * @author Carlos Galavis <cgalavis@crabel.com>
  */
 

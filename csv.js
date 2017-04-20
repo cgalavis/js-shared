@@ -1,17 +1,39 @@
 "use strict";
 
+/**
+ * Provides simple but convenient classes and functions to manipulate CSV documents.
+ * @module @crabel/shared/csv
+ */
+
 require("./proto").init();
 let file = require("./file");
 let StringList = require("./StringList");
 
-function CsvReader(file_name, with_header)
+/**
+ * Simple class to load CSV file. The first <tt>row</tt> is used as the header, values of
+ * other rows can be access via the column name provided in the header.
+ * @param {String} file_name
+ * Name of the file to load.
+ * @constructor
+ */
+function CsvReader(file_name)
 {
     if (!file.exists(file_name))
         throw new Error("file {0} does not exist.".format(file_name));
 
     let that = this;
 
+    /**
+     * List of column names provided by the header row (the first column)
+     * @type {Array}
+     */
     this.headers = [];
+
+    /**
+     * Array of rows from the loaded CSV document. Each cell can be access by row index
+     * and column name, i.e. <tt>sl.doc[0].name</tt>.
+     * @type {Array}
+     */
     this.doc = [];
 
     this._sl = new StringList();
@@ -19,7 +41,7 @@ function CsvReader(file_name, with_header)
     this._sl.forEach(
         function (data, i)
         {
-            if (0 == i && with_header)
+            if (0 == i)
                 setHeaders(data);
             else
             {
@@ -57,11 +79,27 @@ function CsvReader(file_name, with_header)
     }
 }
 
+/**
+ * Outputs the content of the CSV document as a string.
+ * @returns {String}
+ */
 CsvReader.prototype.toString = function ()
 {
     return this._sl.toString();
 };
 
+/**
+ * Converts a comma separated string into an array of values. This function applies at
+ * the line level, line breaks are consider part of the current value and returned as
+ * such. To parse CSV multi-line strings split the string into lines and call this
+ * function for each line.
+ * @param {String} text
+ * CSV string to convert to an array.
+ * @param {Function} [trans]
+ * An optional function to further process each value.
+ * @returns {Array}
+ * Array of values from the CSV input text.
+ */
 function csvToArray(text, trans) {
     if (!trans)
         trans = function (value) { return value; };

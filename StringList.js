@@ -1,29 +1,14 @@
-/*
-====================================
-Javascript Extension Library for ACP
-====================================
-
-SCRIPT:     StringUtils.js
-AUTHOR:     Carlos E. Galavis <carlos@galavis.net>
-VERSION:    1.0
-
-DESCRIPTION:
-            This file contains a set of classes and functions to provide extra functionality when working with
-            strings. The StringList class gives stream line functionality.
-*/
-
 "use strict";
 
-require("./proto");
-var path = require("./path");
-var file = require("./file");
-var os = require("os");
+require("./proto").init();
+let file = require("./file");
+let os = require("os");
 
 /**
- * The StringList object provides and stream like abstraction convenient when building
- * output for log files or reports. The information stored can be referenced as a string,
- * a list, of saved/loaded from files.
- * @param delimiter
+ * The StringList object provides access to a list of strings similar to a document
+ * making it convenient for outputting  to log files or reports. The information stored
+ * can be referenced as a string, a list, of saved/loaded from files.
+ * @param {String} [delimiter=os.EOL]
  * @constructor
  */
 function StringList(delimiter) {
@@ -36,7 +21,7 @@ function StringList(delimiter) {
 
 /**
  * Return true if the StringList is empty.
- * @returns {boolean}
+ * @returns {Boolean}
  */
 StringList.prototype.empty = function () {
     return this.lines.empty();
@@ -72,10 +57,10 @@ StringList.prototype.toString = function () {
     if (this.lines.empty())
         return "";
 
-    var res = this.lines.first();
+    let res = this.lines.first();
 
     if (this.lines.length > 1) {
-        for (var i = 1; i < this.lines.length; ++i)
+        for (let i = 1; i < this.lines.length; ++i)
             res += this.delimiter + this.lines[i];
     }
     return res;
@@ -90,7 +75,7 @@ StringList.prototype.newLine = function (count) {
     if (undefined === count)
         count = 1;
 
-    for (var i = 0; i < count; ++i)
+    for (let i = 0; i < count; ++i)
         this.lines.push("");
 };
 
@@ -101,7 +86,7 @@ StringList.prototype.newLine = function (count) {
  * the 'format' function of the input string. The StringList is returned to allow method
  * chaining.
  * Usage:
- *      var st = new StringList();
+ *      let st = new StringList();
  *      st.writeLine("Current date is: {0}", new Date());
  * @param {String} str
  * @returns {StringList}
@@ -110,18 +95,18 @@ StringList.prototype.write = function (str) {
     if (undefined === str)
         throw new Error("Call to 'write' with missing argument.");
 
-    var val;
+    let val;
     if (1 == arguments.length)
         val = str;
     else {
-        var args = Array.prototype.slice.call(arguments);
+        let args = Array.prototype.slice.call(arguments);
         val = str.format.apply(str, args.slice(1, args.length));
     }
 
     if (this.lines.empty())
         this.lines.push(val);
     else {
-        var i = this.lines.length - 1;
+        let i = this.lines.length - 1;
         this.lines[i] += val;
     }
     return this;
@@ -155,7 +140,7 @@ StringList.prototype.forEach = function (callback) {
         throw new Error("Invalid call to 'forEach', the callback function was not " +
             "passed or was not a function.");
 
-    for (var i = 0; i < this.lines.length; ++i)
+    for (let i = 0; i < this.lines.length; ++i)
         callback.call(this, this.lines[i], i, this);
 };
 
@@ -166,7 +151,7 @@ StringList.prototype.forEach = function (callback) {
  * @returns {StringList}
  */
 StringList.prototype.merge = function () {
-    for (var i = 0; i < arguments.length; ++i)
+    for (let i = 0; i < arguments.length; ++i)
         if (undefined !== arguments[i].lines)
             this.lines.push.apply(this.lines, arguments[i].lines);
 
@@ -207,8 +192,8 @@ StringList.prototype.clear = function () {
  * @returns {StringList}
  */
 StringList.prototype.save = function (fname, safe) {
-    path.ensure(path.getParent(fname));
-    file.save(fname, this.toString(), safe);
+    file.ensurePath(path.getParent(fname));
+    file.saveText(fname, this.toString(), safe);
     return this;
 };
 
@@ -226,13 +211,13 @@ StringList.prototype.load = function (fname) {
             "not exist.'".format(fname));
 
     // Process Windows formatted lines
-    var content = file.loadText(fname).split("\r\n");
+    let content = file.loadText(fname).split("\r\n");
     
     this.clear();
-    for (var i =0; i < content.length; ++i) {
+    for (let i =0; i < content.length; ++i) {
         // Process Unix formatted lines
-        var sub_content = content[i].split("\n");
-        for (var j = 0; j < sub_content.length; ++j)
+        let sub_content = content[i].split("\n");
+        for (let j = 0; j < sub_content.length; ++j)
             this.lines.push(sub_content[j]);
     }
     return  this;

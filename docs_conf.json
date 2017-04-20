@@ -10,15 +10,15 @@
     },
     "plugins": [],
     "opts": {
-        "_template": "node_modules/namis",
-        "__template": "node_modules/ink-docstrap/template",
+        "__template": "node_modules/namis",
+        "_template": "node_modules/ink-docstrap/template",
         "template": "node_modules/tui-jsdoc-template",
         "encoding": "utf8",
         "destination": "./docs",
         "recurse": false
     },
     "templates": {
-        "cleverLinks": false,
+        "cleverLinks": true,
         "monospaceLinks": false,
         "logo": {
             "url": "",

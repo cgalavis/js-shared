@@ -104,9 +104,9 @@ describe("'str_util' Class Test Suite", function () {
     it ("str_util.subst", function () {
         let date = new Date(2016, 2, 28, 13, 45, 32);
         let today_str = new Date().format("yyyy/MM/dd");
-        expect(str_util.subst.date("The date is: {{date, yyyy/MM/dd}}"))
+        expect(str_util.substDate("The date is: {{date, yyyy/MM/dd}}"))
             .to.equal("The date is: " + today_str);
-        expect(str_util.subst.date("The date is: {{date, yyyy/MM/dd}}", date))
+        expect(str_util.substDate("The date is: {{date, yyyy/MM/dd}}", date))
             .to.equal("The date is: " +
             date.format("yyyy/MM/dd"));
 
@@ -126,7 +126,7 @@ describe("'str_util' Class Test Suite", function () {
             }
         };
 
-        expect(str_util.subst.prop("First CPU Name: {{proc.cpus.0.name}}", obj))
+        expect(str_util.substProp("First CPU Name: {{proc.cpus.0.name}}", obj))
             .to.equal("First CPU Name: Haswell");
 
     });

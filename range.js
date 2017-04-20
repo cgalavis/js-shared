@@ -4,12 +4,13 @@
  * such as a string or a number. Specialized "Range' classes can be defined by providing
  * extraction function for the specific object type. The class RangeArray is an example of
  * how Range specialization.
- * @module twt/range
- * @author: Carlos Galavis <carlos@galavis.net>
+ * @module @crabel/shared/range
+ * @author: Carlos Galavis <cgalavis@crabel.com>
  */
 'use strict';
 
 require("./proto");
+let util = require("util");
 
 // Creates an instance of 'DateRage' given two values
 /**
@@ -18,7 +19,7 @@ require("./proto");
  * an interval object. Any object can be used as an interval as long as it supports these
  * two properties.
  * @param {string} p_from Name of the property that holds the left side of an interval.
- * @param {string] p_to Name of the property that holds the right side of the interval.
+ * @param {string} p_to Name of the property that holds the right side of the interval.
  * @constructor
  */
 function Range(p_from, p_to) {
@@ -29,7 +30,7 @@ function Range(p_from, p_to) {
     this.fromProp = p_from;
     this.toProp = p_to;
     this.intervals = [];
-    var that = this;
+    let that = this;
 
     Object.defineProperty(this, "length", {
         get: function () {
@@ -81,9 +82,9 @@ Range.prototype.toString = function () {
     if (this.intervals.empty())
         return "(empty)";
 
-    var res = "[ (" + this.from(0) + "," + this.to(0) + ")";
+    let res = "[ (" + this.from(0) + "," + this.to(0) + ")";
 
-    for (var i = 1; i < this.intervals.length; ++i)
+    for (let i = 1; i < this.intervals.length; ++i)
         res += ", (" + this.from(i) + "," + this.to(i) + ")";
 
     return res + " ]";
@@ -92,14 +93,14 @@ Range.prototype.toString = function () {
 /**
  * Determines whether the value or interval is in the range. The parameters can be a
  * number, interval object or array of two values (from/to).
- * @param {number|interval|array} param Section to test for inclusion in the range.
+ * @param {number|interval|array} it Section to test for inclusion in the range.
  * @returns {boolean} True if the parameter is within the range.
  */
-Range.prototype.inRange = function () {
-    var from, to;
+Range.prototype.inRange = function (it) {
+    let from, to;
     if (1 == arguments.length) {
         if (isNaN(arguments[0])){
-            var int = arguments[0];
+            let int = arguments[0];
             if (int.is(Array)) {
                 from = int[0];
                 to = int[1];
@@ -121,7 +122,7 @@ Range.prototype.inRange = function () {
         throw new Error("Invalid call to 'Range.inRange', the arguments must include " +
             "a valid interval.");
 
-    for (var i = 0; i < this.intervals.length; ++i) {
+    for (let i = 0; i < this.intervals.length; ++i) {
         if (from > to[i])
             break;
 
@@ -140,7 +141,7 @@ Range.prototype.inRange = function () {
  * <b>index</b< and <b>range</b> object by parameter.
  * */
 Range.prototype.forEach = function (iter_func) {
-    for (var i = 0; i < this.length; ++i) {
+    for (let i = 0; i < this.length; ++i) {
         if (iter_func(this.intervals[i], i, this))
             break;
     }
@@ -176,7 +177,7 @@ Range.prototype.intervalFromArray = function (aint) {
     if (!this.validInterval(aint))
         throw new Error("The interval passed to 'intervalFromArray' is not valid.");
 
-    var res = {};
+    let res = {};
     res[this.fromProp] = aint[0];
     res[this.toProp] = aint[1];
 
@@ -204,7 +205,7 @@ Range.prototype.add = function (nint) {
     }
 
     if (1 < arguments.length) {
-        for (var ai = 0; ai < arguments.length; ++ai)
+        for (let ai = 0; ai < arguments.length; ++ai)
             this.add(arguments[ai]);
         return this;
     }
@@ -216,8 +217,8 @@ Range.prototype.add = function (nint) {
         throw new Error("An invalid interval '" + nint.toJSONEx() + "' was passed to " +
             "the 'add' method.");
 
-    var from = nint[this.fromProp];
-    var to = nint[this.toProp];
+    let from = nint[this.fromProp];
+    let to = nint[this.toProp];
 
     // Avoid adding empty intervals
     if (from == to)
@@ -266,14 +267,14 @@ Range.prototype.subtract = function(int) {
     }
 
     if (1 < arguments.length) {
-        for (var ai = 0; ai < arguments.length; ++ai)
+        for (let ai = 0; ai < arguments.length; ++ai)
             this.subtract(arguments[ai]);
         return this;
     }
 
-    var from, to;
+    let from, to;
     if (1 == arguments.length) {
-        var int = arguments[0];
+        let int = arguments[0];
         if (!this.validInterval(int))
             throw new Error("Invalid call to 'subtract', the interval '" +
                 int.toJSONEx() + "' is not valid");
@@ -304,7 +305,7 @@ Range.prototype.subtract = function(int) {
         return this;
 
     // No for or forEach loop here since some intervals may need to be removed
-    var i = 0;
+    let i = 0;
     while (i < this.intervals.length) {
         if (from < this.to(i)) {
             if (to <= this.from(i))
@@ -315,7 +316,7 @@ Range.prototype.subtract = function(int) {
                     this.intervals[i][this.toProp] = from;
                 else {
                     // Gotta partition this interval
-                    var nint = this.intervals[i].clone();
+                    let nint = this.intervals[i].clone();
                     nint[this.fromProp] = to;
                     nint[this.toProp] = this.to(i);
                     this.intervals[i][this.toProp] = from;
@@ -346,7 +347,7 @@ Range.prototype.subtract = function(int) {
  */
 Range.prototype.combine = function (range) {
     if (1 < arguments.length) {
-        for (var ai = 0; ai < arguments.length; ++ai)
+        for (let ai = 0; ai < arguments.length; ++ai)
             this.combine(arguments[ai]);
         return this;
     }
@@ -366,7 +367,7 @@ Range.prototype.combine = function (range) {
  */
 Range.prototype.exclude = function (range) {
     if (1 < arguments.length) {
-        for (var ai = 0; ai < arguments.length; ++ai)
+        for (let ai = 0; ai < arguments.length; ++ai)
             this.exclude(arguments[ai]);
         return this;
     }
@@ -418,12 +419,20 @@ Range.prototype.same = function (range) {
 };
 
 
-// Specialized Ranges
+/**
+ * Specialized <tt>Range</tt> to use arrays, the first element of the array holds the
+ * beginning of the range, the second element holds the end. See {@link Range} for
+ * details on member functions of this class.
+ * @constructor
+ * @augments Range
+ */
 function ArrayRange() {
     Range.call(this, 0, 1);
 }
 
 ArrayRange.prototype = Range.prototype;
 
-module.exports.ArrayRange = ArrayRange;
-module.exports.Range = Range;
+module.exports = {
+    ArrayRange: ArrayRange,
+    Range: Range
+};

@@ -6,7 +6,7 @@
  * and formatting including token replacement, text layout construction and more.
  * Formatting function (format and expand) provide token substitution services using the
  * familiar handlebars notation i.e. {{ token }}.
- * @module @crabel/str_util
+ * @module @crabel/shared/str_util
  * @author: Carlos Galavis <cgalavis@crabel.com>
  */
 
@@ -36,7 +36,7 @@ let columnify = require("columnify");
 
 
 /**
- * Callback function given to the 'str_util.subst.prop' function to format a given
+ * Callback function given to the 'str_util.substProp' function to format a given
  * property value.
  * @callback FormatterCallback
  * @param {Object} obj Object container object from which a value is used for
@@ -438,120 +438,114 @@ module.exports = {
 
 
     /**
-     * Provides access to standard substitution functions.
-     * @type {Object}
+     * Substitutes date/time tokens with the given date/time with optional formatting,
+     * e.g. {{date[, frmStr: String}}.
+     * @param {string} str
+     * String where token substitution is to be applied.
+     * @param {Date} [date]
+     * Optional date to be used for substitution, if not provided, the current
+     * date/time is used.
+     * @param {Number} [width]
+     * Width used for alignment
+     * @returns {String}
      */
-    subst: {
-        /**
-         * Substitutes date/time tokens with the given date/time with optional formatting,
-         * e.g. {{date[, frmStr: String}}.
-         * @param {string} str
-         * String where token substitution is to be applied.
-         * @param {Date} [date]
-         * Optional date to be used for substitution, if not provided, the current
-         * date/time is used.
-         * @param {Number} [width]
-         * Width used for alignment
-         * @returns {String}
-         */
-        date: function (str, date, width) {
-            if (undefined === str)
-                throw new Error("Invalid call to 'str_util.subst.date', the 'str' " +
-                    "argument is not optional.");
+    substDate: function (str, date, width) {
+        if (undefined === str)
+            throw new Error("Invalid call to 'str_util.subst.date', the 'str' " +
+                "argument is not optional.");
 
-            return module.exports.expand(str, function (token, dt) {
-                if ("date" === token.name) {
-                    if (Object.isType(token.args[0], String))
-                        return module.exports.align(dt.format(token.args[0]), width,
-                            token.align);
+        return module.exports.expand(str, function (token, dt) {
+            if ("date" === token.name) {
+                if (Object.isType(token.args[0], String))
+                    return module.exports.align(dt.format(token.args[0]), width,
+                        token.align);
 
-                    return module.exports.align(dt, width, token.align);
-                }
-            }, date || new Date());
-        },
-
-
-        /**
-         * Substitutes the a token with an object property. Properties of child objects
-         * can be specified as tokens using dot notation, e.g. "{{process.path}}".
-         * @param {string} str
-         * String where token substitution is to be applied.
-         * @param {Object} obj
-         * Object where properties are to be used for substitution.
-         * @param {Number} [width]
-         * Width used for alignment
-         * @param {FormatterCallback} [cb]
-         * @return {String}
-         */
-        prop: function (str, obj, width, cb) {
-            if (!obj || undefined === obj)
-                throw new Error("Invalid call to 'str_util.subst.prop', the 'obj' and " +
-                    "'obj' arguments are not optional");
-
-            if (Object.isType(width, Function)) {
-                cb = width;
-                width = undefined;
+                return module.exports.align(dt, width, token.align);
             }
-
-            return module.exports.expand(str, function (token, obj) {
-                let val = getPropValue(obj, token.name.split("."), token.args, cb);
-                if (undefined !== val && null !== val)
-                    return module.exports.align(val, width, token.align);
-            }, obj);
-
-            function getPropValue(obj, props, args, cb) {
-                let prop_name = props.shift();
-                if (0 === props.length) {
-                    if (cb) {
-                        let val = cb(obj, prop_name);
-                        if (undefined !== val && null !== val)
-                            return valueToStr(val, args);
-                    }
-                    return valueToStr(obj[prop_name], args);
-                }
-
-                if (undefined !== obj[prop_name] && null !== obj[prop_name])
-                    if (Object.isType(obj[prop_name], Object))
-                        return getPropValue(obj[prop_name], props, args, cb);
-            }
-
-            function valueToStr(val, args) {
-                if (Object.isPrimitive(val))
-                    return val.toString();
-
-                if (Object.isType(val, Date)) {
-                    if (Object.isType(args[0], String))
-                        return val.format(args[0]);
-
-                    return val.toString();
-                }
-
-                if (Object.isType(val, Object)) {
-                    if (val.toString)
-                        return val.toString();
-                    return val.toJSONEx();
-                }
-
-                return null;
-            }
-        },
+        }, date || new Date());
+    },
 
 
-        /**
-         * Expands environment variables in the given string. substitution tokens are of the form
-         * $(ENV_NAME)
-         * @param {string} str
-         * String to be expanded.
-         * @return {string}
-         * Expanded string.
-         */
-        env: function (str) {
-            return str.replace(/\$\(([^%]+)\)/g,
-                function (_, env_var) {
-                    return process.env[env_var.trim()];
-                }
-            );
+    /**
+     * Substitutes the a token with an object property. Properties of child objects
+     * can be specified as tokens using dot notation, e.g. "{{process.path}}".
+     * @param {string} str
+     * String where token substitution is to be applied.
+     * @param {Object} obj
+     * Object where properties are to be used for substitution.
+     * @param {Number} [width]
+     * Width used for alignment
+     * @param {FormatterCallback} [cb]
+     * @return {String}
+     */
+    substProp: function (str, obj, width, cb) {
+        if (!obj || undefined === obj)
+            throw new Error("Invalid call to 'str_util.subst.prop', the 'obj' and " +
+                "'obj' arguments are not optional");
+
+        if (Object.isType(width, Function)) {
+            cb = width;
+            width = undefined;
         }
+
+        return module.exports.expand(str, function (token, obj) {
+            let val = getPropValue(obj, token.name.split("."), token.args, cb);
+            if (undefined !== val && null !== val)
+                return module.exports.align(val, width, token.align);
+        }, obj);
+
+        function getPropValue(obj, props, args, cb) {
+            let prop_name = props.shift();
+            if (0 === props.length) {
+                if (cb) {
+                    let val = cb(obj, prop_name);
+                    if (undefined !== val && null !== val)
+                        return valueToStr(val, args);
+                }
+                return valueToStr(obj[prop_name], args);
+            }
+
+            if (undefined !== obj[prop_name] && null !== obj[prop_name])
+                if (Object.isType(obj[prop_name], Object))
+                    return getPropValue(obj[prop_name], props, args, cb);
+        }
+
+        function valueToStr(val, args) {
+            if (Object.isPrimitive(val))
+                return val.toString();
+
+            if (Object.isType(val, Date)) {
+                if (Object.isType(args[0], String))
+                    return val.format(args[0]);
+
+                return val.toString();
+            }
+
+            if (Object.isType(val, Object)) {
+                if (val.toString)
+                    return val.toString();
+                return val.toJSONEx();
+            }
+
+            return null;
+        }
+    },
+
+
+    /**
+     * Expands environment variables in the given string. substitution tokens are of the form
+     * $(ENV_NAME)
+     * @param {string} str
+     * String to be expanded.
+     * @return {string}
+     * Expanded string.
+     */
+    substEnv: function (str) {
+        return str.replace(/\$\(([^%]+)\)/g,
+            function (_, env_var) {
+                return process.env[env_var.trim()];
+            }
+        );
     },
 
 
