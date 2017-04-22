@@ -94,7 +94,8 @@ describe("Object Prototype Test Suite", function() {
         let copy = obj.sub_obj.clone();
         expect(Object.contains(obj, copy)).to
             .equal(true, "cloned 'sub_obj' was not found");
-        copy.date_prop = new Date();
+
+        copy.date_prop = new Date(0);
         expect(Object.contains(obj, copy)).to
             .equal(false, "modified cloned 'sub_obj' was found");
 

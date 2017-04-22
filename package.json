@@ -4,7 +4,8 @@
   "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests"
+    "test": "mocha tests",
+    "docs": "jsdoc -c docs_conf.json -R README.md --verbose ."
   },
   "publishConfig": {
     "registry": "https://artifactory.hq.crabel.com/artifactory/api/npm/npm-crabel"
