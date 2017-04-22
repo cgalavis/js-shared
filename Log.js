@@ -122,7 +122,7 @@ let global_log = null;
  * Creates a <b>Log</b> object to handle logging to a file and/or the standard output
  * stream.
  * @param {LogOptions} options
- * @param {Object] [subst_obj] Any Object used for string substitution.
+ * @param {Object} [subst_obj] Any Object used for string substitution.
  * stream.
  * @constructor
  */
@@ -132,7 +132,7 @@ function Log(options, subst_obj)
         options.path = __dirname;
 
     if (!options.name)
-        options.name = file.getBaseName(__filename);
+        options.name = path.basename(__filename);
 
     let self = this;
     if (undefined === options.mode)
@@ -310,8 +310,7 @@ function Log(options, subst_obj)
                 if ("=" === h || "-" === h || "*" === h)
                     res += str_util.fill(self.lineWidth, h) + os.EOL;
                 else
-                    res += self.formatLine(self.applySubst(h, self.substObj, 
-                            self.lineWidth)) + os.EOL;
+                    res += self.formatLine(_applySubst(self, h)) + os.EOL;
             }
         });
         self.file.write(res);
@@ -512,8 +511,11 @@ Log.levelFromStr = function (level_str) {
  * exists by calling <b>path.ensure</b>.
  * @param {String} dir
  * Directory where log files are to be stored.
- * @param {string} name
+ * @param {String} name
  * Base name of the log file.
+ * @param {Log.mode} mode
+ * Log file handling specifications, can be <tt>Log.mode.append</tt>,
+ * <tt>Log.mode.replace</tt>, <tt>Log.mode.unique</tt> and <tt>Log.mode.unique_pre</tt>.
  * @returns {string} Returns the full name of the log file.
  */
 Log.makeLogFileName = function (dir, name, mode) {
@@ -678,9 +680,9 @@ Log.prototype.err = function (msg, cb, subst) {
  * call after the log entry is logged.
  * @param {...*|callback} [subst] Optional list of substitution arguments or a
  * substitution function. When present, the method formats the message using either
- * {@link module:twt/str_util~format str_util.format} or
- * {@link module:twt/str_util~expand str_util.expand} depending on whether a
- * {@link module:twt/str_util~substCallback substCallback} was provided.
+ * {@link module:@crabel/shared/str_util~format str_util.format} or
+ * {@link module:@crabel/shared/str_util~expand str_util.expand} depending on whether a
+ * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.prototype.warn = function (msg, cb, subst) {
     _log.apply(null, _buildArgs(this, Log.eventType.warn, arguments));
@@ -696,11 +698,11 @@ Log.prototype.warn = function (msg, cb, subst) {
  * call after the log entry is logged.
  * @param {...*} [subst] Optional list of substitution arguments.
  * When present, the method formats the message using either
- * {@link module:twt/str_util~format str_util.format} or
- * {@link module:twt/str_util~expand str_util.expand} depending on whether a
- * {@link module:twt/str_util~substCallback substCallback} was provided.
+ * {@link module:@crabel/shared/str_util~format str_util.format} or
+ * {@link module:@crabel/shared/str_util~expand str_util.expand} depending on whether a
+ * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
-Log.prototype.info = function (msg, cb) {
+Log.prototype.info = function (msg, cb, subst) {
     _log.apply(null, _buildArgs(this, Log.eventType.info, arguments));
 };
 
@@ -714,11 +716,11 @@ Log.prototype.info = function (msg, cb) {
  * call after the log entry is logged.
  * @param {...*} [subst] Optional list of substitution arguments.
  * When present, the method formats the message using either
- * {@link module:twt/str_util~format str_util.format} or
- * {@link module:twt/str_util~expand str_util.expand} depending on whether a
- * {@link module:twt/str_util~substCallback substCallback} was provided.
+ * {@link module:@crabel/shared/str_util~format str_util.format} or
+ * {@link module:@crabel/shared/str_util~expand str_util.expand} depending on whether a
+ * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
-Log.prototype.trace = function (msg, cb) {
+Log.prototype.trace = function (msg, cb, subst) {
     _log.apply(null, _buildArgs(this, Log.eventType.trace, arguments));
 };
 
@@ -747,47 +749,6 @@ Log.prototype.shutdown = function (cb) {
         if (cb)
             setImmediate(function () { cb(); });
     }
-};
-
-/**
- * Substitutes any token in 'str" that matches either a property in 'this (log)" object
- * or in the given object. Date values are also replaced using the str_util.subst.date.
- * @param {String} str
- * @param {Date} [date]
- * @param {Object} [substObj]
- * @returns {String}
- */
-Log.prototype.applySubst = function (str, date, substObj, width) {
-    if (undefined !== date && !Object.isType(date, Date)) {
-        width = substObj;
-        substObj = date;
-        date = undefined;
-    }
-
-    let align = "left";
-    if ("-" === str.charAt(0)) {
-        str = str.substr(1);
-        if ("-" === str.slice(-1)) {
-            align = "center";
-            str = str.substr(0, str.length - 1);
-        }
-        else
-            align = "right";
-    }
-
-    str = str_util.subst.date(str, date || new Date());
-
-    if (substObj)
-        str = str_util.subst.prop(str, substObj);
-
-    str = str_util.subst.prop(str, { log: this }, function (obj, prop_name) {
-        if ("mode" === prop_name)
-            return Log.modeStr[obj[prop_name]];
-        if ("level" === prop_name)
-            return log.eventTypeStr[obj[prop_name]];
-    });
-
-    return str_util.align(str, width, align);
 };
 
 
@@ -828,9 +789,13 @@ let last_log = null;
 /**
  * Outputs a message to the logfile.
  * @param {Log} log
+ * Reference to the <tt>Log</tt> object
  * @param {String|Error} msg
- * @param {Number} type
+ * Message to be formatted and added to the log file.
+ * @param {Log.eventType} type
+ * Type of message to be logged.
  * @param {LogCallback} cb
+ * Function to call once the message has been logged or an error occurs.
  * @private
  */
 function _log(log, msg, type, cb) {
@@ -862,7 +827,7 @@ function _log(log, msg, type, cb) {
     let event = {
         timestamp: new Date(),
         type: type,
-        message: (log) ? log.applySubst(msg, log.substObj) : msg,
+        message: (log) ? _applySubst(log, msg) : msg,
         ignored: false
     };
 
@@ -980,6 +945,47 @@ function _buildArgs(log, type, args) {
 
     return res;
 }
+
+/**
+ * Substitutes any token in 'str" that matches either a property in 'this (log)" object
+ * or in the given object. Date values are also replaced using the
+ * <tt>str_util.substDate</tt>.
+ * @private
+ * @param {Log} log
+ * Reference to the <tt>Log</tt> object
+ * @param {String} str
+ * String where substitution will take place.
+ * @param {Date} [date]
+ * Optional date to use for substitution.
+ * @returns {String}
+ */
+function _applySubst(log, str, date) {
+    let align = "left";
+    if ("-" === str.charAt(0)) {
+        str = str.substr(1);
+        if ("-" === str.slice(-1)) {
+            align = "center";
+            str = str.substr(0, str.length - 1);
+        }
+        else
+            align = "right";
+    }
+
+    str = str_util.substDate(str, date || new Date());
+
+    if (log.substObj)
+        str = str_util.substProp(str, log.substObj);
+
+    str = str_util.substProp(str, { log: log }, function (obj, prop_name) {
+        if ("mode" === prop_name)
+            return Log.modeStr[obj[prop_name]];
+        if ("level" === prop_name)
+            return Log.eventTypeStr[obj[prop_name]];
+    });
+
+    return str_util.align(str, log.lineWidth, align);
+}
+
 
 
 module.exports = Log;

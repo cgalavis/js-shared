@@ -6,13 +6,10 @@
 <h1><b>@crabel/shared</b> <a href="https://git2.hq.crabel.com/node-common/shared">(GitHub)</a></h1>
 Set of shared libraries to help build consistent Node applications. Includes support 
 for common JS object extensions, string utilities, CSV file manipulation, 
-configuration management, logging and more.<br>
-
-<div style="font-size: 24px">
-    <a href="https://git2.hq.crabel.com/pages/node-common/shared">
-        API Documentation
-    </a><br>
-</div>
+configuration management, logging and more.<br><br><a style="font-size: 20px;"
+        href="https://git2.hq.crabel.com/pages/node-common/shared">
+    <b>API Documentation</b>
+</a>
 
 <h3><b>Installation</b></h3>
 To install this package you will need to configure NPM to use Crabel's virtual repository,
