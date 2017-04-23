@@ -69,20 +69,20 @@ module.exports = {
 
     /**
      * Returns a string with the file name minus the extension.
-     * @param {String} file_path
+     * @param {String} file_name
      * Name of the file.
      * @returns {String}
      * A string with file name minus the extension.
      */
-    removeExt: function (file_path) {
-        if (!file_path)
-            return file_path;
+    removeExt: function (file_name) {
+        if (!file_name)
+            return file_name;
 
-        let dot_index = file_path.lastIndexOf(".");
+        let dot_index = file_name.lastIndexOf(".");
         if (0 > dot_index)
-            return name;
+            return file_name;
 
-        return name.substring(0, dot_index);
+        return file_name.substring(0, dot_index);
     },
 
 

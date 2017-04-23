@@ -1,35 +1,44 @@
 /**
- * This module is part of the TwinTools core library. The 'Log' module exports a class
- * that encapsulates the usage and management of log files. The <b>Log</b> class can be
+ * This module is part of the Crabel core library. The 'Log' module exports a class
+ * that encapsulates the usage and management of log files. The <tt>Log</tt> class can be
  * used directly to access the global log object, this object must first be defined via
- * the <b>setGlobal</b> function, then it can be used by any other source file directly
+ * the <tt>setGlobal</tt> function, then it can be used by any other source file directly
  * after requiring the module.<br><br>
  *
  * The <b>Log</b> class supports 3 modes for log file management, these are:
  *  <ul>
  *      <li>
- *          <u>Append (Log.mode.append)</u>: New log messages are appended to an existing
+ *          <u>Append</u>: New log messages are appended to an existing
  *          log file.
  *      </li>
  *      <li>
- *          <u>Replace (Log.mode.replace)</u>: Existing log files are overwritten.
+ *          <u>Replace</u>: Existing log files are overwritten.
  *      </li>
  *      <li>
- *          <u>Unique (Log.mode.unique)</u>: A unique name is synthesized by appending a
+ *          <u>Unique</u>: A unique name is synthesized by appending a
  *          two digit number.
  *      </li>
  *      <li>
- *          <u>Unique-Pre (Log.mode.unique_pre)</u>: A unique name is synthesized by
+ *          <u>Unique-Pre</u>: A unique name is synthesized by
  *          pre-pending a two digit number.
  *      </li>
  *  </ul>
  *
- * The <b>Log</b> class supports several types for messages including: text, err, war,
- * info and trace. These message types form a hierarchy of visibility controlled by the
- * 'Log.level' property. Messages can be logged using one of the built-in function
- * 'Log.out', 'Log.err', 'Log.warn', 'Log.info' and 'Log.trace', if the 'Log.level'
- * property is set to 'eventType.info' (the default), 'eventType.trace' messages are
- * excluded from the log file or console.
+ * The <tt>Log</tt> class supports several types for messages including: <tt>text</tt>,
+ * <tt>err</tt>, <tt>war</tt>, <tt>info</tt> and <tt>trace</tt>. These message types form
+ * a hierarchy of visibility controlled by the <tt>Log.level</tt> property. Messages can
+ * be logged using one of the built-in functions <tt>Log.out</tt>, <tt>Log.err</tt>,
+ * <tt>Log.warn</tt>, <tt>Log.info</tt> and <tt>Log.trace</tt>. If the <tt>Log.level</tt>
+ * property is set to <tt>eventType.info</tt> (the default), <tt>eventType.trace</tt>
+ * messages are excluded from the log file or console.
+ *
+ * @example
+ * // Attach a global 'Log' instance and output a 'Log.eventType.info' message.
+ *
+ * let Log = require("@crabel/shared/Log");
+ * Log.setGlobal(new Log());
+ *
+ * log.info("Hello world!");
  *
  * @module @crabel/shared/Log
  * @author: Carlos Galavis <carlos@galavis.net>
@@ -66,39 +75,42 @@ let global_log = null;
 /**
  * @typedef {Object} LogOptions
  * 
- * @property {String} [caption] 
+ * @property {String|Undefined} [caption]
  * Optional caption used when echoing log messages.
  * 
- * @property {String} [path] 
+ * @property {String|Undefined} [path]
  * (def=__dirname) Path were log files are stored.
  * 
- * @property {String} [name] 
+ * @property {String|Undefined} [name]
  * (def=baseName(__filename)) Base name of the log file, the '.log' extension is appended 
  * as well as a two digit index is mode is 'unique'.
  * 
- * @property {Log.mode} [mode] 
+ * @property {Log.mode|String|Undefined} [mode]
  * (def=Log.defMode) Can be 'append', 'replace', 'unique' or 'unique_pre'.
  * 
- * @property {Boolean} [echo] 
+ * @property {Boolean|Undefined} [echo]
  * (def=true) If true, logged messages are echoed to the console.
  * 
- * @property {Log.eventType} [level] 
+ * @property {Log.eventType|String|Undefined} [level]
  * (def=Log.eventType.info) Logging level. Events with higher precedence are ignored 
  * (not logged).
  * 
- * @property {String} [timeFormat] 
+ * @property {String|Undefined} [timeFormat]
  * (def=defTimeFormat) Format string use to convert event timestamps to string.
  * 
- * @property {Object} [typeLabels] 
+ * @property {Object|Undefined} [typeLabels]
  * (def=defTypeLabels) Labels use to identify the type of event logged.
- * 
- * @property {Table|Array.<String>|String} [header] 
+ *
+ * @property {String|Undefined} [separator]
+ * (def=defSeparator) Separator between log entry components.
+ *
+ * @property {Table|Array.<String>|String|Undefined} [header]
  * (def=defHeader) Header added to the log when the log object is created.
  * 
- * @property {Number} [lineWidth] 
+ * @property {Number|Undefined} [lineWidth]
  * (def=90) Maximum line width.
  * 
- * @property {String} [lineStyle] 
+ * @property {String|Undefined} [lineStyle]
  * (def="none") Style use to format lines of an event message, possible values are:
  * ["wrap", "trunc", "none"].
  */
@@ -121,24 +133,27 @@ let global_log = null;
 /**
  * Creates a <b>Log</b> object to handle logging to a file and/or the standard output
  * stream.
- * @param {LogOptions} options
+ * @param {LogOptions} [options]
  * @param {Object} [subst_obj] Any Object used for string substitution.
  * stream.
  * @constructor
  */
 function Log(options, subst_obj)
 {
+    if (!options)
+        options = {};
+
     if (!options.path)
         options.path = __dirname;
 
     if (!options.name)
-        options.name = path.basename(__filename);
+        options.name = file.swapExt(path.basename(__filename), ".log");
 
     let self = this;
     if (undefined === options.mode)
         options.mode = Log.defMode;
     if (isNaN(options.mode))
-        options.mode = Log.modeFromStr(options.mode);
+        options.mode = Log._modeFromStr(options.mode);
 
     if (undefined === options.echo)
         options.echo = Log.defEcho;
@@ -146,13 +161,16 @@ function Log(options, subst_obj)
     if (undefined === options.level)
         options.level = Log.eventType.info;
     if (isNaN(options.level))
-        options.level = Log.levelFromStr(options.level);
+        options.level = Log._levelFromStr(options.level);
 
     if (!options.timeFormat)
         options.timeFormat = Log.defTimeFormat;
 
     if (!options.typeLabels)
         options.typeLabels = Log.defTypeLabels;
+
+    if (!options.separator)
+        options.separator = Log.defSeparator;
 
     if (undefined === options.header)
         options.header = Log.defHeader.clone(true);
@@ -213,16 +231,23 @@ function Log(options, subst_obj)
      * Format of the timestamp added to log messages. For information on the format used
      * see the Date.format documentation.
      * @type {string}
-     * @default YYYYMMDD hh:mm:ss
+     * @default YYYYMMDD hhmmss.fff
      */
     this.timeFormat = options.timeFormat;
 
     /**
      * Levels use to identify the event type
      * @type {{err: string, warn: string, info: string, trace: string}}
-     * @default { err: "ERR", warn: "WAR", info: "INF", trace: "TRC" }
+     * @default { err: "[e]", warn: "[W]", info: "[I]", trace: "[T]" }
      */
     this.typeLabels = options.typeLabels;
+
+    /**
+     * Separator between log netry components.
+     * @type {String}
+     * @default "-"
+     */
+    this.separator = options.separator;
 
     /**
      * Maximum number of characters per line.
@@ -257,11 +282,11 @@ function Log(options, subst_obj)
      * Absolute path of the log file.
      * @type {string}
      */
-    this.fileName = Log.makeLogFileName(this.path, this.name, this.mode);
+    this.file_name = Log._makeLogFileName(this.path, this.name, this.mode);
 
     if (Log.mode.replace == this.mode)
-        if (file.exists(this.fileName))
-            file.erase(this.fileName);
+        if (file.exists(this.file_name))
+            file.erase(this.file_name);
 
     let file_options = {
         flags: 'w',
@@ -277,9 +302,9 @@ function Log(options, subst_obj)
      * log file.
      * @type {WriteStream}
      */
-    this.file = fs.createWriteStream(this.fileName, file_options);
-    if (file.exists(this.fileName)) {
-        let stats = fs.statSync(this.fileName);
+    this.file = fs.createWriteStream(this.file_name, file_options);
+    if (fs.exists(this.file_name)) {
+        let stats = fs.statSync(this.file_name);
         if(0 < stats["size"])
             this.file.write(os.EOL);
     }
@@ -330,19 +355,17 @@ util.inherits(Log, EventEmitter);
  * 5) {{date.now[,format]}} : String representing the current date and time. Optionally a
  *    formatting string
  * can be provided.
- * @type {String[]}
  */
 Log.defHeader = [
     "=",
     "-Running log agent in '{{log.mode}}' mode-",
-    "-Log file: {{log.fileName}}-",
+    "-Log file: {{log.file_name}}-",
     "-Initialized on {{date}}-",
     "="
 ];
 
 /**
  * Default value when the 'echo' parameter is not provided.
- * @type {Boolean}
  */
 Log.defEcho = true;
 
@@ -385,7 +408,9 @@ Log.eventType = {
     // (TypeLabel.info) are pre-pended to the message. Trace messages are omitted from the
     // log file by default, to enable then set the <b>Log.prototype.level</b> to
     // <b>Log.eventType.trace</b>.
-    trace: 2
+    trace: 2,
+    //
+    unknown: 99
 };
 
 /**
@@ -394,14 +419,18 @@ Log.eventType = {
  * change the event type labels of every new <b>Log</b> instance that is creates. It is
  * generally recommended to change this property and not the instance property in order
  * to provide a consistent look between log files of the same application.
- * @type {{err: string, warn: string, info: string, trace: string}}
  */
 Log.defTypeLabels = {
-    err: "E",
-    warn: "W",
-    info: "I",
-    trace: "T"
+    err: "[E]",
+    warn: "[W]",
+    info: "[I]",
+    trace: "[T]"
 };
+
+/**
+ * Default separator between log entry components.
+ */
+Log.defSeparator = "-";
 
 /**
  * Default format of the timestamp added to log messages, this value is assigned to new
@@ -410,19 +439,16 @@ Log.defTypeLabels = {
  * of every new <b>Log</b> instance that is creates. It is generally recommended to
  * change this property and not the instance property in order to * provide a consistent
  * look between log files of the same application.
- * @type {string}
  */
-Log.defTimeFormat = "yyyyMMdd HHmmss fff";
+Log.defTimeFormat = "yyyyMMdd HHmmss.fff";
 
 /**
  * Default value for log mode.
- * @type {Log.mode}
  */
 Log.defMode = Log.mode.append;
 
 /**
  * Default number of characters per line.
- * @type {Number}
  */
 Log.defLineWidth = 100;
 
@@ -440,37 +466,12 @@ Log.eventTypeStr[Log.eventType.info] = "info";
 Log.eventTypeStr[Log.eventType.trace] = "trace";
 
 /**
- * Converts the given Log.mode to its string representation.
- * @param {Number} mode
- * @returns {String}
- */
-Log.getModeStr = function (mode) {
-    let ms = Log.modeStr[mode];
-    if (!ms)
-        return "Unknown Mode: " + mode;
-
-    return ms;
-};
-
-/**
- * Converts the given Log.eventType to its string representation.
- * @param {Number} event_type
- * @returns {String}
- */
-Log.getEvntTypeStr = function (event_type) {
-    let ets = Log.eventTypeStr[event_type];
-    if (!ets)
-        return "Unknwon Event Type: " + event_type;
-
-    return ets;
-};
-
-/**
  * Returns the Log.mode value from the given string.
  * @param {String} mode_str
- * @returns {Number}
+ * @returns {Log.mode}
+ * @private
  */
-Log.modeFromStr = function (mode_str) {
+Log._modeFromStr = function (mode_str) {
     for (let key in Log.mode) {
         if (Log.mode.hasOwnProperty(key))
             if (key === mode_str)
@@ -482,24 +483,26 @@ Log.modeFromStr = function (mode_str) {
 /**
  * Returns the Log.eventType value from the given string.
  * @param {String} event_type_str
- * @returns {Number}
+ * @returns {Log.eventType}
+ * @private
  */
-Log.eventTypeFromStr = function (event_type_str) {
+Log._eventTypeFromStr = function (event_type_str) {
     for (let key in Log.eventType) {
         if (Log.eventType.hasOwnProperty(key))
             if (key === event_type_str)
                 return Log.eventType[key];
     }
-    return 999; // Unknown
+    return Log.eventType.unknown;
 };
 
 /**
  * Returns the Log.eventType value from the given string.
  * @param {String} level_str
- * @returns {Number}
+ * @returns {Log.eventType}
+ * @private
  */
-Log.levelFromStr = function (level_str) {
-    return Log.eventTypeFromStr(level_str);
+Log._levelFromStr = function (level_str) {
+    return Log._eventTypeFromStr(level_str);
 };
 
 /**
@@ -507,7 +510,7 @@ Log.levelFromStr = function (level_str) {
  * extension if necessary. If using a unique mode, this function calls the
  * <b>file.makeUnique</b> method to ensure the file name is unique, this method pre-pends
  * a two digit number starting from 00 and incrementing until a file with the same name
- * is not found <b>makeLogFileName</b> ensures that the path leading to the log file
+ * is not found <tt>_makeLogFileName</tt> ensures that the path leading to the log file
  * exists by calling <b>path.ensure</b>.
  * @param {String} dir
  * Directory where log files are to be stored.
@@ -517,8 +520,9 @@ Log.levelFromStr = function (level_str) {
  * Log file handling specifications, can be <tt>Log.mode.append</tt>,
  * <tt>Log.mode.replace</tt>, <tt>Log.mode.unique</tt> and <tt>Log.mode.unique_pre</tt>.
  * @returns {string} Returns the full name of the log file.
+ * @private
  */
-Log.makeLogFileName = function (dir, name, mode) {
+Log._makeLogFileName = function (dir, name, mode) {
     let file_name = path.join(dir, name);
     if ("" === path.extname(file_name))
         file_name += ".log";
@@ -533,13 +537,24 @@ Log.makeLogFileName = function (dir, name, mode) {
 };
 
 /**
- * Sets the <u>global log instance</u> to the given object. The <b>Log</b> static methods
- * can then be used by any module that "requires" the <b>Log</b> module.
- * @param {Log} log_instance Instance of <b>Log</b> to be used as the
- * <u>global log instance</u>.
+ * Gets <u>global log instance</u>. If <tt>log_instance</tt> is passed, is is set as the
+ * global instance allowing the use of the <tt>Log</tt> class static methods from any
+ * JavaScript file that requires this module. If no instance is passed and the global
+ * instance is not set, a new instance of <tt>Log</tt> is created with the default
+ * arguments.
+ * @param {Log} [log_instance]
+ * Instance of <b>Log</b> to be used as the <u>global log instance</u>.
+ * @returns {Log}
+ * Returns the global instance.
  */
-Log.setGlobal = function (log_instance) {
-    global_log = log_instance;
+Log.global = function (log_instance) {
+    if (log_instance)
+        global_log = log_instance;
+
+    if (!global_log)
+        global_log = new Log();
+
+    return global_log;
 };
 
 /**
@@ -725,7 +740,7 @@ Log.prototype.trace = function (msg, cb, subst) {
 };
 
 /**
- * The <b>shutdown<b> function flushes and closes the log file rendering the log object
+ * The <b>shutdown</b> function flushes and closes the log file rendering the log object
  * unusable. When done, the 'shutdown' event is emitted.
  * @param {Function} [cb]
  * @fires Log#shutdown
@@ -796,10 +811,12 @@ let last_log = null;
  * Type of message to be logged.
  * @param {LogCallback} cb
  * Function to call once the message has been logged or an error occurs.
- * @private
  */
 function _log(log, msg, type, cb) {
-    if(log && !log.file) {
+    if (!log)
+        log = Log.global();
+
+    if(!log.file) {
         let err = new Error("Failed to log message, the log has been shutdown.");
         if (cb)
             setImmediate(function () {
@@ -832,62 +849,53 @@ function _log(log, msg, type, cb) {
     };
 
     let fmsg;
-    if(log) {
-        if(0 === log.pendingEvents)
-            log.emit("busy");
-        ++log.pendingEvents;
+    if(0 === log.pendingEvents)
+        log.emit("busy");
+    ++log.pendingEvents;
 
-        fmsg = getFormattedMessage(log.timeFormat, log.typeLabels);
-        if (type > log.level) {
-            event.ignored = true;
+    fmsg = getFormattedMessage(log.timeFormat, log.typeLabels);
+    if (type > log.level) {
+        event.ignored = true;
 
+        if (cb)
+            setImmediate(function () { cb(null, event, fmsg); });
+
+        return;
+    }
+
+    if(log.echo) {
+        if (last_log !== log) {
+            if (last_log)
+                console.log();
+            last_log = log;
+            if (log && log.caption)
+                console.log(log.caption);
+            else
+                console.log("<Anonimous>");
+        }
+        console.log(fmsg);
+    }
+
+    log.file.write(fmsg + os.EOL, function (err) {
+        if (err) {
+            err = new Error("Failed to write to log file.");
+            log.emit("error", err, event, fmsg);
             if (cb)
-                setImmediate(function () { cb(null, event, fmsg); });
+                cb(err);
+            else
+                throw err;
 
             return;
         }
 
-        if(log.echo) {
-            if (last_log !== log) {
-                if (last_log)
-                    console.log();
-                last_log = log;
-                if (log && log.caption)
-                    console.log(log.caption);
-                else
-                    console.log("<Anonimous>");
-            }
-            console.log(fmsg);
-        }
-
-        log.file.write(fmsg + os.EOL, function (err) {
-            if (err) {
-                err = new Error("Failed to write to log file.");
-                log.emit("error", err, event, fmsg);
-                if (cb)
-                    cb(err);
-                else
-                    throw err;
-
-                return;
-            }
-
-            log.emit("event", event, fmsg);
-            log.pendingEvents--;
-            if(0 === log.pendingEvents)
-                log.emit("idle");
-
-            if(cb)
-                cb(null, event, fmsg);
-        });
-    }
-    else {
-        fmsg = getFormattedMessage(Log.defTimeFormat, Log.defTypeLabels);
-        console.log(fmsg);
+        log.emit("event", event, fmsg);
+        log.pendingEvents--;
+        if(0 === log.pendingEvents)
+            log.emit("idle");
 
         if(cb)
             cb(null, event, fmsg);
-    }
+    });
 
     function getFormattedMessage(time_format, type_labels) {
         if (!log)
@@ -903,17 +911,21 @@ function _log(log, msg, type, cb) {
             log.typeLabels.trace.length
         );
 
+        let separator = "";
+        if (log.separator && 0 < log.separator.length)
+            separator = log.separator + " ";
+
         if("" === time_format) {
-            return getTypeLabel(type_labels, type_width) 
+            return getTypeLabel(type_labels, type_width) + separator +
                 + log.formatLine(event.message, type_width);
         }
 
         let time_width = 1 + Date.formatLength(time_format);
 
         // Subtract the separation spaces when calculating the message width
-        return event.timestamp.format(time_format) + " " +
-            getTypeLabel(type_labels, type_width)  + log.formatLine(event.message,
-                type_width + time_width);
+        return event.timestamp.format(time_format) + " " + separator +
+            getTypeLabel(type_labels, type_width)  + separator +
+            log.formatLine(event.message, type_width + time_width);
     }
 
     function getTypeLabel(labels, type_width) {
@@ -950,7 +962,6 @@ function _buildArgs(log, type, args) {
  * Substitutes any token in 'str" that matches either a property in 'this (log)" object
  * or in the given object. Date values are also replaced using the
  * <tt>str_util.substDate</tt>.
- * @private
  * @param {Log} log
  * Reference to the <tt>Log</tt> object
  * @param {String} str
@@ -985,7 +996,5 @@ function _applySubst(log, str, date) {
 
     return str_util.align(str, log.lineWidth, align);
 }
-
-
 
 module.exports = Log;
