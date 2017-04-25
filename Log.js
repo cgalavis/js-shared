@@ -25,11 +25,11 @@
  *  </ul>
  *
  * The <tt>Log</tt> class supports several types for messages including: <tt>text</tt>,
- * <tt>err</tt>, <tt>war</tt>, <tt>info</tt> and <tt>trace</tt>. These message types form
+ * <tt>err</tt>, <tt>war</tt>, <tt>info</tt> and <tt>debug</tt>. These message types form
  * a hierarchy of visibility controlled by the <tt>Log.level</tt> property. Messages can
  * be logged using one of the built-in functions <tt>Log.out</tt>, <tt>Log.err</tt>,
- * <tt>Log.warn</tt>, <tt>Log.info</tt> and <tt>Log.trace</tt>. If the <tt>Log.level</tt>
- * property is set to <tt>eventType.info</tt> (the default), <tt>eventType.trace</tt>
+ * <tt>Log.warn</tt>, <tt>Log.info</tt> and <tt>Log.debug</tt>. If the <tt>Log.level</tt>
+ * property is set to <tt>eventType.info</tt> (the default), <tt>eventType.debug</tt>
  * messages are excluded from the log file or console.
  *
  * @example
@@ -62,6 +62,8 @@ let fs_util = require("./fs_util");
 
 let global_log = null;
 
+function noColor(str) { return str; }
+
 
 /**
  * @typedef {Object} Column
@@ -73,6 +75,22 @@ let global_log = null;
  * @typedef {Object} Table
  * @property {Array.<TableColumn>} [columns]
  * @property {Array.<String|Array.<String>>} rows
+ */
+
+/**
+ * @typedef {Object} TypeSpecs
+ * @property {String} label
+ * @property {Function} color
+ */
+
+/**
+ * @typedef {Object} LogTypeSpecs
+ * @property {TypeSpecs} err
+ * @property {TypeSpecs} warn
+ * @property {TypeSpecs} info
+ * @property {TypeSpecs} debug
+ * @property {TypeSpecs} todo
+ * @property {TypeSpecs} text
  */
 
 /**
@@ -101,8 +119,9 @@ let global_log = null;
  * @property {String|Undefined} [timeFormat]
  * (def=defTimeFormat) Format string use to convert event timestamps to string.
  * 
- * @property {Object|Undefined} [typeLabels]
- * (def=defTypeLabels) Labels use to identify the type of event logged.
+ * @property {LogTypeSpecs|Undefined} [type_specs]
+ * (def=defTypeSpecs) Set of formatting parameters use to identify the type of event
+ * logged.
  *
  * @property {String|Undefined} [separator]
  * (def=defSeparator) Separator between log entry components.
@@ -169,8 +188,8 @@ function Log(options, subst_obj)
     if (!options.timeFormat)
         options.timeFormat = Log.defTimeFormat;
 
-    if (!options.typeLabels)
-        options.typeLabels = Log.defTypeLabels;
+    if (!options.type_specs)
+        options.type_specs = Log.defTypeSpecs;
 
     if (!options.separator)
         options.separator = Log.defSeparator;
@@ -240,13 +259,13 @@ function Log(options, subst_obj)
 
     /**
      * Levels use to identify the event type
-     * @type {{err: string, warn: string, info: string, trace: string}}
-     * @default { err: "[e]", warn: "[W]", info: "[I]", trace: "[T]" }
+     * @type {LogTypeSpecs}
+     * @default Log.defTypeSpecs
      */
-    this.typeLabels = options.typeLabels;
+    this.type_specs = options.type_specs;
 
     /**
-     * Separator between log netry components.
+     * Separator between log entry components.
      * @type {String}
      * @default "-"
      */
@@ -391,7 +410,7 @@ LogEntry.prototype.toString = function () {
  * 1) {{log.mode}} : Mode in which the log is being initialized (append, replace,
  *    unique, unique_pre)
  * 2) {{log.file}} : Name of the log file being used for logging.
- * 3) {{log.level}} : Maximum event level/type being logged (err, warn, info,trace).
+ * 3) {{log.level}} : Maximum event level/type being logged (err, warn, info,debug).
  * 4) {{log.echo}} : on/off value indicating whether echo us enbled or not.
  * 5) {{date.now[,format]}} : String representing the current date and time. Optionally a
  *    formatting string
@@ -438,20 +457,22 @@ Log.mode = {
 Log.eventType = {
     // Simple text messages. The timestamp and event type indicator are not included
     text: -99,
-    // Error message. A timestamp and error label (TypeLabel.err) are pre-pended to the
-    // message
+    // Error message. A timestamp and error label (LogTypeSpecs.err.label) are pre-pended
+    // to the message
     err: -1,
-    // Warning message. A timestamp and warning label (TypeLabel.warn) are pre-pended to
-    // the message
-    warn: 0,
-    // Informational message. A timestamp and information label (TypeLabel.info) are
+    // Warning message. A timestamp and warning label (LogTypeSpecs.warn.label) are
     // pre-pended to the message
+    warn: 0,
+    // Informational message. A timestamp and information label (LogTypeSpecs.info.label)
+    // are pre-pended to the message
     info: 1,
     // Trace message use when debugging the process. A timestamp and information label
-    // (TypeLabel.info) are pre-pended to the message. Trace messages are omitted from the
-    // log file by default, to enable then set the <b>Log.prototype.level</b> to
-    // <b>Log.eventType.trace</b>.
-    trace: 2,
+    // (LogTypeSpecs.info.label) are pre-pended to the message. Trace messages are
+    // omitted from the log file by default, to enable then set the
+    // <b>Log.prototype.level</b> to <b>Log.eventType.debug</b>.
+    debug: 2,
+    //
+    todo: 3,
     //
     unknown: 99
 };
@@ -464,11 +485,19 @@ Log.eventType = {
  * to provide a consistent look between log files of the same application.
  * @private
  */
-Log.defTypeLabels = {
-    err: "[E]",
-    warn: "[W]",
-    info: "[I]",
-    trace: "[T]"
+Log.defTypeSpecs = {
+    err: { label: "[E]", color: colors.red },
+    warn: { label: "[W]", color: colors.yellow },
+    info: { label: "[I]", color: function (msg) { return msg; } },
+    debug: { label: "[T]", color: colors.grey },
+    todo: {
+        label: "[T]",
+        color: function (msg) { return colors.bold(colors.green(msg)); }
+    },
+    text: {
+        label: "[X]", color:
+        function(msg) { return colors.bold(colors.cyan(msg)); }
+    }
 };
 
 /**
@@ -511,7 +540,7 @@ Log.eventTypeStr[Log.eventType.text] = "text";
 Log.eventTypeStr[Log.eventType.err] = "err";
 Log.eventTypeStr[Log.eventType.warn] = "warn";
 Log.eventTypeStr[Log.eventType.info] = "info";
-Log.eventTypeStr[Log.eventType.trace] = "trace";
+Log.eventTypeStr[Log.eventType.debug] = "debug";
 
 /**
  * Returns the Log.mode value from the given string.
@@ -626,7 +655,7 @@ Log.out = function (msg, cb, subst) {
  * Outputs an error message to the log file and/or standard output stream. The timestamp
  * and event type label are pre-pended to the given message. The timestamp can be
  * customized via the Log.timeFormat property; the event type label can be customized via
- * the 'Log.TypeLabel' property. The message is logged using the
+ * the 'LogOptions.type_specs' property. The message is logged using the
  * <u>global log instance</u>.
  * @param {String} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the call
@@ -645,7 +674,7 @@ Log.err = function (msg, cb, subst) {
  * Outputs a warning message to the log file and/or standard output stream. The timestamp
  * and event type label are pre-pended to the given message. The timestamp can be
  * customized via the Log.timeFormat property; the event type label can be customized via
- * the 'Log.TypeLabel' property. The message is logged using the
+ * the 'LogOptions.type_specs' property. The message is logged using the
  * <u>global log instance</u>.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
@@ -664,7 +693,7 @@ Log.warn = function (msg, cb, subst) {
  * Outputs an informational message to the log file and/or standard output stream. The
  * timestamp and event type label are pre-pended to the given message. The timestamp can
  * be customized via the Log.timeFormat property; the event type label can be customized
- * via the 'Log.TypeLabel' property. The message is logged using the
+ * via the 'LogOptions.type_specs' property. The message is logged using the
  * <u>global log instance</u>.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
@@ -680,10 +709,10 @@ Log.info = function (msg, cb, subst) {
 };
 
 /**
- * Outputs a trace message to the log file and/or standard output stream. The timestamp
+ * Outputs a debug message to the log file and/or standard output stream. The timestamp
  * and event type label are pre-pended to the given message. The timestamp can be
  * customized via the Log.timeFormat property; the event type label can be customized via
- * the 'Log.TypeLabel' property. The message is logged using the
+ * the 'LogOptions.type_specs' property. The message is logged using the
  * <u>global log instance</u>.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
@@ -694,8 +723,8 @@ Log.info = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~expand str_util.expand} depending on whether a
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
-Log.trace = function (msg, cb, subst) {
-    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.trace, arguments));
+Log.debug = function (msg, cb, subst) {
+    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.debug, arguments));
 };
 
 /**
@@ -736,7 +765,7 @@ Log.prototype.out = function(msg, cb, subst) {
  * Outputs an error message to the log file and/or standard output stream. The timestamp
  * and event type label are pre-pended to the given message. The timestamp can be
  * customized via the Log.timeFormat property; the event type label can be customized via
- * the 'Log.TypeLabel' property.
+ * the 'LogOptions.type_specs' property.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
  * call after the log entry is logged.
@@ -754,7 +783,7 @@ Log.prototype.err = function (msg, cb, subst) {
  * Outputs an informational message to the log file and/or standard output stream. The
  * timestamp and event type label are pre-pended to the given message. The timestamp can
  * be customized via the Log.timeFormat property; the event type label can be customized
- * via the 'Log.TypeLabel' property.
+ * via the 'LogOptions.type_specs' property.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
  * call after the log entry is logged.
@@ -772,7 +801,7 @@ Log.prototype.warn = function (msg, cb, subst) {
  * Outputs an informational message to the log file and/or standard output stream. The
  * timestamp and event type label are pre-pended to the given message. The timestamp can
  * be customized via the Log.timeFormat property; the event type label can be customized
- * via the 'Log.TypeLabel' property.
+ * via the 'LogOptions.type_specs' property.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
  * call after the log entry is logged.
@@ -787,10 +816,10 @@ Log.prototype.info = function (msg, cb, subst) {
 };
 
 /**
- * Outputs a trace message to the log file and/or standard output stream. The timestamp
+ * Outputs a debug message to the log file and/or standard output stream. The timestamp
  * and event type label are pre-pended to the given message. The timestamp can be
  * customized via the Log.timeFormat property; the event type label can be customized via
- * the 'Log.TypeLabel' property.
+ * the 'LogOptions.type_specs' property.
  * @param {string} msg The message to send to the log file and/or console.
  * @param {LogCallback} [cb] Optional callback function. If provided, it will make the
  * call after the log entry is logged.
@@ -800,8 +829,8 @@ Log.prototype.info = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~expand str_util.expand} depending on whether a
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
-Log.prototype.trace = function (msg, cb, subst) {
-    return _log.apply(null, _buildArgs(this, Log.eventType.trace, arguments));
+Log.prototype.debug = function (msg, cb, subst) {
+    return _log.apply(null, _buildArgs(this, Log.eventType.debug, arguments));
 };
 
 /**
@@ -929,7 +958,7 @@ function _log(log, msg, type, cb) {
         log.emit("busy");
     ++log.pendingEvents;
 
-    fmsg = getFormattedMessage(log.timeFormat, log.typeLabels);
+    fmsg = getFormattedMessage(log.timeFormat);
     if (type > log.level) {
         event.ignored = true;
 
@@ -975,7 +1004,7 @@ function _log(log, msg, type, cb) {
 
     return event;
 
-    function getFormattedMessage(time_format, type_labels) {
+    function getFormattedMessage(time_format) {
         if (!log)
             return event.message;
         
@@ -983,10 +1012,11 @@ function _log(log, msg, type, cb) {
             return log.formatLine(event.message);
 
         let type_width = 1 + Math.max(
-            log.typeLabels.err.length,
-            log.typeLabels.warn.length,
-            log.typeLabels.info.length,
-            log.typeLabels.trace.length
+            log.type_specs.err.label.length,
+            log.type_specs.warn.label.length,
+            log.type_specs.info.label.length,
+            log.type_specs.debug.label.length,
+            log.type_specs.todo.label.length
         );
 
         let separator = "";
@@ -994,7 +1024,7 @@ function _log(log, msg, type, cb) {
             separator = log.separator + " ";
 
         if("" === time_format) {
-            return getTypeLabel(type_labels, type_width) + separator +
+            return getTypeLabel(log.type_specs, type_width) + separator +
                 + log.formatLine(event.message, type_width);
         }
 
@@ -1002,15 +1032,22 @@ function _log(log, msg, type, cb) {
 
         // Subtract the separation spaces when calculating the message width
         return event.timestamp.format(time_format) + " " + separator +
-            getTypeLabel(type_labels, type_width)  + separator +
+            getTypeLabel(log.type_specs, type_width)  + separator +
             log.formatLine(event.message, type_width + time_width + separator.length * 2);
     }
 
-    function getTypeLabel(labels, type_width) {
-        if(type === Log.eventType.err) return str_util.alignL(labels.err, type_width);
-        if(type === Log.eventType.warn) return str_util.alignL(labels.warn, type_width);
-        if(type == Log.eventType.info) return str_util.alignL(labels.info, type_width);
-        if(type === Log.eventType.trace) return str_util.alignL(labels.trace, type_width);
+    function getTypeLabel(tspecs, type_width) {
+        if(type === Log.eventType.err)
+            return str_util.alignL(tspecs.err.label, type_width);
+        if(type === Log.eventType.warn)
+            return str_util.alignL(tspecs.warn.label, type_width);
+        if(type == Log.eventType.info)
+            return str_util.alignL(tspecs.info.label, type_width);
+        if(type === Log.eventType.debug)
+            return str_util.alignL(tspecs.debug.label, type_width);
+        if(type === Log.eventType.todo)
+            return str_util.alignL(tspecs.todo.label, type_width);
+
         return str_util.alignL("", type_width);
     }
 }
