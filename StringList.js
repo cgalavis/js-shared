@@ -1,8 +1,11 @@
 "use strict";
 
-require("./proto").init();
-let file = require("./file");
+let fs = require("fs");
 let os = require("os");
+
+require("./proto").init();
+let fs_util = require("./fs_util");
+let str_util = require("./str_util");
 
 /**
  * The StringList object provides access to a list of strings similar to a document
@@ -100,7 +103,7 @@ StringList.prototype.write = function (str) {
         val = str;
     else {
         let args = Array.prototype.slice.call(arguments);
-        val = str.format.apply(str, args.slice(1, args.length));
+        val = str_util.format.apply(str, args.slice(1, args.length));
     }
 
     if (this.lines.empty())
@@ -192,8 +195,8 @@ StringList.prototype.clear = function () {
  * @returns {StringList}
  */
 StringList.prototype.save = function (fname, safe) {
-    file.ensurePath(path.getParent(fname));
-    file.saveText(fname, this.toString(), safe);
+    fs_util.ensurePath(path.getParent(fname));
+    fs_util.saveText(fname, this.toString(), safe);
     return this;
 };
 
@@ -206,15 +209,16 @@ StringList.prototype.save = function (fname, safe) {
  * @returns {StringList}
  */
 StringList.prototype.load = function (fname) {
-    if (!file.exists(fname))
-        throw new Error("Failed to load content for StringList, the file '{0} does " +
-            "not exist.'".format(fname));
+    if (!fs.exists(fname))
+
+        throw new Error(str_util.format("Failed to load content for StringList, the " +
+            "file '{0} does not exist.'", fname));
 
     // Process Windows formatted lines
-    let content = file.loadText(fname).split("\r\n");
+    let content = fs_util.loadText(fname).split("\r\n");
     
     this.clear();
-    for (let i =0; i < content.length; ++i) {
+    for (let i = 0; i < content.length; ++i) {
         // Process Unix formatted lines
         let sub_content = content[i].split("\n");
         for (let j = 0; j < sub_content.length; ++j)

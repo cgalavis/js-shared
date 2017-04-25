@@ -58,14 +58,21 @@ function ObjExt() {}
  * @returns {Boolean}
  */
 ObjExt.isType = function (obj, type) {
-    if (undefined === obj || null === obj)
-        return obj === type;
+    for (let i = 1; i < arguments.length; ++i) {
+        type = arguments[i];
+        if (undefined === obj || null === obj)
+            if (obj === type)
+                return true;
 
-    if ("number" === typeof obj) return type === Number;
-    if ("string" === typeof obj) return type === String;
-    if ("boolean" === typeof obj) return type === Boolean;
+        if ("number" === typeof obj) if (type === Number) return true;
+        if ("string" === typeof obj) if (type === String) return true;
+        if ("boolean" === typeof obj) if (type === Boolean) return true;
 
-    return obj instanceof type;
+        if (obj instanceof type)
+            return true;
+    }
+
+    return false;
 };
 
 /**
@@ -81,11 +88,7 @@ ObjExt.isPrimitive = function (val) {
         return true;
 
     if ("object" === typeof val)
-        return (
-            ObjExt.isType(val, Number) ||
-            ObjExt.isType(val, String) ||
-            ObjExt.isType(val, Boolean)
-        );
+        return ObjExt.isType(val, Number, String, Boolean);
 
     return (
         "number" === typeof val ||
@@ -231,7 +234,7 @@ ObjExt.contains = function (src, child) {
  * @returns {Boolean}
  */
 ObjExt.prototype.is = function (objType) {
-    return ObjExt.isType(this, objType);
+    return ObjExt.isType.bind(null, this).apply(null, arguments);
 };
 
 /**

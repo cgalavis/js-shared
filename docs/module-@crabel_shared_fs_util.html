@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Module: @crabel/shared/Log | Module: @crabel/shared/Log</title>
+    <title>Module: @crabel/shared/fs_util | Module: @crabel/shared/fs_util</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -22,7 +22,7 @@
         <img src="img/toast-ui.png" width="100%" height="100%">
     </div>
     <div class="title">
-        <h1><a href="index.html" class="link">Module: @crabel/shared/Log</a></h1>
+        <h1><a href="index.html" class="link">Module: @crabel/shared/fs_util</a></h1>
         
     </div>
     <div class="search-container" id="search-container">
@@ -54,38 +54,9 @@
     <div class="container-overview">
     
         
-            <div class="description">This module is part of the Crabel core library. The 'Log' module exports a class
-that encapsulates the usage and management of log files. The <tt>Log</tt> class can be
-used directly to access the global log object, this object must first be defined via
-the <tt>setGlobal</tt> function, then it can be used by any other source file directly
-after requiring the module.<br><br>
-
-The <b>Log</b> class supports 3 modes for log file management, these are:
- <ul>
-     <li>
-         <u>Append</u>: New log messages are appended to an existing
-         log file.
-     </li>
-     <li>
-         <u>Replace</u>: Existing log files are overwritten.
-     </li>
-     <li>
-         <u>Unique</u>: A unique name is synthesized by appending a
-         two digit number.
-     </li>
-     <li>
-         <u>Unique-Pre</u>: A unique name is synthesized by
-         pre-pending a two digit number.
-     </li>
- </ul>
-
-The <tt>Log</tt> class supports several types for messages including: <tt>text</tt>,
-<tt>err</tt>, <tt>war</tt>, <tt>info</tt> and <tt>trace</tt>. These message types form
-a hierarchy of visibility controlled by the <tt>Log.level</tt> property. Messages can
-be logged using one of the built-in functions <tt>Log.out</tt>, <tt>Log.err</tt>,
-<tt>Log.warn</tt>, <tt>Log.info</tt> and <tt>Log.trace</tt>. If the <tt>Log.level</tt>
-property is set to <tt>eventType.info</tt> (the default), <tt>eventType.trace</tt>
-messages are excluded from the log file or console.</div>
+            <div class="description">This module is part of the Crabel core library, it contains utility functions that
+facilitate file name processing and file management providing minimal extensions for
+the native <b>path</b> and <b>fs</b> modules.</div>
         
 
         
@@ -142,6 +113,13 @@ messages are excluded from the log file or console.</div>
     
 
     
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li><a href="mailto:cgalavis@crabel.com">Carlos Galavis</a></li>
+        </ul>
+    </dd>
+    
 
     
 
@@ -156,16 +134,6 @@ messages are excluded from the log file or console.</div>
     
 </dl>
 
-
-    
-        <h5>Example</h5>
-        
-    <pre class="prettyprint"><code>// Attach a global 'Log' instance and output a 'Log.eventType.info' message.
-
-let Log = require("@crabel/shared/Log");
-Log.setGlobal(new Log());
-
-log.info("Hello world!");</code></pre>
 
     
 
@@ -178,24 +146,6 @@ log.info("Hello world!");</code></pre>
     
 
     
-
-    
-        <h3 class="subsection-title">Classes</h3>
-        
-
-<dl>
-    
-        <dt>
-            <h4 class="name">
-                <a href="module-@crabel_shared_Log-Log.html">Log</a>
-                <div class="container-source members">
-                    <code><a href="module-@crabel_shared_Log-Log.html">module:@crabel/shared/Log~Log</a></code>
-                </div>
-            </h4>
-        </dt>
-        
-    
-</dl>
 
     
 
@@ -216,12 +166,12 @@ log.info("Hello world!");</code></pre>
     
         
 
-        <h4 class="name" id="~_applySubst">
-            <span class="type-signature"><span class="icon green">inner</span> </span>_applySubst<span class="signature">(log, str, date<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+        <h4 class="name" id=".addExt">
+            <span class="type-signature"><span class="icon green">static</span> </span>addExt<span class="signature">(file_name, ext)</span><span class="type-signature"> &rarr; {String}</span>
             
             <div class="container-source members">
-                <code><a href="Log.js.html">Log.js</a></code>,
-                <code><a href="Log.js.html#line1004">line 1004</a></code>
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line64">line 64</a></code>
             </div>
             
         </h4>
@@ -234,9 +184,9 @@ log.info("Hello world!");</code></pre>
 
     
     <div class="description">
-        Substitutes any token in 'str" that matches either a property in 'this (log)" object
-or in the given object. Date values are also replaced using the
-<tt>str_util.substDate</tt>.
+        Returns a string with the name of the given file combined with the given
+extension. If the file already has an extension, the original file name is
+returned.
     </div>
     
 
@@ -260,8 +210,6 @@ or in the given object. Date values are also replaced using the
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -274,38 +222,7 @@ or in the given object. Date values are also replaced using the
 
         <tr>
             
-                <td class="name"><code>log</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Log.html">Log</a></span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Reference to the <tt>Log</tt> object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>str</code></td>
+                <td class="name"><code>file_name</code></td>
             
 
             <td class="type">
@@ -318,51 +235,33 @@ or in the given object. Date values are also replaced using the
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">String where substitution will take place.</td>
+            <td class="description last">Name of the file.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>date</code></td>
+                <td class="name"><code>ext</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Date.html">Date</a></span>
+<span class="param-type">String</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">Optional date to use for substitution.</td>
+            <td class="description last">Extension to be added to the file.</td>
         </tr>
 
     
@@ -396,6 +295,8 @@ or in the given object. Date values are also replaced using the
 
 
 
+- A string with file name plus the extension.
+
 
 
 
@@ -452,12 +353,12 @@ or in the given object. Date values are also replaced using the
     
         
 
-        <h4 class="name" id="~_log">
-            <span class="type-signature"><span class="icon green">inner</span> </span>_log<span class="signature">(log, msg, type, cb)</span><span class="type-signature"></span>
+        <h4 class="name" id=".copy">
+            <span class="type-signature"><span class="icon green">static</span> </span>copy<span class="signature">(src, dest, overwrite<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
             
             <div class="container-source members">
-                <code><a href="Log.js.html">Log.js</a></code>,
-                <code><a href="Log.js.html#line844">line 844</a></code>
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line188">line 188</a></code>
             </div>
             
         </h4>
@@ -470,7 +371,9 @@ or in the given object. Date values are also replaced using the
 
     
     <div class="description">
-        Outputs a message to the logfile.
+        Copies the file <tt>src</td> into <tt>dest</tt>. If <tt>dest</tt> exists an
+exception is thrown unless <tt>true</tt> is passed on the <tt>overwrite</tt>
+parameter.
     </div>
     
 
@@ -494,7 +397,11 @@ or in the given object. Date values are also replaced using the
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -506,252 +413,7 @@ or in the given object. Date values are also replaced using the
 
         <tr>
             
-                <td class="name"><code>log</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Log.html">Log</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Reference to the <tt>Log</tt> object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>msg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Error</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Message to be formatted and added to the log file.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Log.eventType</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Type of message to be logged.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>cb</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">LogCallback</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Function to call once the message has been logged or an error occurs.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            </dl>
-    
-
-    
-        <h3 class="subsection-title">Type Definitions</h3>
-
-        <dl>
-                
-
-<dt>
-<h4 class="name" id="~Column">
-    Column
-    
-    <div class="container-source members">
-        <code><a href="Log.js.html">Log.js</a></code>,
-        <code><a href="Log.js.html#line63">line 63</a></code>
-    </div>
-    
-</h4>
-
-
-</dt>
-<dd>
-    
-
-    <!--
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="Object.html">Object</a></span>
-
-
-            </li>
-        </ul>
-    
-    -->
-
-    
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>width</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Number.html">Number</a></span>
-|
-
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>align</code></td>
+                <td class="name"><code>src</code></td>
             
 
             <td class="type">
@@ -764,167 +426,29 @@ or in the given object. Date values are also replaced using the
             </td>
 
             
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-    
-</dd>
-
-            
+                <td class="attributes">
                 
 
-<dt>
-<h4 class="name" id="~Event">
-    Event
-    
-    <div class="container-source members">
-        <code><a href="Log.js.html">Log.js</a></code>,
-        <code><a href="Log.js.html#line118">line 118</a></code>
-    </div>
-    
-</h4>
-
-
-</dt>
-<dd>
-    
-
-    <!--
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
                 
-<span class="param-type"><a href="Object.html">Object</a></span>
 
-
-            </li>
-        </ul>
-    
-    -->
-
-    
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>timestamp</code></td>
-            
-
-            <td class="type">
-            
                 
-<span class="param-type"><a href="Date.html">Date</a></span>
-
-
-            
-            </td>
-
+                </td>
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"></td>
+            <td class="description last">Name of the file to copy.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>type</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Number.html">Number</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>message</code></td>
+                <td class="name"><code>dest</code></td>
             
 
             <td class="type">
@@ -937,17 +461,29 @@ or in the given object. Date values are also replaced using the
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last">Name of the file to copy onto.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>ignored</code></td>
+                <td class="name"><code>overwrite</code></td>
             
 
             <td class="type">
@@ -960,17 +496,48 @@ or in the given object. Date values are also replaced using the
             </td>
 
             
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
 
+                
+
+                
+                </td>
             
 
-            <td class="description last"></td>
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">If <tt>true</tt> overwrites the destination file if it exists.</td>
         </tr>
 
     
     </tbody>
 </table>
 
+    </div>
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
 
 <dl class="details">
@@ -1009,7 +576,6 @@ or in the given object. Date values are also replaced using the
 
     
 
-    
 </dd>
 
             
@@ -1020,12 +586,12 @@ or in the given object. Date values are also replaced using the
     
         
 
-        <h4 class="name" id="~LogCallback">
-            <span class="type-signature"></span>LogCallback<span class="signature">(err, event<span class="signature-attributes">opt</span>, fmsg<span class="signature-attributes">opt</span>)</span><span class="type-signature"></span>
+        <h4 class="name" id=".ensurePath">
+            <span class="type-signature"><span class="icon green">static</span> </span>ensurePath<span class="signature">(dir)</span><span class="type-signature"> &rarr; {Boolean}</span>
             
             <div class="container-source members">
-                <code><a href="Log.js.html">Log.js</a></code>,
-                <code><a href="Log.js.html#line126">line 126</a></code>
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line27">line 27</a></code>
             </div>
             
         </h4>
@@ -1037,6 +603,474 @@ or in the given object. Date values are also replaced using the
 <dd>
 
     
+    <div class="description">
+        Ensure the given path (or path to the given file) exists.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dir</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Path to the folder or file.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">Boolean</span>
+
+
+
+
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".erase">
+            <span class="type-signature"><span class="icon green">static</span> </span>erase<span class="signature">(file_name)</span><span class="type-signature"></span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line232">line 232</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Deletes the given file or files matching the given pattern.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the file to delete.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".loadText">
+            <span class="type-signature"><span class="icon green">static</span> </span>loadText<span class="signature">(file_name)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line171">line 171</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Loads the given file and returns it's content as a string.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the file to load.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Content of the file.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".makeUnique">
+            <span class="type-signature"><span class="icon green">static</span> </span>makeUnique<span class="signature">(file_name, back_index<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line122">line 122</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Given <tt>file_name</tt> return a unique file name by appending an index at the
+end. The file path (or relative path) is searched for collisions.
+    </div>
+    
 
     
 
@@ -1062,225 +1096,7 @@ or in the given object. Date values are also replaced using the
         
 
         
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>err</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Error</span>
-|
-
-<span class="param-type">null</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>event</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Event</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Original event</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fmsg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Formatter message.</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-    
-
-</dd>
-
-            
-                
-
-<dt>
-<h4 class="name" id="~LogOptions">
-    LogOptions
-    
-    <div class="container-source members">
-        <code><a href="Log.js.html">Log.js</a></code>,
-        <code><a href="Log.js.html#line75">line 75</a></code>
-    </div>
-    
-</h4>
-
-
-</dt>
-<dd>
-    
-
-    <!--
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="Object.html">Object</a></span>
-
-
-            </li>
-        </ul>
-    
-    -->
-
-    
-
-
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -1292,16 +1108,13 @@ or in the given object. Date values are also replaced using the
 
         <tr>
             
-                <td class="name"><code>caption</code></td>
+                <td class="name"><code>file_name</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
 
 
             
@@ -1310,41 +1123,7 @@ or in the given object. Date values are also replaced using the
             
                 <td class="attributes">
                 
-                    &lt;optional><br>
-                
 
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Optional caption used when echoing log messages.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>path</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
                 
 
                 
@@ -1352,96 +1131,25 @@ or in the given object. Date values are also replaced using the
             
 
             
-
-            <td class="description last">(def=__dirname) Path were log files are stored.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>name</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
+                <td class="default">
                 
                 </td>
             
 
-            
-
-            <td class="description last">(def=baseName(__filename)) Base name of the log file, the '.log' extension is appended 
-as well as a two digit index is mode is 'unique'.</td>
+            <td class="description last">Name to use as the basis for unique name construction.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>mode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Log.mode</span>
-|
-
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">(def=Log.defMode) Can be 'append', 'replace', 'unique' or 'unique_pre'.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>echo</code></td>
+                <td class="name"><code>back_index</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type">Boolean</span>
-|
-
-<span class="param-type">Undefined</span>
 
 
             
@@ -1454,268 +1162,63 @@ as well as a two digit index is mode is 'unique'.</td>
                 
 
                 
-                </td>
-            
-
-            
-
-            <td class="description last">(def=true) If true, logged messages are echoed to the console.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>level</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Log.eventType</span>
-|
-
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
                 
                 </td>
             
 
             
-
-            <td class="description last">(def=Log.eventType.info) Logging level. Events with higher precedence are ignored 
-(not logged).</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>timeFormat</code></td>
-            
-
-            <td class="type">
-            
+                <td class="default">
                 
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
+                    false
                 
                 </td>
             
 
-            
-
-            <td class="description last">(def=defTimeFormat) Format string use to convert event timestamps to string.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>typeLabels</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Object.html">Object</a></span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">(def=defTypeLabels) Labels use to identify the type of event logged.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>separator</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">(def=defSeparator) Separator between log entry components.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>header</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Table</span>
-|
-
-<span class="param-type"><a href="Array.html">Array</a>.&lt;String></span>
-|
-
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">(def=defHeader) Header added to the log when the log object is created.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>lineWidth</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="Number.html">Number</a></span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">(def=90) Maximum line width.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>line_style</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-|
-
-<span class="param-type">Undefined</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">(def="none") Style use to format lines of an event message, possible values are:
-["wrap", "trunc", "none"].</td>
+            <td class="description last">If true the index is prepended.</td>
         </tr>
 
     
     </tbody>
 </table>
 
+    </div>
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- Unique name.
+
+
+
+
+            
+    </div>
+    
+
+    
 
 
 <dl class="details">
@@ -1754,50 +1257,51 @@ as well as a two digit index is mode is 'unique'.</td>
 
     
 
-    
 </dd>
 
             
                 
 
 <dt>
-<h4 class="name" id="~Table">
-    Table
-    
-    <div class="container-source members">
-        <code><a href="Log.js.html">Log.js</a></code>,
-        <code><a href="Log.js.html#line69">line 69</a></code>
-    </div>
-    
-</h4>
 
+    
+        
+
+        <h4 class="name" id=".move">
+            <span class="type-signature"><span class="icon green">static</span> </span>move<span class="signature">(src, dest, overwrite)</span><span class="type-signature"></span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line213">line 213</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
 
 </dt>
 <dd>
-    
 
-    <!--
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="Object.html">Object</a></span>
-
-
-            </li>
-        </ul>
+    <div class="description">
+        Moves the file <tt>src</td> into <tt>dest</tt>. If <tt>dest</tt> exists an
+exception is thrown unless <tt>true</tt> is passed on the <tt>overwrite</tt>
+parameter.
+    </div>
     
-    -->
 
     
 
-
-    <h5 class="subsection-title">Properties:</h5>
+    
 
     
 
-<table class="props">
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
     <thead>
     <tr>
         
@@ -1806,8 +1310,6 @@ as well as a two digit index is mode is 'unique'.</td>
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -1821,67 +1323,91 @@ as well as a two digit index is mode is 'unique'.</td>
 
         <tr>
             
-                <td class="name"><code>columns</code></td>
+                <td class="name"><code>src</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Array.html">Array</a>.&lt;TableColumn></span>
+<span class="param-type">String</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"></td>
+            <td class="description last">Name of the file to move.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>rows</code></td>
+                <td class="name"><code>dest</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="Array.html">Array</a>.&lt;(String|<a href="Array.html">Array</a>.&lt;String>)></span>
+<span class="param-type">String</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
 
+            
+
+            <td class="description last">Name of the file to move onto.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>overwrite</code></td>
+            
+
+            <td class="type">
+            
                 
-                </td>
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last"></td>
+            <td class="description last">If <tt>true</tt> overwrites the destination file if it exists.</td>
         </tr>
 
     
     </tbody>
 </table>
 
+    </div>
+    
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
 
 <dl class="details">
@@ -1920,10 +1446,545 @@ as well as a two digit index is mode is 'unique'.</td>
 
     
 
+</dd>
+
+            
+                
+
+<dt>
+
     
+        
+
+        <h4 class="name" id=".removeExt">
+            <span class="type-signature"><span class="icon green">static</span> </span>removeExt<span class="signature">(file_name)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line82">line 82</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns a string with the file name minus the extension.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the file.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- A string with file name minus the extension.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".saveText">
+            <span class="type-signature"><span class="icon green">static</span> </span>saveText<span class="signature">(file_name, data, safe)</span><span class="type-signature"></span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line154">line 154</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Saves the give text into the given file. If the file exists it is overwritten.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the file.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>safe</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
+</dd>
+
+            
+                
+
+<dt>
+
+    
+        
+
+        <h4 class="name" id=".swapExt">
+            <span class="type-signature"><span class="icon green">static</span> </span>swapExt<span class="signature">(file_name, new_ext)</span><span class="type-signature"> &rarr; {String}</span>
+            
+            <div class="container-source members">
+                <code><a href="fs_util.js.html">fs_util.js</a></code>,
+                <code><a href="fs_util.js.html#line103">line 103</a></code>
+            </div>
+            
+        </h4>
+
+        
+    
+
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Returns a string with the given <tt>file_name</tt> after replacing it's extension.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-params">
+        <h5>Parameters:</h5>
+        
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>file_name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Name of the file.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>new_ext</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Extension to give to the resulting file name.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="container-returns">
+        <h5>Returns:</h5>
+        
+                
+
+
+
+<span class="param-type">String</span>
+
+
+
+
+
+- New file name with the extension replaced.
+
+
+
+
+            
+    </div>
+    
+
+    
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+    
+
 </dd>
 
             </dl>
+    
+
     
 
     
@@ -1946,7 +2007,7 @@ as well as a two digit index is mode is 'unique'.</td>
 <script src="scripts/linenumber.js"></script>
 
     <script>
-        var id = 'module:@crabel/shared/Log_sub'.replace(/"/g, '_');
+        var id = 'module:@crabel/shared/fs_util_sub'.replace(/"/g, '_');
         var selectedApi = document.getElementById(id); // do not use jquery selector
         var $selectedApi = $(selectedApi);
 

@@ -51,11 +51,14 @@ const path = require("path");
 const os = require("os");
 const EventEmitter = require('events');
 const util = require('util');
+const wrap = require("word-wrap");
+const colors = require("colors");
 //
-require("./proto.js");
+require("./proto.js").init();
 let str_util = require("./str_util");
-let file = require("./file");
-let wrap = require("word-wrap");
+let fs_util = require("./fs_util");
+
+//
 
 let global_log = null;
 
@@ -110,7 +113,7 @@ let global_log = null;
  * @property {Number|Undefined} [lineWidth]
  * (def=90) Maximum line width.
  * 
- * @property {String|Undefined} [lineStyle]
+ * @property {String|Undefined} [line_style]
  * (def="none") Style use to format lines of an event message, possible values are:
  * ["wrap", "trunc", "none"].
  */
@@ -147,7 +150,7 @@ function Log(options, subst_obj)
         options.path = __dirname;
 
     if (!options.name)
-        options.name = file.swapExt(path.basename(__filename), ".log");
+        options.name = fs_util.swapExt(path.basename(__filename), ".log");
 
     let self = this;
     if (undefined === options.mode)
@@ -175,8 +178,8 @@ function Log(options, subst_obj)
     if (undefined === options.header)
         options.header = Log.defHeader.clone(true);
     
-    if (!options.lineStyle)
-        options.lineStyle = "none";
+    if (!options.line_style)
+        options.line_style = "none";
 
     if (Object.isType(subst_obj, Object))
         this.substObj = subst_obj;
@@ -255,7 +258,7 @@ function Log(options, subst_obj)
      */
     this.lineWidth = options.lineWidth || Log.defLineWidth;
 
-    if ("wrap" === options.lineStyle)
+    if ("wrap" === options.line_style)
         this.formatLine = function (text, indent) {
             // Here '==' is used instead of '===' purposely to make the call more robust
             if (isNaN(indent) || 0 == indent)
@@ -269,7 +272,7 @@ function Log(options, subst_obj)
             let line = wrap(text, { width: self.lineWidth - indent, indent: indent_str });
             return line.substring(indent);
         };
-    else if ("trunc" === options.lineStyle)
+    else if ("trunc" === options.line_style)
         this.formatLine = function (text) {
             return text.substring(0, self.lineWidth);
         };
@@ -285,8 +288,8 @@ function Log(options, subst_obj)
     this.file_name = Log._makeLogFileName(this.path, this.name, this.mode);
 
     if (Log.mode.replace == this.mode)
-        if (file.exists(this.file_name))
-            file.erase(this.file_name);
+        if (fs_util.exists(this.file_name))
+            fs_util.erase(this.file_name);
 
     let file_options = {
         flags: 'w',
@@ -303,6 +306,7 @@ function Log(options, subst_obj)
      * @type {WriteStream}
      */
     this.file = fs.createWriteStream(this.file_name, file_options);
+
     if (fs.exists(this.file_name)) {
         let stats = fs.statSync(this.file_name);
         if(0 < stats["size"])
@@ -317,18 +321,11 @@ function Log(options, subst_obj)
      */
     this.pendingEvents = 0;
 
-    /**
-     * Indicates whether the
-     * @type {Boolean}
-     */
-    this.active = true;
-    
-    this.file.on("finish", function () {
-        self.active = false;
-    });
+    // Output the header
+    if (options.header.is(String))
+        options.header = [ options.header ];
 
-
-    if (Object.isType(options.header, Array)) {
+    if (options.header.is(Array)) {
         let res = "";
         options.header.forEach(function (h) {
             if (Object.isType(h, String)) {
@@ -340,10 +337,54 @@ function Log(options, subst_obj)
         });
         self.file.write(res);
     }
-}
+}   // Log()
 
 // Overwrites the prototype so must be called before prototype functions are added.
 util.inherits(Log, EventEmitter);
+
+/**
+ *
+ * @param {String} msg
+ * @param {Log.eventType} type
+ * @constructor
+ */
+function LogEntry(msg, type) {
+    this.message = msg;
+    this.type = type;
+    this.ts = new Date();
+}
+
+LogEntry.prototype.toFormattedString = function () {
+    if (Log.eventType.text === this.type)
+        return this.type.color(this.message);
+
+    if (LogType.todo === this.type)
+        return this.type.color("TODO : " + this.message);
+
+    return util.format(
+        "%s -%s- %s",
+        util.date_time.format(this.ts, false, "", ""),
+        this.type.color(this.type.label),
+        this.type.color(this.message)
+    );
+};
+
+LogEntry.prototype.toString = function () {
+    if (LogType.text === this.type)
+        return this.message;
+
+    if (LogType.todo === this.type)
+        return "TODO : " + this.message;
+
+    return util.format(
+        "%s -%s- %s",
+        util.date_time.format(this.ts, false, "", ""),
+        this.type.label,
+        this.message
+    );
+};
+
+
 
 /**
  * Default log header. Log headers support the following substitution token:
@@ -355,6 +396,7 @@ util.inherits(Log, EventEmitter);
  * 5) {{date.now[,format]}} : String representing the current date and time. Optionally a
  *    formatting string
  * can be provided.
+ * @private
  */
 Log.defHeader = [
     "=",
@@ -366,6 +408,7 @@ Log.defHeader = [
 
 /**
  * Default value when the 'echo' parameter is not provided.
+ * @private
  */
 Log.defEcho = true;
 
@@ -419,6 +462,7 @@ Log.eventType = {
  * change the event type labels of every new <b>Log</b> instance that is creates. It is
  * generally recommended to change this property and not the instance property in order
  * to provide a consistent look between log files of the same application.
+ * @private
  */
 Log.defTypeLabels = {
     err: "[E]",
@@ -429,6 +473,7 @@ Log.defTypeLabels = {
 
 /**
  * Default separator between log entry components.
+ * @private
  */
 Log.defSeparator = "-";
 
@@ -439,16 +484,19 @@ Log.defSeparator = "-";
  * of every new <b>Log</b> instance that is creates. It is generally recommended to
  * change this property and not the instance property in order to * provide a consistent
  * look between log files of the same application.
+ * @private
  */
 Log.defTimeFormat = "yyyyMMdd HHmmss.fff";
 
 /**
  * Default value for log mode.
+ * @private
  */
 Log.defMode = Log.mode.append;
 
 /**
  * Default number of characters per line.
+ * @private
  */
 Log.defLineWidth = 100;
 
@@ -528,11 +576,11 @@ Log._makeLogFileName = function (dir, name, mode) {
         file_name += ".log";
 
     if (Log.mode.unique === mode)
-        file_name = file.makeUnique(file_name, false);
+        file_name = fs_util.makeUnique(file_name, false);
     else if (Log.mode.unique_pre === mode)
-        file_name = file.makeUnique(file_name, true);
+        file_name = fs_util.makeUnique(file_name, true);
 
-    file.ensurePath(path.dirname(file_name));
+    fs_util.ensurePath(path.dirname(file_name));
     return file_name;
 };
 
@@ -542,16 +590,17 @@ Log._makeLogFileName = function (dir, name, mode) {
  * JavaScript file that requires this module. If no instance is passed and the global
  * instance is not set, a new instance of <tt>Log</tt> is created with the default
  * arguments.
- * @param {Log} [log_instance]
+ * @param {LogOptions|Log} [options_or_log]
  * Instance of <b>Log</b> to be used as the <u>global log instance</u>.
  * @returns {Log}
  * Returns the global instance.
  */
-Log.global = function (log_instance) {
-    if (log_instance)
-        global_log = log_instance;
-
-    if (!global_log)
+Log.global = function (options_or_log) {
+    if (options_or_log instanceof Log)
+        global_log = options_or_log;
+    else if ("object" === (typeof options_or_log))
+        global_log = new Log(options_or_log); // Is options object
+    else if (!global_log)
         global_log = new Log();
 
     return global_log;
@@ -570,7 +619,7 @@ Log.global = function (log_instance) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.out = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(global_log || null, Log.eventType.text, arguments));
+    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.text, arguments));
 };
 
 /**
@@ -584,12 +633,12 @@ Log.out = function (msg, cb, subst) {
  * after the log entry is logged.
  * @param {...*} [subst] Optional list of substitution arguments.
  * When present, the method formats the message using either
- * {@link module:@crabel/shared/str_util~format str_util.format} or
+ * {@link module:@crabel/shared/str_util~format str_util.form} or
  * {@link module:@crabel/shared/str_util~expand str_util.expand} depending on whether a
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.err = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(global_log || null, Log.eventType.err, arguments));
+    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.err, arguments));
 };
 
 /**
@@ -608,7 +657,7 @@ Log.err = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.warn = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(global_log || null, Log.eventType.warn, arguments));
+    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.warn, arguments));
 };
 
 /**
@@ -627,7 +676,7 @@ Log.warn = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.info = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(global_log || null, Log.eventType.info, arguments));
+    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.info, arguments));
 };
 
 /**
@@ -646,8 +695,24 @@ Log.info = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.trace = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(global_log || null, Log.eventType.trace, arguments));
+    return _log.apply(null, _buildArgs(global_log || null, Log.eventType.trace, arguments));
 };
+
+/**
+ * The <b>shutdown</b> function flushes and closes the log file rendering the log object
+ * unusable. When done, the 'shutdown' event is emitted.
+ * @param {Function} [cb]
+ * @fires Log#shutdown
+ */
+Log.shutdown = function (cb) {
+    if (global_log)
+        global_log.shutdown(cb);
+    else
+        setImmediate(cb(new Error("Failed to shutdown Log instance, the global Log " +
+            "has not being initiated.")));
+};
+
+
 
 // Instance Members
 
@@ -664,7 +729,7 @@ Log.trace = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.prototype.out = function(msg, cb, subst) {
-    _log.apply(null, _buildArgs(this, Log.eventType.text, arguments));
+    return _log.apply(null, _buildArgs(this, Log.eventType.text, arguments));
 };
 
 /**
@@ -682,7 +747,7 @@ Log.prototype.out = function(msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.prototype.err = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(this, Log.eventType.err, arguments));
+    return _log.apply(null, _buildArgs(this, Log.eventType.err, arguments));
 };
 
 /**
@@ -700,7 +765,7 @@ Log.prototype.err = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.prototype.warn = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(this, Log.eventType.warn, arguments));
+    return _log.apply(null, _buildArgs(this, Log.eventType.warn, arguments));
 };
 
 /**
@@ -718,7 +783,7 @@ Log.prototype.warn = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.prototype.info = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(this, Log.eventType.info, arguments));
+    return _log.apply(null, _buildArgs(this, Log.eventType.info, arguments));
 };
 
 /**
@@ -736,7 +801,7 @@ Log.prototype.info = function (msg, cb, subst) {
  * {@link module:@crabel/shared/str_util~substCallback substCallback} was provided.
  */
 Log.prototype.trace = function (msg, cb, subst) {
-    _log.apply(null, _buildArgs(this, Log.eventType.trace, arguments));
+    return _log.apply(null, _buildArgs(this, Log.eventType.trace, arguments));
 };
 
 /**
@@ -748,22 +813,33 @@ Log.prototype.trace = function (msg, cb, subst) {
 Log.prototype.shutdown = function (cb) {
     let self = this;
     if (this.file) {
-        this.file.end(function () {
-            self.emit("shutdown");
-            if (cb)
-                cb();
-        });
+        let file = this.file;
 
         // Set file to null right away to avoid another call to log to be sent while
         // closing the log file.
         this.file = null;
+
+        file.end(function () {
+            self.emit("shutdown");
+            if (cb)
+                cb();
+        });
     }
     else {
         // Still need to invoke the callback to ensure the client has a chance to perform
         // further work if necessary.
         if (cb)
-            setImmediate(function () { cb(); });
+            setImmediate(cb);
     }
+};
+
+/**
+ * Returns true if the <tt>Log</tt> instance is still active, false if it has been
+ * shutdown.
+ * @returns {Boolean}
+ */
+Log.prototype.active = function () {
+    return this.file !== null;
 };
 
 
@@ -860,7 +936,7 @@ function _log(log, msg, type, cb) {
         if (cb)
             setImmediate(function () { cb(null, event, fmsg); });
 
-        return;
+        return event;
     }
 
     if(log.echo) {
@@ -897,6 +973,8 @@ function _log(log, msg, type, cb) {
             cb(null, event, fmsg);
     });
 
+    return event;
+
     function getFormattedMessage(time_format, type_labels) {
         if (!log)
             return event.message;
@@ -925,7 +1003,7 @@ function _log(log, msg, type, cb) {
         // Subtract the separation spaces when calculating the message width
         return event.timestamp.format(time_format) + " " + separator +
             getTypeLabel(type_labels, type_width)  + separator +
-            log.formatLine(event.message, type_width + time_width);
+            log.formatLine(event.message, type_width + time_width + separator.length * 2);
     }
 
     function getTypeLabel(labels, type_width) {

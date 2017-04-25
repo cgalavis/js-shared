@@ -4,7 +4,7 @@
  * This module is part of the Crabel core library, it contains utility functions that
  * facilitate file name processing and file management providing minimal extensions for
  * the native <b>path</b> and <b>fs</b> modules.
- * @module @crabel/shared/file
+ * @module @crabel/shared/fs_util
  * @author Carlos Galavis <cgalavis@crabel.com>
  */
 
@@ -12,6 +12,7 @@ require("./proto").init();
 
 let path = require("path");
 let fs = require("fs");
+let fsx = require("fs-extra");
 let glob = require("glob");
 let mkdirp = require("mkdirp");
 
@@ -42,6 +43,10 @@ module.exports = {
         }
 
         return false;
+    },
+
+    emptyDir: function (dir) {
+        fsx.emptyDirSync(dir);
     },
 
 
