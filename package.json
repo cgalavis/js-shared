@@ -2,6 +2,7 @@
   "name": "@crabel/shared",
   "version": "1.0.1",
   "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
+  "homepage": "https://git2.hq.crabel.com/pages/node-common/shared/",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests",
@@ -46,5 +47,6 @@
     "namis": "^1.0.3",
     "tui-jsdoc-template": "^1.1.0",
     "visallo-jsdoc-template": "^1.1.3"
-  }
+  },
+  "private": true
 }
