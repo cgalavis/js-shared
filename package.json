@@ -12,7 +12,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git2.hq.crabel.com:node-common/shared.git"
+    "url2": "git@git2.hq.crabel.com:node-common/shared.git",
+    "url": "https://git2.hq.crabel.com/node-common/shared"
   },
   "keywords": [
     "crabel",

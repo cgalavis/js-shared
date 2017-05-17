@@ -115,7 +115,11 @@ function noColor(str) { return str; }
  * @property {Log.eventType|String|Undefined} [level]
  * (def=Log.eventType.info) Logging level. Events with higher precedence are ignored 
  * (not logged).
- * 
+ *
+ * @property {Boolean|String|Undefined} [color_output]
+ * (def=Log.defColorOutput) If <tt>true</tt> the event entries are colored using the
+ * coloring function in the <tt>Log.type_specs.color</tt>
+ *
  * @property {String|Undefined} [timeFormat]
  * (def=defTimeFormat) Format string use to convert event timestamps to string.
  * 
@@ -185,6 +189,9 @@ function Log(options, subst_obj)
     if (isNaN(options.level))
         options.level = Log._levelFromStr(options.level);
 
+    if (undefined === options.color_output)
+        options.color_output = true;
+
     if (!options.timeFormat)
         options.timeFormat = Log.defTimeFormat;
 
@@ -248,6 +255,13 @@ function Log(options, subst_obj)
      * @type {Log.eventType}
      */
     this.level = options.level;
+
+    /**
+     * If <tt>true</tt> the messages are colored using the function in the
+     * corresponding <tt>Log.type_specs</tt> <b>color</b> property.
+     * @type {Boolean}
+     */
+    this.color_output = options.color_output;
 
     /**
      * Format of the timestamp added to log messages. For information on the format used
@@ -367,9 +381,11 @@ util.inherits(Log, EventEmitter);
  * @param {Log.eventType} type
  * @constructor
  */
-function LogEntry(msg, type) {
+function LogEntry(log, msg, type) {
+    this.log = log;
     this.message = msg;
     this.type = type;
+    this.type_specs = log._typeSpecsFromType(type);
     this.ts = new Date();
 }
 
@@ -870,6 +886,23 @@ Log.prototype.shutdown = function (cb) {
 Log.prototype.active = function () {
     return this.file !== null;
 };
+
+/**
+ *
+ * @param {Log.eventType} type
+ * @private
+ */
+Log._typeSpecsFromType = function (type) {
+    switch (type) {
+        case Log.eventType.err: return this.type_specs.err;
+        case Log.eventType.warn: return this.type_specs.warn;
+        case Log.eventType.info: return this.type_specs.info;
+        case Log.eventType.debug: return this.type_specs.debug;
+        case Log.eventType.todo: return this.type_specs.todo;
+        default: return this.type_specs.text;
+    }
+};
+
 
 
 // Events
