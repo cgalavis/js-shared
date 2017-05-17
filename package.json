@@ -47,6 +47,5 @@
     "namis": "^1.0.3",
     "tui-jsdoc-template": "^1.1.0",
     "visallo-jsdoc-template": "^1.1.3"
-  },
-  "private": true
+  }
 }
