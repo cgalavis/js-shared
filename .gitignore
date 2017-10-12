@@ -38,9 +38,11 @@ jspm_packages
 
 # Crabel specific
 tmp
-.swp
-.swo
-.bk
-.back
+*.swp
+*.swo
+*.bk
+*.back
 workspace.xml
 from_mp
+.DS_Store
+package-lock.json

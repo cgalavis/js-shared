@@ -6,7 +6,7 @@
  */
 
 require("./proto").init();
-let file = require("./file");
+let fs = require("fs");
 let StringList = require("./StringList");
 
 /**
@@ -18,7 +18,7 @@ let StringList = require("./StringList");
  */
 function CsvReader(file_name)
 {
-    if (!file.exists(file_name))
+    if (!fs.existsSync(file_name))
         throw new Error("file {0} does not exist.".format(file_name));
 
     let that = this;

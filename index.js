@@ -15,8 +15,9 @@ require("./proto").init();
 
 exports.module = {
     csv: require("./csv"),
-    file: require("./file"),
+    fs_util: require("./fs_util"),
     range: require("./range"),
     str_util: require("./str_util"),
     StringList: require("./StringList"),
+    xml: require("./xml"),
 };
