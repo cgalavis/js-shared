@@ -52,7 +52,6 @@ function Schema(file_name, opts) {
     this.groups = [];
     this.options = new Options(opts);
 
-
     let object_map = {};
     let type_map = {};
     let group_map = {};
@@ -112,6 +111,14 @@ function Schema(file_name, opts) {
 
 // Overwrites the prototype so must be called before prototype functions are added.
 util.inherits(Schema, EventEmitter);
+
+Schema.prototype.getType = function (type_name) {
+    return this.type_map[type_name];
+};
+
+Schema.prototype.getObject = function (obj_name) {
+    return this.object_map[obj_name];
+};
 
 Schema.prototype.save = function(file_name, cb) {
     if (!cb || typeof cb !== "function")
@@ -366,5 +373,7 @@ module.exports = {
     TypeDef: TypeDef,
     GroupDef: GroupDef,
     //
-    xml: require("./converters/xml")
+    xml: require("./converters/xml"),
+    json: require("./converters/json"),
+    struct: require("./converters/struct"),
 };

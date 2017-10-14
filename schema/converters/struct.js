@@ -1,31 +1,17 @@
 "use strict";
 
-/**
- * @type {Object}
- * @property int64
- * @property int32
- * @property int16
- * @property int8
- * @property uint64
- * @property uint32
- * @property uint16
- * @property uint8
- * @property double
- * @property float
- * @property Boolean
- * @property String
- */
+/** @type {Restructure} */
 const rs = require("restructure");
 //
-const validObjClass = require("../common").validObjClass;
+const common = require("../common");
 
 
 /**
  *
- * @param {TypeDef} type_spec
- * @returns {Object}
+ * @param {TypeDef} type_def
+ * @returns {NativeType}
  */
-function getBinaryType(type_def) {
+module.exports.getBinaryType = function (type_def) {
     if (type_def.type === "Integer") {
         let unsigned = (undefined !== type_def.min && type_def.min >= 0);
 
@@ -42,9 +28,9 @@ function getBinaryType(type_def) {
     }
 
     if (type_def.type === "Number") {
-        if (type_def.size == 4)
+        if (type_def.size === 4)
             return rs.float;
-        else if (type_def.size == 8)
+        else if (type_def.size === 8)
             return rs.double;
 
         throw new Error("Invalid numerical type with size=" + type_def.size + ".");
@@ -59,22 +45,51 @@ function getBinaryType(type_def) {
 
         return new rs.String(type_def.size);
     }
-
-
-}
-
-module.exports = {
-
-    toObj: function (s, obj_class) {
-        if (!validObjClass(obj_class))
-            throw new Error("Failed to convert struct reference to an object, the " +
-                "object class is not valid.");
-    },
-
-    fromObj: function (obj, obj_class) {
-        if (!validObjClass(obj_class))
-            throw new Error("Failed to convert object to a struct reference, the " +
-                "object class is not valid.");
-
-    }
 };
+
+
+module.exports.buildStruct = function (obj_class) {
+    if (!obj_class._struct) {
+        let self = this;
+        obj_class._struct = Object.assign({}, obj_class._attrs);
+
+        obj_class._refs.forEach(function (obj) {
+            let s = self.buildStruct(obj.ref_class);
+            if (obj.is_container)
+                obj_class._struct[obj._name] = new rs.Array(s, rs.uint32);
+            else
+                obj_class._struct[obj._name] = s;
+        });
+    }
+
+    return obj_class._struct;
+};
+
+
+/**
+ *
+ * @param {Buffer} s
+ * @param {ObjClass} obj_class
+ * @returns {Object}
+ */
+module.exports.toObj = function (s, obj_class) {
+    if (!common.validObjClass(obj_class))
+        throw new Error("Failed to convert struct reference to an object, the " +
+            "object class is not valid.");
+};
+
+
+/**
+ *
+ * @param {Object} obj
+ * @param {ObjClass} obj_class
+ * @returns {Buffer}
+ */
+module.exports.fromObj = function (obj, obj_class) {
+    if (!common.validObjClass(obj_class))
+        throw new Error("Failed to convert object to a struct reference, the " +
+            "object class is not valid.");
+
+};
+
+
