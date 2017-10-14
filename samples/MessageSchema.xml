@@ -1,0 +1,2961 @@
+<CrabelObjectSchema Version="1.10" CodeOutputDirectory="E:\Crabel\" RemoteInterfacesUnit="CrabelPipelineRemoteInterfaces" CoreInterfacesUnit="CrabelPipelineCoreInterfaces" ObjectInterfacesUnit="CrabelPipelineObjectInterfaces" ClientsUnit="CrabelPipelineClients" ServersUnit="CrabelPipelineServers" LocalProxiesUnit="CrabelPipelineLocalProxies" TagsUnit="CrabelPipelineTags">
+    <Groups>
+        <Group Name="MessageStructs" IsInterface="False">
+            <Intent>Objects from MessageStructs</Intent>
+            <Groups/>
+            <ObjectTypes>
+                <ObjectDef Name="Header" MessageType="None">
+                    <Intent>Header type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int64_t" Index="1" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="message type" LinkName="messageType" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="3" Type="Node" Intent="source node type" LinkName="sourceNode" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="4" Type="Node" Intent="Target type" LinkName="target" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="5" Type="Node" Intent="version type" LinkName="version" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="6" Type="Node" Intent="reserved1 type" LinkName="reserved1" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="7" Type="Node" Intent="Size of payload (not including header)" LinkName="size" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Indicator" MessageType="None">
+                    <Intent>Indicator type</Intent>
+                    <Attributes>
+                        <Attribute Name="adjustmentType" Index="5" Type="AdjustmentType" MinValue="1" MaxValue="1" Optional="True">
+                            <Intent>indicates how the indicator was adjusted</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentID type" LinkName="instrumentID" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="indicatorID type" LinkName="indicatorID" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint32_t" Index="3" Type="Node" Intent="requestID type" LinkName="requestID" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint32_t" Index="4" Type="Node" LinkName="instrumentProxyID" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PackedIndicator" MessageType="None">
+                    <Intent>PackedIndicator type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="uint8_t" Index="1" Type="Node" Intent="size type" LinkName="packed_index" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint8_t" Index="2" Type="Node" Intent="size type" LinkName="size" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint64_t" Index="3" Type="Node" Intent="times type" LinkName="times" MinCount="30" MaxCount="30"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="values type" LinkName="values" MinCount="30" MaxCount="30"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="FXPrice" MessageType="None">
+                    <Intent>FXPrice type</Intent>
+                    <Attributes>
+                        <Attribute Name="quoteID" Index="2" Type="Alpha" Size="64">
+                            <Intent>quoteID type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="double" Index="1" Type="Node" Intent="minAmount type" LinkName="minAmount" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="MakerOrderPrice" MessageType="None">
+                    <Intent>maker order price type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="ModelId" Index="1" Type="Node" Intent="model id type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="2" Type="Node" Intent="ticket key type" LinkName="ticketKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint64_t" Index="3" Type="Node" Intent="order id type" LinkName="clientOrderId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Announcement" MessageType="None">
+                    <Intent>BaseAnnouncement type</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Type="AnnouncementType">
+                            <Intent>Type of announcement</Intent>
+                        </Attribute>
+                        <Attribute Name="payload" Index="2" Type="Alpha" Size="246" Optional="True">
+                            <Intent>payload of announcement</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PriceHeader" MessageType="None">
+                    <Intent>PriceHeader type</Intent>
+                    <Attributes>
+                        <Attribute Name="bookInstruction" Index="5" Type="BookInstruction">
+                            <Intent>instrumentID</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="exchangeOffset type" LinkName="exchangeOffset" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentID type" LinkName="instrumentID" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="3" Type="Node" Intent="Content Provider ID" LinkName="priceStreamID" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="4" Type="Node" Intent="numPrices type" LinkName="numPrices" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint8_t" Index="6" Type="Node" Intent="reserved1 type" LinkName="reserved1" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint16_t" Index="7" Type="Node" Intent="reserved2 type" LinkName="reserved2" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint32_t" Index="8" Type="Node" Intent="Sequence number" LinkName="sqn" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="SessionReset" MessageType="None">
+                    <Intent>PriceHeader type</Intent>
+                    <Attributes>
+                        <Attribute Name="session" Index="3" Type="TradingSession">
+                            <Intent>session type</Intent>
+                        </Attribute>
+                        <Attribute Name="isStarting" Index="4" Type="Boolean">
+                            <Intent>isStarting</Intent>
+                        </Attribute>
+                        <Attribute Name="exchangeCode" Index="5" Type="Alpha" Size="5">
+                            <Intent>exchangeCode type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="uint64_t" Index="1" Type="Node" Intent="instrumentID type" LinkName="instrumentID" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint64_t" Index="2" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="MMConfigReload" MessageType="None">
+                    <Intent>market maker config reload type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="uint32_t" Index="1" Type="Node" Intent="none" LinkName="dummy" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StrategyPortfolioDefinition" MessageType="None">
+                    <Intent>strat portfolio def</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="3" Type="Alpha" Size="64">
+                            <Intent>name</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="none" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="none" LinkName="strategyKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StrategyPortfolioPositionConfig" MessageType="None">
+                    <Intent>strat portfolio position cfg</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="7" Type="Alpha" Size="1">
+                            <Intent>enabled</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="none" LinkName="portfolioKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="none" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="none" LinkName="maxPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="none" LinkName="maxNetLoss" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="none" LinkName="maxGrossPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="none" LinkName="maxWorkingPosition" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StrategyPortfolioPosition" MessageType="None">
+                    <Intent>strat portfolio position</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="none" LinkName="portfolioKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="none" LinkName="netPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="none" LinkName="grossBuys" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="none" LinkName="grossSells" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="none" LinkName="workingBuys" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="none" LinkName="workingSells" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="7" Type="Node" Intent="none" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Snapshot" MessageType="None">
+                    <Intent>Snapshot type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentID type" LinkName="instrumentID" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="2" Type="Node" Intent="streamKey type" LinkName="streamKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="bidRate type" LinkName="bidRate" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="bidAmount type" LinkName="bidAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="askRate type" LinkName="askRate" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="askAmount type" LinkName="askAmount" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Property" MessageType="None">
+                    <Intent>Property type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="1" Type="Alpha" Size="256">
+                            <Intent>prop name type</Intent>
+                        </Attribute>
+                        <Attribute Name="value" Index="2" Type="Alpha" Size="1024">
+                            <Intent>prop value type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="Alert" MessageType="None">
+                    <Intent>Alert type</Intent>
+                    <Attributes>
+                        <Attribute Name="alertKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>alertKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="severity" Index="2" Type="Severity">
+                            <Intent>alert severity</Intent>
+                        </Attribute>
+                        <Attribute Name="name" Index="3" Type="Alpha" Size="256">
+                            <Intent>Alert name</Intent>
+                        </Attribute>
+                        <Attribute Name="description" Index="4" Type="Alpha" Size="2048">
+                            <Intent>Alert description</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="5" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="6" Type="Node" Intent="Alert handled " LinkName="handled" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="AlertHandled" MessageType="None">
+                    <Intent>Alert type</Intent>
+                    <Attributes>
+                        <Attribute Name="alertKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>alertKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="StrategyRequest" MessageType="None">
+                    <Intent>StrategyRequest type</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="3" Type="StrategyRequestType">
+                            <Intent>request type</Intent>
+                        </Attribute>
+                        <Attribute Name="severity" Index="4" Type="Severity">
+                            <Intent>Severity of request</Intent>
+                        </Attribute>
+                        <Attribute Name="description" Index="5" Type="Alpha" Size="1024">
+                            <Intent>Request description</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="Alert handled " LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="2" Type="Node" Intent="Alert handled " LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PingResponse" MessageType="None">
+                    <Intent>PingResponse type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int64_t" Index="1" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TopicEvent" MessageType="None">
+                    <Intent>Topic Event</Intent>
+                    <Attributes>
+                        <Attribute Name="topic_name" Index="1" Type="Alpha" Size="256">
+                            <Intent>topicname type</Intent>
+                        </Attribute>
+                        <Attribute Name="eventType" Index="2" Type="TopicEventType">
+                            <Intent>topic event</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="FeedSubscribe" MessageType="None">
+                    <Intent>FeedSubscribe type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="GUILogon" MessageType="None">
+                    <Intent>GUILogon type</Intent>
+                    <Attributes>
+                        <Attribute Name="user" Index="1" Type="Alpha" Size="64">
+                            <Intent>logon user type</Intent>
+                        </Attribute>
+                        <Attribute Name="pass" Index="2" Type="Alpha" Size="64">
+                            <Intent>login pass type</Intent>
+                        </Attribute>
+                        <Attribute Name="env" Index="3" Type="Alpha" Size="16">
+                            <Intent>logon env type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="4" Type="Node" Intent="0=access denied, 1=read only, 2=full access" LinkName="access" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="5" Type="Node" Intent="target id to send all messages to" LinkName="gui_id" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="GUILog" MessageType="None">
+                    <Intent>GUILog type</Intent>
+                    <Attributes>
+                        <Attribute Name="username" Index="2" Type="Alpha" Size="32">
+                            <Intent>username type</Intent>
+                        </Attribute>
+                        <Attribute Name="message" Index="3" Type="Alpha" Size="2048">
+                            <Intent>message type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="1" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TradingConfig" MessageType="None">
+                    <Intent>TradingConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="globalTrading" Index="1" Type="Alpha" Size="1">
+                            <Intent>globalTrading type</Intent>
+                        </Attribute>
+                        <Attribute Name="marketMaking" Index="2" Type="Alpha" Size="1">
+                            <Intent>marketMaking type</Intent>
+                        </Attribute>
+                        <Attribute Name="crossing" Index="3" Type="Alpha" Size="1">
+                            <Intent>crossing type</Intent>
+                        </Attribute>
+                        <Attribute Name="combining" Index="4" Type="Alpha" Size="1">
+                            <Intent>combining type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="Ping" MessageType="None">
+                    <Intent>Ping type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="nodeKey type" LinkName="nodeKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TermRequest" MessageType="None">
+                    <Intent>TermRequest type</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="1" Type="TermRequestType">
+                            <Intent>term request type</Intent>
+                        </Attribute>
+                        <Attribute Name="name" Index="5" Type="Alpha" Size="500">
+                            <Intent>remaining of 512 size packet</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="3" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint64_t" Index="4" Type="Node" Intent="ns since epoch UTC" LinkName="time" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PositionConfig" MessageType="None">
+                    <Intent>PositionConfig type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="maxPosition type" LinkName="maxPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="maxNetLoss type" LinkName="maxNetLoss" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="maxGrossPosition type" LinkName="maxGrossPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="maxWorkingPosition type" LinkName="maxWorkingPosition" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="SystemReset" MessageType="None">
+                    <Intent>SystemReset type</Intent>
+                    <Attributes>
+                        <Attribute Name="systemResetType" Index="1" Type="SystemResetType">
+                            <Intent>systemResetType</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="TakerUnsubscribe" MessageType="None">
+                    <Intent>TakerUnsubscribe type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentModelPnl" MessageType="None">
+                    <Intent>InstrumentModelPnl type</Intent>
+                    <Attributes>
+                        <Attribute Name="tradeDate" Index="7" Type="Alpha" Size="8">
+                            <Intent>tradeDate type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="2" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="position type" LinkName="position" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="realizedPnl type" LinkName="realizedPnl" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="unrealizedPnl type" LinkName="unrealizedPnl" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="avgPx type" LinkName="avgPx" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="8" Type="Node" Intent="isTerms type" LinkName="isTerms" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="9" Type="Node" Intent="reserved0 type" LinkName="reserved0" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="10" Type="Node" Intent="reserved1 type" LinkName="reserved1" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="11" Type="Node" Intent="reserved2 type" LinkName="reserved2" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="12" Type="Node" Intent="reserved3 type" LinkName="reserved3" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="13" Type="Node" Intent="reserved4 type" LinkName="reserved4" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="14" Type="Node" Intent="reserved5 type" LinkName="reserved5" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="15" Type="Node" Intent="reserved6 type" LinkName="reserved6" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentDefinition" MessageType="None">
+                    <Intent>InstrumentDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="16">
+                            <Intent>Instr name type</Intent>
+                        </Attribute>
+                        <Attribute Name="sdySymbol" Index="6" Type="Alpha" Size="16" Optional="True">
+                            <Intent>crabelTicker type</Intent>
+                        </Attribute>
+                        <Attribute Name="expirationDate" Index="10" Type="Alpha" Size="8">
+                            <Intent>expirationDate</Intent>
+                        </Attribute>
+                        <Attribute Name="instrumentType" Index="7" Type="InstrumentType">
+                            <Intent>instrumentType</Intent>
+                        </Attribute>
+                        <Attribute Name="crabelMasterTicker" Index="8" Type="Alpha" Size="16">
+                            <Intent>Master Ticker</Intent>
+                        </Attribute>
+                        <Attribute Name="realtimeActivelyTraded" Index="23" Type="Boolean">
+                            <Intent>Actively traded</Intent>
+                        </Attribute>
+                        <Attribute Name="isRolled" Index="24" Type="Boolean" Optional="True">
+                            <Intent>indicates whether or not it is a current instrument.  if isRolled=false then it is current, if isRolled=true then it is not current</Intent>
+                        </Attribute>
+                        <Attribute Name="MIC" Index="25" Type="Alpha" Size="10" Optional="True">
+                            <Intent>MIC</Intent>
+                        </Attribute>
+                        <Attribute Name="instrumentProxySymbol" Index="26" Type="Alpha" Size="16" Optional="True">
+                            <Intent>instrumentProxySymbol</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="key type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="12" Type="Node" Intent="1 if future price is inverted from spot price" LinkName="inverted" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="13" Type="Node" Intent="contractSize type" LinkName="contractSize" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="19" Type="Node" LinkName="instrument_proxy_id" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentMasterId" Index="3" Type="Node" Intent="Instrument MasterID" LinkName="instrumentMasterId" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="11" Type="Node" Intent="Last Trade Date" LinkName="lastTradeDate" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="15" Type="Node" Intent="model point value" LinkName="modelPointValue" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="16" Type="Node" Intent="model Price" LinkName="modelPrice" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="Min Price Increment" LinkName="minPriceIncrement" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="Min Std Qty Increment" LinkName="minStdQtyIncrement" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentMasterConfig" Index="18" Type="Node" Intent="Instrument Master Config" LinkName="config" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentDefinition_Type_Specific_Union" Index="17" Type="Node" Intent="instrument type specific" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="14" Type="Node" Intent="contractRatio type" LinkName="contractRatio" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="20" Type="Node" Intent="instrument traded in" LinkName="pnlCurrencyId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="21" Type="Node" Intent="full point value" LinkName="fullPointValue"/>
+                        <Object Name="double" Index="22" Type="Node" Intent="lt mult" LinkName="ltmult"/>
+                        <Object Name="int32_t" Index="19" Type="Node" LinkName="exchange_id" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ExecutionModelPositionConfig" MessageType="None">
+                    <Intent>ExecutionModelPositionConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="7" Type="Alpha" Size="1">
+                            <Intent>enabled flag</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="maxPosition type" LinkName="maxPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="maxNetLoss type" LinkName="maxNetLoss" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="maxGrossPosition type" LinkName="maxGrossPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="maxWorkingPosition type" LinkName="maxWorkingPosition" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Term" MessageType="None">
+                    <Intent>TermRequest type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrument Key" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="termID type" LinkName="termID" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint64_t" Index="3" Type="Node" Intent="ns since epoch UTC" LinkName="time" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PackedTerm" MessageType="None">
+                    <Intent>PackedTerm type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="uint8_t" Index="1" Type="Node" Intent="packed size type" LinkName="packed_size" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="values type" LinkName="values" MinCount="30" MaxCount="30"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Ticket" MessageType="None">
+                    <Intent>CTS Ticket</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>unique ticket key</Intent>
+                        </Attribute>
+                        <Attribute Name="instrument" Index="6" Type="Alpha" Size="16">
+                            <Intent>traded instrument</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="10" Type="Side">
+                            <Intent>ticket side</Intent>
+                        </Attribute>
+                        <Attribute Name="timeInForce" Index="11" Type="TimeInForce">
+                            <Intent>ticket side</Intent>
+                        </Attribute>
+                        <Attribute Name="orderType" Index="12" Type="OrderType">
+                            <Intent>ticket side</Intent>
+                        </Attribute>
+                        <Attribute Name="securityID" Index="15" Type="Alpha" Size="16">
+                            <Intent>securityID type</Intent>
+                        </Attribute>
+                        <Attribute Name="algoName" Index="17" Type="Alpha" Size="64">
+                            <Intent>algoName type</Intent>
+                        </Attribute>
+                        <Attribute Name="accountAllocation" Index="18" Type="Alpha" Size="2048">
+                            <Intent>accountAllocation type</Intent>
+                        </Attribute>
+                        <Attribute Name="isShort" Index="27" Type="Boolean" Optional="True">
+                            <Intent>shorting logic needs to be pefromed for Stocks.</Intent>
+                        </Attribute>
+                        <Attribute Name="urgency" Index="28" Type="Urgency" Optional="True">
+                            <Intent>ticket urgency</Intent>
+                        </Attribute>
+                        <Attribute Name="type" Type="TicketType"/>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="2" Type="Node" Intent="beginTime type" LinkName="beginTime" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="3" Type="Node" Intent="endTime type" LinkName="endTime" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="prePrice type" LinkName="prePrice" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="amount type" LinkName="amount" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="7" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="8" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="AccountId" Index="9" Type="Node" Intent="pb id type" LinkName="accountId" MinCount="1" MaxCount="1"/>
+                        <Object Name="OrderAttributes" Index="13" Type="Node" Intent="orderAttributes type" LinkName="orderAttributes" MinCount="1" MaxCount="1"/>
+                        <Object Name="OrderState" Index="14" Type="Node" Intent="orderState type" LinkName="orderState" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="16" Type="Node" Intent="pipelineTicketID type" LinkName="pipelineTicketID" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="19" Type="Node" Intent="algorithmParamsDocumentID type" LinkName="algorithmParamsDocumentID" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="20" Type="Node" Intent="hardEndTime type" LinkName="hardEndTime" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="21" Type="Node" Intent="alertMinutes type" LinkName="alertMinutes" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="22" Type="Node" Intent="pipeline RoundTurnID" LinkName="pipelineRoundTurnID" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="24" Type="Node" Intent="strategy key" LinkName="strategyModelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="25" Type="Node" Intent="limit price for ticket" LinkName="limitPrice" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="26" Type="Node" Intent="ticket destination ecn" LinkName="destinationEcnKey"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="GuiHeader" MessageType="None">
+                    <Intent>GuiHeader</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="Header" Index="2" Type="Node" Intent="header" LinkName="header"/>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="size type" LinkName="size" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="RFE" MessageType="None">
+                    <Intent>RFE type</Intent>
+                    <Attributes>
+                        <Attribute Name="clientOrderId" Index="1" Type="Alpha" Size="64">
+                            <Intent>Client order id</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="8" Type="Side">
+                            <Intent>Side enum type</Intent>
+                        </Attribute>
+                        <Attribute Name="timeInForce" Index="9" Type="TimeInForce">
+                            <Intent>timeInForce type</Intent>
+                        </Attribute>
+                        <Attribute Name="orderType" Index="10" Type="OrderType">
+                            <Intent>orderType type</Intent>
+                        </Attribute>
+                        <Attribute Name="clientID" Index="18" Type="Alpha" Size="32">
+                            <Intent>clientID type</Intent>
+                        </Attribute>
+                        <Attribute Name="valueDate" Index="20" Type="Alpha" Size="9">
+                            <Intent>valueDate type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="2" Type="Node" Intent="ticket key type" LinkName="ticketKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint64_t" Index="3" Type="Node" Intent="quote key type" LinkName="quoteKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="4" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="maxAmount type" LinkName="maxAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="minAmount type" LinkName="minAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="7" Type="Node" Intent="price type" LinkName="price" MinCount="1" MaxCount="1"/>
+                        <Object Name="OrderAttributes" Index="11" Type="Node" Intent="orderAttributes type" LinkName="orderAttributes" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="12" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="13" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="14" Type="Node" Intent="accountKey type" LinkName="accountKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="15" Type="Node" Intent="streamKey type" LinkName="streamKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="16" Type="Node" Intent="ecn type" LinkName="ecn" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="17" Type="Node" Intent="priceID type" LinkName="priceID" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="19" Type="Node" Intent="trade date" LinkName="tradeDate" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ProblemOrder" MessageType="None">
+                    <Intent>message sent to gui for a problem order</Intent>
+                    <Attributes>
+                        <Attribute Name="error" Index="3" Type="Alpha" Size="2048">
+                            <Intent>error type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Order" Index="1" Type="Node" Intent="order type" LinkName="order" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="handled type" LinkName="handled" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="DirectCrossResponse" MessageType="None">
+                    <Intent>cross response sent directly from strategy to algo, bypassing server</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="CrossResponse" Index="1" Type="Node" Intent="cross response" LinkName="response" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="DirectCrossRequest" MessageType="None">
+                    <Intent>cross request sent directly from strategy to algo, bypassing server</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="CrossRequest" Index="1" Type="Node" Intent="cross request" LinkName="request" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Allocated_Execution" MessageType="None">
+                    <Intent>message sent to gui for a problem order</Intent>
+                    <Attributes>
+                        <Attribute Name="allocation" Index="2" Type="Alpha" Size="2048">
+                            <Intent>allocation</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Execution" Index="1" Type="Node" Intent="exeuction type" LinkName="ex" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Allocated_CrossResponse" MessageType="None">
+                    <Intent>cross response with allocations</Intent>
+                    <Attributes>
+                        <Attribute Name="accountAllocation" Index="2" Type="Alpha" Size="2048">
+                            <Intent>allocation</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="DirectCrossResponse" Index="1" Type="Node" Intent="cross response" LinkName="response" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ProblemOrderHandled" MessageType="None">
+                    <Intent>ProblemOrderHandled type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="OrderId" Index="1" Type="Node" Intent="exeuction type" LinkName="orderId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Order_Status" MessageType="None">
+                    <Intent>Order status type</Intent>
+                    <Attributes>
+                        <Attribute Name="orderKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>orderKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="ticketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="7" Type="Side">
+                            <Intent>side type enum</Intent>
+                        </Attribute>
+                        <Attribute Name="timeInForce" Index="8" Type="TimeInForce">
+                            <Intent>timeInForce type</Intent>
+                        </Attribute>
+                        <Attribute Name="orderType" Index="9" Type="OrderType">
+                            <Intent>orderType type</Intent>
+                        </Attribute>
+                        <Attribute Name="tradeID" Index="11" Type="Alpha" Size="128">
+                            <Intent>tradeID type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="double" Index="3" Type="Node" Intent="amountFilled type" LinkName="amountFilled" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="amountLeft type" LinkName="amountLeft" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="5" Type="Node" Intent="instrument type" LinkName="instrument" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="6" Type="Node" Intent="ecn type" LinkName="ecn" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint8_t" Index="10" Type="Node" Intent="reserved type" LinkName="reserved" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="12" Type="Node" Intent="accountKey type" LinkName="accountKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="13" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketCross" MessageType="None">
+                    <Intent>Ticket Cross type</Intent>
+                    <Attributes>
+                        <Attribute Name="account" Index="4" Type="Alpha" Size="32">
+                            <Intent>account type</Intent>
+                        </Attribute>
+                        <Attribute Name="ticketKey1" Index="7" Type="Alpha" Size="64">
+                            <Intent>ticketKey1 type</Intent>
+                        </Attribute>
+                        <Attribute Name="ticketKey2" Index="8" Type="Alpha" Size="64">
+                            <Intent>ticketKey2 type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="price type" LinkName="price" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="quantity type" LinkName="quantity" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="quantity type" LinkName="ticket1AmountLeft" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="quantity type" LinkName="ticket2AmountLeft" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Ticket_Execution" MessageType="None">
+                    <Intent>Ticket_Execution type</Intent>
+                    <Attributes>
+                        <Attribute Name="account" Index="5" Type="Alpha" Size="2048">
+                            <Intent>account type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Execution" Index="1" Type="Node" Intent="ex type" LinkName="ex" MinCount="1" MaxCount="1"/>
+                        <Object Name="Ticket" Index="2" Type="Node" Intent="ticket type" LinkName="ticket" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="executedAmount type" LinkName="executedAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="amountLeft type" LinkName="amountLeft" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="unorderedAmount type" LinkName="unorderedAmount" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketCancel" MessageType="None">
+                    <Intent>TicketCancel type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="replaceTicketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>replaceTicketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="reason" Index="5" Type="Alpha" Size="256">
+                            <Intent>reason type</Intent>
+                        </Attribute>
+                        <Attribute Name="cancelReason" Index="6" Type="CancelReason"/>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="3" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="4" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketForceCancel" MessageType="None">
+                    <Intent>TicketForceCancel type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="3" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketPause" MessageType="None">
+                    <Intent>TicketPause type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="cancelOrders" Index="4" Type="Boolean" Optional="True">
+                            <Intent>true if need to cancel orders</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="3" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketResume" MessageType="None">
+                    <Intent>TicketResume type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="3" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketPipelineCancel" MessageType="None">
+                    <Intent>TicketPipelineCancel type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="TicketCancel" Index="1" Type="Node" Intent="cancel type" LinkName="cancel" MinCount="1" MaxCount="1"/>
+                        <Object Name="Ticket" Index="2" Type="Node" Intent="ticket type" LinkName="ticket" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketPosition" MessageType="None">
+                    <Intent>TicketPosition type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="7" Type="Side">
+                            <Intent>side enum type</Intent>
+                        </Attribute>
+                        <Attribute Name="orderStatus" Index="9" Type="OrderStatus">
+                            <Intent>orderStatus type</Intent>
+                        </Attribute>
+                        <Attribute Name="accountAllocation" Index="10" Type="Alpha" Size="2048">
+                            <Intent>accountAllocation type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="double" Index="2" Type="Node" Intent="position type" LinkName="position" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="maxAmount type" LinkName="maxAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="workingAmount type" LinkName="workingAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="5" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="6" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="OrderAttributes" Index="8" Type="Node" Intent="orderAttributes type" LinkName="orderAttributes" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="11" Type="Node" Intent="endTime type" LinkName="endTime" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketReject" MessageType="None">
+                    <Intent>TicketReject type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="reason" Index="4" Type="Alpha" Size="256">
+                            <Intent>reason type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="3" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketStatusUpdate" MessageType="None">
+                    <Intent>Ticket Status update type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="reason" Index="8" Type="Alpha" Size="256">
+                            <Intent>reason type</Intent>
+                        </Attribute>
+                        <Attribute Name="ticketStatus" Index="2" Type="TicketStatus"/>
+                    </Attributes>
+                    <References>
+                        <Object Name="uint64_t" Index="1" Type="Node" LinkName="pipelineTicketID" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" LinkName="totalAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="7" Type="Node" LinkName="crossedAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="filled amount" LinkName="filledAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="working amount" LinkName="workingAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="inactive amount" LinkName="inactiveAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="8" Type="Node" LinkName="lastCrossedAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="9" Type="Node" Intent="cross price" LinkName="price"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketPipelineReject" MessageType="None">
+                    <Intent>TicketPipelineReject type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="TicketReject" Index="1" Type="Node" Intent="reject type" LinkName="reject" MinCount="1" MaxCount="1"/>
+                        <Object Name="Ticket" Index="2" Type="Node" Intent="ticket type" LinkName="ticket" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketCombine" MessageType="None">
+                    <Intent>TicketCombine type</Intent>
+                    <Attributes>
+                        <Attribute Name="absorbedTicketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>absorbedTicketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="absorbingTicketKey" Index="3" Type="Alpha" Size="64">
+                            <Intent>absorbingTicketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Ticket" Index="1" Type="Node" Intent="newTicket type" LinkName="newTicket" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Position" MessageType="None">
+                    <Intent>position type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="double" Index="1" Type="Node" Intent="netPosition type" LinkName="netPosition" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="grossBuys type" LinkName="grossBuys" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="grossSells type" LinkName="grossSells" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="workingBuys type" LinkName="workingBuys" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="workingSells type" LinkName="workingSells" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="6" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="STP" MessageType="None">
+                    <Intent>STP type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="execId" Index="3" Type="ExecId">
+                            <Intent>tradeID type</Intent>
+                        </Attribute>
+                        <Attribute Name="stpStatus" Index="10" Type="STPStatus">
+                            <Intent>stpStatus type</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="11" Type="Side">
+                            <Intent>Side enum type</Intent>
+                        </Attribute>
+                        <Attribute Name="accountAllocation" Index="15" Type="Alpha" Size="2048">
+                            <Intent>accountAllocation type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="OrderId" Index="4" Type="Node" Intent="time type" LinkName="orderId" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="4" Type="Node" Intent="time type" LinkName="time" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="amountFilled type" LinkName="amountFilled" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="rate type" LinkName="rate" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="7" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="VenueId" Index="8" Type="Node" Intent="ecnKey type" LinkName="venueId" MinCount="1" MaxCount="1"/>
+                        <Object Name="AccountId" Index="9" Type="Node" Intent="pbKey type" LinkName="accountId" MinCount="1" MaxCount="1"/>
+                        <Object Name="OrderAttributes" Index="12" Type="Node" Intent="orderAttributes type" LinkName="orderAttributes" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="13" Type="Node" Intent="execid type" LinkName="tradeDate" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="14" Type="Node" Intent="execid type" LinkName="valueDate" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="CrossRequest" MessageType="None">
+                    <Intent>CrossRequest type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="srcTicketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>srcTicketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="account" Index="6" Type="Alpha" Size="256">
+                            <Intent>account type</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="9" Type="Side">
+                            <Intent>side enum type</Intent>
+                        </Attribute>
+                        <Attribute Name="clientID" Index="11" Type="Alpha" Size="64">
+                            <Intent>string for cross requestors reference</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="3" Type="Node" Intent="crossId type" LinkName="crossId" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="4" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="5" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="7" Type="Node" Intent="amount type" LinkName="amount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="8" Type="Node" Intent="rate type" LinkName="rate" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="10" Type="Node" Intent="min amount that can be crossed, if minAmount==amount, only a full cross is acceptable" LinkName="minAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="12" Type="Node" Intent="target model key" LinkName="targetModelKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="OrderAttributes" Index="13" Type="Node" Intent="orderAttributes type" LinkName="orderAttributes" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="CrossResponse" MessageType="None">
+                    <Intent>CrossResponse type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="CrossRequest" Index="1" Type="Node" Intent="request type" LinkName="request" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="filledAmount type" LinkName="filledAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="filledRate type" LinkName="filledRate" MinCount="1" MaxCount="1"/>
+                        <Object Name="bit_bool" Index="4" Type="Node" Intent="indicate if cross failed because target does not exists" LinkName="noTargetTicket"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="CrossResult" MessageType="None">
+                    <Intent>CrossResult type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="srcTicketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>srcTicketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="account" Index="6" Type="Alpha" Size="256">
+                            <Intent>account type</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="9" Type="Side">
+                            <Intent>Side enum type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="3" Type="Node" Intent="crossId type" LinkName="crossId" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="4" Type="Node" Intent="instrumentKey type" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ModelId" Index="5" Type="Node" Intent="modelKey type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="7" Type="Node" Intent="amount type" LinkName="amount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="8" Type="Node" Intent="rate type" LinkName="price" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="CombineRequest" MessageType="None">
+                    <Intent>CombineRequest type</Intent>
+                    <Attributes>
+                        <Attribute Name="absorbedTicketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>absorbedTicketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="absorbingTicketKey" Index="3" Type="Alpha" Size="64">
+                            <Intent>absorbingTicketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Ticket" Index="1" Type="Node" Intent="newTicket type" LinkName="newTicket" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="4" Type="Node" Intent="combineId type" LinkName="combineId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="CombineResponse" MessageType="None">
+                    <Intent>CombineResponse type</Intent>
+                    <Attributes>
+                        <Attribute Name="absorbedTicketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>absorbedTicketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="absorbingTicketKey" Index="3" Type="Alpha" Size="64">
+                            <Intent>absorbingTicketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Ticket" Index="1" Type="Node" Intent="newTicket type" LinkName="newTicket" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="absorbingAmount type" LinkName="absorbingAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="absorbedAmount type" LinkName="absorbedAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="6" Type="Node" Intent="combineId type" LinkName="combineId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PipelineCombineResult" MessageType="None">
+                    <Intent>PipelineCombineResult type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="2" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                        <Attribute Name="absorbedTicketKey" Index="3" Type="Alpha" Size="64">
+                            <Intent>absorbedTicketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="combineId type" LinkName="combineId" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="4" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="new total ticket amount" LinkName="amount" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="added amount" LinkName="absorbedAmount" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="7" Type="Node" Intent="beginTime type" LinkName="beginTime" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="8" Type="Node" Intent="new endTime (result of a end time adjustment)" LinkName="endTime" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="9" Type="Node" Intent="total number of Order records coming in with this request" LinkName="numOrders" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="10" Type="Node" Intent="total number of Execution records coming in with this request" LinkName="numExecutions" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="11" Type="Node" Intent="new hard endTime (result of a hard end time adjustment)" LinkName="hardEndTime" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IPCTicketCombine" MessageType="None">
+                    <Intent>IPCTicketCombine type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int64_t" Index="1" Type="Node" Intent="absorbedTicketKey type" LinkName="absorbedTicketKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="2" Type="Node" Intent="absorbingTicketKey type" LinkName="absorbingTicketKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="3" Type="Node" Intent="endTime type" LinkName="endTime" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IPCTradeRequest" MessageType="None">
+                    <Intent>IPCTradeRequest type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="strategyKey type" LinkName="strategyKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="3" Type="Node" Intent="programKey type" LinkName="programKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="4" Type="Node" Intent="time" LinkName="tradeDate" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="5" Type="Node" Intent="accountKey field" LinkName="accountKey"/>
+                        <Object Name="int32_t" Index="6" Type="Node" Intent="realtimeKey field" LinkName="realtimeKey"/>
+                        <Object Name="int32_t" Index="7" Type="Node" Intent="systemClassKey field" LinkName="systemClassKey"/>
+                        <Object Name="bit_bool" Index="8" Type="Node" Intent="create trade in all accounts" LinkName="allAccounts"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IPCTicketRequest" MessageType="None">
+                    <Intent>IPCTicketRequest type</Intent>
+                    <Attributes>
+                        <Attribute Name="isBuy" Index="5" Type="Alpha" Size="1">
+                            <Intent>isBuy type</Intent>
+                        </Attribute>
+                        <Attribute Name="isTerms" Index="6" Type="Alpha" Size="1">
+                            <Intent>isTerms type</Intent>
+                        </Attribute>
+                        <Attribute Name="transactionDestination" Index="7" Type="Alpha" Size="64">
+                            <Intent>transaction destination of the ticket</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="strategyKey type" LinkName="strategyKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="3" Type="Node" Intent="roundturnKey type" LinkName="roundturnKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="amount type" LinkName="amount" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IPCTradeResponse" MessageType="None">
+                    <Intent>IPCTradeResponse type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="IPCTradeRequest" Index="1" Type="Node" Intent="req type" LinkName="req" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="2" Type="Node" Intent="roundturnID type" LinkName="roundturnID" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IPCTicketResponse" MessageType="None">
+                    <Intent>IPCTicketResponse type</Intent>
+                    <Attributes>
+                        <Attribute Name="accountAllocation" Index="4" Type="Alpha" Size="2048">
+                            <Intent>account alloc</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="1" Type="Node" Intent="ticketID type" LinkName="ticketID" MinCount="1" MaxCount="1"/>
+                        <Object Name="IPCTicketRequest" Index="2" Type="Node" Intent="req type" LinkName="req" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="amount" LinkName="amount" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="5" Type="Node" Intent="tradedate" LinkName="tradeDate" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="6" Type="Node" Intent="valuedate" LinkName="valueDate" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="DefinitionHeader" MessageType="None">
+                    <Intent>DefinitionHeader type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="destinationNode type" LinkName="destinationNode" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="numDefs type" LinkName="numDefs" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ForwardInstrumentDefinition" MessageType="None">
+                    <Intent>ForwardInstrumentDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="32">
+                            <Intent>CCY/CCY_YYYYMMD</Intent>
+                        </Attribute>
+                        <Attribute Name="settleDate" Index="4" Type="Alpha" Size="8">
+                            <Intent>settleDate type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="3" Type="Node" Intent="spotInstrumentID type" LinkName="spotInstrumentID" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="NodeDefinition" MessageType="None">
+                    <Intent>NodeDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="nodeType" Index="2" Type="Alpha" Size="64">
+                            <Intent>nodeType type</Intent>
+                        </Attribute>
+                        <Attribute Name="nodeInstance" Index="3" Type="Alpha" Size="64">
+                            <Intent>nodeInstance type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StreamDefinition" MessageType="None">
+                    <Intent>StreamDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="64">
+                            <Intent>Def name type</Intent>
+                        </Attribute>
+                        <Attribute Name="streamType" Index="4" Type="StreamType">
+                            <Intent>streamType type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="3" Type="Node" Intent="ecnKey type" LinkName="ecnKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="5" Type="Node" Intent="port type" LinkName="port" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TermDefinition" MessageType="None">
+                    <Intent>TermDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="description" Index="2" Type="Alpha" Size="500">
+                            <Intent>description type</Intent>
+                        </Attribute>
+                        <Attribute Name="enabled" Index="4" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="3" Type="Node" Intent="port type" LinkName="port" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="threshold type" LinkName="threshold" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="6" Type="Node" Intent="listening type" LinkName="listening_to" MinCount="20" MaxCount="20"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IndicatorDefinition" MessageType="None">
+                    <Intent>IndicatorDefinition</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="128">
+                            <Intent>Def name type</Intent>
+                        </Attribute>
+                        <Attribute Name="panel_name" Index="3" Type="Alpha" Size="16">
+                            <Intent>panel_name type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ModelDefinition" MessageType="None">
+                    <Intent>ModelDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="64">
+                            <Intent>Def name type</Intent>
+                        </Attribute>
+                        <Attribute Name="soname" Index="3" Type="Alpha" Size="256">
+                            <Intent>soname type</Intent>
+                        </Attribute>
+                        <Attribute Name="type" Index="4" Type="ModelType">
+                            <Intent>Exec model type</Intent>
+                        </Attribute>
+                        <Attribute Name="systemClassName" Index="6" Type="Alpha" Size="50" Optional="True">
+                            <Intent>RealtimeSystemClassName used to determine SystemClassId</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="ModelId" Index="1" Type="Node" Intent="key type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="ProgramId" Index="5" Type="Node" Intent="key type" LinkName="programId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StrategyDefinition" MessageType="None">
+                    <Intent>StrategyDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="64">
+                            <Intent>def name type</Intent>
+                        </Attribute>
+                        <Attribute Name="soname" Index="3" Type="Alpha" Size="256">
+                            <Intent>soname type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="VenueDefinition" MessageType="None">
+                    <Intent>VenueDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="64">
+                            <Intent>def name type</Intent>
+                        </Attribute>
+                        <Attribute Name="locationName" Index="4" Type="Alpha" Size="64">
+                            <Intent>locationName type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="VenueId" Index="1" Type="Node" Intent="key type" LinkName="venueId" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="3" Type="Node" Intent="key type" LinkName="locationKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="dollarsPerMill type" LinkName="dollarsPerMill" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="6" Type="Node" Intent="in millis" LinkName="mql" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ECNConfig" MessageType="None">
+                    <Intent>ECNConfig type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="IOCRejectRateThreshold type" LinkName="IOCRejectRateThreshold" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="avgIOCFillLatencyThreshold" LinkName="avgIOCFillLatencyThreshold" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="avgIOCRejectLatencyThreshold" LinkName="avgIOCRejectLatencyThreshold" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ECNIocStats" MessageType="None">
+                    <Intent>ECNIocStats type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="numIOCOrders type" LinkName="numIOCOrders" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="numIOCFills type" LinkName="numIOCFills" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="avgIOCFillLatency type" LinkName="avgIOCFillLatency" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="avgIOCRejectLatency type" LinkName="avgIOCRejectLatency" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="rejectRate type" LinkName="rejectRate" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PBDefinition" MessageType="None">
+                    <Intent>PBDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="2" Type="Alpha" Size="32">
+                            <Intent>def name type</Intent>
+                        </Attribute>
+                        <Attribute Name="houseCode" Index="7" Type="Alpha" Size="32">
+                            <Intent>houseCode type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="AccountId" Index="1" Type="Node" Intent="key type" LinkName="accountId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="fixedTicketFee type" LinkName="fixedTicketFee" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="dollarsPerMillTicketFee type" LinkName="dollarsPerMillTicketFee" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="minTicketFee type" LinkName="minTicketFee" MinCount="1" MaxCount="1"/>
+                        <Object Name="VenueId" Index="6" Type="Node" Intent="ecnKey associated with PB" LinkName="venueId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketModification" MessageType="None">
+                    <Intent>TicketModification type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="double" Index="2" Type="Node" Intent="price" LinkName="price" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="amountFilled type" LinkName="amountFilled" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ECNAccountDefinition" MessageType="None">
+                    <Intent>ECNAccountDefinition type</Intent>
+                    <Attributes>
+                        <Attribute Name="name" Index="3" Type="Alpha" Size="32">
+                            <Intent>def name type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="pbKey type" LinkName="pbKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="2" Type="Node" Intent="ecnKey type" LinkName="ecnKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Version" MessageType="None">
+                    <Intent>Version type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="uint16_t" Index="1" Type="Node" Intent="major type" LinkName="major" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint16_t" Index="2" Type="Node" Intent="minor type" LinkName="minor" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="NodeLogon" MessageType="None">
+                    <Intent>NodeLogon type</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="1" Type="Alpha" Size="64">
+                            <Intent>node logon type</Intent>
+                        </Attribute>
+                        <Attribute Name="instance" Index="2" Type="Alpha" Size="64">
+                            <Intent>instance type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Version" Index="3" Type="Node" Intent="version type" LinkName="version" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint32_t" Index="4" Type="Node" Intent="instance id" LinkName="instanceId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="NodeLogonResponse" MessageType="None">
+                    <Intent>NodeLogonResponse type</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="2" Type="Alpha" Size="64">
+                            <Intent>response type</Intent>
+                        </Attribute>
+                        <Attribute Name="instance" Index="3" Type="Alpha" Size="64">
+                            <Intent>instance type</Intent>
+                        </Attribute>
+                        <Attribute Name="reason" Index="4" Type="Alpha" Size="256">
+                            <Intent>reason type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint32_t" Index="4" Type="Node" Intent="instance id" LinkName="instanceId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="NodeStatus" MessageType="None">
+                    <Intent>NodeStatus type</Intent>
+                    <Attributes>
+                        <Attribute Name="connected" Index="2" Type="Alpha" Size="1">
+                            <Intent>connected type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentConfig" MessageType="None">
+                    <Intent>InstrumentConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="2" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="maxExecution type" LinkName="maxExecution" MinCount="1" MaxCount="1"/>
+                        <Object Name="int64_t" Index="4" Type="Node" Intent="maxExecutionsPerSecond type" LinkName="maxExecutionsPerSecond" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="5" Type="Node" Intent="tdate type" LinkName="tradeDate" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="6" Type="Node" Intent="vdate type" LinkName="valueDate" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="MarketMakingInstrumentConfig" MessageType="None">
+                    <Intent>MarketMakingInstrumentConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="expiryDate" Index="4" Type="Alpha" Size="8">
+                            <Intent>expiryDate type</Intent>
+                        </Attribute>
+                        <Attribute Name="enabled" Index="9" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                        <Attribute Name="interest_stream_enabled" Index="10" Type="Alpha" Size="1">
+                            <Intent>interest_stream_enabled type</Intent>
+                        </Attribute>
+                        <Attribute Name="big_stream_enabled" Index="11" Type="Alpha" Size="1">
+                            <Intent>big_stream_enabled type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="futureNumber type" LinkName="futureNumber" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="spread type" LinkName="spread" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="skew type" LinkName="skew" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="interest_spread type" LinkName="interest_spread" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="7" Type="Node" Intent="interest_skew type" LinkName="interest_skew" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="8" Type="Node" Intent="big_skew type" LinkName="big_skew" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentPnl" MessageType="None">
+                    <Intent>InstrumentPnl type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="spot instrument" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="position instrument" LinkName="position" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="realizedPnl instrument" LinkName="realizedPnl" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="unrealizedPnl instrument" LinkName="unrealizedPnl" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ModelPnl" MessageType="None">
+                    <Intent>ModelPnl type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="position type" LinkName="position" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="realizedPnl type" LinkName="realizedPnl" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="4" Type="Node" Intent="unrealizedPnl type" LinkName="unrealizedPnl" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ResetModelPosition" MessageType="None">
+                    <Intent>ResetModelPosition type</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrumentKey type" LinkName="instrumentKey" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="modelKey type" LinkName="modelKey" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="NodeConfig" MessageType="None">
+                    <Intent>NodeConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="2" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TermConfig" MessageType="None">
+                    <Intent>TermConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="2" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                        <Attribute Name="description" Index="4" Type="Alpha" Size="256">
+                            <Intent>description type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="StreamDefinition" Index="3" Type="Node" Intent="listening_to type" LinkName="listening_to" MinCount="20" MaxCount="20"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="IndicatorConfig" MessageType="None">
+                    <Intent>IndicatorConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="group_name" Index="2" Type="Alpha" Size="8">
+                            <Intent>group_name type</Intent>
+                        </Attribute>
+                        <Attribute Name="panel_name" Index="3" Type="Alpha" Size="16">
+                            <Intent>panel_name type</Intent>
+                        </Attribute>
+                        <Attribute Name="description" Index="4" Type="Alpha" Size="128">
+                            <Intent>description type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                        <Object Name="uint8_t" Index="5" Type="Node" Intent="what to do if an indicator is missing from the database: ignore, warn or die" LinkName="missing" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ExecutionModelConfig" MessageType="None">
+                    <Intent>ExecutionModelConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="2" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                        <Attribute Name="streams" Index="3" Type="Alpha" Size="256">
+                            <Intent>streams type</Intent>
+                        </Attribute>
+                        <Attribute Name="ecns" Index="4" Type="Alpha" Size="256">
+                            <Intent>config ecns type</Intent>
+                        </Attribute>
+                        <Attribute Name="serverToKEBypass" Index="6" Type="Boolean" Optional="True">
+                            <Intent>0 (false) by default which means that by default exec reports will be submitted to KE via Server. We will set this flag to 1 (true) for CTS Aiming Pegger only; CFX and Strategies will continue [by default] to use Server to submit fills back to KE.</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="ModelId" Index="1" Type="Node" Intent="key type" LinkName="modelId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="maxNetLoss type" LinkName="maxNetLoss" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StrategyConfig" MessageType="None">
+                    <Intent>StrategyConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="2" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="StreamConfig" MessageType="None">
+                    <Intent>StreamConfig type</Intent>
+                    <Attributes>
+                        <Attribute Name="enabled" Index="2" Type="Alpha" Size="1">
+                            <Intent>enabled type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="key type" LinkName="key" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Price" CPPObjectType="1" MessageType="None">
+                    <Intent>struct Price</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="2" Type="Type" Optional="True">
+                            <Intent>type enum field</Intent>
+                        </Attribute>
+                        <Attribute Name="subType" Index="3" Type="SubType" Optional="True">
+                            <Intent>SubType enum type</Intent>
+                        </Attribute>
+                        <Attribute Name="tradingSession" Index="4" Type="TradingSession" Optional="True">
+                            <Intent>Trading session enum type</Intent>
+                        </Attribute>
+                        <Attribute Name="specificType" Index="5" Type="SpecificPriceType" Optional="True">
+                            <Intent>SpecificPriceType field</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="1" Type="Node" Intent="time" LinkName="time"/>
+                        <Object Name="uint8_t" Index="6" Type="Node" Intent="reserved type" LinkName="reserved1"/>
+                        <Object Name="uint16_t" Index="7" Type="Node" Intent="reserved type" LinkName="reserved2"/>
+                        <Object Name="double" Index="9" Type="Node" Intent="price field" LinkName="price"/>
+                        <Object Name="double" Index="10" Type="Node" Intent="amount field" LinkName="amount"/>
+                        <Object Name="Price_Anonymous_Union_1" Index="8" Type="Node" Intent="anonymous_union_1 type field" LinkName="anonymous_union_1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Price_Anonymous_Union_1" CPPObjectType="3" MessageType="None">
+                    <Intent>Anonymous union to be used in struct price struct</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="uint64_t" Index="1" Type="Node" Intent="order id field" LinkName="orderID"/>
+                        <Object Name="Price_Anonymous_Struct_1" Index="2" Type="Node" Intent="anonymous_struct_1 type field" LinkName="anonymous_struct_1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Price_Anonymous_Struct_1" CPPObjectType="4" MessageType="None">
+                    <Intent>Anymous struct to be used in anonymous union for Price struct</Intent>
+                    <Attributes>
+                        <Attribute Name="reserved3" Index="4" Type="Integer" Size="14" SizeInBits="1" MinValue="0" Optional="True">
+                            <Intent>uint16_t : 14 todo</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="uint16_t" Index="1" Type="Node" Intent="level field" LinkName="level"/>
+                        <Object Name="bit_bool" Index="2" Type="Node" Intent="end of block field" LinkName="endOfBlock"/>
+                        <Object Name="bit_bool" Index="3" Type="Node" Intent="implied field" LinkName="implied"/>
+                        <Object Name="uint32_t" Index="5" Type="Node" Intent="orderCount field" LinkName="orderCount"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="OrderVariant" CPPObjectType="1" MessageType="None">
+                    <Intent>OrderVariant type</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="1" Type="OrderVariantType" Optional="True">
+                            <Intent>OrderVariantType enum type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="OrderVariant_Anonymous_Union_1" Index="2" Type="Node" Intent="OrderVariant_Anonymous_Union_1 type" LinkName="anonymous_union_1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="OrderVariant_Anonymous_Union_1" CPPObjectType="3" MessageType="None">
+                    <Intent>Anonymous union inside OrderVariant struct</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="Order" Index="1" Type="Node" Intent="newOrder type" LinkName="newOrder"/>
+                        <Object Name="CancelReplace" Index="2" Type="Node" Intent="CancelReplace enum type" LinkName="modifyOrder"/>
+                        <Object Name="Cancel" Index="3" Type="Node" Intent="Cancel enum type" LinkName="cancelOrder"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="AnnouncementRequest" MessageType="None">
+                    <Intent>base announcement request structure used to subscribe to announcements</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Type="AnnouncementType">
+                            <Intent>type of announcement to subscribe to</Intent>
+                        </Attribute>
+                        <Attribute Name="payload" Index="1" Type="Alpha" Size="254">
+                            <Intent>payload of the request that can be cast into speicific request like RollAnnouncementRequest</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentCurrency" MessageType="None">
+                    <Intent>Currency specific fields in Instrument Definiton</Intent>
+                    <Attributes>
+                        <Attribute Name="subType" Index="3" Type="InstrumentSubtype" Optional="True">
+                            <Intent>Currency Sub type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="Pip Scale" LinkName="pipScale" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="deprecated per Austin" LinkName="settlesTPlus" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentFuture" MessageType="None">
+                    <Intent>Future specific fields in InstrumentDefinition</Intent>
+                    <Attributes>
+                        <Attribute Name="syntheticMethod" Index="7" Type="SyntheticMethod" Optional="True">
+                            <Intent>synthetic method (e.g. spread)</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="Outright Depth" LinkName="outrightDepth" MinCount="1" MaxCount="1"/>
+                        <Object Name="int16_t" Index="2" Type="Node" Intent="Implied Depth" LinkName="impliedDepth" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="5" Type="Node" Intent="used by CFX to do currency-to-future trading" LinkName="spotInstrumentID" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="6" Type="Node" Intent="used by CFX to do currency-to-future trading" LinkName="spotMultiplier" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentMasterConfig" MessageType="None">
+                    <Intent>Environment configuration for various services</Intent>
+                    <Attributes>
+                        <Attribute Name="mc_address" Index="1" Type="Alpha" Size="32">
+                            <Intent>mc address</Intent>
+                        </Attribute>
+                        <Attribute Name="secondary_mc_address" Index="2" Type="Alpha" Size="32">
+                            <Intent>secondary mc address</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentDefinition_Type_Specific_Union" CPPObjectType="3" MessageType="None">
+                    <Intent>Instrument Type specific fields</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentCurrency" Index="1" Type="Node" Intent="Currency specific fields" LinkName="currency" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentFuture" Index="2" Type="Node" Intent="Future specific fields" LinkName="future" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="ServerRequest" MessageType="None">
+                    <Intent>designed for nodes requiesting information from the Server</Intent>
+                    <Attributes>
+                        <Attribute Name="nodeName" Index="1" Type="Alpha" Size="64">
+                            <Intent>name of the node requesting information</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="type of the message requested" LinkName="messageType"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="TicketStatusNotification" MessageType="None">
+                    <Intent>TicketStatusUpdate type</Intent>
+                    <Attributes>
+                        <Attribute Name="ticketKey" Index="1" Type="Alpha" Size="64">
+                            <Intent>ticketKey type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int64_t" Index="2" Type="Node" Intent="beginTime type" LinkName="beginTime"/>
+                        <Object Name="int64_t" Index="3" Type="Node" Intent="endTime type" LinkName="endTime"/>
+                        <Object Name="OrderAttributes" Index="4" Type="Node" Intent="orderAttributes type" LinkName="orderAttributes" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="CurrencyBalanceUpdate" MessageType="None">
+                    <Intent>Currency balance update type</Intent>
+                    <Attributes>
+                        <Attribute Name="currencyName" Index="1" Type="Alpha" Size="4">
+                            <Intent>currency name type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="2" Type="Node" Intent="model key type" LinkName="modelKey"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="balance type" LinkName="balance"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="GatewayRequestCheckConnection" MessageType="None">
+                    <Intent>Request to gateway for state of the connection it maintains</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="GatewayState" MessageType="None">
+                    <Intent>Response from Gateway to FixEngine with current state of connection it maintains</Intent>
+                    <Attributes>
+                        <Attribute Name="ecn" Type="Alpha" Size="20">
+                            <Intent>Name of ecn</Intent>
+                        </Attribute>
+                        <Attribute Name="connected" Index="1" Type="Boolean">
+                            <Intent>State of connection (connected/disconnected)</Intent>
+                        </Attribute>
+                        <Attribute Name="senderCompId" Type="Alpha" Size="30" Optional="True">
+                            <Intent>.</Intent>
+                        </Attribute>
+                        <Attribute Name="targetCompId" Type="Alpha" Size="30" Optional="True">
+                            <Intent>.</Intent>
+                        </Attribute>
+                        <Attribute Name="host" Type="Alpha" Size="30" Optional="True">
+                            <Intent>.</Intent>
+                        </Attribute>
+                        <Attribute Name="state" Type="Alpha" Size="30" Optional="True">
+                            <Intent>.</Intent>
+                        </Attribute>
+                        <Attribute Name="error" Type="Alpha" Size="1024" Optional="True">
+                            <Intent>.</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Type="Node" Intent="." LinkName="port"/>
+                        <Object Name="int32_t" Type="Node" Intent="." LinkName="outSeqNum"/>
+                        <Object Name="int32_t" Type="Node" Intent="." LinkName="inSeqNum"/>
+                        <Object Name="VenueId" Type="Node" Intent="venue id" LinkName="venueId"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PortfolioPnl" MessageType="None">
+                    <Intent>This will be used to send portfolio pnl in CTS</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="key of portfolio" LinkName="portfolioKey"/>
+                        <Object Name="double" Index="2" Type="Node" Intent="realized pnl of portfolio" LinkName="realizedPnl"/>
+                        <Object Name="double" Index="3" Type="Node" Intent="unrealized pnl of portfolio" LinkName="unrealizedPnl"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentRollSchedule" MessageType="None">
+                    <Intent>contains roll information</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="uint64_t" Index="1" Type="Node" LinkName="instrumentId"/>
+                        <Object Name="uint64_t" Index="2" Type="Node" LinkName="beginTime"/>
+                        <Object Name="uint64_t" Index="3" Type="Node" LinkName="rollTime"/>
+                        <Object Name="uint64_t" Index="4" Type="Node" LinkName="lastTradeTime"/>
+                        <Object Name="uint64_t" Index="5" Type="Node" LinkName="nextInstrumentId"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="GatewayRequestConnectDisconnect" MessageType="None">
+                    <Intent>GatewayRequestConnectDisconnect</Intent>
+                    <Attributes>
+                        <Attribute Name="connect" Type="Boolean" Optional="True">
+                            <Intent>connect</Intent>
+                        </Attribute>
+                        <Attribute Name="reset" Type="Boolean" Optional="True">
+                            <Intent>reset</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="GatewayRequestSetSeqNum" MessageType="None">
+                    <Intent>GatewayRequestSetSeqNum</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="int64_t" Type="Node" Intent="in" LinkName="in"/>
+                        <Object Name="int64_t" Type="Node" Intent="out" LinkName="out"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="RecoveryReplyExecution" MessageType="None">
+                    <Intent>response from replay - a single execution message</Intent>
+                    <Attributes>
+                        <Attribute Name="type" Index="3" Type="RecoveryReplayType">
+                            <Intent>recovery replay type</Intent>
+                        </Attribute>
+                        <Attribute Name="requestor" Type="Alpha" Size="40">
+                            <Intent>receiver name</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="Execution" Index="4" Type="Node" Intent="xecution" LinkName="exec" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="id of request" LinkName="requestId" MinCount="1" MaxCount="1"/>
+                        <Object Name="VenueId" Index="2" Type="Node" Intent="venue id" LinkName="venueId"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="RecoveryRequestRefreshTickets" MessageType="None">
+                    <Intent>recovery request replay</Intent>
+                    <Attributes>
+                        <Attribute Name="requestor" Type="Alpha" Size="40">
+                            <Intent>requestor node name</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="id of request" LinkName="requestId" MinCount="1" MaxCount="1"/>
+                        <Object Name="int32_t" Index="2" Type="Node" Intent="number of ticket ids" LinkName="tickets_count" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="Echo" MessageType="None">
+                    <Intent>echo message</Intent>
+                    <Attributes>
+                        <Attribute Name="topic_name" Type="Alpha" Size="64" Optional="True">
+                            <Intent>topic name</Intent>
+                        </Attribute>
+                        <Attribute Name="is_publisher" Index="3" Type="Boolean" Optional="True">
+                            <Intent>is publisher</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="int16_t" Index="1" Type="Node" Intent="node key" LinkName="node_key"/>
+                        <Object Name="XTime" Index="2" Type="Node" Intent="time" LinkName="time"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="HeartBeat" MessageType="None">
+                    <Intent>heartbeat message</Intent>
+                    <Attributes>
+                        <Attribute Name="dummy" Type="Alpha" Size="1" Optional="True">
+                            <Intent>topic name</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="RecoveryRequestReplayFills" MessageType="None">
+                    <Intent>recovery request replay fills</Intent>
+                    <Attributes>
+                        <Attribute Name="requestor" Type="Alpha" Size="40">
+                            <Intent>name of the client who requested the replay</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="VenueId" Index="2" Type="Node" Intent="venue id" LinkName="venueId"/>
+                        <Object Name="int32_t" Index="1" Type="Node" Intent="id of request unique per each requestor" LinkName="requestId" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentProxyDefinition" MessageType="None">
+                    <Intent>instrument proxy definition</Intent>
+                    <Attributes>
+                        <Attribute Name="ProxySymbol" Index="2" Type="Alpha" Size="16" Optional="True">
+                            <Intent>proxy symbol</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrument proxy id" LinkName="InstrumentProxyID"/>
+                        <Object Name="InstrumentMasterId" Index="3" Type="Node" Intent="instrument master id" LinkName="InstrumentMasterID"/>
+                        <Object Name="int16_t" Index="4" Type="Node" Intent="type of proxy" LinkName="ProxyType"/>
+                        <Object Name="double" Index="5" Type="Node" Intent="parameter for instrument proxy type" LinkName="Parameter"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="SyntheticLeg" MessageType="None">
+                    <Intent>definition of synthetic leg</Intent>
+                    <Attributes>
+                        <Attribute Name="legSymbol" Index="7" Type="Alpha" Size="10" Optional="True">
+                            <Intent>leg symbol</Intent>
+                        </Attribute>
+                        <Attribute Name="monthOut" Index="3" Type="Integer" Size="1" Optional="True">
+                            <Intent>month out</Intent>
+                        </Attribute>
+                        <Attribute Name="side" Index="6" Type="Side" Optional="True">
+                            <Intent>side of the leg</Intent>
+                        </Attribute>
+                        <Attribute Name="seqNo" Index="5" Type="Integer" Size="1" Optional="True">
+                            <Intent>sequence number of the leg appearing in the spread</Intent>
+                        </Attribute>
+                        <Attribute Name="syntheticSymbol" Index="9" Type="Alpha" Size="20" Optional="True">
+                            <Intent>synthetic symbols</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References>
+                        <Object Name="InstrumentMasterId" Type="Node" Intent="synthetic instrument master id
+" LinkName="syntheticInstrumentMasterId" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="synthetic instrument id" LinkName="syntheticInstrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="InstrumentId" Index="2" Type="Node" Intent="leg instrument id" LinkName="legInstrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="Qty" Index="4" Type="Node" Intent="quantity " LinkName="quantity" MinCount="1" MaxCount="1"/>
+                        <Object Name="XTime" Index="8" Type="Node" Intent="synthetic expiration date" LinkName="syntheticExpirationDate" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+                <ObjectDef Name="PriceLimitsUpdate" MessageType="None">
+                    <Intent>sdsd</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentVenueUpdate" MessageType="None">
+                    <Intent>instrument venue update</Intent>
+                    <Attributes/>
+                    <References>
+                        <Object Name="InstrumentId" Index="1" Type="Node" Intent="instrument id" LinkName="instrumentId" MinCount="1" MaxCount="1"/>
+                        <Object Name="double" Index="1" Type="Node" Intent="Exchange price multiplier" LinkName="exchPriceMultiplier" MinCount="1" MaxCount="1"/>
+                    </References>
+                </ObjectDef>
+            </ObjectTypes>
+        </Group>
+        <Group Name="NativeObjects" IsInterface="False">
+            <Intent>C++ Native objects</Intent>
+            <Groups/>
+            <ObjectTypes>
+                <ObjectDef Name="uint8_t" MessageType="None">
+                    <Intent>C++ uint8_t</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="1" MinValue="0">
+                            <Intent>C++ uint8_t</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="uint16_t" MessageType="None">
+                    <Intent>C++ uint16_t</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="2" MinValue="0">
+                            <Intent>C++ uint16_t</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="uint32_t" MessageType="None">
+                    <Intent>C++ uint32_t</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="4" MinValue="0">
+                            <Intent>C++ type uint32_t</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="uint64_t" MessageType="None">
+                    <Intent>uint64_t c++ type</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="8" MinValue="0">
+                            <Intent>uint64_t c++ type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="int8_t" MessageType="None">
+                    <Intent>int8_t type</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="1">
+                            <Intent>signed 8 bit int</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="int16_t" MessageType="None">
+                    <Intent>int16_t c++ type</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="2">
+                            <Intent>signed 16 bit int</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="int32_t" MessageType="None">
+                    <Intent>int32_t c++ type</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="4">
+                            <Intent>signed 32 bit int</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="int64_t" MessageType="None">
+                    <Intent>int64_t C++ type</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Integer" Size="8">
+                            <Intent>signed 64 bit int</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="double" MessageType="None">
+                    <Intent>c++ double</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Numeric">
+                            <Intent>value of double</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="bit_bool" MessageType="None">
+                    <Intent>C++ bit bool represented as bool val : 1</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Type="Boolean" Size="1">
+                            <Intent>single bit bool</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="float" MessageType="None">
+                    <Intent>c++ float</Intent>
+                    <Attributes>
+                        <Attribute Name="value" Index="1" Type="Numeric" Size="4" Optional="True">
+                            <Intent>C++ float type</Intent>
+                        </Attribute>
+                    </Attributes>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="XTime" MessageType="None" MappedType="crabel::time::XTime">
+                    <Intent>xtime</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="OrderStatus" MessageType="None" MappedType="crabel::biz::OrderStatus">
+                    <Intent>order</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="OrderAttributes" MessageType="None" MappedType="crabel::biz::OrderAttributes">
+                    <Intent>order attributes</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="OrderState" MessageType="None" MappedType="crabel::biz::OrderState">
+                    <Intent>order attributes</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="Execution" MessageType="None" MappedType="crabel::biz::Execution">
+                    <Intent>execution</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="Cancel" MessageType="None" MappedType="crabel::biz::Cancel">
+                    <Intent>cancel</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="CancelReplace" MessageType="None" MappedType="crabel::biz::CancelReplace">
+                    <Intent>cancel replace</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="Order" MessageType="None" MappedType="crabel::biz::Order">
+                    <Intent>order</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentId" MessageType="None" MappedType="crabel::biz::types::InstrumentId">
+                    <Intent>instrumentid</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="InstrumentMasterId" MessageType="None" MappedType="crabel::biz::types::InstrumentMasterId">
+                    <Intent>instrument master id</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="VenueId" MessageType="None" MappedType="crabel::biz::types::VenueId">
+                    <Intent>venue id</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="OrderId" MessageType="None" MappedType="crabel::biz::types::OrderId">
+                    <Intent>order id</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="ModelId" MessageType="None" MappedType="crabel::biz::types::ModelId">
+                    <Intent>model id</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="Qty" MessageType="None" MappedType="crabel::biz::types::Qty">
+                    <Intent>quantity</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="OrderPrice" MessageType="None" MappedType="crabel::biz::types::OrderPrice">
+                    <Intent>price</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="AccountId" MessageType="None" MappedType="crabel::biz::types::AccountId">
+                    <Intent>prime broker id</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="CustomCode" MessageType="None" MappedType="crabel::biz::types::CustomCode">
+                    <Intent>custom code</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+                <ObjectDef Name="ProgramId" MessageType="None" MappedType="crabel::biz::types::ProgramId">
+                    <Intent>Program ID</Intent>
+                    <Attributes/>
+                    <References/>
+                </ObjectDef>
+            </ObjectTypes>
+        </Group>
+    </Groups>
+    <AttributeTypes>
+        <Attribute Name="ObjectId_unused" Type="Alpha" Size="64">
+            <Intent>char 64</Intent>
+        </Attribute>
+        <Attribute Name="QuoteId" Type="Alpha" Size="64">
+            <Intent>quote id char 64</Intent>
+        </Attribute>
+        <Attribute Name="Text" Type="Alpha" Size="256">
+            <Intent>Exec text char 96</Intent>
+        </Attribute>
+        <Attribute Name="ExecId" Type="Alpha" Size="64">
+            <Intent>exec id</Intent>
+        </Attribute>
+        <Attribute Name="OrdId" Type="Alpha" Size="64">
+            <Intent>ord id</Intent>
+        </Attribute>
+        <Attribute Name="ExecRefId" Type="Alpha" Size="64">
+            <Intent>exec ref id</Intent>
+        </Attribute>
+        <Attribute Name="DateTime_unused" Type="Integer" Size="8">
+            <Intent>int64_t</Intent>
+        </Attribute>
+        <Attribute Name="InstrumentId_unused" Type="Integer" Size="8" MinValue="0">
+            <Intent>Instrument Key type</Intent>
+        </Attribute>
+        <Attribute Name="Side" Type="Integer" Size="1" MinValue="0">
+            <Intent>represents the side this ticket has to trade</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Buy"/>
+                <AllowedValue Value="1" Meaning="Sell"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="PriceResolution" Type="Integer" Size="1" MinValue="0">
+            <Intent>the resolution of prices on nyse/ice family exchanges</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Penny"/>
+                <AllowedValue Value="1" Meaning="PennyNickel"/>
+                <AllowedValue Value="5" Meaning="NickelDime"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TimeInForce" Type="Integer" Size="1" MinValue="0">
+            <Intent>time in force enum</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Day"/>
+                <AllowedValue Value="1" Meaning="Good_Till_Cancel"/>
+                <AllowedValue Value="2" Meaning="At_the_Opening"/>
+                <AllowedValue Value="3" Meaning="Immediate_Or_Cancel"/>
+                <AllowedValue Value="4" Meaning="Fill_Or_Kill"/>
+                <AllowedValue Value="5" Meaning="Good_Till_Crossing"/>
+                <AllowedValue Value="6" Meaning="Good_Till_Date"/>
+                <AllowedValue Value="7" Meaning="At_the_Close"/>
+                <AllowedValue Value="8" Meaning="Good_Through_Crossing"/>
+                <AllowedValue Value="9" Meaning="At_Crossing"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="OriginatingMarket" Type="Integer" Size="2" MinValue="0">
+            <Intent>the nyse originating market for a given symbol</Intent>
+            <AllowedValues>
+                <AllowedValue Value="1" Meaning="NYSECash"/>
+                <AllowedValue Value="2" Meaning="EuropeCash"/>
+                <AllowedValue Value="3" Meaning="NYSEArcaCash"/>
+                <AllowedValue Value="4" Meaning="NYSEArcaOptions"/>
+                <AllowedValue Value="5" Meaning="NYSEArcaBonds"/>
+                <AllowedValue Value="6" Meaning="ArcaEdge"/>
+                <AllowedValue Value="7" Meaning="LIFFE"/>
+                <AllowedValue Value="8" Meaning="NYSEMarketOptions"/>
+                <AllowedValue Value="9" Meaning="NYSEMarketCash"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="VendorType" Type="Integer" Size="1" MinValue="0">
+            <Intent>The type of vendor for mapping vendor ids to NYSE symbology</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Comstock"/>
+                <AllowedValue Value="1" Meaning="Bloomberg"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TradeCondition" Type="Integer" Size="1" MinValue="0">
+            <Intent>the type of trade that took place on NYSE</Intent>
+            <AllowedValues>
+                <AllowedValue Value="32" Meaning="NotApplicable" Intent="trade condition 2 on NYSE"/>
+                <AllowedValue Value="52" Meaning="DerivativelyPriced" Intent="trade condition 2 on NYSE"/>
+                <AllowedValue Value="53" Meaning="MarketCenterReopeningTrade" Intent="trade condition 2 on NYSE"/>
+                <AllowedValue Value="54" Meaning="MarketCenterClosingTrade" Intent="trade condition 2 on NYSE"/>
+                <AllowedValue Value="64" Meaning="RegularSale" Intent="trade condition 1 on NYSE"/>
+                <AllowedValue Value="66" Meaning="AveragePriceTrade" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="67" Meaning="Cash" Intent="trade condition 1 on NYSE"/>
+                <AllowedValue Value="69" Meaning="AutomaticExecution" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="70" Meaning="IntermarketSweepOrder" Intent="trade condition 2 on NYSE"/>
+                <AllowedValue Value="72" Meaning="PriceVariationTrade" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="73" Meaning="CAPElectionTrade" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="76" Meaning="SoldLast" Intent="trade condition 3 on NYSE"/>
+                <AllowedValue Value="77" Meaning="OfficialClosingPrice" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="78" Meaning="NextDayTrade" Intent="trade condition 1 on NYSE"/>
+                <AllowedValue Value="79" Meaning="MarketCenterOpeningTrade" Intent="trade condition 2 on NYSE"/>
+                <AllowedValue Value="80" Meaning="PriorReferencePrice" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="81" Meaning="OfficialOpenPrice" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="82" Meaning="Seller" Intent="trade condition 1 on NYSE"/>
+                <AllowedValue Value="84" Meaning="ExtendedHoursTrade" Intent="trade condition 3 on NYSE"/>
+                <AllowedValue Value="85" Meaning="ExtendedHoursSold" Intent="trade condition 3 on NYSE"/>
+                <AllowedValue Value="86" Meaning="StockOptionTrade" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="88" Meaning="CrossTrade" Intent="trade condition 4 on NYSE"/>
+                <AllowedValue Value="90" Meaning="Sold" Intent="trade condition 3 on NYSE"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="OrderType" Type="Integer" Size="1" MinValue="0">
+            <Intent>order types enum</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Market"/>
+                <AllowedValue Value="1" Meaning="Limit"/>
+                <AllowedValue Value="2" Meaning="Stop_Loss"/>
+                <AllowedValue Value="3" Meaning="Stop_Limit"/>
+                <AllowedValue Value="4" Meaning="Crabel_Algo"/>
+                <AllowedValue Value="5" Meaning="Other"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="BookInstruction" Type="Integer" Size="1" MinValue="0">
+            <Intent>represents the side this ticket has to trade</Intent>
+            <AllowedValues>
+                <AllowedValue Value="3" Meaning="FullAskSide"/>
+                <AllowedValue Value="2" Meaning="FullBidSide"/>
+                <AllowedValue Value="1" Meaning="FullBook"/>
+                <AllowedValue Value="0" Meaning="Incremental"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TopicEventType" Type="Integer" Size="1" MinValue="0">
+            <Intent>msg to indicate if a topic connects or disconnects</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Connect"/>
+                <AllowedValue Value="2" Meaning="Disconnect"/>
+                <AllowedValue Value="3" Meaning="EchoConnect"/>
+                <AllowedValue Value="4" Meaning="EchoDisconnect"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="Type" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="3" Meaning="Other"/>
+                <AllowedValue Value="2" Meaning="Trade"/>
+                <AllowedValue Value="1" Meaning="Ask"/>
+                <AllowedValue Value="0" Meaning="Bid"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SubType" Type="Integer" Size="2" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Update"/>
+                <AllowedValue Value="2" Meaning="New"/>
+                <AllowedValue Value="3" Meaning="Delete"/>
+                <AllowedValue Value="4" Meaning="DeleteThru"/>
+                <AllowedValue Value="5" Meaning="DeleteFrom"/>
+                <AllowedValue Value="6" Meaning="EmptyBook"/>
+                <AllowedValue Value="7" Meaning="Overlay"/>
+                <AllowedValue Value="8" Meaning="Snapshot"/>
+                <AllowedValue Value="9" Meaning="Settlement"/>
+                <AllowedValue Value="10" Meaning="OpenPrice"/>
+                <AllowedValue Value="11" Meaning="ClosePrice"/>
+                <AllowedValue Value="12" Meaning="Paid"/>
+                <AllowedValue Value="13" Meaning="Given"/>
+                <AllowedValue Value="14" Meaning="IndexValue"/>
+                <AllowedValue Value="15" Meaning="BadTick"/>
+                <AllowedValue Value="16" Meaning="ExchangeBest"/>
+                <AllowedValue Value="17" Meaning="DelAll"/>
+                <AllowedValue Value="18" Meaning="DelBetter"/>
+                <AllowedValue Value="19" Meaning="DelSide"/>
+                <AllowedValue Value="20" Meaning="Exec"/>
+                <AllowedValue Value="21" Meaning="Replace"/>
+                <AllowedValue Value="22" Meaning="ReplaceByBroker"/>
+                <AllowedValue Value="23" Meaning="ReplaceClear"/>
+                <AllowedValue Value="24" Meaning="ImpliedTrade"/>
+                <AllowedValue Value="25" Meaning="PriorSettlementPrice"/>
+                <AllowedValue Value="26" Meaning="TradingSessionHighPrice"/>
+                <AllowedValue Value="27" Meaning="TradingSessionLowPrice"/>
+                <AllowedValue Value="28" Meaning="SessionHighBid"/>
+                <AllowedValue Value="29" Meaning="SessionLowOffer"/>
+                <AllowedValue Value="30" Meaning="FixingPrice"/>
+                <AllowedValue Value="31" Meaning="CashNote"/>
+                <AllowedValue Value="32" Meaning="OpenInterest"/>
+                <AllowedValue Value="33" Meaning="TradeVolume"/>
+                <AllowedValue Value="34" Meaning="SimulatedBuy"/>
+                <AllowedValue Value="35" Meaning="SimulatedSell"/>
+                <AllowedValue Value="36" Meaning="RetailPriceImprovement"/>
+                <AllowedValue Value="37" Meaning="IPOPrice"/>
+                <AllowedValue Value="38" Meaning="IntraDayCross"/>
+                <AllowedValue Value="39" Meaning="OpenImbalance"/>
+                <AllowedValue Value="40" Meaning="CloseImbalance"/>
+                <AllowedValue Value="41" Meaning="IPOImbalance"/>
+                <AllowedValue Value="42" Meaning="TradeDissemination"/>
+                <AllowedValue Value="43" Meaning="PriceIndication"/>
+                <AllowedValue Value="44" Meaning="TradingRangeIndication"/>
+                <AllowedValue Value="45" Meaning="NYSEMandatoryPreOpenIndication"/>
+                <AllowedValue Value="46" Meaning="ShortSaleRestrictionIndication"/>
+                <AllowedValue Value="47" Meaning="ReopenPrice"/>
+                <AllowedValue Value="48" Meaning="AuctionClearingPrice"/>
+                <AllowedValue Value="49" Meaning="ElectronicVolume"/>
+                <AllowedValue Value="50" Meaning="PotentialAuctionPrice"/>
+                <AllowedValue Value="51" Meaning="NoAggressorSide"/>
+                <AllowedValue Value="52" Meaning="LastAuctionPrice"/>
+                <AllowedValue Value="53" Meaning="PriceBandVariation"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TradingEvent" Type="Integer" Size="1" MinValue="0">
+            <Intent>Trading Event</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="NoEvent"/>
+                <AllowedValue Value="1" Meaning="NoCancel"/>
+                <AllowedValue Value="2" Meaning="Resume"/>
+                <AllowedValue Value="4" Meaning="ChangeTrdSession"/>
+                <AllowedValue Value="5" Meaning="ImpliedMatchingON"/>
+                <AllowedValue Value="6" Meaning="ImpliedMatchingOFF"/>
+                <AllowedValue Value="7" Meaning="TradingHalt"/>
+                <AllowedValue Value="8" Meaning="EndTrdSession"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SpecificPriceType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="NONE"/>
+                <AllowedValue Value="1" Meaning="FX"/>
+                <AllowedValue Value="2" Meaning="CME"/>
+                <AllowedValue Value="3" Meaning="BPIPE"/>
+                <AllowedValue Value="4" Meaning="NASDAQ"/>
+                <AllowedValue Value="5" Meaning="ARCA"/>
+                <AllowedValue Value="6" Meaning="NYSE"/>
+                <AllowedValue Value="7" Meaning="BATS"/>
+                <AllowedValue Value="8" Meaning="BTECH"/>
+                <AllowedValue Value="9" Meaning="EUREX"/>
+                <AllowedValue Value="10" Meaning="MAKER_ORDER"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TradingSession" Type="Integer" Size="1" MinValue="0">
+            <Intent>The trading session for the venue.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="UnknownTradingSession"/>
+                <AllowedValue Value="1" Meaning="IntraDay"/>
+                <AllowedValue Value="2" Meaning="AfterHours"/>
+                <AllowedValue Value="3" Meaning="OpenAuction"/>
+                <AllowedValue Value="4" Meaning="CloseAuction"/>
+                <AllowedValue Value="5" Meaning="MarketClose"/>
+                <AllowedValue Value="6" Meaning="QuoteOnly"/>
+                <AllowedValue Value="7" Meaning="TradingPause"/>
+                <AllowedValue Value="8" Meaning="TradingDelay"/>
+                <AllowedValue Value="9" Meaning="ExchangeSuspension"/>
+                <AllowedValue Value="10" Meaning="StartOfDay"/>
+                <AllowedValue Value="11" Meaning="PreTrading"/>
+                <AllowedValue Value="12" Meaning="Closing"/>
+                <AllowedValue Value="13" Meaning="EndOfDay"/>
+                <AllowedValue Value="14" Meaning="Holiday"/>
+                <AllowedValue Value="15" Meaning="Freeze"/>
+                <AllowedValue Value="16" Meaning="Inactive"/>
+                <AllowedValue Value="17" Meaning="Netting"/>
+                <AllowedValue Value="18" Meaning="PreOpening"/>
+                <AllowedValue Value="19" Meaning="Start"/>
+                <AllowedValue Value="20" Meaning="Fast"/>
+                <AllowedValue Value="21" Meaning="Expired"/>
+                <AllowedValue Value="22" Meaning="Auction"/>
+                <AllowedValue Value="23" Meaning="PostTradingFull"/>
+                <AllowedValue Value="24" Meaning="PostTradingRestricted"/>
+                <AllowedValue Value="25" Meaning="PostFullLate1"/>
+                <AllowedValue Value="26" Meaning="PostFullLate2"/>
+                <AllowedValue Value="27" Meaning="Batch"/>
+                <AllowedValue Value="28" Meaning="Online"/>
+                <AllowedValue Value="29" Meaning="PreOpenNoCancel"/>
+                <AllowedValue Value="30" Meaning="Opening"/>
+                <AllowedValue Value="31" Meaning="Open"/>
+                <AllowedValue Value="32" Meaning="CloseNotFinal"/>
+                <AllowedValue Value="33" Meaning="PostClose"/>
+                <AllowedValue Value="100" Meaning="Gap"/>
+                <AllowedValue Value="101" Meaning="PreMarket"/>
+                <AllowedValue Value="102" Meaning="OpeningAuction"/>
+                <AllowedValue Value="103" Meaning="MarketHours"/>
+                <AllowedValue Value="104" Meaning="AfterMarketHours"/>
+                <AllowedValue Value="105" Meaning="PostTrading"/>
+                <AllowedValue Value="106" Meaning="Trading"/>
+                <AllowedValue Value="107" Meaning="TradingHalt"/>
+                <AllowedValue Value="108" Meaning="TradingResumes"/>
+                <AllowedValue Value="109" Meaning="OpenToNextDay"/>
+                <AllowedValue Value="110" Meaning="NoTradingAfterClose"/>
+                <AllowedValue Value="111" Meaning="EarlyClosing"/>
+                <AllowedValue Value="112" Meaning="NoTradingDayOrNight"/>
+                <AllowedValue Value="113" Meaning="LateOpening"/>
+                <AllowedValue Value="114" Meaning="CustomDelimiter"/>
+                <AllowedValue Value="115" Meaning="FullRun"/>
+                <AllowedValue Value="116" Meaning="ActiveTradingWindow"/>
+                <AllowedValue Value="117" Meaning="NoDayTrading"/>
+                <AllowedValue Value="118" Meaning="NoTrading"/>
+                <AllowedValue Value="119" Meaning="TradingUntilDayClose"/>
+                <AllowedValue Value="120" Meaning="TradingUntilHalt"/>
+                <AllowedValue Value="121" Meaning="AllHours"/>
+                <AllowedValue Value="122" Meaning="PitHours"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="HaltReason" Type="Integer" Size="1" MinValue="0">
+            <Intent>The halt reason.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Trading"/>
+                <AllowedValue Value="2" Meaning="ReturnToNormal"/>
+                <AllowedValue Value="3" Meaning="GroupSchedule"/>
+                <AllowedValue Value="4" Meaning="Surveillance"/>
+                <AllowedValue Value="5" Meaning="MarketEvent"/>
+                <AllowedValue Value="6" Meaning="InstActivation"/>
+                <AllowedValue Value="7" Meaning="InstExpiration"/>
+                <AllowedValue Value="8" Meaning="Recovery"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="OrderStatus" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Pending_Accept"/>
+                <AllowedValue Value="1" Meaning="Accepted"/>
+                <AllowedValue Value="2" Meaning="Pending_Cancel"/>
+                <AllowedValue Value="3" Meaning="Cancelled"/>
+                <AllowedValue Value="4" Meaning="Cancel_Failed"/>
+                <AllowedValue Value="5" Meaning="Pending_Replace"/>
+                <AllowedValue Value="6" Meaning="Replace_Failed"/>
+                <AllowedValue Value="7" Meaning="Replaced"/>
+                <AllowedValue Value="8" Meaning="Rejected"/>
+                <AllowedValue Value="9" Meaning="Partially_Filled"/>
+                <AllowedValue Value="10" Meaning="Filled"/>
+                <AllowedValue Value="11" Meaning="Stagnant"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="Severity" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="1" Meaning="INFO"/>
+                <AllowedValue Value="2" Meaning="WARN"/>
+                <AllowedValue Value="4" Meaning="SEVERE"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="ModelType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="1" Meaning="ExecutionModel"/>
+                <AllowedValue Value="2" Meaning="Strategy"/>
+                <AllowedValue Value="3" Meaning="Manual"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="StreamType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="NotSet"/>
+                <AllowedValue Value="1" Meaning="Level1"/>
+                <AllowedValue Value="2" Meaning="Level2"/>
+                <AllowedValue Value="3" Meaning="Level3"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="STPStatus" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="New"/>
+                <AllowedValue Value="1" Meaning="Ack_New"/>
+                <AllowedValue Value="2" Meaning="Confirmed"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SystemResetType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Reset_Local_Risk_Limits"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="MatchEventIndicator" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="MidPoint"/>
+                <AllowedValue Value="2" Meaning="BeginningOfEvent"/>
+                <AllowedValue Value="3" Meaning="EndOfEvent"/>
+                <AllowedValue Value="4" Meaning="BeginningNEndOfEvent"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TickDirection" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="PlusTick"/>
+                <AllowedValue Value="2" Meaning="MinusTick"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="OpenCloseSettleFlag" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="TheoreticalPrice"/>
+                <AllowedValue Value="2" Meaning="ActualNotSubjectToSettlementPrice"/>
+                <AllowedValue Value="3" Meaning="ActualSubjectToSettlementPrice"/>
+                <AllowedValue Value="4" Meaning="EntryFromPreviousBusinessDay"/>
+                <AllowedValue Value="5" Meaning="DailyOpenPrice"/>
+                <AllowedValue Value="6" Meaning="IndicativeOpeningPrice"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TermRequestType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Subscribe"/>
+                <AllowedValue Value="1" Meaning="UnSubscribe"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="OrderVariantType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Undefined"/>
+                <AllowedValue Value="1" Meaning="NewOrder"/>
+                <AllowedValue Value="2" Meaning="ModifyOrder"/>
+                <AllowedValue Value="3" Meaning="CancelOrder"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="RecoveryReplayType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Undefined"/>
+                <AllowedValue Value="1" Meaning="EOT"/>
+                <AllowedValue Value="2" Meaning="Execution"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="StrategyRequestType" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Undefined"/>
+                <AllowedValue Value="1" Meaning="ShutMeDown"/>
+                <AllowedValue Value="2" Meaning="CancelAllOrders"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="StrategyStatus" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="unknown"/>
+                <AllowedValue Value="1" Meaning="started"/>
+                <AllowedValue Value="2" Meaning="stopped"/>
+                <AllowedValue Value="3" Meaning="shutDown"/>
+                <AllowedValue Value="4" Meaning="starting"/>
+                <AllowedValue Value="5" Meaning="stopping"/>
+                <AllowedValue Value="6" Meaning="pausing"/>
+                <AllowedValue Value="7" Meaning="paused"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SimulationStatus" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="unknown"/>
+                <AllowedValue Value="1" Meaning="completed"/>
+                <AllowedValue Value="2" Meaning="failed"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="AnnouncementType" Type="Integer" Size="2" MinValue="0">
+            <Intent>Specifies type of announcement</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Basic"/>
+                <AllowedValue Value="2" Meaning="Roll"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="AdjustmentType" Type="Integer" Size="1">
+            <Intent>adjustment type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="None"/>
+                <AllowedValue Value="1" Meaning="AdditiveOffset"/>
+                <AllowedValue Value="2" Meaning="MultiplicativeOffset"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="InstrumentType" Type="Integer" Size="1">
+            <Intent>InstrumentType as it defined in the instrument database</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Future"/>
+                <AllowedValue Value="1" Meaning="Currency"/>
+                <AllowedValue Value="2" Meaning="Stock"/>
+                <AllowedValue Value="3" Meaning="Option"/>
+                <AllowedValue Value="4" Meaning="ForwardMetal"/>
+                <AllowedValue Value="5" Meaning="Treasury"/>
+                <AllowedValue Value="6" Meaning="TreasuryCoupon"/>
+                <AllowedValue Value="7" Meaning="AmericanDepositaryShare"/>
+                <AllowedValue Value="8" Meaning="Bond"/>
+                <AllowedValue Value="9" Meaning="DepositaryReceipt"/>
+                <AllowedValue Value="10" Meaning="ETF"/>
+                <AllowedValue Value="11" Meaning="Rule144A"/>
+                <AllowedValue Value="12" Meaning="LimitedPartnership"/>
+                <AllowedValue Value="13" Meaning="Notes"/>
+                <AllowedValue Value="14" Meaning="OrdinaryShare"/>
+                <AllowedValue Value="15" Meaning="PreferredStock"/>
+                <AllowedValue Value="16" Meaning="Right"/>
+                <AllowedValue Value="17" Meaning="SharesOfBeneficialInterest"/>
+                <AllowedValue Value="18" Meaning="ConvertibleDebenture"/>
+                <AllowedValue Value="19" Meaning="Unit"/>
+                <AllowedValue Value="20" Meaning="UnitsOfBeneficialInterest"/>
+                <AllowedValue Value="21" Meaning="Warrant"/>
+                <AllowedValue Value="22" Meaning="Other"/>
+                <AllowedValue Value="23" Meaning="Index"/>
+                <AllowedValue Value="24" Meaning="Basket"/>
+                <AllowedValue Value="25" Meaning="StructuredProduct"/>
+                <AllowedValue Value="255" Meaning="Unknown"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SystemEventCodes" Type="Integer" Size="1">
+            <Intent>These messages correspond to system event messages that are sent by data providers and exchanges.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Invalid " Intent="Invalid type"/>
+                <AllowedValue Value="1" Meaning="BeginMessaging " Intent="The start of day message is the first message sent in any trading day"/>
+                <AllowedValue Value="2" Meaning="BeginSystemHours " Intent="The exchange is open and ready to start accepting orders"/>
+                <AllowedValue Value="3" Meaning="MarketOpen " Intent="Orders are available for execution"/>
+                <AllowedValue Value="4" Meaning="MarketClose " Intent="Orders are no longer available for execution"/>
+                <AllowedValue Value="5" Meaning="EndSystemHours " Intent="The exchange is now closed and will not accept any new orders, but additional messages may still be generated by the exchange relating to outstanding orders"/>
+                <AllowedValue Value="6" Meaning="EndMessaging " Intent="The last message sent in any trading day"/>
+                <AllowedValue Value="7" Meaning="EmergencyMarketCondition " Intent="An emergency market condition has been triggered; No orders will be accepted and no crosses will be performed"/>
+                <AllowedValue Value="8" Meaning="QuoteOnlyEMC " Intent="An emergency market condition has been triggered, which allows for only posting orders; no executions"/>
+                <AllowedValue Value="9" Meaning="CancelEMC " Intent="The emergency market condition has been cancelled and regular activity is resumed"/>
+                <AllowedValue Value="10" Meaning="Unknown " Intent="Unknown type"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="InstrumentSubtype" Type="Integer" Size="1">
+            <Intent>The instrument sub-type is used in conjunction with instrument type to get more details on the type of the instrument.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="NDF " Intent="Non-deliverable forward"/>
+                <AllowedValue Value="1" Meaning="SPOT"/>
+                <AllowedValue Value="2" Meaning="FORWARD"/>
+                <AllowedValue Value="3" Meaning="PreferredTrustSecurity"/>
+                <AllowedValue Value="4" Meaning="AlphaIndexETN"/>
+                <AllowedValue Value="5" Meaning="IndexBasedDerivative"/>
+                <AllowedValue Value="6" Meaning="CommonShares"/>
+                <AllowedValue Value="7" Meaning="CommodityBasedTrustShares"/>
+                <AllowedValue Value="8" Meaning="CommodityFuturesTrustShares"/>
+                <AllowedValue Value="9" Meaning="CommodityLinkedSecurity"/>
+                <AllowedValue Value="10" Meaning="CommodityIndexTrustShares"/>
+                <AllowedValue Value="11" Meaning="CollateralizedMortgageObligation"/>
+                <AllowedValue Value="12" Meaning="CurrencyTrustShares"/>
+                <AllowedValue Value="13" Meaning="CommodityCurrencyLinkedSecurity"/>
+                <AllowedValue Value="14" Meaning="CurrencyWarrant"/>
+                <AllowedValue Value="15" Meaning="GlobalDepositaryShares"/>
+                <AllowedValue Value="16" Meaning="ETFPortfolioDepositaryReceipt"/>
+                <AllowedValue Value="17" Meaning="EquityGoldShares"/>
+                <AllowedValue Value="18" Meaning="ETNEquityIndexLinkedSecurity"/>
+                <AllowedValue Value="19" Meaning="ETN"/>
+                <AllowedValue Value="20" Meaning="EquityUnits"/>
+                <AllowedValue Value="21" Meaning="HOLDRS"/>
+                <AllowedValue Value="22" Meaning="ETNFixedIncomeLinkedSecurity"/>
+                <AllowedValue Value="23" Meaning="ETNFuturesLinkedSecurity"/>
+                <AllowedValue Value="24" Meaning="GlobalShares"/>
+                <AllowedValue Value="25" Meaning="ETFIndexFundShares"/>
+                <AllowedValue Value="26" Meaning="InterestRate"/>
+                <AllowedValue Value="27" Meaning="IndexWarrant"/>
+                <AllowedValue Value="28" Meaning="IndexLinkedExchangeableNotes"/>
+                <AllowedValue Value="29" Meaning="CorporateBackedTrustSecurity"/>
+                <AllowedValue Value="30" Meaning="ContingentLitigationRight"/>
+                <AllowedValue Value="31" Meaning="LimitedLiabilityCorporation"/>
+                <AllowedValue Value="32" Meaning="EquityBasedDerivative"/>
+                <AllowedValue Value="33" Meaning="ManagedFuturesFund"/>
+                <AllowedValue Value="34" Meaning="ETNMultiFactorIndexLinkedSecurity"/>
+                <AllowedValue Value="35" Meaning="ManagedTrustSecurity"/>
+                <AllowedValue Value="36" Meaning="NYRegistryShares"/>
+                <AllowedValue Value="37" Meaning="OpenEndedMutualFund"/>
+                <AllowedValue Value="38" Meaning="PrivatelyHeldSecurity"/>
+                <AllowedValue Value="39" Meaning="PoisonPill"/>
+                <AllowedValue Value="40" Meaning="PartnershipUnits"/>
+                <AllowedValue Value="41" Meaning="ClosedEndFunds"/>
+                <AllowedValue Value="42" Meaning="RegS"/>
+                <AllowedValue Value="43" Meaning="CommodityRedeemableCommodityLinkedSecurity"/>
+                <AllowedValue Value="44" Meaning="ETNRedeemableFuturesLinkedSecurity"/>
+                <AllowedValue Value="45" Meaning="REIT"/>
+                <AllowedValue Value="46" Meaning="CommodityRedeemableCurrencyLinkedSecurity"/>
+                <AllowedValue Value="47" Meaning="SEED"/>
+                <AllowedValue Value="48" Meaning="SpotRateClosing"/>
+                <AllowedValue Value="49" Meaning="SpotRateIntraday"/>
+                <AllowedValue Value="50" Meaning="TradingStock"/>
+                <AllowedValue Value="51" Meaning="TrustCertificate"/>
+                <AllowedValue Value="52" Meaning="TrustUnits"/>
+                <AllowedValue Value="53" Meaning="Portal"/>
+                <AllowedValue Value="54" Meaning="ContingentValueRight"/>
+                <AllowedValue Value="55" Meaning="TrustIssuedReceipts"/>
+                <AllowedValue Value="56" Meaning="WorldCurrencyOption"/>
+                <AllowedValue Value="57" Meaning="Trust"/>
+                <AllowedValue Value="58" Meaning="Debenture"/>
+                <AllowedValue Value="59" Meaning="CorporateBond"/>
+                <AllowedValue Value="60" Meaning="AmericanDepositaryReceiptCommon"/>
+                <AllowedValue Value="61" Meaning="AmericanDepositaryReceiptPreferred"/>
+                <AllowedValue Value="62" Meaning="AmericanDepositaryReceiptWarrant"/>
+                <AllowedValue Value="63" Meaning="AmericanDepositaryReceiptRight"/>
+                <AllowedValue Value="64" Meaning="AmericanDepositaryReceiptBond"/>
+                <AllowedValue Value="65" Meaning="Foreign"/>
+                <AllowedValue Value="252" Meaning="Other"/>
+                <AllowedValue Value="253" Meaning="NotApplicable"/>
+                <AllowedValue Value="254" Meaning="NotAvailable"/>
+                <AllowedValue Value="255" Meaning="Unknown"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="OrderDetailsType" Type="Integer" Size="1">
+            <Intent>Indicates a type for order details union</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="FX"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="CancelDetailsType" Type="Integer" Size="1">
+            <Intent>Indicates a type for cancel details union</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="FX"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="ExecDetailsType" Type="Integer" Size="1">
+            <Intent>Indicates a type for exec details union</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="FX"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="ShortSaleIndicator" Type="Integer" Size="1">
+            <Intent>Indicates whether a short sale restriction is in place adherent to SEC Rule 203(b)(3)</Intent>
+            <AllowedValues>
+                <AllowedValue Value="89" Meaning="Restricted"/>
+                <AllowedValue Value="78" Meaning="Unrestricted"/>
+                <AllowedValue Value="32" Meaning="NotAvailable"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="IPOFlag" Type="Integer" Size="1">
+            <Intent>Indicates if a security is set up for IPO release.  This field is intended to help comply with FINRA Rule 5131(b).</Intent>
+            <AllowedValues>
+                <AllowedValue Value="89" Meaning="IPO"/>
+                <AllowedValue Value="78" Meaning="Listed"/>
+                <AllowedValue Value="32" Meaning="NotAvailable"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="LULDReferencePriceTier" Type="Integer" Size="1">
+            <Intent>Indicates which limit up/limit down price band calculation parameter is to be used for the instrument, in accordance with the LULD Rule.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="49" Meaning="Tier1"/>
+                <AllowedValue Value="50" Meaning="Tier2"/>
+                <AllowedValue Value="32" Meaning="NotAvailable"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="ETPFlag" Type="Integer" Size="1">
+            <Intent>Indicates whether the security is an exchange traded product.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="89" Meaning="ETP"/>
+                <AllowedValue Value="78" Meaning="NotETP"/>
+                <AllowedValue Value="32" Meaning="NotAvailable"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TradingActionReason" Type="Integer" Size="2">
+            <Intent>Trading actions are used to inform market participants when the trading status of an issue changes.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="NewsPending"/>
+                <AllowedValue Value="1" Meaning="NewsDisseminated"/>
+                <AllowedValue Value="2" Meaning="SingleSecurityTradingPause"/>
+                <AllowedValue Value="3" Meaning="RegulatoryExtraordinaryMarketActivity"/>
+                <AllowedValue Value="4" Meaning="ETFHalt"/>
+                <AllowedValue Value="5" Meaning="ListingMarketInformation"/>
+                <AllowedValue Value="6" Meaning="NonCompliance"/>
+                <AllowedValue Value="7" Meaning="FilingsNotCurrent"/>
+                <AllowedValue Value="8" Meaning="SECTradingSuspension"/>
+                <AllowedValue Value="9" Meaning="RegulatoryConcern"/>
+                <AllowedValue Value="10" Meaning="OperationsHalt"/>
+                <AllowedValue Value="11" Meaning="VolatilityTradingPause"/>
+                <AllowedValue Value="12" Meaning="VolatilityTradingPauseStraddleCondition"/>
+                <AllowedValue Value="13" Meaning="MWCBHL1"/>
+                <AllowedValue Value="14" Meaning="MWCBHL2"/>
+                <AllowedValue Value="15" Meaning="MWCBHL3"/>
+                <AllowedValue Value="16" Meaning="MWCBHPreviousDay"/>
+                <AllowedValue Value="17" Meaning="IPOIssueNotTrading"/>
+                <AllowedValue Value="18" Meaning="CorporateAction"/>
+                <AllowedValue Value="19" Meaning="QuotationNotAvailable"/>
+                <AllowedValue Value="20" Meaning="NotAvailable"/>
+                <AllowedValue Value="21" Meaning="NotApplicable"/>
+                <AllowedValue Value="22" Meaning="EquipmentChangeover"/>
+                <AllowedValue Value="23" Meaning="NoOpenNoResume"/>
+                <AllowedValue Value="24" Meaning="Halted"/>
+                <AllowedValue Value="25" Meaning="LULDPause"/>
+                <AllowedValue Value="26" Meaning="OrderImbalance"/>
+                <AllowedValue Value="27" Meaning="RelatedSecurity"/>
+                <AllowedValue Value="32768" Meaning="NewsAndResumptionTimes"/>
+                <AllowedValue Value="32769" Meaning="SingleSecurityTradingPauseQuoteOnly"/>
+                <AllowedValue Value="32770" Meaning="QualificationIssuesResolved"/>
+                <AllowedValue Value="32771" Meaning="FilingRequirementsSatisfied"/>
+                <AllowedValue Value="32772" Meaning="IssuerNewsNotForthcoming"/>
+                <AllowedValue Value="32773" Meaning="QualificationsHaltEnded"/>
+                <AllowedValue Value="32774" Meaning="QualificationsHaltConcluded"/>
+                <AllowedValue Value="32775" Meaning="RegulatoryAuthorityTradeHaltConcluded"/>
+                <AllowedValue Value="32776" Meaning="MarketWideCircuitBreakerResume"/>
+                <AllowedValue Value="32777" Meaning="NewIssueAvailable"/>
+                <AllowedValue Value="32778" Meaning="IssueAvailable"/>
+                <AllowedValue Value="32779" Meaning="IPOSecurityReleased"/>
+                <AllowedValue Value="32780" Meaning="IPOSecurityPositionWindowExt"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="RegSHOIndicator" Type="Integer" Size="1">
+            <Intent>SEC Rule 201 of the Regulation SHO</Intent>
+            <AllowedValues>
+                <AllowedValue Value="48" Meaning="NoTest " Intent="No price test in place"/>
+                <AllowedValue Value="49" Meaning="IntradayPriceDrop " Intent="Reg SHO short sale price test restriction in effect due to intraday price drop in security"/>
+                <AllowedValue Value="50" Meaning="Continued " Intent="Reg SHO short sale price test restriction remains in effect"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="MarketMakerMode" Type="Integer" Size="1">
+            <Intent>Market participant firms sometimes use a market participant position message that is disseminated by equity exchanges to remain in compliance with certain marketplace rules.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="78" Meaning="Normal"/>
+                <AllowedValue Value="80" Meaning="Passive"/>
+                <AllowedValue Value="83" Meaning="Syndicate"/>
+                <AllowedValue Value="82" Meaning="PreSyndicate"/>
+                <AllowedValue Value="76" Meaning="Penalty"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="MarketParticipantState" Type="Integer" Size="1">
+            <Intent>Market participant firms sometimes use a market participant position message that is disseminated by equity exchanges to remain in compliance with certain marketplace rules.</Intent>
+            <AllowedValues>
+                <AllowedValue Value="65" Meaning="Active"/>
+                <AllowedValue Value="69" Meaning="Excused"/>
+                <AllowedValue Value="87" Meaning="Withdrawn"/>
+                <AllowedValue Value="83" Meaning="Suspended"/>
+                <AllowedValue Value="68" Meaning="Deleted"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="ImbalanceDirection" Type="Integer" Size="1">
+            <Intent>The market side of the order imbalance</Intent>
+            <AllowedValues>
+                <AllowedValue Value="78" Meaning="NoImbalance"/>
+                <AllowedValue Value="66" Meaning="BuyImbalance"/>
+                <AllowedValue Value="83" Meaning="SellImbalance"/>
+                <AllowedValue Value="79" Meaning="InsufficientOrders"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="CrossType" Type="Integer" Size="1">
+            <Intent>The type of cross for which the net order imabalance message is generated</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="OpenImbalance"/>
+                <AllowedValue Value="1" Meaning="CloseImbalance"/>
+                <AllowedValue Value="2" Meaning="IPOImbalance"/>
+                <AllowedValue Value="3" Meaning="HaltImbalance"/>
+                <AllowedValue Value="4" Meaning="RegulatoryImbalance"/>
+                <AllowedValue Value="5" Meaning="PreOpenImbalance"/>
+                <AllowedValue Value="255" Meaning="Unknown"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="PriceVariationIndicator" Type="Integer" Size="1">
+            <Intent>The absolute value of the percentage of deviation of the Near Indicative Clearing Price to the nearest Current Reference Price</Intent>
+            <AllowedValues>
+                <AllowedValue Value="76" Meaning="LessThanOnePercent"/>
+                <AllowedValue Value="49" Meaning="OneToTwoPercent"/>
+                <AllowedValue Value="50" Meaning="TwoToThreePercent"/>
+                <AllowedValue Value="51" Meaning="ThreeToFourPercent"/>
+                <AllowedValue Value="52" Meaning="FourToFivePercent"/>
+                <AllowedValue Value="53" Meaning="FiveToSixPercent"/>
+                <AllowedValue Value="54" Meaning="SixToSevenPercent"/>
+                <AllowedValue Value="55" Meaning="SevenToEightPercent"/>
+                <AllowedValue Value="56" Meaning="EightToNinePercent"/>
+                <AllowedValue Value="57" Meaning="NineToTenPercent"/>
+                <AllowedValue Value="65" Meaning="TenToTwentyPercent"/>
+                <AllowedValue Value="66" Meaning="TwentyToThirtyPercent"/>
+                <AllowedValue Value="67" Meaning="ThirtyOrGreaterPercent"/>
+                <AllowedValue Value="32" Meaning="CannotBeCalculated"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="Source" Type="Integer" Size="2">
+            <Intent>Data source</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="BloombergHK"/>
+                <AllowedValue Value="1" Meaning="BloombergFR"/>
+                <AllowedValue Value="2" Meaning="BloombergCH"/>
+                <AllowedValue Value="3" Meaning="WombatBpipeCH"/>
+                <AllowedValue Value="4" Meaning="ActivCH"/>
+                <AllowedValue Value="5" Meaning="BloombergNY"/>
+                <AllowedValue Value="6" Meaning="WombatBpipeNY"/>
+                <AllowedValue Value="7" Meaning="ActivNY"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="InterestFlag" Type="Integer" Size="1">
+            <Intent>Retail price improvement indicator in equities</Intent>
+            <AllowedValues>
+                <AllowedValue Value="66" Meaning="RPIBuy"/>
+                <AllowedValue Value="83" Meaning="RPISell"/>
+                <AllowedValue Value="65" Meaning="RPIBoth"/>
+                <AllowedValue Value="78" Meaning="RPINone"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="QuoteCondition" Type="Integer" Size="1">
+            <Intent>Retail price improvement indicator in equities</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Invalid"/>
+                <AllowedValue Value="67" Meaning="Closing"/>
+                <AllowedValue Value="79" Meaning="Opening"/>
+                <AllowedValue Value="82" Meaning="Regular"/>
+                <AllowedValue Value="87" Meaning="Slow"/>
+                <AllowedValue Value="255" Meaning="Unknown"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TicketStatus" Type="Integer" Size="1">
+            <Intent>ticket status</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="PendingNew"/>
+                <AllowedValue Value="2" Meaning="Accepted"/>
+                <AllowedValue Value="3" Meaning="Cross"/>
+                <AllowedValue Value="5" Meaning="PendingCancel"/>
+                <AllowedValue Value="6" Meaning="PendingFail"/>
+                <AllowedValue Value="7" Meaning="PendingExpired"/>
+                <AllowedValue Value="10" Meaning="Terminal"/>
+                <AllowedValue Value="11" Meaning="Filled"/>
+                <AllowedValue Value="12" Meaning="Rejected"/>
+                <AllowedValue Value="13" Meaning="Canceled"/>
+                <AllowedValue Value="14" Meaning="Failed"/>
+                <AllowedValue Value="15" Meaning="Expired"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="Timezone" Type="Integer" Size="2">
+            <Intent>ticket status</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="100" Meaning="UTC"/>
+                <AllowedValue Value="200" Meaning="Eastern"/>
+                <AllowedValue Value="201" Meaning="Central"/>
+                <AllowedValue Value="202" Meaning="Mountain"/>
+                <AllowedValue Value="203" Meaning="Pacific"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TradeType" Type="Integer" Size="2">
+            <Intent>trade type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="None"/>
+                <AllowedValue Value="1100" Meaning="OpeningAuctionTrade"/>
+                <AllowedValue Value="1101" Meaning="IntradayAuctionTrade"/>
+                <AllowedValue Value="1102" Meaning="VolatilityAuctionTrade"/>
+                <AllowedValue Value="1103" Meaning="ClosingAuctionTrade"/>
+                <AllowedValue Value="1104" Meaning="CrossAuctionTrade"/>
+                <AllowedValue Value="1105" Meaning="BlockAuctionTrade"/>
+                <AllowedValue Value="1106" Meaning="BasisTrade"/>
+                <AllowedValue Value="1107" Meaning="EFPTrade"/>
+                <AllowedValue Value="1108" Meaning="EFPIndFutTrade"/>
+                <AllowedValue Value="1109" Meaning="OTCBlockTrade"/>
+                <AllowedValue Value="1110" Meaning="EFPFinTrade"/>
+                <AllowedValue Value="1111" Meaning="VolaTrade"/>
+                <AllowedValue Value="1112" Meaning="EFSTrade"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SecurityStatus" Type="Integer" Size="1" MinValue="0">
+            <Intent>Type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="15" Meaning="NewPriceIndication"/>
+                <AllowedValue Value="20" Meaning="Invalid"/>
+                <AllowedValue Value="26" Meaning="PostClose"/>
+                <AllowedValue Value="51" Meaning="OpeningDelay"/>
+                <AllowedValue Value="52" Meaning="TradingHalt"/>
+                <AllowedValue Value="53" Meaning="Resume"/>
+                <AllowedValue Value="54" Meaning="NoOpenNoResume"/>
+                <AllowedValue Value="65" Meaning="ShortSaleRestrictActivated"/>
+                <AllowedValue Value="67" Meaning="ShortSaleRestrictContinued"/>
+                <AllowedValue Value="68" Meaning="ShortSaleRestrictDeactivated"/>
+                <AllowedValue Value="69" Meaning="ShortSaleRestrictEffective"/>
+                <AllowedValue Value="79" Meaning="Opened"/>
+                <AllowedValue Value="80" Meaning="PreOpen"/>
+                <AllowedValue Value="88" Meaning="Closed"/>
+                <AllowedValue Value="84" Meaning="Time"/>
+                <AllowedValue Value="73" Meaning="PriceIndication"/>
+                <AllowedValue Value="71" Meaning="PreOpenPriceIndication"/>
+                <AllowedValue Value="82" Meaning="Rule15Indication"/>
+                <AllowedValue Value="89" Meaning="PreCross"/>
+                <AllowedValue Value="90" Meaning="Cross"/>
+                <AllowedValue Value="91" Meaning="NoCancel"/>
+                <AllowedValue Value="92" Meaning="ReadyToTrade"/>
+                <AllowedValue Value="93" Meaning="NAForTrading"/>
+                <AllowedValue Value="103" Meaning="NoChange"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="MDP3TradingSession" Type="Integer" Size="1">
+            <Intent>MDP3TradingSession</Intent>
+            <AllowedValues>
+                <AllowedValue Value="2" Meaning="TradingHalt "/>
+                <AllowedValue Value="4" Meaning="Close"/>
+                <AllowedValue Value="15" Meaning="NewPriceIndication"/>
+                <AllowedValue Value="17" Meaning="ReadyToTrade"/>
+                <AllowedValue Value="18" Meaning="NotAvailableForTrading"/>
+                <AllowedValue Value="20" Meaning="UnknownorInvalid "/>
+                <AllowedValue Value="21" Meaning="PreOpen"/>
+                <AllowedValue Value="24" Meaning="PreCross"/>
+                <AllowedValue Value="25" Meaning="Cross"/>
+                <AllowedValue Value="26" Meaning="PostClose"/>
+                <AllowedValue Value="103" Meaning="NoChange"/>
+                <AllowedValue Value="255" Meaning="null_value"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="CancelReason" Type="Integer" Size="1">
+            <Intent>Ticket Cancel Reason</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="None"/>
+                <AllowedValue Value="1" Meaning="Cancel"/>
+                <AllowedValue Value="2" Meaning="ForceCancel"/>
+                <AllowedValue Value="3" Meaning="Stop"/>
+                <AllowedValue Value="4" Meaning="InternalCancel"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="SyntheticMethod" Type="Integer" Size="1">
+            <Intent>synthetic method of security</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Differencial " Intent="((ask0 - bid1) + (bid0 - ask1)) / 2"/>
+                <AllowedValue Value="2" Meaning="Ratio " Intent="((ask0 / bid1) + (bid0 / ask1)) / 2"/>
+                <AllowedValue Value="3" Meaning="BetaSpread " Intent="(ask0 + bid0) / 2 - (ask1 + bid1) / 2 * Beta"/>
+                <AllowedValue Value="4" Meaning="DifferencialPointValue " Intent="((ask0 * pv0 - bid1 * pv1) + (bid0 * pv0 - ask1 * pv1)) / 2"/>
+                <AllowedValue Value="5" Meaning="BetaSpreadMicro " Intent="(ask0*(bid_size0/(ask_size0+bid_size0)) + bid0*(ask_size0/(ask_size0+bid_size0)) ) - (ask1*(bid_size1/(ask_size1+bid_size1)) + bid1*(ask_size1/(ask_size1+bid_size1)) ) * Beta"/>
+                <AllowedValue Value="6" Meaning="BetaSpreadMicroPV " Intent="((ask0*(bid_size0/(ask_size0+bid_size0)) + bid0*(ask_size0/(ask_size0+bid_size0)) ) * pv0) - ((ask1*(bid_size1/(ask_size1+bid_size1)) + bid1*(ask_size1/(ask_size1+bid_size1)) ) * pv1 * Beta)"/>
+                <AllowedValue Value="7" Meaning="NOD " Intent="(trade0 - ODADJt + NODt_1)/10"/>
+                <AllowedValue Value="8" Meaning="Spread " Intent="Calendar Spread"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="Urgency" Type="Integer" Size="2">
+            <Intent>Ticket Urgency</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Low"/>
+                <AllowedValue Value="2" Meaning="Medium"/>
+                <AllowedValue Value="3" Meaning="High"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="RejectReason" Type="Integer" Size="2">
+            <Intent>rejection reason</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="SelfMatchPrevention"/>
+            </AllowedValues>
+        </Attribute>
+        <Attribute Name="TicketType" Type="Integer" Size="1" Optional="True">
+            <Intent>ticket type</Intent>
+            <AllowedValues>
+                <AllowedValue Value="0" Meaning="Unknown"/>
+                <AllowedValue Value="1" Meaning="Pipeline"/>
+                <AllowedValue Value="2" Meaning="Strategy"/>
+            </AllowedValues>
+        </Attribute>
+    </AttributeTypes>
+    <ObjectTypes/>
+</CrabelObjectSchema>

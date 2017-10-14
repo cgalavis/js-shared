@@ -26,6 +26,9 @@ function Options(opts) {
     if (!this)
         return new Options(opts);
 
+    if (!opts)
+        opts = {};
+
     this.path = opts.path || path.join(__dirname, "gen");
     this.dump = opts.dump || false;
 }
@@ -118,6 +121,31 @@ Schema.prototype.save = function(file_name, cb) {
     fs.writeFile(file_name, JSON.stringify(this, null, 4), "utf8", function (err) {
         cb(err);
     });
+};
+
+function getTypeName(type) {
+    let t;
+    if (typeof type === "object" && type.type)
+        return type.type.toString();
+
+    return type.toString();
+}
+
+Schema.prototype.isNativeType = function (type) {
+    type = getTypeName(type);
+    return type === "Integer" ||
+        type === "Numeric" ||
+        type === "Boolean" ||
+        type === "Alpha" ||
+        type === "Node";
+};
+
+Schema.prototype.getNativeType = function (type) {
+    type = getTypeName(type);
+    while (!this.isNativeType(type))
+        type = getTypeName(this.type_map[type]);
+
+    return type;
 };
 
 

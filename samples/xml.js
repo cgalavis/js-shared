@@ -24,3 +24,4 @@ let obj = schema.xml.toObj(xstr, TradeToOrderList);
 console.log(JSON.stringify(obj, null, 4));
 console.log();
 console.log(schema.xml.fromObj(obj, TradeToOrderList));
+
