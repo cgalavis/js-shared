@@ -29,7 +29,7 @@ function Options(opts) {
     if (!opts)
         opts = {};
 
-    this.path = opts.path || path.join(__dirname, "gen");
+    this.path = opts.path || "gen";
     this.dump = opts.dump || false;
 }
 
