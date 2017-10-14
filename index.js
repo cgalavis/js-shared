@@ -20,4 +20,5 @@ exports.module = {
     str_util: require("./str_util"),
     StringList: require("./StringList"),
     xml: require("./xml"),
+    schema: require("./schema/index"),
 };

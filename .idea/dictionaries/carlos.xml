@@ -2,6 +2,7 @@
   <dictionary name="carlos">
     <words>
       <w>attrs</w>
+      <w>struct</w>
     </words>
   </dictionary>
 </component>
