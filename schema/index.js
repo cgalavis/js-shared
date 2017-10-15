@@ -11,6 +11,9 @@ const util = require('util');
 const fs = require("fs");
 const path = require("path");
 const parseString = require("xml2js").parseString;
+
+/** @type {Restructure} */
+const rs = require("restructure");
 //
 const fs_util = require("../fs_util");
 const xml = require("../xml");
@@ -376,4 +379,20 @@ module.exports = {
     xml: require("./converters/xml"),
     json: require("./converters/json"),
     struct: require("./converters/struct"),
+    //
+    types: {
+        int8:   { type: "Integer", size: 1, native: rs.int8 },
+        int16:  { type: "Integer", size: 2, native: rs.int16 },
+        int32:  { type: "Integer", size: 4, native: rs.int32 },
+        int64:  { type: "Integer", size: 8, native: rs.double },
+        uint8:  { type: "Integer", size: 1, min: 0, native: rs.uint8 },
+        uint16: { type: "Integer", size: 2, min: 0, native: rs.uint16 },
+        uint32: { type: "Integer", size: 4, min: 0, native: rs.uint32 },
+        uint64: { type: "Integer", size: 8, min: 0, native: rs.double },
+        float:  { type: "Numeric", size: 4, native: rs.float },
+        double: { type: "Numeric", size: 8, native: rs.double },
+        bool:   { type: "Boolean", native: new rs.Boolean(rs.uint8) },
+        string: { type: "Alpha", native: new rs.String(rs.uint32, "utf8") },
+        node:   { type: "Node" }
+    }
 };

@@ -24,8 +24,12 @@ module.exports = {
 
         let res;
 
-        // IMPORTANT : 'parseString' is not asynchronous
+        // IMPORTANT : 'parseString' is not asynchronous, but check in case things change
+        // in the future, hopefully they will introduce a parseStringSync call when this
+        // happens.
+        let parse_callback_called = false;
         parseString(xml, function (err, doc) {
+            parse_callback_called = true;
             if (err)
                 throw err;
 
@@ -41,7 +45,7 @@ module.exports = {
             res = parseChild(doc, obj_class._refs);
         });
 
-        if (!res)
+        if (!parse_callback_called)
             throw new Error("'parseString' was not called, did 'xml2js' become async?");
 
         return res;

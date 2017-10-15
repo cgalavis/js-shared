@@ -2,7 +2,7 @@
 
 let schema = require("../schema");
 
-let s = new schema.Schema("samples/Schema.xml");
+let s = new schema.Schema("samples/data/Schema.xml");
 
 s.on("done", function () {
     let cat = {};

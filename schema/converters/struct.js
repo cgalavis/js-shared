@@ -12,6 +12,9 @@ const common = require("../common");
  * @returns {NativeType}
  */
 module.exports.getBinaryType = function (type_def) {
+    if (type_def.native)
+        return type_def.native;
+
     if (type_def.type === "Integer") {
         let unsigned = (undefined !== type_def.min && type_def.min >= 0);
 
@@ -48,18 +51,28 @@ module.exports.getBinaryType = function (type_def) {
 };
 
 
-module.exports.buildStruct = function (obj_class) {
+module.exports.getStructType = function (obj_class) {
     if (!obj_class._struct) {
         let self = this;
-        obj_class._struct = Object.assign({}, obj_class._attrs);
 
-        obj_class._refs.forEach(function (obj) {
-            let s = self.buildStruct(obj.ref_class);
-            if (obj.is_container)
+        obj_class._struct = {};
+        for (let k in obj_class._attrs)
+            obj_class._struct[k] = this.getBinaryType(obj_class._attrs[k]);
+
+        for (let k in obj_class._refs) {
+            let obj = obj_class._refs[k];
+            let s = self.getStructType(obj.ref_class);
+            if (obj.is_container) {
                 obj_class._struct[obj._name] = new rs.Array(s, rs.uint32);
+                obj_class._struct[obj._name].size = function (o, ctx) {
+                    if (o && Array.isArray(o))
+                        return o.length
+                    return 0;
+                };
+            }
             else
                 obj_class._struct[obj._name] = s;
-        });
+        }
     }
 
     return obj_class._struct;
