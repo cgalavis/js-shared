@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<TradeToOrderList ImmediateExecution="true" RenderOrder="true" RealtimeSendTime="1488900223">
-    <TradeToOrder OrderID="1" ProgramID="81" InstrumentID="15433" InstrumentMasterID="250"/>
-    <TradeToOrder OrderID="2" ProgramID="81" InstrumentID="15433" InstrumentMasterID="250"/>
-    <TradeToOrder OrderID="3" ProgramID="81" InstrumentID="15433" InstrumentMasterID="250"/>
-    <Name>Carlos Galavis</Name>
-</TradeToOrderList>

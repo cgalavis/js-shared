@@ -1,0 +1,38 @@
+{
+    "version": "1.0.0",
+    "author": "Carlos Galavis <cgalavis@crabel.com>",
+    "doc": [
+        "Structures used to send and receive information between CTS distributed applications."
+    ],
+    "root_namespace": "cts",
+    "dependencies": [],
+    "members": [
+        {
+            "name": "cts::msg::enums",
+            "type": "namespace",
+            "members": [
+                {
+                    "name": "AdjustmentType",
+                    "type": "enum",
+                    "value_type": "byte",
+                    "values": [
+                        { "name": "none", "value": 0 },
+                        { "name": "additive_offset", "value": 1 },
+                        { "name": "multiplicative_offset", "value": 2 }
+                    ]
+                },
+                {
+                    "name": "StreamType",
+                    "type": "enum",
+                    "value_type": "int8",
+                    "values": [
+                        { "name": "NotSet", "value": 0 },
+                        { "name": "L1", "value": 1 },
+                        { "name": "L2", "value": 2 },
+                        { "name": "L3", "value": 3 }
+                    ]
+                }
+            ]
+        }
+    ]
+}

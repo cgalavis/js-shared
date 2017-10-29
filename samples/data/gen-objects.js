@@ -7,12 +7,12 @@ const schema = require("../../schema");
 /**
  * Sent by the Trading Platform to the Trade Engine when submitting new Orders.
  * @param init_data
- * @returns {TradeToOrderList}
+ * @returns {TradeToOrder}
  * @constructor
  */
-module.exports.TradeToOrder = function (init_data) {
+let TradeToOrder = function (init_data) {
     if (!this)
-        return new TradeToOrderList(init_data);
+        return new TradeToOrder(init_data);
 
     let self = this;
 
@@ -28,8 +28,8 @@ module.exports.TradeToOrder = function (init_data) {
     this.Resting = Boolean(init_data.Resting) || null;
 };
 
-module.exports.TradeToOrder._name = "TradeToOrder";
-module.exports.TradeToOrder._attrs = {
+TradeToOrder._name = "TradeToOrder";
+TradeToOrder._attrs = {
     OrderID: schema.types.uint64,
     ProgramID: schema.types.uint64,
     InstrumentID: schema.types.uint64,
@@ -38,7 +38,7 @@ module.exports.TradeToOrder._attrs = {
     RealtimeSendTime: schema.types.int64,
     Resting: schema.types.bool,
 };
-module.exports.TradeToOrder._refs = {};
+TradeToOrder._refs = {};
 
 
 /**
@@ -47,7 +47,7 @@ module.exports.TradeToOrder._refs = {};
  * @returns {TradeToOrderList}
  * @constructor
  */
-module.exports.TradeToOrderList = function (init_data) {
+let TradeToOrderList = function (init_data) {
     if (!this)
         return new TradeToOrderList(init_data);
 
@@ -66,16 +66,21 @@ module.exports.TradeToOrderList = function (init_data) {
     init_data.TradeToOrder.forEach(function (tto) {
         self.TradeToOrder = new TradeToOrder(tto);
     });
-}
+};
 
 // Object Definition
-module.exports.TradeToOrderList._name = "TradeToOrderList";
-module.exports.TradeToOrderList._attrs = {
+TradeToOrderList._name = "TradeToOrderList";
+TradeToOrderList._attrs = {
     ImmediateExecution: schema.types.bool,
     RenderOrder: schema.types.bool,
     RealtimeSendTime: schema.types.uint64,
 };
-module.exports.TradeToOrderList._refs = {
-    TradeToOrder: { _name: "TradeToOrder", ref_class : this.TradeToOrder, is_container: true }
+TradeToOrderList._refs = {
+    TradeToOrder: { name: "TradeToOrder", ref_class : TradeToOrder, is_container: true }
 };
 
+
+// Exports
+
+module.exports.TradeToOrder = TradeToOrder;
+module.exports.TradeToOrderLine = TradeToOrderList;

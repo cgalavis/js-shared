@@ -5,8 +5,11 @@
       <w>crabel</w>
       <w>memberof</w>
       <w>minami</w>
+      <w>mkdirp</w>
       <w>monospace</w>
       <w>realtime</w>
+      <w>structs</w>
+      <w>uint</w>
     </words>
   </dictionary>
 </component>

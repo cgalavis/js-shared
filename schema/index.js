@@ -6,14 +6,14 @@
  * @author Carlos Galavis <cgalavis@crabel.com>
  */
 
+require("../proto");
+
 const EventEmitter = require('events');
 const util = require('util');
 const fs = require("fs");
 const path = require("path");
 const parseString = require("xml2js").parseString;
 
-/** @type {Restructure} */
-const rs = require("restructure");
 //
 const fs_util = require("../fs_util");
 const xml = require("../xml");
@@ -39,29 +39,22 @@ function Options(opts) {
 
 /**
  *
- * @param {String} file_name
- * @param {Options} opts
+ * @param {Object} [opts]
  * @constructor
  */
-function Schema(file_name, opts) {
-    let self = this;
-
-    if (!fs.existsSync(file_name))
-        throw new Error("Failed to read schema file '" + file_name +
-            "'. The file does not exist.");
-
-    this.objects = [];
-    this.types = [];
-    this.groups = [];
-    this.options = new Options(opts);
-
+function Schema(opts) {
     let object_map = {};
     let type_map = {};
     let group_map = {};
 
-    Object.defineProperty(this, 'object_map', { value: object_map, enumerable: false });
-    Object.defineProperty(this, 'type_map', { value: type_map, enumerable: false });
-    Object.defineProperty(this, 'group_map', { value: group_map, enumerable: false });
+    Object.defineProperty(this, 'object_map',
+        { writable: true, value: object_map, enumerable: false });
+    Object.defineProperty(this, 'type_map',
+        { writable: true, value: type_map, enumerable: false });
+    Object.defineProperty(this, 'group_map',
+        { writable: true, value: group_map, enumerable: false });
+
+    this.clear();
 
     // Hide a few properties
     Object.defineProperty(this, '_events', { writable: true, enumerable: false });
@@ -69,12 +62,61 @@ function Schema(file_name, opts) {
 
     //
 
+    this.options = new Options(opts);
     fs_util.ensurePath(this.options.path);
+}
+
+// Overwrites the prototype so must be called before prototype functions are added.
+util.inherits(Schema, EventEmitter);
+
+/**
+ * Loads the given schema file and calls the function 'cb' with a reference to the loaded
+ * schema object.
+ * @param {String} file_name
+ * @param {Object|Function} opts
+ * @param {Function} [cb]
+ */
+Schema.load = function (file_name, opts, cb) {
+    if (typeof opts === "function") {
+        cb = opts;
+        opts = undefined;
+    }
+
+    let s = new Schema(opts);
+    s.load(file_name, cb);
+};
+
+
+/**
+ * Loads the given schema file and calls the function 'cb' with a reference to the loaded
+ * schema object.
+ * @param {String} file_name
+ * @param {Function} [cb]
+ */
+Schema.prototype.load = function (file_name, cb) {
+    let self = this;
+
+    this.clear();
+
+    if (!fs.existsSync(file_name)) {
+        let e = new Error("Failed to read schema file '" + file_name +
+            "'. The file does not exist.");
+        if (cb)
+            cb(e, null);
+
+        return self.emit("err", e);
+    }
 
     fs.readFile(file_name, function (err, data) {
-        if (err)
-            throw new Error("Failed to read schema file '" + file_name + "'. " +
+        if (err) {
+            let e = new Error("Failed to read schema file '" + file_name + "'. " +
                 err.message);
+
+            if (cb)
+                cb(e, null);
+
+            return self.emit("err", e);
+        }
 
         parseString(data, function (err, doc) {
             if (err)
@@ -82,9 +124,15 @@ function Schema(file_name, opts) {
                     err.message);
 
             doc = doc.CrabelObjectSchema;
-            if (!doc)
-                throw new Error("The schema file '" + file_name + "' is not valid, " +
+            if (!doc) {
+                let e = new Error("The schema file '" + file_name + "' is not valid, " +
                     "the 'CrabelObjectSchema' element is missing.");
+
+                if (cb)
+                    cb("err", e);
+
+                return self.emit("err", e);
+            }
 
             self.emit("loaded", doc);
 
@@ -98,6 +146,9 @@ function Schema(file_name, opts) {
                     TypeDef.parse(self, t);
                 });
 
+            if (cb)
+                cb(null, self);
+
             self.emit("done", self);
 
             if (self.options.dump) {
@@ -110,10 +161,17 @@ function Schema(file_name, opts) {
             }
         });
     });
-}
+};
 
-// Overwrites the prototype so must be called before prototype functions are added.
-util.inherits(Schema, EventEmitter);
+Schema.prototype.clear = function () {
+    this.objects = [];
+    this.types = [];
+    this.groups = [];
+
+    this.object_map = {};
+    this.type_map = {};
+    this.group_map = {};
+};
 
 Schema.prototype.getType = function (type_name) {
     return this.type_map[type_name];
@@ -121,6 +179,14 @@ Schema.prototype.getType = function (type_name) {
 
 Schema.prototype.getObject = function (obj_name) {
     return this.object_map[obj_name];
+};
+
+Schema.prototype.getNativeType = function (type) {
+    let type_name = schema_util.getTypeName(type);
+    while (!schema_util.isNativeType(type_name))
+        type_name = schema_util.getTypeName(this.type_map[type_name]);
+
+    return type_name;
 };
 
 Schema.prototype.save = function(file_name, cb) {
@@ -131,31 +197,6 @@ Schema.prototype.save = function(file_name, cb) {
     fs.writeFile(file_name, JSON.stringify(this, null, 4), "utf8", function (err) {
         cb(err);
     });
-};
-
-function getTypeName(type) {
-    let t;
-    if (typeof type === "object" && type.type)
-        return type.type.toString();
-
-    return type.toString();
-}
-
-Schema.prototype.isNativeType = function (type) {
-    type = getTypeName(type);
-    return type === "Integer" ||
-        type === "Numeric" ||
-        type === "Boolean" ||
-        type === "Alpha" ||
-        type === "Node";
-};
-
-Schema.prototype.getNativeType = function (type) {
-    type = getTypeName(type);
-    while (!this.isNativeType(type))
-        type = getTypeName(this.type_map[type]);
-
-    return type;
 };
 
 
@@ -369,6 +410,147 @@ GroupDef.prototype.getPath = function () {
 };
 
 
+let schema_util = {
+    def_size: {
+        "Integer": 4,
+        "Numeric": 8,
+    },
+
+    getRef: function (obj_class, is_container) {
+        if (undefined === is_container)
+            is_container = false;
+
+        let name = obj_class.className();
+        let res = {};
+        res[name] = {
+            name: name, ref_class: obj_class, is_container: is_container
+        };
+    },
+
+    getTypeName: function (type) {
+        if (typeof type === "object" && type.type)
+            return type.type.toString();
+
+        return type.toString();
+    },
+
+    isNativeType: function (type) {
+        type = this.getTypeName(type);
+
+        for (let k in native_types)
+            if (k === type)
+                return true;
+
+        return false;
+    },
+
+    getJsType: function (type) {
+        return native_types[type];
+    },
+
+    initAttr: function (obj_class, data, prop_name) {
+        let attr = obj_class._attrs[prop_name];
+        let val = data[prop_name];
+
+        if (undefined === attr)
+            throw new Error("Invalid call to 'initAttr', the object class does not " +
+                "include the property '" + prop_name + "'");
+
+        if (undefined === val) {
+            if (!attr.optional)
+                throw new Error("Failed to initialize instance of '" + obj_class._name +
+                    "', non-optional property '" + prop_name + "' was not found.");
+
+            return undefined;
+        }
+
+        if ("Number" === attr.type) {
+            if (isNaN(val))
+                throw new Error("Invalid data value for numeric property '" + prop_name +
+                    "', value '" + val + "' is not a number.");
+
+            return Number(val);
+        }
+
+        if ("Boolean" === attr.type)
+            return Boolean(val);
+
+        if ("String" === attr.type) {
+            if (!val.toString)
+                throw new Error("Invalid data value for string property '" + prop_name +
+                    "', the value is not serializable to string.");
+
+            return val.toString();
+        }
+
+        return val;
+    },
+
+    initRef: function (obj_class, data) {
+        let ref_data = data[obj_class._name];
+        if (Array.isArray(ref_data))
+            return Array.from(ref_data, function(val) {
+                return new obj_class(val);
+            });
+
+        return new obj_class(ref_data);
+    }
+};
+
+
+// Map of native schema types to JS types.
+const native_types = {
+    Integer: "Number",
+    Numeric: "Number",
+    Alpha: "String",
+    Boolean: "Boolean",
+    Node: "Object",
+};
+
+function fixedString(optional, size) {
+    let res = {
+        type: native_types.Alpha,
+        size: size
+    };
+
+    if (optional)
+        res.optional = true;
+
+    return res;
+}
+
+const common_types = {
+    int8:   { type: native_types.Integer, size: 1 },
+    int16:  { type: native_types.Integer, size: 2 },
+    int32:  { type: native_types.Integer, size: 4 },
+    int64:  { type: native_types.Integer, size: 8 },
+    //
+    uint8:  { type: native_types.Integer, min_value: 0, size: 1 },
+    uint16: { type: native_types.Integer, min_value: 0, size: 2 },
+    uint32: { type: native_types.Integer, min_value: 0, size: 4 },
+    uint64: { type: native_types.Integer, min_value: 0, size: 8 },
+    //
+    float:  { type: native_types.Numeric, size: 4 },
+    double: { type: native_types.Numeric, size: 8 },
+    //
+    bool:   { type: native_types.Boolean },
+    string: { type: native_types.Alpha },
+    fixedString: fixedString.bind(null, false),
+    //
+    optional: {
+        fixedString: fixedString.bind(null, true)
+    }
+};
+
+// Assign name to the common types to aid code generators
+for (let t in common_types)
+    if (typeof common_types[t] === "object")
+        common_types[t].name = t;
+
+// Create optional types
+for (let t in common_types)
+    common_types.optional[t] = Object.assign({ optional: true }, common_types[t]);
+
 
 module.exports = {
     Schema: Schema,
@@ -380,19 +562,7 @@ module.exports = {
     json: require("./converters/json"),
     struct: require("./converters/struct"),
     //
-    types: {
-        int8:   { type: "Integer", size: 1, native: rs.int8 },
-        int16:  { type: "Integer", size: 2, native: rs.int16 },
-        int32:  { type: "Integer", size: 4, native: rs.int32 },
-        int64:  { type: "Integer", size: 8, native: rs.double },
-        uint8:  { type: "Integer", size: 1, min: 0, native: rs.uint8 },
-        uint16: { type: "Integer", size: 2, min: 0, native: rs.uint16 },
-        uint32: { type: "Integer", size: 4, min: 0, native: rs.uint32 },
-        uint64: { type: "Integer", size: 8, min: 0, native: rs.double },
-        float:  { type: "Numeric", size: 4, native: rs.float },
-        double: { type: "Numeric", size: 8, native: rs.double },
-        bool:   { type: "Boolean", native: new rs.Boolean(rs.uint8) },
-        string: { type: "Alpha", native: new rs.String(rs.uint32, "utf8") },
-        node:   { type: "Node" }
-    }
+    types: common_types,
+    //
+    util: schema_util
 };

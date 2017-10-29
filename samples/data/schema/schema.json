@@ -1,0 +1,16 @@
+{
+    "name": "schema_types",
+    "version": "1.0.0",
+    "author": "Carlos Galavis <cgalavis@crabel.com>",
+    "doc": "Master schema document.",
+    "templates": {
+        "file": "def",
+        "namespace": "def",
+        "struct": "def",
+        "union": "def",
+        "enum": "def"
+    },
+    "dependencies": [
+        "**"
+    ]
+}

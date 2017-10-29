@@ -1,0 +1,80 @@
+{
+    "version": "1.0.0",
+    "author": "Carlos Galavis <cgalavis@crabel.com>",
+    "doc": [
+        "Structures use to send and receive information between CTS distributed",
+        "applications."
+    ],
+    "dependencies": [
+        "crabel/biz/types.json",
+        "cts/msg/enums.json"
+    ],
+    "members": [
+        {
+            "name": "cts::msg::structs",
+            "type": "namespace",
+            "members": [
+                {
+                    "name": "Header",
+                    "type": "struct",
+                    "doc": "Header type",
+                    "members": [
+                        { "name": "time", "type": "int64" },
+                        { "name": "messageType", "type": "int64" },
+                        { "name": "sourceNode", "type": "int64" },
+                        { "name": "target", "type": "int64" },
+                        { "name": "version", "type": "int64" },
+                        { "name": "reserved1", "type": "int64" },
+                        { "name": "size", "type": "int64", "doc": "Size of payload (not including header)" }
+                    ]
+                },
+                {
+                    "name": "Price",
+                    "type": "struct",
+                    "doc": [
+                        "Price structure use in CTS to represent prices from a variety of data",
+                        "providers. The price structure can represent both L2 and L3 data structures."
+                    ],
+                    "members": [
+                        { "name": "type", "type": "cts::types::Type", "optional": true },
+                        { "name": "subType", "type": "cts::types::SubType", "optional": true },
+                        { "name": "tradingSession", "type": "cts::types::TradingSession", "optional": true },
+                        { "name": "specificType", "type": "cts::type::SpecificPriceType", "optional": true },
+                        { "name": "time", "type": "crabel::time::XTime" },
+                        { "name": "reserved1", "type": "uint8" },
+                        { "name": "reserved2", "type": "uint16" },
+                        {
+                            "type": "union",
+                            "members": [
+                                { "name": "orderID", "type": "uint64" },
+                                {
+                                    "type": "struct",
+                                    "members": [
+                                        { "name": "level", "type": "uint16" },
+                                        { "name": "endOfBlock", "type": "bool", "bits": 1 },
+                                        { "name": "implied", "type": "bool", "bits": 1 },
+                                        { "name": "reserved3", "type": "bool", "bits": 14 },
+                                        { "name": "orderCount", "type": "uint32" }
+                                    ]
+                                }
+                            ]
+                        },
+                        { "name": "price", "type": "double" },
+                        { "name": "amount", "type": "double" }
+                    ]
+                },
+                {
+                    "name": "StreamDefinition",
+                    "type": "struct",
+                    "doc": "Information bout a market data stream.",
+                    "members": [
+                        { "name": "key", "type": "int16" },
+                        { "name": "name", "type": "string", "size": 64 },
+                        { "name": "ecnKey", "type": "int16" },
+                        { "name": "streamType", "type": "cts::msg::enums::StreamType" }
+                    ]
+                }
+            ]
+        }
+    ]
+}

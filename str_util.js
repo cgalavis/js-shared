@@ -83,9 +83,12 @@ module.exports = {
      * @return {string} String containing the repeated sequence
      */
     fill: function (width, fill_char) {
-        if (!width)
+        if (isNaN(width))
             throw new Error("Invalid call to 'str_util.fill', the 'width' parameter " +
                 "is not optional.");
+
+        if (0 >= width)
+            return "";
 
         fill_char = _normStr(fill_char, "str_util.fill", " ", 1);
         return (new Array(width + 1)).join(fill_char);
@@ -378,6 +381,44 @@ module.exports = {
      */
     alignR: function (str, width, fill_char) {
         return this.align(str, width, "right", fill_char);
+    },
+
+
+    /**
+     * Indent each line of the given string by the number of spaces.
+     * @param {String} str
+     * @param {Number} spaces
+     * @return {String}
+     */
+    indent: function (str, spaces) {
+        if (isNaN(spaces))
+            spaces = str.search(/\S|$/) || 0;
+
+        let indent = this.fill(spaces);
+        let lines = this.splitLines(str.trim());
+        let res = "";
+        lines.forEach(function (line) {
+            if (res)
+                res += "\n";
+            res += indent + line;
+        });
+
+        return res;
+    },
+
+
+    splitLines: function (text) {
+        let res = [];
+        let lines = text.split("\r\n");
+
+        for (let i = 0; i < lines.length; ++i) {
+            // Process Unix formatted lines
+            let sub_lines = lines[i].split("\n");
+            for (let j = 0; j < sub_lines.length; ++j)
+                res.push(sub_lines[j]);
+        }
+
+        return res;
     },
 
 

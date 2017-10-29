@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const schema = require("../schema)");
+
+
+/**
+ * @type {Command}
+ * @property {String|undefined} path
+ */
+let program;
+program = require("commander");
+
+program
+    .version("1.0.0")
+    .description("Migrate legacy Crabel XML schema to new JSON schema.")
+    .usage("[options] <schema-file>")
+    .option("-p, --path [path]", "Path where generated files will be stored. By " +
+        "default files will be stored alongside the legacy schema.")
+    .option("-n --name [file-name]", "Name of the generated schema file. Name of the " +
+        "legacy schema file will be used if this options is omitted")
+    .parse(process.argv);
+
+
+

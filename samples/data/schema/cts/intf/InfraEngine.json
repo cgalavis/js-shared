@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "author": "Carlos Galavis <cgalavis@crabel.com>",
+  "doc": [
+    "Structures use to send and receive information between CTS distributed",
+    "applications."
+  ],
+  "dependencies": [
+    "cts/msg/structs.json"
+  ],
+  "members": [
+    {
+      "name": "cts::inf",
+      "type": "namespace",
+      "members": [
+        {
+          "name": "InfraEngine",
+          "type": "interface",
+          "doc": [
+            "A general 'infrastructure' engine used by other engines, providing access to",
+            "reference information."
+          ],
+          "members": [
+            {
+              "name": "GetIntrumentDetails",
+              "type": "function",
+              "doc": "Returns the details of the instrument joined with Instrument Master details.",
+              "params": [
+                { "name": "instrumentId", "type": "crabel::biz::types::InstrumentId" }
+              ],
+              "return_type": "cts::msg::structs::InstrumentInfo"
+            },
+            {
+              "name": "SymbolToInstrumentId",
+              "type": "function",
+              "doc": "Returns the Instrument ID of the specified Provider symbol.",
+              "params": [
+                { "name": "symbol", "type": "string" }
+              ],
+              "return_type": "cts::biz::types::InstrumentId"
+            },
+            {
+              "name": "GetRealTimeInstrumentMapping",
+              "type": "function",
+              "doc": [
+                "Converts an instrument symbol, etc., into a Mater Instrument ID, using ",
+                "DBIInstrument.RTInstrumentMaster."
+              ],
+              "params": [
+                { "name": "rt_symbol", "type": "string" },
+                { "name": "instrument_type", "type": "cts::msg::enums::InstrumentType" },
+                { "name": "expiration_date", "type": "int32" },
+                { "name": "expiration_month", "type": "int32" },
+                { "name": "expiration_day", "type": "int32" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
