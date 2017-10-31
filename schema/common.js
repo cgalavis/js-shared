@@ -103,6 +103,12 @@ function fixedType(optional, type, size) {
 }
 
 
+module.exports.validName = function (name) {
+    // TODO : Implement this
+    return true;
+};
+
+
 
 /**
  * @typedef {Function} ObjClass

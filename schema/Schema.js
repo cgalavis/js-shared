@@ -16,13 +16,15 @@ const glob = require("glob");
 
 const fs_util = require("../fs_util");
 const common = require("./common");
+const Member = require("./Member");
 
 
 const doc_version = {
-    major: 1,
-    minor: 0,
-    revision: 0,
-    //
+    major:      1,
+    minor:      0,
+    revision:   0,
+
+
     /**
      * Verifies the version of a schema document.
      * RULES:
@@ -57,29 +59,10 @@ const doc_version = {
 };
 
 const def_templates = {
-    "file": "file.template",
-    "namespace": "namespace.template",
-    "struct": "struct.template",
-    "union": "union.template",
-    "enum": "enum.template"
+    "file": "{{lang}}-file.template",
+    "namespace": "{{lang}}-namespace.template",
+    "struct": "{{lang}}-struct.template"
 };
-
-/**
- *
- * @param {Object} opts
- * @returns {Options}
- * @constructor
- */
-function Options(opts) {
-    if (!this)
-        return new Options(opts);
-
-    if (!opts)
-        opts = {};
-
-    this.path = opts.path || "gen";
-    this.dump = opts.dump || false;
-}
 
 /**
  * @typedef {Object} Member
@@ -106,7 +89,6 @@ function Options(opts) {
 
 /**
  * Object use to parse, validate and use schema objects.
- * @param {Object} opts
  * @property {String} name
  * @property {String|Array.<Number>} version
  * @property {String} [author]
@@ -118,38 +100,50 @@ function Options(opts) {
  * @returns {Schema}
  * @constructor
  */
-function Schema(opts) {
+function Schema() {
     if (!this)
-        return new Schema(opts);
+        return new Schema();
 
     // Hide a few properties
     Object.defineProperty(this, '_events', { writable: true, enumerable: false });
     Object.defineProperty(this, '_eventsCount', { writable: true, enumerable: false });
-
-    this.options = new Options(opts);
 }
 
 // Overwrites the prototype so must be called before prototype functions are added.
 util.inherits(Schema, EventEmitter);
 
 
-Schema.master = null;
+Schema.master = new Schema();
 Schema.file = null;
 Schema.path = null;
 Schema.documents = {};
 
+Schema.on = function () { Schema.master.on.apply(Schema.master, arguments); };
+Schema.once = function () { Schema.master.once.apply(Schema.master, arguments); };
+Schema.emit = function () { Schema.master.emit.apply(Schema.master, arguments); };
+
+Schema.resolveTemplates = function (schema) {
+    let def_templ = def_templates;
+    if (schema !== Schema.master)
+        def_templ = Schema.master.templates;
+
+    for (let t in def_templ) {
+        if (!def_templ.hasOwnProperty(t))
+            continue;
+
+        schema[t] = schema[t] || def_templ[t];
+    }
+};
 
 /**
  *
  * @param {String} fname
- * @param {Object} [opts]
  * @returns {null|Schema}
  */
-Schema.load = function (fname, opts) {
+Schema.load = function (fname) {
     Schema.file = path.basename(fname);
     Schema.path = path.dirname(fname);
 
-    Schema.master = new Schema(opts);
     Schema.master.load(Schema.file);
 
     // Expand dependencies
@@ -199,6 +193,9 @@ Schema.isValidDocument = function (fname) {
     if (".json" !== path.extname(fname))
         return false;
 
+    if (!fs.existsSync(fname))
+        return false;
+
     try {
         let doc = JSON.parse(fs.readFileSync(fname, "utf8"));
         validateSchema(doc);
@@ -219,8 +216,6 @@ Schema.prototype.init = function (doc) {
     // Initialize optional defaulted attributes
     this.members = [];
     this.dependencies = [];
-    this.templates = def_templates;
-
 
     // Remove other optional attributes
     if (this.author) delete this.author;
@@ -236,6 +231,8 @@ Schema.prototype.init = function (doc) {
             this[k] = doc[k];
 
     validateSchema(doc);
+
+    this.templates = Schema.resolveTemplates(this);
 
     let member_map = {};
     this.members.forEach(function (m, i) {
@@ -256,15 +253,24 @@ Schema.prototype.init = function (doc) {
         let dep_path = path.resolve(path.join(Schema.path, dep));
         glob.sync(dep_path, {cmd: Schema.path, nodir: true}).forEach(function (d) {
             // Make path relative to the schema document
-            if (Schema.isValidDocument(d) && d !== s_file) {
-                d = d.substr(s_path.length + 1);
+            if (Schema.isValidDocument(d)) {
+                if (d !== s_file) {
+                    d = relative(d);
 
-                if (!exp_deps_map[d]) {
-                    exp_deps_map[d] = true;
-                    exp_deps.push(d);
+                    if (!exp_deps_map[d]) {
+                        exp_deps_map[d] = true;
+                        exp_deps.push(d);
+                    }
                 }
             }
+            else
+                Schema.emit("warn", "Skipping invalid schema file '" + relative(d) + "'.");
         });
+
+
+        function relative(p) {
+            return p.substr(s_path.length + 1);
+        }
     });
 
     this.dependencies = exp_deps;
@@ -295,16 +301,11 @@ Schema.prototype.load = function (doc_name) {
         throw new Error("Failed to read schema file '" + fname + "'. The file " +
             "does not exist.");
 
-    try {
-        this.init(require(path.resolve(fname)));
-        if (this.members.length > 0)
-            Schema.documents[doc_name] = this;
+    this.init(require(path.resolve(fname)));
+    if (this.members.length > 0)
+        Schema.documents[doc_name] = this;
 
-        return this;
-    }
-    catch (err) {
-        throw new Error("Failed to read schema file '" + fname + "'. " + err.message);
-    }
+    return this;
 };
 
 /**
@@ -330,87 +331,6 @@ Schema.prototype.parse = function (cb) {
 };
 
 
-/**
- *
- * @param {Member|null} parent
- * @param {Schema} schema
- * @param {Number} index
- * @param {Object} data
- * @returns {Member}
- * @constructor
- */
-function Member(parent, schema, index, data) {
-    if (!this)
-        return new Member(parent, schema, index, data);
-
-    validateMember(parent, index, data);
-
-    this.schema = schema;
-    this.parent = parent;
-    this.index = index;
-
-    Object.defineProperty(this, 'schema', { writable: false, enumerable: false });
-    Object.defineProperty(this, 'parent', { writable: false, enumerable: false });
-    Object.defineProperty(this, 'index', { writable: false, enumerable: false });
-
-    for (let k in data)
-        if (data.hasOwnProperty(k) && undefined === this[k])
-            this[k] = data[k];
-
-    if (Array.isArray(this.doc))
-        this.doc = this.doc.join("\n");
-    else if (!this.doc)
-        this.doc = "";
-
-    this.template = getTemplateForType(this);
-
-    let self = this;
-    let member_map = {};
-
-    this.mapMembers = function (mem) {
-        member_map[mem.fullName()] = mem;
-        for (let mm in mem.member_map)
-            if (mem.member_map.hasOwnProperty(mm)) {
-                if (!common.types.isInline(mem.member_map[mm].type) &&
-                    common.types.isInline(mem.type)
-                )
-                    continue;
-
-                member_map[mm] = mem.member_map[mm];
-            }
-    };
-
-    if (Array.isArray(this.members))
-        this.members.forEach(function (m, i) {
-            let m_name = getFullName(parent, i, m);
-            if (member_map[m_name])
-                throw new Error("Invalid schema document, the definition of '" +
-                     self.fullName() + "' has duplicate member '" + m_name + "'.");
-
-            self.members[i] = new Member(self, schema, i, m);
-            self.mapMembers(self.members[i]);
-        });
-
-    Object.defineProperty(this, 'member_map',
-        { writable: false, value: member_map, enumerable: false });
-}
-
-Member.prototype.fullName = function () {
-    return getFullName(this.parent, this.index, this);
-};
-
-Member.prototype.parse = function (level, cb) {
-    cb(this, level);
-
-    if (common.types[this.type] && common.types[this.type].type === Object)
-        this.emit(this.type, this, level);
-
-    this.members.forEach(function (m) {
-        m.parse(level + 1, cb);
-    });
-};
-
-
 
 // Private Functions
 
@@ -425,153 +345,6 @@ function validateSchema(doc) {
     if (!doc_version.isValid(doc.version))
         throw new Error("Schema document not supported, either the version is " +
             "not supported, or version information is missing or invalid.");
-}
-
-
-/**
- *
- * @param {Member} parent
- * @param {Number} index
- * @param {Object} data
- */
-function validateMember(parent, index, data) {
-    const mname = getFullName(parent, index, data);
-    const msg = "Invalid schema document. ";
-
-    if (!data.type)
-        throw new Error(msg + "Member '" + mname + "' is missing the 'type' " +
-            "specification.");
-
-    validateName();
-
-    switch(data.type) {
-        case "struct":
-        case "union":
-            validateStruct();
-            break;
-        case "enum":
-            validateEnum();
-            break;
-        case "array":
-            validateArray();
-            break;
-        default:
-    }
-
-
-
-    function validateName() {
-        if (data.type !== "struct" && data.type !== "union")
-            if (undefined === data.name)
-                throw new Error("Member '" + mname + "' has no name, only 'struct' and " +
-                    "'union' types can be anonymous.");
-
-        if (undefined !== data.name)
-            if (!validName(data.name))
-                throw new Error("Member '" + mname + "' has an invalid name.");
-
-    }
-
-    function validateStruct() {
-        if (!Array.isArray(data.members) || data.members.length === 0)
-            throw new Error(msg + "'" + data.type + "' type '" + mname +
-                "' has no members.");
-    }
-
-    function validateEnum() {
-        const err_msg = msg + "'" + data.type + "' type '" + mname + "' ";
-        const err_invalid_value = err_msg + "has invalid values.";
-
-        if (!data.value_type)
-            data.value_type = "int32";
-
-        if (!common.types.isPrimitive(data.value_type))
-            throw new Error(err_msg + "has non-primitive value type.");
-
-        if (!Array.isArray(data.values) || data.values.length === 0)
-            throw new Error(err_msg + "has no values");
-
-        data.values.forEach(function (v, i) {
-            if (undefined === v.name || undefined === v.value)
-                throw new Error(err_invalid_value);
-
-            if (!validName(v.name))
-                throw new Error(err_invalid_value);
-
-            if (common.types.isNumeric(data.value_type))
-                if (isNaN(v.value))
-                    throw new Error(err_invalid_value);
-
-                data.values[i] = Number(v);
-        });
-    }
-
-    function validateArray() {
-        if (!data.value_type || undefined === common.types[data.value_type])
-            throw new Error("Invalid 'array' in member '" + mname + "', a valid " +
-                "'value_type' was not specified.");
-    }
-}
-
-
-function validName(name) {
-    // TODO : Implement this
-    return true;
-}
-
-/**
- *
- * @param {Number} index
- * @param {Object} data
- * @returns {string}
- */
-function getName(index, data) {
-    let postfix = "";
-    if ("function" === data.type) {
-        data.params.forEach(function (p) {
-            if (postfix) postfix += ", ";
-            postfix += p.type;
-        });
-        postfix ="(" + postfix + ")";
-    }
-
-    if (data.name)
-        return data.name + postfix;
-
-    return "<anonymous>[" + index + "]" + postfix;
-}
-
-/**
- *
- * @param {Member} parent
- * @param {Number} index
- * @param {Object} data
- * @returns {String}
- */
-function getFullName(parent, index, data) {
-    if (parent)
-        return parent.fullName() + "::" + getName(index, data);
-
-    return getName(index, data);
-}
-
-/**
- *
- * @param {Member} member
- * @param {String} [type]
- * @returns {String}
- */
-function getTemplateForType(member, type) {
-    if (undefined === type)
-        type = member.type;
-
-    if (member.template)
-        return member.template;
-
-    if (member.parent)
-        return getTemplateForType(member.parent, type);
-
-    return member.schema.templates[type];
 }
 
 
