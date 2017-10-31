@@ -1,20 +1,46 @@
 "use strict";
 
-let schema = require("../schema");
+const Schema = require("../schema/Schema");
+const colors = require("colors");
+const str_util = require("../str_util");
 
-let s = new schema.Schema("samples/data/Schema.xml");
-
-s.on("done", function () {
-    let cat = {};
-    s.objects.forEach(function (o) {
-        o.attrs.forEach(function (a) {
-            let nt = s.getNativeType(a);
-            if (nt !== a.type)
-                cat[a.type] = nt;
-        });
-    });
-    for (let k in cat) {
-        console.log(k + "=" + cat[k]);
-    }
+Schema.on("warn", function (msg) {
+    console.warn(msg);
 });
 
+Schema.load("data/schema/schema.json");
+
+console.log();
+
+for (let sd in Schema.documents) {
+    if (!Schema.documents.hasOwnProperty(sd))
+        continue;
+
+    let sc = Schema.documents[sd];
+
+    console.log(sd.bold);
+    console.log(title("dependencies"));
+    sc.dependencies.forEach(function (d) {
+        console.log("        " + d.magenta);
+    });
+
+    console.log(title("members"));
+    for (let sm in sc.member_map) {
+        if (!sc.member_map.hasOwnProperty(sm))
+            continue;
+
+        console.log("        " + sm.blue.bold);
+
+        let doc = sc.member_map[sm];
+        if (doc.doc)
+            console.log(str_util.indent("        " + doc.doc.grey));
+    }
+}
+
+console.log();
+
+
+
+function title(t) {
+    return "    [" + t.underline + "]";
+}

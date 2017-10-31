@@ -63,15 +63,15 @@ module.exports.getStructType = function (obj_class) {
             let obj = obj_class._refs[k];
             let s = self.getStructType(obj.ref_class);
             if (obj.is_container) {
-                obj_class._struct[obj._name] = new rs.Array(s, rs.uint32);
-                obj_class._struct[obj._name].size = function (o, ctx) {
+                obj_class._struct[obj.name] = new rs.Array(s, rs.uint32);
+                obj_class._struct[obj.name].size = function (o, ctx) {
                     if (o && Array.isArray(o))
-                        return o.length
+                        return o.length;
                     return 0;
                 };
             }
             else
-                obj_class._struct[obj._name] = s;
+                obj_class._struct[obj.name] = s;
         }
     }
 
