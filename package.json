@@ -1,15 +1,12 @@
 {
   "name": "@crabel/shared",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
   "homepage": "https://git2.hq.crabel.com/pages/node-common/shared/",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests",
     "docs": "jsdoc -c docs_conf.json -R README.md --verbose ."
-  },
-  "publishConfig": {
-    "registry": "https://artifactory.hq.crabel.com/artifactory/api/npm/npm-crabel"
   },
   "repository": {
     "type": "git",
