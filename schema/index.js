@@ -209,12 +209,14 @@ Schema.prototype.save = function(file_name, cb) {
  * @param {String} intent
  * @param {Object} attrs
  * @param {Object} refs
+ * @param {Number} cpp_obj_type
  * @returns {ObjectDef}
  * @constructor
  */
-function ObjectDef(schema, parent, name, msg_type, intent, attrs, refs) {
+function ObjectDef(schema, parent, name, msg_type, intent, attrs, refs, cpp_obj_type) {
     if (!this)
-        return new ObjectDef(schema, parent, name, msg_type, intent, attrs, refs);
+        return new ObjectDef(schema, parent, name, msg_type, intent, attrs,
+            refs, cpp_obj_type);
 
     if (schema.objects[name])
         throw new Error("Failed to create object '" + name + "', this object has " +
@@ -231,6 +233,7 @@ function ObjectDef(schema, parent, name, msg_type, intent, attrs, refs) {
     // Attributes
     this.name = name;
     this.msg_type = msg_type;
+    this.cpp_obj_type = cpp_obj_type;
     this.intent = intent;
 
     this.attrs = [];
@@ -242,6 +245,7 @@ function ObjectDef(schema, parent, name, msg_type, intent, attrs, refs) {
                 name: a.$.Name,
                 index: xml.parse.number(a.$.Index),
                 type: a.$.Type,
+                size: a.$.Size,
                 min_value: xml.parse.number(a.$.MinValue),
                 max_value: xml.parse.number(a.$.MaxValue),
                 optional: xml.parse.bool(a.$.Optional),
@@ -251,19 +255,27 @@ function ObjectDef(schema, parent, name, msg_type, intent, attrs, refs) {
 
     if (refs.Object)
         refs.Object.forEach(function (o) {
+            let o_name = o.$.Name;
+            let o_type = o.$.Type;
+
+            if (o.$.LinkName) {
+                o_name = o.$.LinkName;
+                o_type = o.$.Name;
+            }
+
             self.refs.push({
-                name: o.$.Name,
+                name: o_name,
                 index: xml.parse.number(o.$.Index),
-                type: o.$.Type,
+                type: o_type,
+                size: o.$.size,
                 intent: o.$.Intent,
-                link_name: o.$.LinkName,
                 min_count: xml.parse.number(o.$.MinCount),
                 max_count: xml.parse.number(o.$.MaxCount)
             });
         });
 
     this.schema.objects.push(this);
-    this.schema.object_map[this.path + "::" + name] = this;
+    this.schema.object_map[this.fullName()] = this;
 }
 
 ObjectDef.parse = function (schema, parent, obj_def) {
@@ -274,10 +286,14 @@ ObjectDef.parse = function (schema, parent, obj_def) {
         obj_def.$.MessageType,
         xml.parse.string(obj_def.Intent),
         xml.parse.list(obj_def.Attributes),
-        xml.parse.list(obj_def.References)
+        xml.parse.list(obj_def.References),
+        Number(obj_def.$.CPPObjectType || 1)
     );
 };
 
+ObjectDef.prototype.fullName = function () {
+    return this.path + "::" + this.name;
+};
 
 /**
  *
