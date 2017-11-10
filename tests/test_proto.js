@@ -290,5 +290,4 @@ describe("Date Prototype Test Suite", function () {
 // Date Prototype Test Suite
 // ===========================
 describe("Date Prototype Test Suite", function () {
-
 });

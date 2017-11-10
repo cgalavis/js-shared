@@ -1077,9 +1077,8 @@ ArrayExt.prototype.isLast = function (index) {
  * Returns <tt>true</tt> if the array has no elements.
  * @returns {Boolean}
  */
-ArrayExt.prototype.empty = function ()
-{
-    return this.length == 0;
+ArrayExt.prototype.empty = function () {
+    return this.length === 0;
 };
 
 
@@ -1114,12 +1113,15 @@ module.exports = {
 
         if (hasType(Object))    registerExtension(Object, ObjExt);
         if (hasType(Number))    registerExtension(Number, NumExt);
-        if (hasType(Date))      registerExtension(Date, DateExt);
         if (hasType(Array))     registerExtension(Array, ArrayExt);
+
+        if (hasType(Date)) {
+            registerExtension(Number, NumExt);
+            registerExtension(Date, DateExt);
+        }
 
 
         function hasType(type) {
-            "use strict";
             if (0 === args.length)
                 return true;
 
