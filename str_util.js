@@ -407,6 +407,13 @@ module.exports = {
     },
 
 
+    /**
+     * Splits the given string into an array of strings with each line becoming an
+     * element in the array. This function handles Linux as well Windows style EOL
+     * characters.
+     * @param {String} text
+     * @returns {Array.<String>}
+     */
     splitLines: function (text) {
         let res = [];
         let lines = text.split("\r\n");
@@ -419,6 +426,19 @@ module.exports = {
         }
 
         return res;
+    },
+
+
+    /**
+     * Combines the given array of strings into a multi-line string.
+     * @param {Array.<String>|String} lines
+     * @param {String} [eol=os.EOL]
+     */
+    combineLines: function (lines, eol = os.EOL) {
+        if (Array.isArray(lines))
+            return lines.join(eol);
+
+        return lines;
     },
 
 
