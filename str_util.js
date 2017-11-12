@@ -12,7 +12,8 @@
 
 require("./proto").init();
 const os = require("os");
-let columnify = require("columnify");
+const xnv = require("xml-name-validator");
+const columnify = require("columnify");
 
 
 /**
@@ -806,6 +807,12 @@ module.exports = {
 
 
             return res;
+        }
+    },
+
+    is_valid: {
+        varName: function (str) {
+            return xnv.qname(str) && !str.includes(":");
         }
     }
 };
