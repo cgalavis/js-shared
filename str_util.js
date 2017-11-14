@@ -847,7 +847,7 @@ function _normStr(str, caller, def_value, len) {
     }
 
     str = str.toString();   // Make sure we are working with a string
-    if (0 == str.length) {
+    if (0 === str.length) {
         if (!len)
             return str;
 

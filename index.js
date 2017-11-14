@@ -13,7 +13,7 @@
 
 require("./proto").init();
 
-exports.module = {
+module.exports = {
     csv: require("./csv"),
     fs_util: require("./fs_util"),
     range: require("./range"),
