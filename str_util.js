@@ -12,7 +12,7 @@
 
 require("./proto").init();
 const os = require("os");
-const xnv = require("xml-name-validator");
+const vvn = require("is-valid-var-name");
 const columnify = require("columnify");
 
 
@@ -812,7 +812,7 @@ module.exports = {
 
     is_valid: {
         varName: function (str) {
-            return xnv.qname(str) && !str.includes(":");
+            return vvn(str);
         }
     }
 };

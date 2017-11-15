@@ -1,6 +1,6 @@
 {
   "name": "@crabel/shared",
-  "version": "1.0.34",
+  "version": "1.0.36",
   "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
   "homepage": "https://git2.hq.crabel.com/pages/node-common/shared/",
   "main": "index.js",
@@ -27,11 +27,11 @@
     "columnify": "^1.5.4",
     "fs-extra": "^2.1.2",
     "glob": "^7.1.1",
+    "is-valid-var-name": "^1.0.2",
     "mkdirp": "^0.5.1",
     "restructure": "^0.5.4",
     "word-wrap": "^1.2.1",
     "xml-escape": "^1.1.0",
-    "xml-name-validator": "^3.0.0",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
