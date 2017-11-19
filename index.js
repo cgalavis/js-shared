@@ -14,11 +14,12 @@
 require("./proto").init();
 
 module.exports = {
-    csv: require("./csv"),
-    fs_util: require("./fs_util"),
-    range: require("./range"),
+    extend: require("./extend"),
     str_util: require("./str_util"),
+    fs_util: require("./fs_util"),
     StringList: require("./StringList"),
+    range: require("./range"),
+    csv: require("./csv"),
     xml: require("./xml"),
     schema: require("./schema/index"),
 };
