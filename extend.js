@@ -28,15 +28,6 @@ function extend(ctor, super_ctor) {
         throw new Error("Invalid call to 'extend', the super constructor (super_ctor) " +
         "is not optional");
 
-    if (super_ctor.super_) {
-        let ctor_cn = Object.className(ctor);
-        let super_ctor_cn = Object.className(super_ctor);
-        let super_ctor_super_cn = Object.className(super_ctor.super_);
-        throw new Error("Mutil level inheritance is not supported. Class " +
-            `"${ctor_cn}" can't descent from class "${super_ctor_cn}" because ` +
-            `"${super_ctor_cn}" is a descendant of "${super_ctor_super_cn}".`);
-    }
-
     if (ctor.super_)
         if (ctor.super_ === super_ctor)
             return;
@@ -44,19 +35,21 @@ function extend(ctor, super_ctor) {
             throw new Error("Given target constructor has already been extended");
 
     if (this && this !== global)
-        throw new Error("Creating instances of 'Extend' is not allowed.");
+        throw new Error("Creating instances of 'extend' is not allowed.");
 
     util.inherits(ctor, super_ctor);
+    ctor.super$constructor = ctor.super_;
 
-    ctor.prototype["super$constructor"] = function () {
-        super_ctor.apply(this, arguments);
-        return this;
-    };
+    addInheritedMethods(ctor, super_ctor.prototype);
+}
 
-    for (let f in super_ctor.prototype) 
-        if ("function" === typeof super_ctor.prototype[f])
-            ctor.prototype["super$" + f] = function () {
-                return super_ctor.prototype[f].apply(this, arguments);
-            }
+function addInheritedMethods(ctor, proto) {
+    for (let f in proto) {
+        let sf = "super$" + f;
+        if ("function" === typeof proto[f] && !f.includes("super$") && !ctor[sf])
+            ctor[sf] = proto[f];
+    }
 
+    if (proto.prototype)
+        addInheritedMethods(ctor, proto.prototype);
 }
