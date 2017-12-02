@@ -19,8 +19,9 @@ module.exports = {
     fs_util: require("./fs_util"),
     DataReader: require("./DataReader"),
     StringList: require("./StringList"),
+    FieldChecker: require("./FieldChecker"),
     range: require("./range"),
     csv: require("./csv"),
     xml: require("./xml"),
-    schema: require("./schema/index"),
+    schema: require("./schema/index")
 };

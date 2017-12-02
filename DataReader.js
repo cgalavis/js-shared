@@ -11,6 +11,9 @@ function DataReader(source) {
         throw new Error('Invalid call to "DataReader" constructor, the source must be ' +
             'a valid object.');
 
+    for (let k in source)
+        this[k] = source[k];
+
     let readProp = (type, prop, def, cb) => {
         if ("string" === typeof type) {
             def = prop;
@@ -23,33 +26,33 @@ function DataReader(source) {
                 'indentifier was specified.');
 
         let msg = `Failed to get property "${prop}". `;
-        if (undefined === source[prop] && undefined === def) {
+        if (undefined === this[prop] && undefined === def) {
             return cb(new Error(msg + "The property was not found in the source " + 
                 "object."));
         }
 
-        if (undefined === source[prop])
-            source[prop] = def;
+        if (undefined === this[prop])
+            this[prop] = def;
 
         let err_invalid_type = new Error(msg + `The property "${prop}" in source ` +
             "is of the wrong type.");
 
         switch (type) {
             case Date:
-                let dt = new Date(source[prop]);
+                let dt = new Date(this[prop]);
                 if (isNaN(dt.getTime()))
                     return cb(err_invalid_type);
                 return cb(null, prop, dt);
             case Number:
-                if (isNaN(source[prop]))
+                if (isNaN(this[prop]))
                     return cb(err_invalid_type);
-                return cb(null, prop, Number(source[prop]));
+                return cb(null, prop, Number(this[prop]));
             case Boolean:
-                return cb(null, prop, Boolean(source[prop]));
+                return cb(null, prop, Boolean(this[prop]));
             case String:
-                return cb(null, prop, str_util.combineLines(source[prop]));
+                return cb(null, prop, str_util.combineLines(this[prop]));
             default:
-                return cb(null, prop, source[prop]);
+                return cb(null, prop, this[prop]);
         }
     };
 
