@@ -118,7 +118,7 @@ function validType(field, obj, prop) {
         case String:
             if ("function" !== typeof obj[prop].toString)
                 return false;
-            obj[prop] = obj[prop].toString();
+            obj[prop] = str_util.combineLines(obj[prop]);
             break;
         case Number:
             if (isNaN(obj[prop]))

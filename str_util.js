@@ -439,7 +439,7 @@ module.exports = {
         if (Array.isArray(lines))
             return lines.join(eol);
 
-        return lines;
+        return lines.toString();
     },
 
 
