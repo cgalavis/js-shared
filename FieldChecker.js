@@ -81,11 +81,24 @@ function FieldChecker(fields) {
     }
 };
 
+FieldChecker.validate = function (fields, data) {
+    if (!fields)
+        return;
+
+    let fc = new FieldChecker(fields);
+    fc.validate(data);
+}
+
 FieldChecker.prototype.validate = function(obj) {
     for (let field of this.fields) {
         let k = field.name;
-        if (field.required && undefined === obj[k])
-            throw new Error(`Required field "${k}" was not found.`);
+
+        if (undefined === obj[k]) {
+            if (field.required)
+                throw new Error(`Required field "${k}" was not found.`);
+
+            return;
+        }
 
         if (!validType(field, obj, k))
             throw new Error(`Field "${k}" is of the wrong type.`);
