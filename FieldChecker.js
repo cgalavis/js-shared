@@ -15,7 +15,7 @@ module.exports = FieldChecker;
  * @typedef FieldSpecs
  * @property {String} name
  * @property {Function} type
- * @property {Boolean} [required]
+ * @property {Boolean|Function} [required]
  * @property {Boolean} [int]
  * @property {Array.<*>} [values]
  * @property {Range} [range]
@@ -92,9 +92,11 @@ FieldChecker.validate = function (fields, data) {
 FieldChecker.prototype.validate = function(obj) {
     for (let field of this.fields) {
         let k = field.name;
+        let required = ("boolean" === field.required) 
+            ? field.required : field.required(obj);
 
         if (undefined === obj[k]) {
-            if (field.required)
+            if (required)
                 throw new Error(`Required field "${k}" was not found.`);
 
             return;
