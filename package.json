@@ -1,6 +1,6 @@
 {
   "name": "@crabel/shared",
-  "version": "1.0.49",
+  "version": "1.0.53",
   "description": "Set of shared libraries to help build consistent Node applications. Includes support for configs, logging and more.",
   "homepage": "https://git2.hq.crabel.com/pages/node-common/shared/",
   "main": "index.js",

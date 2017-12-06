@@ -388,7 +388,7 @@ module.exports = {
     /**
      * Indent each line of the given string by the number of spaces.
      * @param {String} str
-     * @param {Number} spaces
+     * @param {Number} [spaces]
      * @return {String}
      */
     indent: function (str, spaces) {

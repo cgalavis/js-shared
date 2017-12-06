@@ -92,14 +92,18 @@ FieldChecker.validate = function (fields, data) {
 FieldChecker.prototype.validate = function(obj) {
     for (let field of this.fields) {
         let k = field.name;
-        let required = ("boolean" === field.required) 
-            ? field.required : field.required(obj);
+        let required;
+        
+        if ("function" === typeof field.required)
+            required = field.required(obj);
+        else
+            required = Boolean(field.required);
 
         if (undefined === obj[k]) {
             if (required)
                 throw new Error(`Required field "${k}" was not found.`);
 
-            return;
+            continue;
         }
 
         if (!validType(field, obj, k))
@@ -152,6 +156,10 @@ function validType(field, obj, prop) {
             break;
         case Array:
             if (!Array.isArray(obj[prop]))
+                return false;
+            break;
+        case Object:
+            if ("object" !== typeof obj[prop])
                 return false;
             break;
         default:
