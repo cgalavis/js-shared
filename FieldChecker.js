@@ -122,7 +122,7 @@ FieldChecker.prototype.validate = function(obj) {
                 throw new Error(`Value of field "${k}" is not allowed.`);
 
         if (field.vaidate)
-            if (!field.validate(obj[k]))
+            if (!field.validate(obj[k], obj))
                 throw new Error(`Field ${k} failed validation.`);
     }
 };
