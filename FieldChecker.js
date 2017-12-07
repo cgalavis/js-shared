@@ -121,9 +121,8 @@ FieldChecker.prototype.validate = function(obj) {
             if (-1 === field.values.indexOf(obj[k]))
                 throw new Error(`Value of field "${k}" is not allowed.`);
 
-        if (field.vaidate)
-            if (!field.validate(obj[k], obj))
-                throw new Error(`Field ${k} failed validation.`);
+        if (field.validate)
+            field.validate(obj[k], obj);
     }
 };
 
