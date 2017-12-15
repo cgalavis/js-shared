@@ -132,6 +132,9 @@ FieldChecker.prototype.validate = function(obj) {
 //
 
 function validType(field, obj, prop) {
+    if (!field.type)
+        return true;
+
     switch (field.type) {
         case String:
             if ("function" !== typeof obj[prop].toString)

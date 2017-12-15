@@ -12,7 +12,7 @@
 
 require("./proto").init();
 const os = require("os");
-const vvn = require("is-valid-var-name");
+const vvn = require("./lib/validVar");
 const columnify = require("columnify");
 
 
