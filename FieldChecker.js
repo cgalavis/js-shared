@@ -40,9 +40,9 @@ function FieldChecker(fields) {
             throw new Error("Invalid call to FieldChecker constructor, the fields " +
                 "collection is not valid, one of the fields is missing it's name.");
 
-        if ("function" !== typeof field.type)
+        if (field.type && "function" !== typeof field.type)
             throw new Error("Invalid call to FieldChecker constructor, the fields " +
-                `collection is not valid. Field "${field.name}" has an invalid type` +
+                `collection is not valid. Field "${field.name}" has an invalid type ` +
                 "specified.");
 
         if (field.values) {
@@ -67,6 +67,12 @@ function FieldChecker(fields) {
                 throw new Error("Invalid call to FieldChecker constructor, the fields " +
                     "collection is not valid. The minimum value allowed for field " +
                     `"${field.name}" is greater than the maximum value allowed.`);
+
+        if ("function" !== typeof field.get)
+            field.get = (obj, name) => obj[name];
+
+        if ("function" !== typeof field.set)
+            field.set = (obj, name, val) => obj[name] = val;
     }
 
     this.fields = fields;
@@ -92,8 +98,8 @@ FieldChecker.validate = function (fields, data) {
 FieldChecker.prototype.validate = function(obj) {
     for (let field of this.fields) {
         let k = field.name;
+
         let required;
-        
         if ("function" === typeof field.required)
             required = field.required(obj);
         else
@@ -135,33 +141,37 @@ function validType(field, obj, prop) {
     if (!field.type)
         return true;
 
+    let val = field.get(obj, prop);
     switch (field.type) {
         case String:
-            if ("function" !== typeof obj[prop].toString)
+            if ("function" !== typeof val.toString)
                 return false;
-            obj[prop] = str_util.combineLines(obj[prop]);
+            val = str_util.combineLines(val);
+            field.set(obj, prop, val);
             break;
         case Number:
-            if (isNaN(obj[prop]))
+            if (isNaN(val))
                 return false;
-            obj[prop] = Number(obj[prop]);
-            if (field.int && !Number.isInteger(obj[prop]))
+            val = Number(val);
+            field.set(obj, prop, val);
+            if (field.int && !Number.isInteger(val))
                 return false;
             break;
         case Boolean:
-            obj[prop] = Boolean(obj[prop]);
+            val = Boolean(val);
+            field.set(obj, prop, val);
             break;
         case Date:
-            let d = new Date(obj[prop]);
+            let d = new Date(val);
             if (isNaN(d.getTime()))
                 return false;
             break;
         case Array:
-            if (!Array.isArray(obj[prop]))
+            if (!Array.isArray(val))
                 return false;
             break;
         case Object:
-            if ("object" !== typeof obj[prop])
+            if ("object" !== typeof val)
                 return false;
             break;
         default:
