@@ -396,7 +396,7 @@ module.exports = {
             spaces = str.search(/\S|$/) || 0;
 
         let indent = this.fill(spaces);
-        let lines = this.splitLines(str.trim());
+        let lines = this.splitLines(str);
         let res = "";
         lines.forEach(function (line) {
             if (res)
