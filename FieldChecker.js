@@ -12,7 +12,7 @@ module.exports = FieldChecker;
  */
 
 /**
- * @typedef FieldSpecs
+ * @typedef {Object} FieldSpecs
  * @property {String} name
  * @property {Function} type
  * @property {Boolean|Function} [required]
@@ -51,7 +51,8 @@ function FieldChecker(fields) {
                     `collection is not valid. Field "${field.name}" has an invalid ` +
                     `"values" collection.`);
 
-            field.values.forEach(function (v) { validateValue(field, v); });
+            if (field.type !== Array)
+                field.values.forEach(function (v) { validateValue(field, v); });
         }
 
         if (!field.range)
@@ -124,8 +125,15 @@ FieldChecker.prototype.validate = function(obj) {
 
 
         if (field.values)
-            if (-1 === field.values.indexOf(obj[k]))
-                throw new Error(`Value of field "${k}" is not allowed.`);
+            if (!Array.isArray(obj[k])) {
+                if (-1 === field.values.indexOf(obj[k]))
+                    throw new Error(`Value "${obj[k]}" of field "${k}" is not allowed, ` +
+                        `allowed values are: ${JSON.stringify(field.values)}`);
+            }
+            else for (let v of obj[k])
+                if (-1 === field.values.indexOf(v))
+                    throw new Error(`Value "${v}" of field "${k}" is not allowed, ` +
+                        `allowed values are: ${JSON.stringify(field.values)}`);
 
         if (field.validate)
             field.validate(obj[k], obj);
