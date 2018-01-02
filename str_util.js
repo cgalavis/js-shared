@@ -113,6 +113,23 @@ module.exports = {
         });
     },
 
+    /**
+     * Decapitalizes the first letter of every word in the given <tt>str</tt>.
+     * @param {String} str
+     * String to be capitalized.
+     * @returns {String}
+     * Returns a string with the first letter of every word capitalized.
+     */
+    decapitalize: function (str) {
+        if (!str || !str.toString)
+            throw new Error("Invalid call to 'str_util.capitalize', an invalid " +
+                "parameter was passed.");
+
+        return str.replace(/(?:^|\s)\S/g, function (a) {
+            return a.toLowerCase();
+        });
+    },
+
 
     /**
      * Replaces tokens of the form {N} where N indicates the index of the value to use
