@@ -287,7 +287,7 @@ ObjExt.prototype.merge = function (src, replace, deep) {
         deep = true;
 
     for (let attr in src) {
-        if (src.hasOwnProperty(attr)) {
+        if (src.hasOwnProperty(attr) && undefined !== src[attr]) {
             if (!src[attr] || ObjExt.isPrimitive(src[attr])) {
                 if (undefined === this[attr] || replace)
                     if (src[attr] instanceof Date)

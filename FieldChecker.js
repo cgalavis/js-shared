@@ -94,7 +94,7 @@ FieldChecker.validate = function (fields, data) {
 
     let fc = new FieldChecker(fields);
     fc.validate(data);
-}
+};
 
 FieldChecker.prototype.validate = function(obj) {
     for (let field of this.fields) {
@@ -181,6 +181,9 @@ function validType(field, obj, prop) {
         case Object:
             if ("object" !== typeof val)
                 return false;
+            if (!Array.isArray(field.field_specs))
+                return true;
+            FieldChecker.validate(field.field_specs, val);
             break;
         default:
             throw new Error(`Type "${Object.className(field.type)}" is not supported by the ` +
@@ -189,3 +192,46 @@ function validType(field, obj, prop) {
 
     return true;
 }
+
+
+// Test Functions
+
+FieldChecker.test = function () {
+    const field_specs = [
+        { name: "targets", type: Array, required: true, values: [ "cpp", "thrift", "node" ] },
+        { name: "target_dir", type: String, required: true },
+        { name: "schema", type: String, required: true },
+        {
+            name: "type_id", type: Object, required: true,
+            field_specs: [
+                { name: "offset", type: Number, required: true, range: { min: 0 } },
+                {
+                    name: "file_name", type: String, required: true,
+                    validate(val) {
+                        if ("type_id.csv" !== val)
+                            throw new Error(`The field ${this.name} has the wrong value.`);
+                    }
+                },
+            ]
+        }
+    ];
+
+    let data = {
+        targets: [ "cpp" ],
+        target_dir: "./gen",
+        schema: "schema.json",
+        type_id: {
+            offset: 50,
+            file_name: "type_id.csv"
+        }
+    };
+
+    FieldChecker.validate(field_specs, data);
+    console.log("Yay!!!");
+};
+
+
+
+
+
+
