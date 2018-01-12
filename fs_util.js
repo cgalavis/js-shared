@@ -22,27 +22,28 @@ module.exports = {
      * Ensure the given path (or path to the given file) exists.
      * @param {String} dir
      * Path to the folder or file.
-     * @returns {Boolean}
+     * @returns {String}
      */
     ensurePath: function (dir) {
+        let orig = dir;
         // If an extension is present, we assume the path is to a file
         dir = dir.trim();
-        if ("" !== path.extname(dir) && dir.charAt(dir.length - 1) != path.sep)
+        if ("" !== path.extname(dir) && dir.charAt(dir.length - 1) !== path.sep)
             dir = path.dirname(dir);
 
         if (fs.existsSync(dir))
-            return true;
+            return orig;
 
         let parent_dir = path.dirname(dir);
-        if ("" == parent_dir)
-            return false;
+        if ("" === parent_dir)
+            return null;
 
         if (this.ensurePath(parent_dir + path.sep)) {
             fs.mkdirSync(dir);
-            return true;
+            return orig;
         }
 
-        return false;
+        return null;
     },
 
     emptyDir: function (dir) {
