@@ -10,11 +10,14 @@
 
 require("./proto").init();
 
-let path = require("path");
-let fs = require("fs");
-let fsx = require("fs-extra");
-let glob = require("glob");
-let mkdirp = require("mkdirp");
+const path = require("path");
+const fs = require("fs");
+const fsx = require("fs-extra");
+const glob = require("glob");
+const mkdirp = require("mkdirp");
+
+
+let user_folder = process.env["HOME"] || process.env["USERPROFILE"];
 
 
 module.exports = {
@@ -235,6 +238,11 @@ module.exports = {
         for (let i = 0; i < files.length; ++i) {
             fs.unlinkSync(files[i]);
         }
+    },
+
+    common_dirs: {
+        home: user_folder,
+        temp: process.env["TEMP"] || path.join(user_folder, ".temp")
     }
 
 };
