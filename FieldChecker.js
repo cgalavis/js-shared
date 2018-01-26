@@ -61,7 +61,7 @@ function FieldChecker(fields) {
         if (undefined !== field.range.min) 
             validateValue(field, field.range.min);
         if (undefined !== field.range.max)
-            validateValue(field, field.range.max);
+            NumberteValue(field, field.range.max);
 
         if (undefined !== field.range.min && undefined !== field.range.max)
             if (field.range.min > field.range.max)
@@ -177,13 +177,26 @@ function validType(field, obj, prop) {
         case Array:
             if (!Array.isArray(val))
                 return false;
+            if (!Array.isArray(field.field_specs))
+                return true;
+            try {
+                val.forEach((v) => FieldChecker.validate(field.field_specs, v));
+            }
+            catch (e) {
+                throw new Error(`Invalid instance of "${field.name}". ${e.message}`);
+            }
             break;
         case Object:
             if ("object" !== typeof val)
                 return false;
             if (!Array.isArray(field.field_specs))
                 return true;
-            FieldChecker.validate(field.field_specs, val);
+            try {
+                FieldChecker.validate(field.field_specs, val);
+            }
+            catch (e) {
+                throw new Error(`Invalid instance of "${field.name}". ${e.message}`);
+            }
             break;
         default:
             throw new Error(`Type "${Object.className(field.type)}" is not supported by the ` +
