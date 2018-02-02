@@ -61,7 +61,7 @@ function FieldChecker(fields) {
         if (undefined !== field.range.min) 
             validateValue(field, field.range.min);
         if (undefined !== field.range.max)
-            NumberteValue(field, field.range.max);
+            validateValue(field, field.range.max);
 
         if (undefined !== field.range.min && undefined !== field.range.max)
             if (field.range.min > field.range.max)
@@ -81,6 +81,9 @@ function FieldChecker(fields) {
     //
 
     function validateValue(field, v) {
+        if (!field.type)
+            return;
+
         if (v.constructor !== field.type)
             throw new Error("Invalid call to FieldChecker constructor, the fields " + 
                 `collection is not valid, value "${v}" of field "${field.name}" ` +

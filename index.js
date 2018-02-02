@@ -22,6 +22,5 @@ module.exports = {
     FieldChecker: require("./FieldChecker"),
     range: require("./range"),
     csv: require("./csv"),
-    xml: require("./xml"),
-    schema: require("./schema/index")
+    xml: require("./xml")
 };
