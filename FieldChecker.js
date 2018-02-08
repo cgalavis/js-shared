@@ -114,6 +114,8 @@ FieldChecker.buildDefaultObject = function (field) {
         else if (f.default)
             res[f.name] = f.default;
     }
+
+    return res;
 };
 
 FieldChecker.prototype.validate = function(obj) {
@@ -125,6 +127,18 @@ FieldChecker.prototype.validate = function(obj) {
             required = field.required(obj);
         else
             required = Boolean(field.required);
+
+        if (undefined === obj[k]) {
+            if (Object === field.type) {
+                if (field.default)
+                    throw new Error(`Fields of "type "Object" can\'t have a default ` +
+                        "value, this are constructed from the default values of it's " +
+                        "members.");
+                field.default = FieldChecker.buildDefaultObject(field);
+            }
+
+            obj[k] = field.default;
+        }
 
         if (undefined === obj[k]) {
             if (required)
@@ -158,8 +172,16 @@ FieldChecker.prototype.validate = function(obj) {
         if (field.validate)
             field.validate(obj[k], obj);
     }
-};
 
+    // Order fields base on field_specs
+    this.fields.forEach((fld) => {
+        if (obj[fld.name]) {
+            let val = obj[fld.name];
+            delete obj[fld.name];
+            obj[fld.name] = val;
+        }
+    });
+};
 
 
 
@@ -212,11 +234,6 @@ function validType(field, obj, prop) {
             if (!Array.isArray(field.field_specs))
                 return true;
             try {
-                if (field.default)
-                    throw new Error(`Fields of "type "Object" can\'t have a default ` +
-                        "value, this are constructed from the default values of it's " +
-                        "members.");
-                field.default = FieldChecker.buildDefaultObject(field);
                 FieldChecker.validate(field.field_specs, val);
             }
             catch (e) {
@@ -240,10 +257,11 @@ FieldChecker.test = function () {
         { name: "targets", type: Array, required: true, values: [ "cpp", "thrift", "node" ] },
         { name: "target_dir", type: String, required: true },
         { name: "schema", type: String, required: true },
+        { name: "count", type: Number, default: 100 },
         {
             name: "type_id", type: Object, required: true,
             field_specs: [
-                { name: "offset", type: Number, required: true, range: { min: 0 } },
+                { name: "offset", type: Number, default: 10, range: { min: 0 } },
                 {
                     name: "file_name", type: String, required: true,
                     validate(val) {
@@ -260,13 +278,13 @@ FieldChecker.test = function () {
         target_dir: "./gen",
         schema: "schema.json",
         type_id: {
-            offset: 50,
             file_name: "type_id.csv"
         }
     };
 
     FieldChecker.validate(field_specs, data);
-    console.log("Yay!!!");
+
+    console.log(JSON.stringify(data, null, 4));
 };
 
 
