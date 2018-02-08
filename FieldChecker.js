@@ -99,6 +99,23 @@ FieldChecker.validate = function (fields, data) {
     fc.validate(data);
 };
 
+FieldChecker.buildDefaultObject = function (field) {
+    if (!field.field_specs)
+        return undefined;
+
+    let res = {};
+    for (let k in field.field_specs) {
+        let f = field.field_specs[k];
+        if (f.type === Object) {
+            let so_default = FieldChecker.buildDefaultObject(f);
+            if (f)
+                res[f.name] = so_default;
+        }
+        else if (f.default)
+            res[f.name] = f.default;
+    }
+};
+
 FieldChecker.prototype.validate = function(obj) {
     for (let field of this.fields) {
         let k = field.name;
@@ -195,6 +212,11 @@ function validType(field, obj, prop) {
             if (!Array.isArray(field.field_specs))
                 return true;
             try {
+                if (field.default)
+                    throw new Error(`Fields of "type "Object" can\'t have a default ` +
+                        "value, this are constructed from the default values of it's " +
+                        "members.");
+                field.default = FieldChecker.buildDefaultObject(field);
                 FieldChecker.validate(field.field_specs, val);
             }
             catch (e) {
@@ -208,6 +230,7 @@ function validType(field, obj, prop) {
 
     return true;
 }
+
 
 
 // Test Functions
