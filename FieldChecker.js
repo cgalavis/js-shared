@@ -24,15 +24,17 @@ module.exports = FieldChecker;
 
 
 /**
- * 
- * @param {Array.<FieldSpecs>} fields 
+ *
+ * @param {Array.<FieldSpecs>} fields
  */
 function FieldChecker(fields) {
     if (!this || this === global)
         return new FieldChecker(fields);
 
+
+    // 1.  Validate field object.
     if (!fields || "object" !== typeof fields)
-        throw new Error("Invalid call to FieldChecker constructor, the 'fields' " + 
+        throw new Error("Invalid call to FieldChecker constructor, the 'fields' " +
             "argument is not optional.");
 
     for (let field of fields) {
@@ -58,7 +60,7 @@ function FieldChecker(fields) {
         if (!field.range)
             field.range = {};
 
-        if (undefined !== field.range.min) 
+        if (undefined !== field.range.min)
             validateValue(field, field.range.min);
         if (undefined !== field.range.max)
             validateValue(field, field.range.max);
@@ -69,11 +71,23 @@ function FieldChecker(fields) {
                     "collection is not valid. The minimum value allowed for field " +
                     `"${field.name}" is greater than the maximum value allowed.`);
 
+
+        // 2.  Assign default getter and setter functions if non was supplied.
         if ("function" !== typeof field.get)
             field.get = (obj, name) => obj[name];
 
         if ("function" !== typeof field.set)
             field.set = (obj, name, val) => obj[name] = val;
+
+
+        // 3.  Set default values for object fields.
+        if (Object === field.type && field.field_specs) {
+            if (!field.default)
+                field.default = {};
+
+            let def = FieldChecker.buildDefaultObject(field);
+            field.default.merge(def, false, true);
+        }
     }
 
     this.fields = fields;
@@ -85,7 +99,7 @@ function FieldChecker(fields) {
             return;
 
         if (v.constructor !== field.type)
-            throw new Error("Invalid call to FieldChecker constructor, the fields " + 
+            throw new Error("Invalid call to FieldChecker constructor, the fields " +
                 `collection is not valid, value "${v}" of field "${field.name}" ` +
                 `is not a valid "${Object.className(field.type)}"`);
     }
@@ -128,17 +142,8 @@ FieldChecker.prototype.validate = function(obj) {
         else
             required = Boolean(field.required);
 
-        if (undefined === obj[k]) {
-            if (Object === field.type) {
-                if (field.default)
-                    throw new Error(`Fields of "type "Object" can\'t have a default ` +
-                        "value, this are constructed from the default values of it's " +
-                        "members.");
-                field.default = FieldChecker.buildDefaultObject(field);
-            }
-
+        if (undefined === obj[k])
             obj[k] = field.default;
-        }
 
         if (undefined === obj[k]) {
             if (required)
