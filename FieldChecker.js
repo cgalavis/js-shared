@@ -14,12 +14,15 @@ module.exports = FieldChecker;
 /**
  * @typedef {Object} FieldSpecs
  * @property {String} name
- * @property {Function} type
+ * @property {ObjectConstructor|ArrayConstructor} type
  * @property {Boolean|Function} [required]
  * @property {Boolean} [int]
  * @property {Array.<*>} [values]
  * @property {Range} [range]
  * @property {Function} [validate]
+ * @property {Function} get
+ * @property {Function} set
+ * @property {*} [default]
  */
 
 
@@ -82,12 +85,9 @@ function FieldChecker(fields) {
 
         // 3.  Set default values for object fields.
         if (Object === field.type && field.field_specs) {
-            if (field.default)
-                throw new Error(`Invalid field ${field.name}. Fields of "type "Object" ` +
-                    "can't have a default value, these are constructed from the " +
-                    "default values of it's members.");
+            if (!field.default)
+                field.default = {};
 
-            field.default = {};
             let def = FieldChecker.buildDefaultObject(field);
             field.default.merge(def, false, true);
         }
@@ -106,7 +106,7 @@ function FieldChecker(fields) {
                 `collection is not valid, value "${v}" of field "${field.name}" ` +
                 `is not a valid "${Object.className(field.type)}"`);
     }
-};
+}
 
 FieldChecker.validate = function (fields, data) {
     if (!fields)
@@ -122,14 +122,16 @@ FieldChecker.buildDefaultObject = function (field) {
 
     let res = {};
     for (let k in field.field_specs) {
-        let f = field.field_specs[k];
-        if (f.type === Object) {
-            let so_default = FieldChecker.buildDefaultObject(f);
-            if (f)
-                res[f.name] = so_default;
+        if (field.field_specs.hasOwnProperty(k)) {
+            let f = field.field_specs[k];
+            if (f.type === Object) {
+                let so_default = FieldChecker.buildDefaultObject(f);
+                if (f)
+                    res[f.name] = so_default;
+            }
+            else if (f.default)
+                res[f.name] = f.default;
         }
-        else if (f.default)
-            res[f.name] = f.default;
     }
 
     return res;
