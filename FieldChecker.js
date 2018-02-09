@@ -82,9 +82,12 @@ function FieldChecker(fields) {
 
         // 3.  Set default values for object fields.
         if (Object === field.type && field.field_specs) {
-            if (!field.default)
-                field.default = {};
+            if (field.default)
+                throw new Error(`Invalid field ${field.name}. Fields of "type "Object" ` +
+                    "can't have a default value, these are constructed from the " +
+                    "default values of it's members.");
 
+            field.default = {};
             let def = FieldChecker.buildDefaultObject(field);
             field.default.merge(def, false, true);
         }
