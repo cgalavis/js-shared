@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests",
-    "doc": "jsdoc -c docs_conf.json -R README.md --verbose ."
+    "doc": "jsdoc -c docs_conf.json -R README.md --verbose .",
+    "help": "google-chrome docs/index.html"
   },
   "repository": {
     "type": "git",
