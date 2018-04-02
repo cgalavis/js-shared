@@ -29,7 +29,7 @@ Refer to the documentation of each module for more details on what is been expor
 how to use it.
 
 <h3><b>Running the Tests</b></h3>
-To run the tests you will need to globaly install the <b>Mocha</b> CLI from <b>NPM</b>
+To run the tests you will need to globally install the <b>Mocha</b> CLI from <b>NPM</b>
 <pre>sudo npm install -g mocha</pre>
 then run the tests using one of the following commands from project folder:
 <pre>
