@@ -14,7 +14,6 @@
 require("./proto").init();
 
 module.exports = {
-    extend: require("./extend"),
     str_util: require("./str_util"),
     fs_util: require("./fs_util"),
     DataReader: require("./DataReader"),
