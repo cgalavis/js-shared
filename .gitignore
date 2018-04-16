@@ -42,7 +42,6 @@ tmp
 *.swo
 *.bk
 *.back
-workspace.xml
 from_mp
 .DS_Store
 package-lock.json
