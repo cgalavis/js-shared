@@ -14,14 +14,8 @@
 require("./proto").init();
 
 module.exports = {
-    extend: require("./extend"),
     str_util: require("./str_util"),
     fs_util: require("./fs_util"),
-    DataReader: require("./DataReader"),
-    StringList: require("./StringList"),
-    FieldChecker: require("./FieldChecker"),
-    range: require("./range"),
     csv: require("./csv"),
-    xml: require("./xml"),
-    schema: require("./schema/index")
+    xml: require("./xml")
 };

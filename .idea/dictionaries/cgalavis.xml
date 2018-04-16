@@ -3,15 +3,18 @@
     <words>
       <w>columnify</w>
       <w>crabel</w>
+      <w>fstyle</w>
       <w>intrument</w>
       <w>memberof</w>
       <w>minami</w>
       <w>mkdirp</w>
       <w>monospace</w>
+      <w>mpos</w>
       <w>realtime</w>
       <w>structs</w>
       <w>uint</w>
       <w>userprofile</w>
+      <w>vals</w>
     </words>
   </dictionary>
 </component>

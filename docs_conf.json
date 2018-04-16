@@ -4,15 +4,17 @@
         "dictionaries": ["jsdoc","closure"]
     },
     "source": {
-        "exclude": [ "gulpfile.js", "index.js" ],
+        "exclude": [ ],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
     "plugins": [],
     "opts": {
-        "__template": "node_modules/namis",
-        "_template": "node_modules/ink-docstrap/template",
-        "template": "node_modules/tui-jsdoc-template",
+        "_0_template": "node_modules/namis",
+        "_1_template": "node_modules/ink-docstrap/template",
+        "_2_template": "node_modules/tui-jsdoc-template",
+        "_3_template": "node_modules/minami",
+        "template": "node_modules/docdash",
         "encoding": "utf8",
         "destination": "./docs",
         "recurse": false
