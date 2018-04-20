@@ -7,7 +7,7 @@
 
 require("./proto").init();
 let fs = require("fs");
-let StringList = require("./StringList");
+let StringList = require("@crabel/string-list");
 
 /**
  * Simple class to load CSV file. The first <tt>row</tt> is used as the header, values of

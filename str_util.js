@@ -856,7 +856,7 @@ function _normStr(str, caller, def_value, len) {
         throw new Error("Invalid call to '" + caller + "', the 'str' argument must be " +
             "a string or support the 'toString' method.");
 
-    if (!str) {
+    if (undefined === str) {
         if (!def_value)
             throw new Error("Invalid call to '" + caller + "', the 'str' argument is " +
                 "not optional.");
