@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$/../xtime" />
     <content url="file://$MODULE_DIR$/../field-checker" />
     <content url="file://$MODULE_DIR$/../log" />
     <content url="file://$MODULE_DIR$">
@@ -12,6 +11,7 @@
     <content url="file://$MODULE_DIR$/../string-list" />
     <content url="file://$MODULE_DIR$/../table" />
     <content url="file://$MODULE_DIR$/../term" />
+    <content url="file://$MODULE_DIR$/../util" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
