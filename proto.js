@@ -379,7 +379,7 @@ NumExt.prototype.prevPow2 = function () {
  * @param {Number} width
  * @returns {String}
  */
-NumExt.prototype.zeroPadd = function (width) {
+NumExt.prototype.zeroPad = function (width) {
     let num_str = this.toString();
     let len = width - num_str.length;
     for (let i = 0; i < len; ++i)
@@ -427,18 +427,18 @@ NumExt.prototype.toTime = function (format) {
         {
             let openSplit = closeSplit[i].split("{");
 
-            openSplit[0] = openSplit[0].replace("hh", hours.zeroPadd(2));
+            openSplit[0] = openSplit[0].replace("hh", hours.zeroPad(2));
             openSplit[0] = openSplit[0].replace("h", hours);
 
-            openSplit[0] = openSplit[0].replace("mm", minutes.zeroPadd(2));
+            openSplit[0] = openSplit[0].replace("mm", minutes.zeroPad(2));
             openSplit[0] = openSplit[0].replace("m", minutes);
 
-            openSplit[0] = openSplit[0].replace("ss", seconds.zeroPadd(2));
+            openSplit[0] = openSplit[0].replace("ss", seconds.zeroPad(2));
             openSplit[0] = openSplit[0].replace("s", seconds);
 
-            openSplit[0] = openSplit[0].replace("fff", millis.zeroPadd(3));
-            openSplit[0] = openSplit[0].replace("ff", tens_of_millis.zeroPadd(2));
-            openSplit[0] = openSplit[0].replace("f", hundreds_of_millis.zeroPadd(1));
+            openSplit[0] = openSplit[0].replace("fff", millis.zeroPad(3));
+            openSplit[0] = openSplit[0].replace("ff", tens_of_millis.zeroPad(2));
+            openSplit[0] = openSplit[0].replace("f", hundreds_of_millis.zeroPad(1));
 
             if (millis > 0)
                 openSplit[0] = openSplit[0].replace("FFF", millis);
@@ -582,40 +582,40 @@ DateExt.format = function (dt, fstr, replacer)
             dt.getYear());
 
         openSplit[0] = openSplit[0].replace("MM", replacer(dt, "MM") ||
-            (dt.getMonth() + 1).zeroPadd(2));
+            (dt.getMonth() + 1).zeroPad(2));
         openSplit[0] = openSplit[0].replace("M", replacer(dt, "M") ||
             (dt.getMonth() + 1));
 
         openSplit[0] = openSplit[0].replace("dd", replacer(dt, "dd") ||
-            dt.getDate().zeroPadd(2));
+            dt.getDate().zeroPad(2));
         openSplit[0] = openSplit[0].replace("d", replacer(dt, "d") ||
             dt.getDate());
 
         openSplit[0] = openSplit[0].replace("HH", replacer(dt, "HH") ||
-            dt.getHours().zeroPadd(2));
+            dt.getHours().zeroPad(2));
         openSplit[0] = openSplit[0].replace("H", replacer(dt, "H") ||
             dt.getHours());
         openSplit[0] = openSplit[0].replace("hh", replacer(dt, "hh") ||
-            h12.zeroPadd(2));
+            h12.zeroPad(2));
         openSplit[0] = openSplit[0].replace("h", replacer(dt, "h") ||
             h12);
 
         openSplit[0] = openSplit[0].replace("mm", replacer(dt, "mm") ||
-            dt.getMinutes().zeroPadd(2));
+            dt.getMinutes().zeroPad(2));
         openSplit[0] = openSplit[0].replace("m", replacer(dt, "m") ||
             dt.getMinutes());
 
         openSplit[0] = openSplit[0].replace("ss", replacer(dt, "ss") ||
-            dt.getSeconds().zeroPadd(2));
+            dt.getSeconds().zeroPad(2));
         openSplit[0] = openSplit[0].replace("s", replacer(dt, "s") ||
             dt.getSeconds());
 
         openSplit[0] = openSplit[0].replace("fff", replacer(dt, "fff") ||
-            millis.zeroPadd(3));
+            millis.zeroPad(3));
         openSplit[0] = openSplit[0].replace("ff", replacer(dt, "ff") ||
-            tens_of_millis.zeroPadd(2));
+            tens_of_millis.zeroPad(2));
         openSplit[0] = openSplit[0].replace("f", replacer(dt, "f") ||
-            hundreds_of_millis.zeroPadd(1));
+            hundreds_of_millis.zeroPad(1));
 
         openSplit[0] = openSplit[0].replace("FFF", replacer(dt, "FFF") ||
             millis);
