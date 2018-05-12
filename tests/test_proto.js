@@ -260,10 +260,10 @@ describe("Number Prototype Test Suite", function() {
     });
 
     it ("Number.prototype.zeroPadd", function () {
-        expect((23).zeroPadd(1)).to.equal("23");
-        expect((23).zeroPadd(2)).to.equal("23");
-        expect((23).zeroPadd(3)).to.equal("023");
-        expect((23).zeroPadd(4)).to.equal("0023");
+        expect((23).zeroPad(1)).to.equal("23");
+        expect((23).zeroPad(2)).to.equal("23");
+        expect((23).zeroPad(3)).to.equal("023");
+        expect((23).zeroPad(4)).to.equal("0023");
     });
 });
 

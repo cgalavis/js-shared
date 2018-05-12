@@ -138,11 +138,11 @@ module.exports = {
         function getNewName(file_path, index, back_index) {
             if (!back_index)
                 return path.join(path.dirname(file_path),
-                    this.removeExt(path.basename(file_path)) + "-" + index.zeroPadd(2) +
+                    this.removeExt(path.basename(file_path)) + "-" + index.zeroPad(2) +
                     path.extname(file_path));
             else
                 return path.join(path.dirname(file_path),
-                    index.zeroPadd(2) + "-" + path.basename(file_path));
+                    index.zeroPad(2) + "-" + path.basename(file_path));
         }
     },
 
