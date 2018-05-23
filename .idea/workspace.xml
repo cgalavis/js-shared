@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/jsdoc.css" line="147" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/jsdoc.css" line="181" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/../table/renderers/Themed.js" line="655" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ab088d3-dc82-4aac-8e06-5f57ab84828d" name="Default" comment="">
@@ -26,71 +25,8 @@
           <file leaf-file-name="Column.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../table/lib/Column.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="915">
-                  <caret line="61" column="30" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../table/README.md">
-              <provider editor-type-id="Gfm">
-                <state />
-              </provider>
-              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="FIRST">
-                  <first_editor relative-caret-position="510">
-                    <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-                    <folding>
-                      <marker date="1526050350813" expanded="true" signature="2464:3128" ph="[...]" />
-                      <marker date="1526050350813" expanded="true" signature="3877:4394" ph="[...]" />
-                      <marker date="1526050350813" expanded="true" signature="4411:4594" ph="{&quot;Name&quot;: &quot;Richard Moore&quot;...}" />
-                      <marker date="1526050350813" expanded="true" signature="6758:7386" ph="[...]" />
-                      <marker date="1526050350813" expanded="true" signature="7401:7945" ph="[...]" />
-                      <marker date="1526050350813" expanded="true" signature="8030:8405" ph="[...]" />
-                    </folding>
-                  </first_editor>
-                  <second_editor />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="properties.tmpl" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/properties.tmpl">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1200">
-                  <caret line="80" column="7" lean-forward="false" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="params.tmpl" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/params.tmpl">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="900">
-                  <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Heading.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../table/lib/Heading.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="35" column="2" lean-forward="false" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../table/lib/common.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="735">
-                  <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+                <state relative-caret-position="1313">
+                  <caret line="357" column="62" lean-forward="false" selection-start-line="357" selection-start-column="62" selection-end-line="357" selection-end-column="62" />
                   <folding />
                 </state>
               </provider>
@@ -99,8 +35,93 @@
           <file leaf-file-name="Cell.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../table/lib/Cell.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="2" lean-forward="false" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+                <state relative-caret-position="510">
+                  <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/../table/lib/common.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="870">
+                  <caret line="70" column="33" lean-forward="false" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../table/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="FIRST">
+                  <first_editor relative-caret-position="255">
+                    <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+                    <folding>
+                      <marker date="1526305709000" expanded="true" signature="2624:3288" ph="[...]" />
+                      <marker date="1526305709000" expanded="true" signature="4037:4554" ph="[...]" />
+                      <marker date="1526305709000" expanded="true" signature="4571:4754" ph="{&quot;Name&quot;: &quot;Richard Moore&quot;...}" />
+                      <marker date="1526305709000" expanded="true" signature="7318:7946" ph="[...]" />
+                      <marker date="1526305709000" expanded="true" signature="7961:8505" ph="[...]" />
+                      <marker date="1526305709000" expanded="true" signature="8590:8965" ph="[...]" />
+                    </folding>
+                  </first_editor>
+                  <second_editor />
+                </state>
+              </provider>
+              <provider editor-type-id="Gfm">
+                <state />
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Heading.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../table/lib/Heading.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="675">
+                  <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="publish.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../doc-templ/publish.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2115">
+                  <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+                  <folding>
+                    <element signature="n#!!doc" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jsdoc.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../doc-templ/static/styles/jsdoc.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="60">
+                  <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="term.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../table/lib/term.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2040">
+                  <caret line="136" column="4" lean-forward="false" selection-start-line="136" selection-start-column="4" selection-end-line="136" selection-end-column="4" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Table.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/../table/Table.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="7950">
+                  <caret line="530" column="32" lean-forward="false" selection-start-line="530" selection-start-column="32" selection-end-line="530" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -109,14 +130,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.52832675">
+        <splitter split-orientation="horizontal" split-proportion="0.51186293">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="Themed.js" pinned="false" current-in-tab="false">
+              <file leaf-file-name="Themed.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../table/renderers/Themed.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="0">
-                      <caret line="113" column="42" lean-forward="false" selection-start-line="113" selection-start-column="42" selection-end-line="113" selection-end-column="42" />
+                    <state relative-caret-position="590">
+                      <caret line="324" column="38" lean-forward="false" selection-start-line="324" selection-start-column="38" selection-end-line="324" selection-end-column="38" />
                       <folding />
                     </state>
                   </provider>
@@ -125,71 +146,19 @@
               <file leaf-file-name="Table.js" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/../table/Table.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="30">
-                      <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+                    <state relative-caret-position="1335">
+                      <caret line="590" column="13" lean-forward="false" selection-start-line="590" selection-start-column="13" selection-end-line="590" selection-end-column="13" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="num.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../util/num.js">
+              <file leaf-file-name="options.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/../table/samples/options.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="566">
-                      <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+                    <state relative-caret-position="1343">
+                      <caret line="94" column="38" lean-forward="false" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="38" />
                       <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="jsdoc.css" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../table/docs/styles/jsdoc.css">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="45">
-                      <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="jsdoc.css" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../doc-templ/static/styles/jsdoc.css">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1080">
-                      <caret line="371" column="0" lean-forward="false" selection-start-line="371" selection-start-column="0" selection-end-line="371" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="jsdoc.css" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/jsdoc.css">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1395">
-                      <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../doc-templ/package.json">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="30">
-                      <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="publish.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/publish.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="240">
-                      <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
-                      <folding>
-                        <element signature="n#!!doc" expanded="true" />
-                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -198,21 +167,11 @@
           </split-first>
           <split-second>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="simple_table.js" pinned="false" current-in-tab="false">
+              <file leaf-file-name="simple_table.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../table/samples/simple_table.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="105">
-                      <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="properties.tmpl" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/properties.tmpl">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="480">
-                      <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+                    <state relative-caret-position="675">
+                      <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
                       <folding />
                     </state>
                   </provider>
@@ -221,38 +180,28 @@
               <file leaf-file-name="csv_table.js" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/../table/samples/csv_table.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="330">
-                      <caret line="22" column="53" lean-forward="false" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+                    <state relative-caret-position="735">
+                      <caret line="49" column="23" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="updater" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../../schema/updater/bin/updater">
+              <file leaf-file-name="file-list.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/../table/samples/file-list.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="285">
-                      <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                    <state relative-caret-position="1020">
+                      <caret line="68" column="28" lean-forward="false" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../log/index.js">
+              <file leaf-file-name="DefaultLoader.js" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/../table/lib/DefaultLoader.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="5655">
-                      <caret line="377" column="19" lean-forward="false" selection-start-line="377" selection-start-column="19" selection-end-line="377" selection-end-column="19" />
-                      <folding />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file leaf-file-name="params.tmpl" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/params.tmpl">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1275">
-                      <caret line="85" column="57" lean-forward="false" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
+                    <state relative-caret-position="1875">
+                      <caret line="125" column="1" lean-forward="false" selection-start-line="125" selection-start-column="1" selection-end-line="125" selection-end-column="1" />
                       <folding />
                     </state>
                   </provider>
@@ -277,20 +226,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../table/samples/inst-data.js" />
-        <option value="$PROJECT_DIR$/../dtu/index.js" />
-        <option value="$PROJECT_DIR$/../dutil/index.js" />
-        <option value="$PROJECT_DIR$/../xtime/package.json" />
-        <option value="$PROJECT_DIR$/../xtime/README.md" />
-        <option value="$PROJECT_DIR$/../xtime/tests/index.js" />
-        <option value="$PROJECT_DIR$/../table/renderers/index.js" />
-        <option value="$PROJECT_DIR$/../table/lib/Cell.js" />
-        <option value="$PROJECT_DIR$/../table/node_modules/@crabel/term/index.js" />
-        <option value="$PROJECT_DIR$/../table/node_modules/@crabel/shared/str_util.js" />
-        <option value="$PROJECT_DIR$/../xtime/index.js" />
-        <option value="$PROJECT_DIR$/../util/date.js" />
-        <option value="$PROJECT_DIR$/../util/samples/obj.js" />
-        <option value="$PROJECT_DIR$/../util/obj.js" />
         <option value="$PROJECT_DIR$/../util/tests/obj.js" />
         <option value="$PROJECT_DIR$/../util/tests/str.js" />
         <option value="$PROJECT_DIR$/../util/tests/num.js" />
@@ -298,36 +233,50 @@
         <option value="$PROJECT_DIR$/../util/index.js" />
         <option value="$PROJECT_DIR$/../term/index.js" />
         <option value="$PROJECT_DIR$/../term/package.json" />
-        <option value="$PROJECT_DIR$/../table/samples/options.js" />
         <option value="$PROJECT_DIR$/../table/node_modules/@crabel/field-checker/index.js" />
         <option value="$PROJECT_DIR$/../table/lib/Heading.js" />
-        <option value="$PROJECT_DIR$/../table/renderers/Themed.js" />
-        <option value="$PROJECT_DIR$/../table/samples/csv_table.js" />
         <option value="$PROJECT_DIR$/../util/num.js" />
-        <option value="$PROJECT_DIR$/../table/samples/simple_table.js" />
         <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/scripts/prettify/prettify.js" />
         <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/prettify.css" />
-        <option value="$PROJECT_DIR$/../field-checker/docs_conf.json" />
         <option value="$PROJECT_DIR$/../field-checker/package.json" />
-        <option value="$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/static/styles/jsdoc.css" />
         <option value="$PROJECT_DIR$/../util/package.json" />
         <option value="$PROJECT_DIR$/../util/str.js" />
         <option value="$PROJECT_DIR$/../util/README.md" />
         <option value="$PROJECT_DIR$/../field-checker/README.md" />
-        <option value="$PROJECT_DIR$/../table/package.json" />
-        <option value="$PROJECT_DIR$/../field-checker/index.js" />
-        <option value="$PROJECT_DIR$/../table/lib/common.js" />
-        <option value="$PROJECT_DIR$/../table/lib/Column.js" />
         <option value="$PROJECT_DIR$/../table/README.md" />
         <option value="$PROJECT_DIR$/../doc-templ/package.json" />
         <option value="$PROJECT_DIR$/../table/docs/styles/jsdoc.css" />
-        <option value="$PROJECT_DIR$/../table/Table.js" />
         <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/properties.tmpl" />
         <option value="$PROJECT_DIR$/../doc-templ/tmpl/properties.tmpl" />
         <option value="$PROJECT_DIR$/../doc-templ/tmpl/params.tmpl" />
         <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/params.tmpl" />
+        <option value="$PROJECT_DIR$/../log/index.js" />
+        <option value="$PROJECT_DIR$/../field-checker/docs_conf.json" />
+        <option value="$PROJECT_DIR$/../field-checker/test.json" />
+        <option value="$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/publish.js" />
+        <option value="$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/tmpl/layout.tmpl" />
+        <option value="$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/static/styles/jsdoc.css" />
+        <option value="$PROJECT_DIR$/../doc-templ/publish.js" />
+        <option value="$PROJECT_DIR$/../table/u.json" />
+        <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/publish.js" />
+        <option value="$PROJECT_DIR$/../doc-templ/tmpl/layout.tmpl" />
+        <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/layout.tmpl" />
+        <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/method.tmpl" />
         <option value="$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/jsdoc.css" />
         <option value="$PROJECT_DIR$/../doc-templ/static/styles/jsdoc.css" />
+        <option value="$PROJECT_DIR$/../field-checker/index.js" />
+        <option value="$PROJECT_DIR$/../table/lib/common.js" />
+        <option value="$PROJECT_DIR$/../table/package.json" />
+        <option value="$PROJECT_DIR$/../table/lib/term.js" />
+        <option value="$PROJECT_DIR$/../table/samples/options.js" />
+        <option value="$PROJECT_DIR$/../table/lib/Cell.js" />
+        <option value="$PROJECT_DIR$/../table/lib/Column.js" />
+        <option value="$PROJECT_DIR$/../table/samples/file-list.js" />
+        <option value="$PROJECT_DIR$/../table/samples/csv_table.js" />
+        <option value="$PROJECT_DIR$/../table/Table.js" />
+        <option value="$PROJECT_DIR$/../table/lib/DefaultLoader.js" />
+        <option value="$PROJECT_DIR$/../table/renderers/Themed.js" />
+        <option value="$PROJECT_DIR$/../table/samples/simple_table.js" />
       </list>
     </option>
   </component>
@@ -346,7 +295,6 @@
     <handled-path value="$PROJECT_DIR$/../string-list/node_modules" />
     <handled-path value="$PROJECT_DIR$/../table/node_modules" />
     <handled-path value="$PROJECT_DIR$/../table/samples/node_modules" />
-    <handled-path value="$PROJECT_DIR$/../term/node_modules" />
     <handled-path value="$PROJECT_DIR$/../util/node_modules" />
   </component>
   <component name="PackageJsonUpdateNotifier">
@@ -357,8 +305,8 @@
     <dismissed value="$PROJECT_DIR$/../util/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="4046" />
-    <option name="y" value="159" />
+    <option name="x" value="3839" />
+    <option name="y" value="27" />
     <option name="width" value="3842" />
     <option name="height" value="2101" />
   </component>
@@ -447,42 +395,41 @@
               <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
               <item name="doc-templ" type="462c0819:PsiDirectoryNode" />
-              <item name="tmpl" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="@crabel" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="@crabel" type="462c0819:PsiDirectoryNode" />
               <item name="doc-templ" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="field-checker" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
               <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-              <item name="@crabel" type="462c0819:PsiDirectoryNode" />
-              <item name="doc-templ" type="462c0819:PsiDirectoryNode" />
-              <item name="tmpl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
+              <item name="samples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -492,10 +439,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../doc-templ" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../table/samples/simple_table.js" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
-    <property name="javascript.nodejs.core.library.configured.version" value="8.11.1" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="javascript.nodejs.core.library.configured.version" value="8.9.4" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="" />
@@ -525,16 +472,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.test_field-checker">
+  <component name="RunManager" selected="Node.js.test_simple_table">
+    <configuration name="test-file-list" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="samples/file-list.js" working-dir="$PROJECT_DIR$/../table" />
     <configuration name="test_csv_table" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="-bcts yellow" path-to-js-file="samples/csv_table.js" working-dir="$PROJECT_DIR$/../table" />
     <configuration name="test_field-checker" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="tests/field-checker.js" working-dir="$PROJECT_DIR$/../field-checker" />
+    <configuration name="test_simple_table" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="simple_table.js" working-dir="$PROJECT_DIR$/../table/samples" />
     <configuration name="test_table_styles" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="$PROJECT_DIR$/../table/samples/table_styles.js" working-dir="$PROJECT_DIR$" />
     <configuration name="test_term_styles" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="$PROJECT_DIR$/../term/samples/styles.js" working-dir="$PROJECT_DIR$" />
-    <list size="4">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Node.js.test_term_styles" />
       <item index="1" class="java.lang.String" itemvalue="Node.js.test_table_styles" />
       <item index="2" class="java.lang.String" itemvalue="Node.js.test_csv_table" />
-      <item index="3" class="java.lang.String" itemvalue="Node.js.test_field-checker" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.test-file-list" />
+      <item index="4" class="java.lang.String" itemvalue="Node.js.test_simple_table" />
+      <item index="5" class="java.lang.String" itemvalue="Node.js.test_field-checker" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -572,28 +523,30 @@
       <workItem from="1525726434893" duration="7429000" />
       <workItem from="1525786193706" duration="10561000" />
       <workItem from="1525804384144" duration="26917000" />
+      <workItem from="1526306400046" duration="85963000" />
+      <workItem from="1526995480752" duration="9321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="283335000" />
+    <option name="totallyTimeSpent" value="378619000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4046" y="159" width="3842" height="2101" extended-state="6" />
+    <frame x="3839" y="27" width="3842" height="2101" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="GfmBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09799789" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09905163" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959756" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23709168" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23709168" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2357745" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.243257" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2786551" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -623,31 +576,70 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="79" />
+      <option name="time" value="141" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/field-checker/index.js">
+    <entry file="file://$PROJECT_DIR$/../util/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="690">
+            <caret line="46" column="62" lean-forward="false" selection-start-line="46" selection-start-column="62" selection-end-line="46" selection-end-column="62" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="Gfm">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/details.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1023">
-          <caret line="181" column="8" lean-forward="false" selection-start-line="181" selection-start-column="8" selection-end-line="181" selection-end-column="8" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/samples/options.js">
+    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/members.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="65" lean-forward="false" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../schema/coder/bin/coder">
+    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/container.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="1650">
+          <caret line="137" column="81" lean-forward="false" selection-start-line="137" selection-start-column="81" selection-end-line="137" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/mainpage.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/params.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1275">
+          <caret line="85" column="57" lean-forward="false" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/params.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../log/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="19" lean-forward="false" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -655,130 +647,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../log/index.js">
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/properties.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5655">
-          <caret line="377" column="19" lean-forward="false" selection-start-line="377" selection-start-column="19" selection-end-line="377" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="480">
+          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/str_util.js">
+    <entry file="file://$PROJECT_DIR$/../doc-templ/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="30">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/renderers/Themed.js">
+    <entry file="file://$PROJECT_DIR$/../table/docs/styles/jsdoc.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="113" column="42" lean-forward="false" selection-start-line="113" selection-start-column="42" selection-end-line="113" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="15">
+          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/samples/inst-data.csv">
+    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/properties.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/samples/inst-data-small.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/samples/csv_table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="53" lean-forward="false" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/scripts/prettify/Apache-License-2.0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="201" column="3" lean-forward="false" selection-start-line="201" selection-start-column="3" selection-end-line="201" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/scripts/prettify/lang-css.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/scripts/prettify/prettify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="386" lean-forward="false" selection-start-line="16" selection-start-column="386" selection-end-line="16" selection-end-column="386" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/prettify.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/static/scripts/prettify/prettify.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="378" lean-forward="false" selection-start-line="16" selection-start-column="378" selection-end-line="16" selection-end-column="378" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/docs_conf.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/lib/Cell.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="2" lean-forward="false" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/tmpl/mainpage.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/tmpl/container.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-478">
-          <caret line="28" column="57" lean-forward="true" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/tmpl/layout.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/static/styles/jsdoc.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1242">
-          <caret line="26" column="80" lean-forward="false" selection-start-line="26" selection-start-column="80" selection-end-line="26" selection-end-column="80" />
+        <state relative-caret-position="1200">
+          <caret line="80" column="7" lean-forward="false" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -789,259 +685,282 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/test.json" />
     <entry file="file://$PROJECT_DIR$/../field-checker/docs_conf.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../util/docs_conf.json">
+    <entry file="file://$PROJECT_DIR$/../table/docs_conf.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/static/styles/jsdoc.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../util/package.json">
+    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/tmpl/layout.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../util/str.js">
+    <entry file="file://$PROJECT_DIR$/../field-checker/node_modules/@crabel/doc-templ/publish.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8385">
-          <caret line="559" column="5" lean-forward="false" selection-start-line="559" selection-start-column="5" selection-end-line="559" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/README.md">
-      <provider editor-type-id="Gfm">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/../table/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="420">
-            <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <first_editor relative-caret-position="255">
+            <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <folding>
+              <marker date="1526305709000" expanded="true" signature="2624:3288" ph="[...]" />
+              <marker date="1526305709000" expanded="true" signature="4037:4554" ph="[...]" />
+              <marker date="1526305709000" expanded="true" signature="4571:4754" ph="{&quot;Name&quot;: &quot;Richard Moore&quot;...}" />
+              <marker date="1526305709000" expanded="true" signature="7318:7946" ph="[...]" />
+              <marker date="1526305709000" expanded="true" signature="7961:8505" ph="[...]" />
+              <marker date="1526305709000" expanded="true" signature="8590:8965" ph="[...]" />
+            </folding>
           </first_editor>
           <second_editor />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../util/README.md">
       <provider editor-type-id="Gfm">
         <state />
       </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="690">
-            <caret line="46" column="62" lean-forward="false" selection-start-line="46" selection-start-column="62" selection-end-line="46" selection-end-column="62" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="197" column="11" lean-forward="false" selection-start-line="197" selection-start-column="11" selection-end-line="197" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/lib/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/lib/Heading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="2" lean-forward="false" selection-start-line="35" selection-start-column="2" selection-end-line="35" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../util/num.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/lib/Column.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="30" lean-forward="false" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/details.tmpl">
+    <entry file="file://$PROJECT_DIR$/../table/u.json" />
+    <entry file="file://$PROJECT_DIR$/../doc-templ/static/styles/prettify.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/docs/styles/jsdoc.css">
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/layout.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="375">
+          <caret line="25" column="35" lean-forward="false" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/members.tmpl">
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/method.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/container.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="137" column="81" lean-forward="false" selection-start-line="137" selection-start-column="81" selection-end-line="137" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/mainpage.tmpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="90">
+          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/layout.tmpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="6" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../table/samples/simple_table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="375">
+          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/publish.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="4" lean-forward="false" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state relative-caret-position="1575">
+          <caret line="391" column="46" lean-forward="false" selection-start-line="391" selection-start-column="46" selection-end-line="391" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/container.tmpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../doc-templ/publish.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2115">
+          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/README.md">
-      <provider editor-type-id="Gfm">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="510">
-            <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-            <folding>
-              <marker date="1526050350813" expanded="true" signature="2464:3128" ph="[...]" />
-              <marker date="1526050350813" expanded="true" signature="3877:4394" ph="[...]" />
-              <marker date="1526050350813" expanded="true" signature="4411:4594" ph="{&quot;Name&quot;: &quot;Richard Moore&quot;...}" />
-              <marker date="1526050350813" expanded="true" signature="6758:7386" ph="[...]" />
-              <marker date="1526050350813" expanded="true" signature="7401:7945" ph="[...]" />
-              <marker date="1526050350813" expanded="true" signature="8030:8405" ph="[...]" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/properties.tmpl">
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/jsdoc.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="7" lean-forward="false" selection-start-line="80" selection-start-column="7" selection-end-line="80" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="240">
+          <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/properties.tmpl">
+    <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding />
+        <state relative-caret-position="1530">
+          <caret line="329" column="17" lean-forward="false" selection-start-line="329" selection-start-column="17" selection-end-line="329" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/tmpl/params.tmpl">
+    <entry file="file://$PROJECT_DIR$/../util/str.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="85" column="57" lean-forward="false" selection-start-line="85" selection-start-column="57" selection-end-line="85" selection-end-column="57" />
-          <folding />
+        <state relative-caret-position="1880">
+          <caret line="559" column="5" lean-forward="false" selection-start-line="559" selection-start-column="5" selection-end-line="559" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../doc-templ/tmpl/params.tmpl">
+    <entry file="file://$PROJECT_DIR$/../table/node_modules/word-wrap/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/Table.js">
+    <entry file="file://$PROJECT_DIR$/../table/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/str_util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="85" column="4" lean-forward="false" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../util/num.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="911">
+          <caret line="114" column="87" lean-forward="false" selection-start-line="114" selection-start-column="87" selection-end-line="114" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/lib/term.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="136" column="4" lean-forward="false" selection-start-line="136" selection-start-column="4" selection-end-line="136" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../doc-templ/static/styles/jsdoc.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="371" column="0" lean-forward="false" selection-start-line="371" selection-start-column="0" selection-end-line="371" selection-end-column="0" />
+        <state relative-caret-position="60">
+          <caret line="4" column="23" lean-forward="false" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../table/node_modules/@crabel/doc-templ/static/styles/jsdoc.css">
+    <entry file="file://$PROJECT_DIR$/../table/samples/node_modules/commander/typings/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1395">
-          <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+        <state relative-caret-position="345">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/lib/Heading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/lib/Cell.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/lib/Column.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1313">
+          <caret line="357" column="62" lean-forward="false" selection-start-line="357" selection-start-column="62" selection-end-line="357" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/samples/csv_table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="49" column="23" lean-forward="false" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/lib/DefaultLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1875">
+          <caret line="125" column="1" lean-forward="false" selection-start-line="125" selection-start-column="1" selection-end-line="125" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/8.9.4/core-modules/module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="501" column="4" lean-forward="false" selection-start-line="501" selection-start-column="4" selection-end-line="501" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/samples/file-list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="68" column="28" lean-forward="false" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/Table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7950">
+          <caret line="530" column="32" lean-forward="false" selection-start-line="530" selection-start-column="32" selection-end-line="530" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/samples/simple_table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/samples/options.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="94" column="38" lean-forward="false" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/renderers/Themed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="324" column="38" lean-forward="false" selection-start-line="324" selection-start-column="38" selection-end-line="324" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../table/lib/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="70" column="33" lean-forward="false" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
           <folding />
         </state>
       </provider>
