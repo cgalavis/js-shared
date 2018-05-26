@@ -3,6 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../doc-templ" />
     <content url="file://$MODULE_DIR$/../field-checker" />
+    <content url="file://$MODULE_DIR$/../filtrex" />
     <content url="file://$MODULE_DIR$/../log" />
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
