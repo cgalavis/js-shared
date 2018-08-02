@@ -26,8 +26,8 @@
               <file leaf-file-name="loadPackage.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../core/lib/loadPackage.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="795">
-                      <caret line="53" selection-start-line="53" selection-end-line="53" />
+                    <state relative-caret-position="375">
+                      <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
                     </state>
                   </provider>
                 </entry>
@@ -47,7 +47,7 @@
                     <state relative-caret-position="795">
                       <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
                       <folding>
-                        <marker date="1532621322262" expanded="true" signature="105:108" ph="/** @typedef {Object} ConfigOptions ...*/" />
+                        <marker date="1532621322000" expanded="true" signature="105:108" ph="/** @typedef {Object} ConfigOptions ...*/" />
                       </folding>
                     </state>
                   </provider>
@@ -74,7 +74,7 @@
               <file leaf-file-name="index.d.ts" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/../core/node_modules/commander/typings/index.d.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-753">
+                    <state relative-caret-position="2505">
                       <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
                     </state>
                   </provider>
@@ -115,7 +115,7 @@
                 <entry file="file://$PROJECT_DIR$/../core/package.json">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="45">
-                      <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+                      <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
                     </state>
                   </provider>
                 </entry>
@@ -123,8 +123,8 @@
               <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="30">
-                      <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+                    <state relative-caret-position="270">
+                      <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
                     </state>
                   </provider>
                 </entry>
@@ -138,17 +138,17 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../log/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
+                <state relative-caret-position="1665">
                   <caret line="111" column="42" selection-start-line="111" selection-start-column="42" selection-end-line="111" selection-end-column="42" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1080">
-                  <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+                <state relative-caret-position="1185">
+                  <caret line="332" lean-forward="true" selection-start-line="332" selection-end-line="332" />
                 </state>
               </provider>
             </entry>
@@ -156,13 +156,13 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../core/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="960">
-                  <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+                <state relative-caret-position="975">
+                  <caret line="107" column="35" selection-start-line="107" selection-start-column="35" selection-end-line="107" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/../filtrex/samples/index.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="90">
@@ -308,11 +308,11 @@
     <dismissed value="$PROJECT_DIR$/../table/package.json" />
     <dismissed value="$PROJECT_DIR$/../util/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3840" />
-    <option name="y" value="201" />
-    <option name="width" value="3834" />
-    <option name="height" value="1575" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="3839" />
+    <option name="y" value="27" />
+    <option name="width" value="3842" />
+    <option name="height" value="2101" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -320,39 +320,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="filtrex" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="filtrex" type="462c0819:PsiDirectoryNode" />
-              <item name="samples" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -385,6 +352,39 @@
               <item name="sample" type="cbb8eebc:String" user="sample" />
               <item name="demo" type="cbb8eebc:String" user="demo" />
               <item name="logs" type="cbb8eebc:String" user="logs" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="filtrex" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="filtrex" type="462c0819:PsiDirectoryNode" />
+              <item name="samples" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -501,38 +501,38 @@
       <workItem from="1532624156462" duration="606000" />
       <workItem from="1532625825058" duration="615000" />
       <workItem from="1532697266568" duration="114000" />
-      <workItem from="1532697392010" duration="16953000" />
+      <workItem from="1532697392010" duration="20040000" />
+      <workItem from="1533067808266" duration="4489000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="635957000" />
+    <option name="totallyTimeSpent" value="643533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="3839" y="27" width="3842" height="2101" extended-state="7" />
-    <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TypeScript" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.66785717" visible="true" weight="0.08355298" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66785717" visible="true" weight="0.08381655" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32959756" />
       <window_info anchor="right" id="Version Control" order="5" sideWeight="0.49821702" weight="0.28266597" />
-      <window_info anchor="right" id="Run" order="6" sideWeight="0.5084141" side_tool="true" visible="true" weight="0.28940433" />
+      <window_info anchor="right" id="Run" order="6" sideWeight="0.5084141" side_tool="true" weight="0.28940433" />
       <window_info id="npm" order="2" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
+      <window_info anchor="bottom" id="Quokka" order="9" />
       <window_info id="Structure" order="1" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
-      <window_info anchor="right" id="Terminal" order="4" sideWeight="0.49158594" visible="true" weight="0.28940433" />
+      <window_info active="true" anchor="right" id="Terminal" order="4" sideWeight="0.49158594" visible="true" weight="0.28940433" />
       <window_info id="Favorites" order="2" sideWeight="0.33214286" side_tool="true" weight="0.08104299" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3029067" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="right" id="GfmBrowser" order="3" show_stripe_button="false" weight="0.32982087" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Metrics" order="8" weight="0.32963446" />
+      <window_info anchor="bottom" id="GraphQL" order="9" weight="0.32942376" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="GraphQL" order="9" visible="true" weight="0.32959756" />
       <window_info id="Gulp" order="2" side_tool="true" />
-      <window_info anchor="right" id="GfmBrowser" order="3" show_stripe_button="false" weight="0.32982087" />
-      <window_info anchor="bottom" id="Quokka" order="9" />
       <window_info anchor="bottom" id="Messages" order="6" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
@@ -546,8 +546,8 @@
       <list>
         <option value="$PROJECT_DIR$/../../tms/catalog/index.js" />
         <option value="$PROJECT_DIR$/../../tms/catalog/index.js.map" />
-        <option value="$PROJECT_DIR$/../../tms/catalog/registry.js" />
-        <option value="$PROJECT_DIR$/../../tms/catalog/registry.js.map" />
+        <option value="$PROJECT_DIR$/../../tms/catalog/client/index.js" />
+        <option value="$PROJECT_DIR$/../../tms/catalog/client/index.js.map" />
       </list>
     </option>
   </component>
@@ -718,7 +718,7 @@
         <state relative-caret-position="795">
           <caret line="53" column="43" selection-start-line="53" selection-start-column="43" selection-end-line="53" selection-end-column="43" />
           <folding>
-            <marker date="1532621322262" expanded="true" signature="105:108" ph="/** @typedef {Object} ConfigOptions ...*/" />
+            <marker date="1532621322000" expanded="true" signature="105:108" ph="/** @typedef {Object} ConfigOptions ...*/" />
           </folding>
         </state>
       </provider>
@@ -773,7 +773,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../core/node_modules/commander/typings/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-753">
+        <state relative-caret-position="2505">
           <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
         </state>
       </provider>
@@ -801,7 +801,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../log/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="1665">
           <caret line="111" column="42" selection-start-line="111" selection-start-column="42" selection-end-line="111" selection-end-column="42" />
         </state>
       </provider>
@@ -809,14 +809,7 @@
     <entry file="file://$PROJECT_DIR$/../core/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -827,31 +820,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
+    <entry file="file://$PROJECT_DIR$/../filtrex/samples/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+        <state relative-caret-position="90">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../core/lib/loadPackage.js">
+    <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="270">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../core/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="64" column="1" selection-start-line="64" selection-start-column="1" selection-end-line="64" selection-end-column="1" />
+        <state relative-caret-position="975">
+          <caret line="107" column="35" selection-start-line="107" selection-start-column="35" selection-end-line="107" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../filtrex/samples/index.js">
+    <entry file="file://$PROJECT_DIR$/../core/lib/loadPackage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+        <state relative-caret-position="375">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="332" lean-forward="true" selection-start-line="332" selection-end-line="332" />
         </state>
       </provider>
     </entry>
