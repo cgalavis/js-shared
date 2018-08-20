@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/../../schema/updater/lib/legacy_schema.js" description="if (o.response)" line="271" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ab088d3-dc82-4aac-8e06-5f57ab84828d" name="Default" comment="" />
+    <list default="true" id="8ab088d3-dc82-4aac-8e06-5f57ab84828d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -24,15 +26,6 @@
         <splitter split-orientation="vertical" split-proportion="0.7514009">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../config/index.js">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="405">
-                      <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
               <file leaf-file-name="demo.js" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/../log/samples/demo.js">
                   <provider selected="true" editor-type-id="text-editor">
@@ -43,10 +36,10 @@
                 </entry>
               </file>
               <file leaf-file-name="demo.js" pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/../core/sample/demo.js">
+                <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="45">
-                      <caret line="3" selection-start-line="3" selection-end-line="3" />
+                    <state relative-caret-position="671">
+                      <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
                     </state>
                   </provider>
                 </entry>
@@ -55,20 +48,20 @@
           </split-first>
           <split-second>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+              <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/../log/index.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="17">
-                      <caret line="574" selection-start-line="574" selection-end-line="574" />
+                    <state relative-caret-position="8730">
+                      <caret line="582" selection-start-line="582" selection-end-line="582" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="pck_loader.js" pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/../core/lib/pck_loader.js">
+              <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="240">
-                      <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+                    <state relative-caret-position="30">
+                      <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
                     </state>
                   </provider>
                 </entry>
@@ -97,36 +90,13 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../log/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1605">
-                  <caret line="107" column="13" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../core/index.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1305">
-                  <caret line="87" column="6" selection-start-line="87" selection-start-column="6" selection-end-line="87" selection-end-column="6" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6615">
-                  <caret line="441" column="17" selection-start-line="441" selection-start-column="17" selection-end-line="441" selection-end-column="17" />
+                <state relative-caret-position="950">
+                  <caret line="130" selection-start-line="130" selection-end-line="130" />
                 </state>
               </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="options.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/../table/samples/options.js">
-              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
         </leaf>
@@ -156,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../xtime/samples/index.js" />
         <option value="$PROJECT_DIR$/../xtime/xtime.h" />
         <option value="$PROJECT_DIR$/../xtime/xtime.cpp" />
         <option value="$PROJECT_DIR$/../db/lib/Connection.js" />
@@ -174,7 +143,6 @@
         <option value="$PROJECT_DIR$/../schema/crabel/structs/ContentProvider.js" />
         <option value="$PROJECT_DIR$/../db/lib/DbAccess.js" />
         <option value="$PROJECT_DIR$/../db/node_modules/@crabel/field-checker/index.js" />
-        <option value="$PROJECT_DIR$/../field-checker/package.json" />
         <option value="$PROJECT_DIR$/../db/demo/index.js" />
         <option value="$PROJECT_DIR$/../core/lib/log.js" />
         <option value="$PROJECT_DIR$/../xtime/samples/test.js" />
@@ -206,6 +174,8 @@
         <option value="$PROJECT_DIR$/../core/package.json" />
         <option value="$PROJECT_DIR$/../core/lib/pck_loader.js" />
         <option value="$PROJECT_DIR$/../core/lib/test.ts" />
+        <option value="$PROJECT_DIR$/../field-checker/package.json" />
+        <option value="$PROJECT_DIR$/../field-checker/samples/demo.js" />
         <option value="$PROJECT_DIR$/../field-checker/index.js" />
       </list>
     </option>
@@ -226,9 +196,11 @@
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/../core/node_modules" />
+    <handled-path value="$PROJECT_DIR$/../db/node_modules" />
     <handled-path value="$PROJECT_DIR$/../field-checker/node_modules" />
     <handled-path value="$PROJECT_DIR$/../log/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
+    <handled-path value="$PROJECT_DIR$/../string-list/node_modules" />
     <handled-path value="$PROJECT_DIR$/../table/node_modules" />
     <handled-path value="$PROJECT_DIR$/../table/samples/node_modules" />
     <handled-path value="$PROJECT_DIR$/../util/node_modules" />
@@ -265,8 +237,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="2880" />
-    <option name="height" value="1777" />
+    <option name="width" value="2560" />
+    <option name="height" value="1577" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -326,28 +298,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-              <item name="samples" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -380,6 +330,33 @@
               <item name="sample" type="cbb8eebc:String" user="sample" />
               <item name="demo" type="cbb8eebc:String" user="demo" />
               <item name="logs" type="cbb8eebc:String" user="logs" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="field-checker" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
+              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
+              <item name="field-checker" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -428,7 +405,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.demo-app">
+  <component name="RunManager" selected="Node.js.FieldChecker Demo">
+    <configuration name="FieldChecker Demo" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="demo.js" working-dir="$PROJECT_DIR$/../field-checker/samples/" />
     <configuration name="demo-app" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="$PROJECT_DIR$/../core/sample/demo.js" working-dir="$PROJECT_DIR$/../core/sample" />
     <configuration name="demo-db" type="NodeJSConfigurationType" factoryName="Node.js" node-parameters="--no-deprecation" path-to-js-file="demo/index.js" working-dir="$PROJECT_DIR$/../db" />
     <configuration name="demo-log" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="demo.js" working-dir="$PROJECT_DIR$/../log/samples" />
@@ -446,6 +424,7 @@
       <item itemvalue="Node.js.test_simple_table" />
       <item itemvalue="Node.js.test_embedded_table" />
       <item itemvalue="Node.js.test_field-checker" />
+      <item itemvalue="Node.js.FieldChecker Demo" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -496,26 +475,31 @@
       <workItem from="1533411219746" duration="445000" />
       <workItem from="1533441334446" duration="1375000" />
       <workItem from="1533530612758" duration="1077000" />
+      <workItem from="1534475799273" duration="510000" />
+      <workItem from="1534522088405" duration="5877000" />
+      <workItem from="1534599186579" duration="15748000" />
+      <workItem from="1534718655685" duration="1372000" />
+      <workItem from="1534720138880" duration="3344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="616324000" />
+    <option name="totallyTimeSpent" value="643175000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="2880" height="1777" extended-state="0" />
+    <frame x="0" y="23" width="2560" height="1577" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66785717" visible="true" weight="0.08139535" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66785717" visible="true" weight="0.092136614" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32959756" />
-      <window_info anchor="right" id="Run" order="6" sideWeight="0.50595236" side_tool="true" weight="0.29105005" />
       <window_info anchor="right" id="Version Control" order="5" sideWeight="0.49821702" weight="0.28266597" />
+      <window_info active="true" anchor="right" id="Run" order="6" sideWeight="0.50945944" side_tool="true" visible="true" weight="0.28911835" />
       <window_info id="npm" order="2" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
       <window_info id="Structure" order="1" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
-      <window_info active="true" anchor="right" id="Terminal" order="4" sideWeight="0.4940476" visible="true" weight="0.22797745" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.30357143" />
+      <window_info anchor="right" id="Terminal" order="4" sideWeight="0.49054053" visible="true" weight="0.28911835" />
       <window_info id="Favorites" order="2" sideWeight="0.33214286" side_tool="true" weight="0.08104299" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.30337837" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Metrics" order="8" weight="0.32963446" />
@@ -552,11 +536,31 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="242" />
+      <option name="time" value="295" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>field.name === &quot;permanent&quot;</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>field.name === &quot;obj_array&quot;</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>field.name === &quot;aliases&quot;</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>p.name === &quot;range&quot;</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>col.name === &quot;LogonHistory&quot;</expression-string>
         <language-id>JavaScript</language-id>
@@ -565,8 +569,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../core/node_modules/winston/lib/winston/logger.js" />
-    <entry file="file://$PROJECT_DIR$/../log/samples/20180719-demo-log.log " />
     <entry file="file://$PROJECT_DIR$/../log/docs_conf.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -578,13 +580,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -732,13 +727,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../core/sample/package.json" />
-    <entry file="file://$PROJECT_DIR$/../field-checker/tests/field-checker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../core/sample/test/logs/20180723-index.log" />
     <entry file="file://$PROJECT_DIR$/../core/node_modules/@crabel/log/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -761,13 +749,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../log/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1605">
-          <caret line="107" column="13" selection-start-line="107" selection-start-column="13" selection-end-line="107" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../core/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -782,13 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../core/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="87" column="6" selection-start-line="87" selection-start-column="6" selection-end-line="87" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../config/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -798,8 +772,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../core/sample/demo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
@@ -810,23 +784,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../core/lib/pck_loader.js">
+    <entry file="file://$PROJECT_DIR$/../core/lib/pck_loader.js" />
+    <entry file="file://$PROJECT_DIR$/../core/lib/test.ts" />
+    <entry file="file://$PROJECT_DIR$/../field-checker/tests/field-checker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
+        <state relative-caret-position="30">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../core/lib/test.ts" />
-    <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
+    <entry file="file://$PROJECT_DIR$/../core/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6615">
-          <caret line="441" column="17" selection-start-line="441" selection-start-column="17" selection-end-line="441" selection-end-column="17" />
+        <state relative-caret-position="1278">
+          <caret line="100" column="6" selection-start-line="100" selection-start-column="6" selection-end-line="100" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../table/samples/options.js">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../log/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8730">
+          <caret line="582" selection-start-line="582" selection-end-line="582" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/10.5.0/core-modules/console.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="196" column="2" selection-start-line="196" selection-start-column="2" selection-end-line="196" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="950">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
