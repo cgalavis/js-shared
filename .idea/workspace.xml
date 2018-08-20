@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/../../schema/updater/lib/legacy_schema.js" description="if (o.response)" line="271" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ab088d3-dc82-4aac-8e06-5f57ab84828d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8ab088d3-dc82-4aac-8e06-5f57ab84828d" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -38,7 +36,7 @@
               <file leaf-file-name="demo.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="671">
+                    <state relative-caret-position="715">
                       <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
                     </state>
                   </provider>
@@ -479,12 +477,12 @@
       <workItem from="1534522088405" duration="5877000" />
       <workItem from="1534599186579" duration="15748000" />
       <workItem from="1534718655685" duration="1372000" />
-      <workItem from="1534720138880" duration="3344000" />
+      <workItem from="1534720138880" duration="3887000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="643175000" />
+    <option name="totallyTimeSpent" value="643718000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1577" extended-state="0" />
@@ -494,7 +492,7 @@
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32959756" />
       <window_info anchor="right" id="Version Control" order="5" sideWeight="0.49821702" weight="0.28266597" />
-      <window_info active="true" anchor="right" id="Run" order="6" sideWeight="0.50945944" side_tool="true" visible="true" weight="0.28911835" />
+      <window_info anchor="right" id="Run" order="6" sideWeight="0.50945944" side_tool="true" weight="0.28911835" />
       <window_info id="npm" order="2" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
       <window_info id="Structure" order="1" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
       <window_info anchor="right" id="Terminal" order="4" sideWeight="0.49054053" visible="true" weight="0.28911835" />
@@ -826,7 +824,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
+        <state relative-caret-position="715">
           <caret line="100" column="43" selection-start-line="100" selection-start-column="43" selection-end-line="100" selection-end-column="43" />
         </state>
       </provider>
