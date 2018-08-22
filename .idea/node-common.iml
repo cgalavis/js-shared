@@ -17,6 +17,7 @@
     <content url="file://$MODULE_DIR$/../string-list" />
     <content url="file://$MODULE_DIR$/../table" />
     <content url="file://$MODULE_DIR$/../util" />
+    <content url="file://$MODULE_DIR$/../var-name" />
     <content url="file://$MODULE_DIR$/../xtime" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

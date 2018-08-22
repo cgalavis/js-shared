@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ab088d3-dc82-4aac-8e06-5f57ab84828d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/node-common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/node-common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,18 +27,22 @@
         <splitter split-orientation="vertical" split-proportion="0.7514009">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="demo.js" pinned="false" current-in-tab="false">
+              <file leaf-file-name="demo.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1740">
+                    <state relative-caret-position="783">
                       <caret line="116" column="64" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+              <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/../xtime/package.json">
-                  <provider selected="true" editor-type-id="text-editor" />
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="405">
+                      <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+                    </state>
+                  </provider>
                 </entry>
               </file>
             </leaf>
@@ -56,7 +61,7 @@
               <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="30">
+                    <state>
                       <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
                     </state>
                   </provider>
@@ -89,8 +94,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="492">
-                  <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+                <state relative-caret-position="240">
+                  <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -170,9 +175,9 @@
         <option value="$PROJECT_DIR$/../core/lib/pck_loader.js" />
         <option value="$PROJECT_DIR$/../core/lib/test.ts" />
         <option value="$PROJECT_DIR$/../field-checker/package.json" />
-        <option value="$PROJECT_DIR$/../field-checker/index.js" />
         <option value="$PROJECT_DIR$/../field-checker/samples/demo.js" />
         <option value="$PROJECT_DIR$/../xtime/binding.gyp" />
+        <option value="$PROJECT_DIR$/../field-checker/index.js" />
       </list>
     </option>
   </component>
@@ -195,11 +200,11 @@
     <handled-path value="$PROJECT_DIR$/../db/node_modules" />
     <handled-path value="$PROJECT_DIR$/../field-checker/node_modules" />
     <handled-path value="$PROJECT_DIR$/../log/node_modules" />
-    <handled-path value="$PROJECT_DIR$/node_modules" />
     <handled-path value="$PROJECT_DIR$/../string-list/node_modules" />
     <handled-path value="$PROJECT_DIR$/../table/node_modules" />
     <handled-path value="$PROJECT_DIR$/../table/samples/node_modules" />
     <handled-path value="$PROJECT_DIR$/../util/node_modules" />
+    <handled-path value="$PROJECT_DIR$/../var-name/node_modules" />
     <handled-path value="$PROJECT_DIR$/../xtime/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
@@ -232,10 +237,9 @@
     <dismissed value="$PROJECT_DIR$/../util/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="3840" />
-    <option name="y" value="27" />
-    <option name="width" value="3834" />
-    <option name="height" value="2100" />
+    <option name="y" value="23" />
+    <option name="width" value="2560" />
+    <option name="height" value="1577" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -305,11 +309,6 @@
             <path>
               <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
               <item name="field-checker" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -321,13 +320,13 @@
             <path>
               <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="field-checker" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="var-name" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="node-common" type="b2602c69:ProjectViewProjectNode" />
               <item name="node-common" type="47feb1d3:ProjectViewModuleNode" />
-              <item name="xtime" type="462c0819:PsiDirectoryNode" />
+              <item name="var-name" type="462c0819:PsiDirectoryNode" />
+              <item name="samples" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -384,7 +383,7 @@
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="" />
     <property name="node.js.selected.package.standard" value="" />
-    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/../field-checker/node_modules/mocha" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/../var-name/node_modules/mocha" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
@@ -418,12 +417,25 @@
     <configuration name="demo-app" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="$PROJECT_DIR$/../core/sample/demo.js" working-dir="$PROJECT_DIR$/../core/sample" />
     <configuration name="demo-db" type="NodeJSConfigurationType" factoryName="Node.js" node-parameters="--no-deprecation" path-to-js-file="demo/index.js" working-dir="$PROJECT_DIR$/../db" />
     <configuration name="demo-log" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="demo.js" working-dir="$PROJECT_DIR$/../log/samples" />
+    <configuration name="demo-var-name" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="samples/index.js" working-dir="$PROJECT_DIR$/../var-name" />
     <configuration name="test-file-list" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="samples/file-list.js" working-dir="$PROJECT_DIR$/../table" />
     <configuration name="test_csv_table" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="-bcts yellow -f &quot;Ticker like \&quot;CLE%\&quot;&quot;" path-to-js-file="samples/csv_table.js" working-dir="$PROJECT_DIR$/../table" />
     <configuration name="test_embedded_table" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="-bct" path-to-js-file="embedded_table.js" working-dir="$PROJECT_DIR$/../table/samples" />
     <configuration name="test_field-checker" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="tests/field-checker.js" working-dir="$PROJECT_DIR$/../field-checker" />
     <configuration name="test_simple_table" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="-bS" path-to-js-file="simple_table.js" working-dir="$PROJECT_DIR$/../table/samples" />
+    <configuration name="var-name" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory>$PROJECT_DIR$/../var-name</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory>$PROJECT_DIR$/../var-name/tests</test-directory>
+      <recursive>false</recursive>
+    </configuration>
     <list>
+      <item itemvalue="Mocha.var-name" />
       <item itemvalue="Node.js.demo-db" />
       <item itemvalue="Node.js.demo-log" />
       <item itemvalue="Node.js.demo-app" />
@@ -433,6 +445,7 @@
       <item itemvalue="Node.js.test_embedded_table" />
       <item itemvalue="Node.js.test_field-checker" />
       <item itemvalue="Node.js.FieldChecker Demo" />
+      <item itemvalue="Node.js.demo-var-name" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -490,40 +503,51 @@
       <workItem from="1534720138880" duration="3887000" />
       <workItem from="1534785732005" duration="4064000" />
       <workItem from="1534870893338" duration="605000" />
+      <workItem from="1534950308596" duration="4004000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unnamed - 2018.08.22 at 08h 11m 33s.xml">
+      <configuration name="Unnamed" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="var-name - 2018.08.22 at 08h 11m 42s.xml">
+      <configuration name="var-name" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="var-name - 2018.08.22 at 08h 11m 44s.xml">
+      <configuration name="var-name" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648387000" />
+    <option name="totallyTimeSpent" value="652391000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3839" y="27" width="3842" height="2101" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="2560" height="1577" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.66785717" visible="true" weight="0.06167633" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.66785717" visible="true" weight="0.0841938" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32959756" />
       <window_info anchor="right" id="Version Control" order="5" sideWeight="0.49821702" weight="0.28266597" />
-      <window_info anchor="right" id="Run" order="6" sideWeight="0.5099439" side_tool="true" weight="0.19135477" />
       <window_info id="npm" order="2" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
+      <window_info anchor="right" id="Run" order="6" sideWeight="0.5108108" side_tool="true" visible="true" weight="0.30381256" />
       <window_info id="Structure" order="1" sideWeight="0.39684156" side_tool="true" weight="0.07191781" />
-      <window_info anchor="right" id="Terminal" order="4" sideWeight="0.4900561" visible="true" weight="0.19135477" />
+      <window_info active="true" anchor="right" id="Terminal" order="4" sideWeight="0.48918918" visible="true" weight="0.30381256" />
       <window_info id="Favorites" order="2" sideWeight="0.33214286" side_tool="true" weight="0.08104299" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.30337837" />
-      <window_info anchor="bottom" id="TypeScript" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Metrics" order="8" weight="0.32963446" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TypeScript" order="7" />
+      <window_info anchor="bottom" id="Message" order="2" />
       <window_info id="Gulp" order="2" side_tool="true" />
       <window_info anchor="right" id="GfmBrowser" order="3" show_stripe_button="false" weight="0.32982087" />
-      <window_info anchor="bottom" id="Messages" order="6" />
-      <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="V8 CPU Profiling" order="9" weight="0.32987553" />
       <window_info anchor="bottom" id="Find" order="3" weight="0.32908812" />
+      <window_info anchor="bottom" id="Messages" order="6" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -547,7 +571,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="295" />
+      <option name="time" value="302" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -802,7 +826,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../field-checker/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state>
           <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
@@ -815,16 +839,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1740">
-          <caret line="116" column="64" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../xtime/package.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../xtime/binding.gyp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -832,10 +846,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../xtime/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../field-checker/samples/demo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="116" column="64" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../field-checker/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="149" lean-forward="true" selection-start-line="149" selection-end-line="149" />
+        <state relative-caret-position="240">
+          <caret line="117" column="22" selection-start-line="117" selection-start-column="22" selection-end-line="117" selection-end-column="22" />
         </state>
       </provider>
     </entry>
